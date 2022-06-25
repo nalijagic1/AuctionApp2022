@@ -14,7 +14,7 @@ function Footer() {
                 <br/>
                 <a>Terms and conditions</a>
                 <br/>
-                <a>Privacy and policy</a>
+                <a href="/privacy">Privacy and policy</a>
             </div>
             <div className="contact">
                 <h1>GET IN TOUCH</h1>

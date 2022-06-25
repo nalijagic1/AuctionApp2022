@@ -8,7 +8,7 @@ function NavigationWhite() {
   return(
     <div className="whitenav">
       <div id="logo">
-         <img  src={logo}></img>
+         <img  src={logo} ></img>
       </div>
       <div className='search'>
         <input type="text" value="Search"></input>
