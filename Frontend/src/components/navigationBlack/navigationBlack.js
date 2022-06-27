@@ -13,11 +13,6 @@ function NavigationBlack() {
         <img src={instagram}/>
         <img src={twitter}/>
       </div> 
-      <div className='user'>
-        <a>Log in</a>
-        <h1>or</h1>
-        <a>Create an account</a>
-      </div>
     </div>
   );
 }

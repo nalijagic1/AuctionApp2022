@@ -1,0 +1,36 @@
+.terms{
+    margin-right: 438px;
+    margin-left: 446px;
+    margin-bottom: 147px;
+}
+
+.terms h2{ 
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 51px;
+    letter-spacing: 0.84px;
+    color: #000000;
+}
+
+.terms p{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+
+color: #9B9B9B;
+
+}
+
+.terms h3{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.84px;
+    color: #000000;
+}

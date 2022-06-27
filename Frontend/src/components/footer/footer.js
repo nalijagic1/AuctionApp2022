@@ -12,7 +12,7 @@ function Footer() {
                 <h1>AUCTION</h1>
                 <a>About us</a>
                 <br/>
-                <a>Terms and conditions</a>
+                <a href = "/terms">Terms and conditions</a>
                 <br/>
                 <a href="/privacy">Privacy and policy</a>
             </div>
