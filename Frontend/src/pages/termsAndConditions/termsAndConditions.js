@@ -1,7 +1,10 @@
 import React from "react";
 import './termsAndConditions.css'
+import PathBar from "../../components/pathBar/pathBar";
 function TermsAndConditions() {
     return(
+      <div>
+         <PathBar prop ={{name: "Terms and Conditions", startPoint:"Home", endPoint:"Terms and conditions"}}/>
       <div className="terms">
         
         <h2>Terms and Conditions for Auction</h2>
@@ -61,6 +64,7 @@ These Terms constitute the entire agreement between Auction and you in relation 
 <h3>Governing Law & Jurisdiction</h3>
 These Terms will be governed by and interpreted in accordance with the laws of the State of Country, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Country for the resolution of any disputes.
 </p>
+  </div>
   </div>
     );
   }

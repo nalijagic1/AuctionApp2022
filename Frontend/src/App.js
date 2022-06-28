@@ -3,6 +3,7 @@ import NavigationWhite from './components/navigationWhite/navigationWhite';
 import Footer from './components/footer/footer';
 import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
+import AboutUs from './pages/aboutUs/aboutUs';
 import {
   BrowserRouter as Router,
   Route,
@@ -17,6 +18,7 @@ function App() {
       < Routes>
       <Route path='/privacy' element={<PrivacyAndPolicy/>}/>
       <Route path='/terms' element={<TermsAndConditions/>}/>
+      <Route path='/aboutUs' element={<AboutUs/>}/>
       </ Routes>
     </Router>
         <Footer/>

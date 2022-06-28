@@ -1,7 +1,10 @@
 import React from "react";
 import './privacyAndPolicy.css'
+import PathBar from "../../components/pathBar/pathBar";
 function PrivacyAndPolicy() {
     return(
+      <div>
+        <PathBar prop ={{name: "Privacy and policy", startPoint:"Home", endPoint:"Privacy and policy"}}/>
       <div className="privacy">
        <h2>Privacy And Policy</h2>
        <p>This privacy policy ("policy") will help you understand how Auction uses and
@@ -61,6 +64,7 @@ Auction will not lease, sell or distribute your personal information to any thir
 have your permission. We might do so if the law forces us. Your personal information will be
 used when we need to send you promotional materials if you agree to this privacy policy.
 </p>
+  </div>
   </div>
     );
   }

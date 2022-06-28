@@ -10,7 +10,7 @@ function Footer() {
       <div className="footer">
             <div className="links">
                 <h1>AUCTION</h1>
-                <a>About us</a>
+                <a href="/aboutUs">About us</a>
                 <br/>
                 <a href = "/terms">Terms and conditions</a>
                 <br/>
