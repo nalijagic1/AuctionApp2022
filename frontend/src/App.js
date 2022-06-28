@@ -4,6 +4,7 @@ import Footer from './components/footer/footer';
 import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
+import "./App.css"
 import {
   BrowserRouter as Router,
   Route,
@@ -12,6 +13,10 @@ import {
 function App() {
   return (
     <div className="App">
+      <head>
+      <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'/>
+      </head>
+      <div className='content'>
         <NavigationBlack/>
         <NavigationWhite/>
         <Router>
@@ -21,7 +26,9 @@ function App() {
       <Route path='/aboutUs' element={<AboutUs/>}/>
       </ Routes>
     </Router>
-        <Footer/>
+    </div>
+    <footer className='foot'><Footer/></footer>
+        
     </div>
   );
 }

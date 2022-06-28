@@ -10,7 +10,7 @@
 }
 
 h1{
-    font-family: 'Lato';
+    font-family: 'Lato,',sans-serif;
 font-style: normal;
 font-weight: 700;
 font-size: 16px;
@@ -19,10 +19,11 @@ color: #FFFFFF;
 opacity: 0.5;
 padding-top: 31px;
 padding-bottom: 24px;
+
 }
 
 .links a{
-    font-family: 'Lato';
+    font-family: 'Lato',sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -40,7 +41,7 @@ padding-bottom: 24px;
 }
 
 .contact p{
-    font-family: 'Lato';
+    font-family: 'Lato',sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;

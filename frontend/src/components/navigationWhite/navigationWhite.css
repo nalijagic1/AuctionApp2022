@@ -4,7 +4,7 @@
     display: flex;
 }
 #logo{
-    margin-left: 185px;
+    margin-left: 164px;
     margin-top: 17px;
     margin-bottom: 37px;
     margin-right: 73px;
@@ -20,7 +20,7 @@
     margin-bottom: 36.06px;
    
     color:#9B9B9B;
-    font-family: 'Lato';
+    font-family: 'Lato',sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -49,7 +49,7 @@
 .menu a{
     margin-right: 40px;
     text-decoration: none;
-    font-family: 'Lato';
+    font-family: 'Lato',sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 16px;
@@ -62,7 +62,7 @@
     color: #8367D8;
     width: 50px;
     height: 19px;
-    font-family: 'Lato';
+    font-family: 'Lato',sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
