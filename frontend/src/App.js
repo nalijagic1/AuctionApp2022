@@ -27,9 +27,10 @@ function App() {
       </ Routes>
     </Router>
     </div>
-    <footer className='foot'><Footer/></footer>
-        
-    </div>
+    <footer className='foot'>
+      <Footer/>
+    </footer>
+  </div>
   );
 }
 

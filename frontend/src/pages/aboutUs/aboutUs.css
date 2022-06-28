@@ -28,10 +28,10 @@
 }
 
 .aboutImg{
-float: right;
-margin-left: 22px;
-margin-top: 130px;
-width: 548px;
+    float: right;
+    margin-left: 22px;
+    margin-top: 130px;
+    width: 548px;
 }
 
 .aboutImg img{

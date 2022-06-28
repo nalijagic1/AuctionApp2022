@@ -11,7 +11,6 @@ function NavigationWhite() {
         <a href='/'>
           <img  src={logo} ></img>
         </a>
-         
       </div>
       <div className='search'>
         <input type="text" value="Search"></input>
@@ -21,9 +20,7 @@ function NavigationWhite() {
         <a href='#'>HOME</a>
         <a href='#'>SHOP</a>
         <a href="#">MY ACCOUNT</a>
-      </div>
-            
-      
+      </div> 
     </div>
   );
 }

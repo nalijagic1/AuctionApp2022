@@ -11,11 +11,12 @@
     float: left;
     margin-left: 160px;
     font-family: 'Lato';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 24px;
-color: #000000;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    margin-top: 15px;
 }
 
 .path ol {
@@ -28,7 +29,7 @@ color: #000000;
     width: 9.44px;
     height: 8.67px;
     color: #9B9B9B;;
-margin-right: 16px;
+    margin-right: 16px;
 }
     
 .path li:first-child::before {
@@ -37,14 +38,13 @@ margin-right: 16px;
 
 .path li{
     font-family: 'Lato',sans-serif;
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 19px;
-text-align: right;
-color: #8367D8;
-margin-right: 16px;
-
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+    color: #8367D8;
+    margin-right: 16px;
 }
 
 .path li a{

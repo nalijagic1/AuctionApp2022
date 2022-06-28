@@ -10,7 +10,7 @@ function PathBar({prop}) {
   return(
     <div className="bar">
         <div className='locationName'>
-            <h2>{prop.name}</h2>
+            {prop.name}
         </div>
         <div className='path'>
            <Breadcrumb>
