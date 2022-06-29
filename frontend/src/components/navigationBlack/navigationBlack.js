@@ -9,9 +9,9 @@ function NavigationBlack() {
   return(
     <div className="blacknav">
       <div className="socialMedia">
-        <img src={facebook}/>
-        <img src={instagram}/>
-        <img src={twitter}/>
+          <a href="https://www.facebook.com/AtlantBHh" target="_blank"><img src={facebook}/></a>
+          <a href="https://www.instagram.com/atlantbh/?hl=hr" target="_blank"><img src={instagram}/></a>
+          <a href="https://twitter.com/atlantbh" target="_blank"><img src={twitter}/></a>
       </div> 
     </div>
   );
