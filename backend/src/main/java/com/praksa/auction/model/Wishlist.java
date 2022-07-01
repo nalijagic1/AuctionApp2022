@@ -6,19 +6,18 @@ import javax.persistence.*;
 @Table(name="wishlist")
 public class Wishlist {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @JoinColumn(name = "personId")
+    private Person person;
 
-    public Wishlist(long id, Product product, User user) {
-        this.id = id;
+    public Wishlist(Product product, Person person) {
         this.product = product;
-        this.user = user;
+        this.person = person;
     }
 
     public long getId() {
@@ -37,11 +36,11 @@ public class Wishlist {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

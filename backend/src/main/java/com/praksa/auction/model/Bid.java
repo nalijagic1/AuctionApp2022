@@ -3,30 +3,27 @@ package com.praksa.auction.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name="bid")
 public class Bid {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @JoinColumn(name = "personId")
+    private Person person;
     @Column(name="bid")
     private Double bid;
     @Column(name="bidDate")
     private Date bidDate;
 
-    public Bid(long id, Product product, User user, Double bid, Date bidDate) {
-        this.id = id;
+    public Bid(Product product, Person person, Double bid, Date bidDate) {
         this.product = product;
-        this.user = user;
+        this.person = person;
         this.bid = bid;
         this.bidDate = bidDate;
     }
@@ -47,12 +44,12 @@ public class Bid {
         this.product = product;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Double getBid() {

@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name="card")
 public class Card {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name="cardOwner")
     private String cardOwner;
@@ -18,10 +18,9 @@ public class Card {
     @Column(name = "cvc")
     private Integer cvc;
     @OneToOne(mappedBy = "card", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private User user;
+    private Person person;
 
-    public Card(long id, String cardOwner, String cardNumber, Date expirationDate, Integer cvc) {
-        this.id = id;
+    public Card( String cardOwner, String cardNumber, Date expirationDate, Integer cvc) {
         this.cardOwner = cardOwner;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -68,12 +67,11 @@ public class Card {
         this.cvc = cvc;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
-
 }

@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name="picture")
 public class Picture {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "imageUrl")
     private String imageUrl;
@@ -14,8 +14,7 @@ public class Picture {
     @JoinColumn(name = "productId")
     private Product product;
 
-    public Picture(long id, String imageUrl, Product product) {
-        this.id = id;
+    public Picture( String imageUrl, Product product) {
         this.imageUrl = imageUrl;
         this.product = product;
     }

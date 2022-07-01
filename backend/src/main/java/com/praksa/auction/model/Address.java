@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name="address")
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name="street")
     private String street;
@@ -24,10 +24,9 @@ public class Address {
     @OneToMany(mappedBy = "address")
     private Set<Product> products = new HashSet<>();
     @OneToMany(mappedBy = "address")
-    private Set<User> users = new HashSet<>();
+    private Set<Person> people = new HashSet<>();
 
-    public Address(long id, String street, String city, String zipCode, String state, String country) {
-        this.id = id;
+    public Address( String street, String city, String zipCode, String state, String country) {
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;
@@ -91,11 +90,11 @@ public class Address {
         this.products = products;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<Person> getPeople() {
+        return people;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setPeople(Set<Person> people) {
+        this.people = people;
     }
 }

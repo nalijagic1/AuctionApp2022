@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name="product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name")
     private String name;
@@ -19,8 +19,8 @@ public class Product {
     @JoinColumn(name = "subcategoryId")
     private Subcategory subcategory;
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @JoinColumn(name = "personId")
+    private Person person;
     @Column(name = "startingPrice")
     private Double startingPrice;
     @Column(name = "startingDate")
@@ -39,12 +39,11 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<Wishlist> wishlists = new HashSet<>();
 
-    public Product(long id, String name, String description, Subcategory subcategory, User user, Double startingPrice, Date startingDate, Date endingDate, Address address, Boolean shippingOption, String phoneNumber) {
-        this.id = id;
+    public Product(String name, String description, Subcategory subcategory, Person person, Double startingPrice, Date startingDate, Date endingDate, Address address, Boolean shippingOption, String phoneNumber) {
         this.name = name;
         this.description = description;
         this.subcategory = subcategory;
-        this.user = user;
+        this.person = person;
         this.startingPrice = startingPrice;
         this.startingDate = startingDate;
         this.endingDate = endingDate;
@@ -85,12 +84,12 @@ public class Product {
         this.subcategory = subcategory;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Double getStartingPrice() {

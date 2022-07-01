@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="person")
+public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "firstName")
     private String firstName;
@@ -30,18 +30,17 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "addressId")
     private Address address;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "person")
     private Set<Product> products = new HashSet<>();
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cardId")
     private Card card;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "person")
     private Set<Bid> bids = new HashSet<>();
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "person")
     private Set<Wishlist> wishlists = new HashSet<>();
 
-    public User(long id, String firstName, String lastName, char gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
-        this.id = id;
+    public Person(String firstName, String lastName, char gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;

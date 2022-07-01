@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name="category")
 public class Category {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name ="name")
     private String name;
@@ -16,8 +16,7 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Subcategory> subcategories = new HashSet<>();
 
-    public Category(long id, String name) {
-        this.id = id;
+    public Category(String name) {
         this.name = name;
     }
 
