@@ -18,7 +18,10 @@ public class Subcategory {
     @OneToMany(mappedBy = "subcategory")
     private Set<Product> products = new HashSet<>();
 
-    public Subcategory( String name, Category category) {
+    public Subcategory() {
+    }
+
+    public Subcategory(String name, Category category) {
         this.name = name;
         this.category = category;
     }

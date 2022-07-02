@@ -20,6 +20,9 @@ public class Wishlist {
         this.person = person;
     }
 
+    public Wishlist() {
+    }
+
     public long getId() {
         return id;
     }

@@ -19,6 +19,9 @@ public class Picture {
         this.product = product;
     }
 
+    public Picture() {
+    }
+
     public long getId() {
         return id;
     }

@@ -28,6 +28,9 @@ public class Bid {
         this.bidDate = bidDate;
     }
 
+    public Bid() {
+    }
+
     public long getId() {
         return id;
     }

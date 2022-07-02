@@ -27,6 +27,9 @@ public class Card {
         this.cvc = cvc;
     }
 
+    public Card() {
+    }
+
     public long getId() {
         return id;
     }

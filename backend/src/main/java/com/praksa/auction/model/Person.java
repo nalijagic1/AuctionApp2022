@@ -53,6 +53,9 @@ public class Person {
         this.card = card;
     }
 
+    public Person() {
+    }
+
     public long getId() {
         return id;
     }

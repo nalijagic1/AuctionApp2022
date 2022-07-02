@@ -52,6 +52,9 @@ public class Product {
         this.phoneNumber = phoneNumber;
     }
 
+    public Product() {
+    }
+
     public long getId() {
         return id;
     }

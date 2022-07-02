@@ -34,6 +34,9 @@ public class Address {
         this.country = country;
     }
 
+    public Address() {
+    }
+
     public long getId() {
         return id;
     }

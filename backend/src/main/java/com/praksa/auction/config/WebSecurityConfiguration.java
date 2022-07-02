@@ -1,4 +1,4 @@
-package com.praksa.auction;
+package com.praksa.auction.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
