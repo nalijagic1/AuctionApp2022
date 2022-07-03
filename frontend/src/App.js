@@ -4,6 +4,7 @@ import Footer from './components/footer/footer';
 import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
+import LandingPage from './pages/landingPage/landingPage';
 import "./App.css"
 import {
   BrowserRouter as Router,
@@ -21,6 +22,7 @@ function App() {
         <NavigationWhite/>
         <Router>
       < Routes>
+      <Route path='/' element={<LandingPage/>}/>
       <Route path='/privacy' element={<PrivacyAndPolicy/>}/>
       <Route path='/terms' element={<TermsAndConditions/>}/>
       <Route path='/aboutUs' element={<AboutUs/>}/>

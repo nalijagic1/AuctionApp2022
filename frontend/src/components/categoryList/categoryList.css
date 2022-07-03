@@ -1,0 +1,27 @@
+.list{
+    height:616px;
+    width: 262px;
+    margin-left: 160px;
+}
+
+.list p{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #8367D8; 
+}
+
+.list li{
+    border-bottom: 1px solid #D8D8D8;
+    padding: 16px;
+    width: 262px;
+    
+}
+
+.category{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
