@@ -36,13 +36,6 @@ public class Product {
     private Boolean shippingOption;
     @Column(name ="phoneNumber")
     private String phoneNumber;
-    @JsonManagedReference
-    @OneToMany(mappedBy = "product")
-    private Set<Picture> pictures = new HashSet<>();
-    @OneToMany(mappedBy = "product")
-    private Set<Bid> bids = new HashSet<>();
-    @OneToMany(mappedBy = "product")
-    private Set<Wishlist> wishlists = new HashSet<>();
 
     public Product(String name, String description, Subcategory subcategory, Person person, Double startingPrice, Date startingDate, Date endingDate, Address address, Boolean shippingOption, String phoneNumber) {
         this.name = name;
@@ -156,27 +149,5 @@ public class Product {
         this.address = address;
     }
 
-    public Set<Bid> getBids() {
-        return bids;
-    }
 
-    public void setBids(Set<Bid> bids) {
-        this.bids = bids;
-    }
-
-    public Set<Wishlist> getWishlists() {
-        return wishlists;
-    }
-
-    public void setWishlists(Set<Wishlist> wishlists) {
-        this.wishlists = wishlists;
-    }
-
-    public Set<Picture> getPictures() {
-        return pictures;
-    }
-
-    public void setPictures(Set<Picture> pictures) {
-        this.pictures = pictures;
-    }
 }

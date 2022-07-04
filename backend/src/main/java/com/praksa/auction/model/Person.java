@@ -30,15 +30,10 @@ public class Person {
     @ManyToOne
     @JoinColumn(name = "addressId")
     private Address address;
-    @OneToMany(mappedBy = "person")
-    private Set<Product> products = new HashSet<>();
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cardId")
     private Card card;
-    @OneToMany(mappedBy = "person")
-    private Set<Bid> bids = new HashSet<>();
-    @OneToMany(mappedBy = "person")
-    private Set<Wishlist> wishlists = new HashSet<>();
+
 
     public Person(String firstName, String lastName, char gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
         this.firstName = firstName;
@@ -136,14 +131,6 @@ public class Person {
         this.address = address;
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
     public Card getCard() {
         return card;
     }
@@ -152,21 +139,6 @@ public class Person {
         this.card = card;
     }
 
-    public Set<Bid> getBids() {
-        return bids;
-    }
-
-    public void setBids(Set<Bid> bids) {
-        this.bids = bids;
-    }
-
-    public Set<Wishlist> getWishlists() {
-        return wishlists;
-    }
-
-    public void setWishlists(Set<Wishlist> wishlists) {
-        this.wishlists = wishlists;
-    }
 
 
 }

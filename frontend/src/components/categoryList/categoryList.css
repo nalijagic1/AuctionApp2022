@@ -15,13 +15,12 @@
 
 .list li{
     border-bottom: 1px solid #D8D8D8;
-    padding: 16px;
-    width: 262px;
-    
+    padding: 16px;   
 }
 
 .category{
     list-style-type: none;
+    width: 262px;
     margin: 0px;
     padding: 0px;
 }

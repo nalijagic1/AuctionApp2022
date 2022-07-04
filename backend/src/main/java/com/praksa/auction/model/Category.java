@@ -13,8 +13,7 @@ public class Category {
     @Column(name ="name")
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Subcategory> subcategories = new HashSet<>();
+
 
     public Category(String name) {
         this.name = name;
@@ -36,12 +35,6 @@ public class Category {
         this.name = name;
     }
 
-    public Set<Subcategory> getSubcategories() {
-        return subcategories;
-    }
 
-    public void setSubcategories(Set<Subcategory> subcategories) {
-        this.subcategories = subcategories;
-    }
 
 }

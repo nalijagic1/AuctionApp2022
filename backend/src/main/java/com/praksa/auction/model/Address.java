@@ -21,10 +21,7 @@ public class Address {
     private String state;
     @Column(name = "country")
     private String country;
-    @OneToMany(mappedBy = "address")
-    private Set<Product> products = new HashSet<>();
-    @OneToMany(mappedBy = "address")
-    private Set<Person> people = new HashSet<>();
+
 
     public Address( String street, String city, String zipCode, String state, String country) {
         this.street = street;
@@ -85,19 +82,4 @@ public class Address {
         this.country = country;
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
-
-    public Set<Person> getPeople() {
-        return people;
-    }
-
-    public void setPeople(Set<Person> people) {
-        this.people = people;
-    }
 }

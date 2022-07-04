@@ -15,8 +15,6 @@ public class Subcategory {
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
-    @OneToMany(mappedBy = "subcategory")
-    private Set<Product> products = new HashSet<>();
 
     public Subcategory() {
     }
@@ -50,12 +48,5 @@ public class Subcategory {
         this.category = category;
     }
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 
 }
