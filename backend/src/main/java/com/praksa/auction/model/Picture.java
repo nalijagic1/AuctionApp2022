@@ -1,5 +1,7 @@
 package com.praksa.auction.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Picture {
     private long id;
     @Column(name = "imageUrl")
     private String imageUrl;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;

@@ -1,5 +1,7 @@
 package com.praksa.auction.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -34,6 +36,9 @@ public class Product {
     private Boolean shippingOption;
     @Column(name ="phoneNumber")
     private String phoneNumber;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "product")
+    private Set<Picture> pictures = new HashSet<>();
     @OneToMany(mappedBy = "product")
     private Set<Bid> bids = new HashSet<>();
     @OneToMany(mappedBy = "product")
@@ -165,5 +170,13 @@ public class Product {
 
     public void setWishlists(Set<Wishlist> wishlists) {
         this.wishlists = wishlists;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 }
