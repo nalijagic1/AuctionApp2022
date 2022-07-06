@@ -1,0 +1,43 @@
+.productList{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    row-gap: 32px;
+    column-gap: 24px;
+    width:1166px
+}
+
+.offers button:focus{
+    border-bottom: 3px solid #8367D8;
+}
+.productList img{
+    width:262px;
+    height: 262px;
+}
+
+.productCard{
+    width: 262px;
+}
+
+.grid{
+    margin-left:160px;
+    margin-right: 160px;
+    margin-bottom:80.43px;
+    margin-top: 64px;
+}
+
+.grid hr{
+    width: 1166px;
+    margin-left: 0px;
+    margin-bottom: 32px;
+    border: 1px solid #D8D8D8;
+}
+
+.grid button{
+    font-family: 'Lato';
+    font-style: normal; 
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: 0.84px;
+}
+

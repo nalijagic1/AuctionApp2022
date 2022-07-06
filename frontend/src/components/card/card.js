@@ -1,10 +1,22 @@
 import React from 'react';
-import './Card.css';
-function Card({name, imageURL, price}){
+import './card.css';
+import { useEffect, useState } from "react";
+import pictureService from '../../services/picture.service';
+function Card({name, productId, price}){
+    const [image,setImage] = useState()
+    useEffect(() => {
+                    pictureService.getProductPicture(productId).then((response) => {
+                        setImage(response.data);
+                         
+                  });    
+  }, []);
     return(
             <div class='card-container'>
                 <div class="image-container">
-                    <img src={imageURL} alt="Image" />
+                    {image &&
+                        <img src={image[0].imageUrl} alt="Image" />
+                    } 
+                   
                 </div>
 
                 <div class="card-content">
@@ -14,7 +26,7 @@ function Card({name, imageURL, price}){
                     </div>
 
                     <div class="card-body">
-                        <p>Start price from ${price}</p>
+                        <p>Start price from <div> ${price}</div></p>
                     </div>
 
                 </div>
