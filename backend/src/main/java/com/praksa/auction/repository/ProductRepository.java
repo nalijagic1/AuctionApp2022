@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+<<<<<<< HEAD
 import java.util.Date;
 import java.util.List;
 
@@ -15,4 +16,13 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductsByEndingDateAfterOrderByEndingDateAsc(Date date, Pageable pageable);
 
     List<Product> findProductsByEndingDateAfterOrderByStartingDateDesc(Date date, Pageable pageable);
+=======
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
+public interface ProductRepository extends JpaRepository<Product,Long> {
+    List<Product> findProductsByEndingDateAfterOrderByEndingDateAsc(Date date);
+    List<Product> findProductsByStartingDateBeforeOrderByStartingDateDesc(Date date);
+>>>>>>> a12b1d2 (Finished api for landing page)
 }
