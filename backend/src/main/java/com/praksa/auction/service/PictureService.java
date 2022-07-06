@@ -20,4 +20,5 @@ public class PictureService {
     public List<Picture> getProductPictures(Long id){
         return pictureRepository.findPicturesByProductId(id);
     }
+
 }

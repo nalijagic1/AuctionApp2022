@@ -5,9 +5,7 @@ import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class ProductService {
@@ -23,8 +21,21 @@ public class ProductService {
         Random rand = new Random();
         List<Product> products = productRepository.findAll();
         int randomElement = rand.nextInt(products.size());
-        System.out.println(randomElement);
         return products.get(randomElement);
+    }
+
+    public List<Product> getLastChance(int start, int count){
+        List<Product> products = productRepository.findProductsByEndingDateAfterOrderByEndingDateAsc(new Date());
+        if(products.size()-start<count) count = products.size()-start;
+        List<Product> show = products.subList(start,start+count);
+        return show;
+    }
+
+    public List<Product> getNewest(int start, int count){
+        List<Product> products = productRepository.findProductsByStartingDateBeforeOrderByStartingDateDesc(new Date());
+        if(products.size()-start<count) count = products.size()-start;
+        List<Product> show = products.subList(start,start+count);
+        return show;
     }
 
 }
