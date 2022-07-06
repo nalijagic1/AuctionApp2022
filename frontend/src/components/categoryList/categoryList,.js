@@ -17,6 +17,7 @@ function CategoryList() {
         {categories && categories.map(cat => (
           <li  key={cat.id}>{cat.name}</li>
         ))}
+        <li> All Categories</li>
       </ul>
     </div>
   );
