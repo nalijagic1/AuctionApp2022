@@ -38,4 +38,8 @@ public class ProductService {
         return show;
     }
 
+    public Optional<Product> getSelectedProduct(long id){
+        return productRepository.findById(id);
+    }
+
 }
