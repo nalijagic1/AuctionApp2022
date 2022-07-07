@@ -38,6 +38,10 @@
     width: 357px;
     height: 420px;
 }
+.highlight a{
+    text-decoration: none;
+    display: flex;
+}
 
 .bidNow{
     margin-top: 79px;

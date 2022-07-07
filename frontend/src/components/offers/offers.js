@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import productService from '../../services/product.service';
 import Card from '../card/card';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import {Link} from 'react-router-dom';
 import "./offers.css"
 function Offers() {
   var tab = 1; 
@@ -61,7 +62,9 @@ function Offers() {
         >
           {products.map(product => (
             <div className ="productCard">
-            <Card key={product.id}  name = {product.name}  productId = {product.id} price = {product.startingPrice}/>
+              <Link to={`/product/${product.id}`}>
+                <Card key={product.id}  name = {product.name}  productId = {product.id} price = {product.startingPrice}/>
+              </Link>
           </div>
           ))}
           </InfiniteScroll>

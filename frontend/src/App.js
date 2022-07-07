@@ -5,6 +5,7 @@ import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
+import SingleProduct from './pages/singleProduct/signgleProduct';
 import "./App.css"
 import {
   BrowserRouter as Router,
@@ -26,7 +27,8 @@ function App() {
       <Route path='/privacy' element={<PrivacyAndPolicy/>}/>
       <Route path='/terms' element={<TermsAndConditions/>}/>
       <Route path='/aboutUs' element={<AboutUs/>}/>
-      </ Routes>
+      <Route path='/product/:productId' element={<SingleProduct/>}/>
+      </Routes>
     </Router>
     </div>
     <footer className='foot'>

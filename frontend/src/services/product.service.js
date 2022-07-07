@@ -10,5 +10,8 @@ class ProductDataService {
         return httpCommon.get("/lastChance?start="+start+"&count="+count)
       }
     }
+    getSelectedProduct(product){
+      return httpCommon.get("/product/"+product)
+    }
   }
   export default new ProductDataService();
