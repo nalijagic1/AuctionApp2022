@@ -32,4 +32,8 @@ public class ProductService {
         return products;
     }
 
+    public Optional<Product> getSelectedProduct(long id){
+        return productRepository.findById(id);
+    }
+
 }
