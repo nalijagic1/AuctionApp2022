@@ -10,7 +10,6 @@ public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "imageUrl")
     private String imageUrl;
     @ManyToOne
     @JoinColumn(name = "productId")
@@ -48,4 +47,12 @@ public class Picture {
         this.product = product;
     }
 
+    @Override
+    public String toString() {
+        return "Picture{" +
+                "id=" + id +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", product=" + product +
+                '}';
+    }
 }

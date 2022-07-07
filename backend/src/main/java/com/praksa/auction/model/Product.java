@@ -13,9 +13,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "description")
     private String description;
     @ManyToOne
     @JoinColumn(name = "subcategoryId")
@@ -23,18 +21,13 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "personId")
     private Person person;
-    @Column(name = "startingPrice")
     private Double startingPrice;
-    @Column(name = "startingDate")
     private Date startingDate;
-    @Column(name = "endingDate")
     private Date endingDate;
     @ManyToOne
     @JoinColumn(name = "addressId")
     private Address address;
-    @Column(name="shippingOption")
     private Boolean shippingOption;
-    @Column(name ="phoneNumber")
     private String phoneNumber;
 
     public Product(String name, String description, Subcategory subcategory, Person person, Double startingPrice, Date startingDate, Date endingDate, Address address, Boolean shippingOption, String phoneNumber) {
@@ -149,5 +142,20 @@ public class Product {
         this.address = address;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", subcategory=" + subcategory +
+                ", person=" + person +
+                ", startingPrice=" + startingPrice +
+                ", startingDate=" + startingDate +
+                ", endingDate=" + endingDate +
+                ", address=" + address +
+                ", shippingOption=" + shippingOption +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

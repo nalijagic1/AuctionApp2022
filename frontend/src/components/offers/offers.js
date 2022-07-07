@@ -13,16 +13,18 @@ function Offers() {
   const[more,setMore] = useState(true);
   function getData(option,start){
      productService.getNewestOrLastChance(option,start,count).
-        then((response) => {
+        then((response) => { 
+          setStart(start+count);
           if(response.data.length==0 || response.data.length%count!=0){
             setMore(false);  
+            console.log(response.data)
           }
           if(products){
             setProducts(products.concat(response.data))
           }else{
             setProducts(response.data);
           }
-          setStart(start+count);
+         
           
     })
   }
@@ -55,7 +57,7 @@ function Offers() {
           className='productList'
           dataLength={products.length} //This is important field to render the next data
           next={getNext}
-          hasMore={more}
+          hasMore={more}np
         >
           {products.map(product => (
             <div className ="productCard">

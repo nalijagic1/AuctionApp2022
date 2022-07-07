@@ -46,4 +46,13 @@ public class Wishlist {
     public void setPerson(Person person) {
         this.person = person;
     }
+
+    @Override
+    public String toString() {
+        return "Wishlist{" +
+                "id=" + id +
+                ", product=" + product +
+                ", person=" + person +
+                '}';
+    }
 }

@@ -11,21 +11,13 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "firstName")
     private String firstName;
-    @Column(name = "lastName")
     private String lastName;
-    @Column(name = "gender")
     private char gender;
-    @Column(name = "dateOfBirth")
     private Date dateOfBirth;
-    @Column(name = "phoneNumber")
     private String phoneNumber;
-    @Column(name = "email")
     private String email;
-    @Column(name = "password")
     private String password;
-    @Column(name="picture")
     private String picture;
     @ManyToOne
     @JoinColumn(name = "addressId")
@@ -139,6 +131,20 @@ public class Person {
         this.card = card;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender=" + gender +
+                ", dateOfBirth=" + dateOfBirth +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", picture='" + picture + '\'' +
+                ", address=" + address +
+                ", card=" + card +
+                '}';
+    }
 }

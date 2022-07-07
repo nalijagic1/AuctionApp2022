@@ -10,7 +10,6 @@ public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name ="name")
     private String name;
     @ManyToOne
     @JoinColumn(name = "categoryId")
@@ -48,5 +47,12 @@ public class Subcategory {
         this.category = category;
     }
 
-
+    @Override
+    public String toString() {
+        return "Subcategory{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", category=" + category +
+                '}';
+    }
 }

@@ -11,15 +11,10 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name="street")
     private String street;
-    @Column(name = "city")
     private String city;
-    @Column(name="zipCode")
     private String zipCode;
-    @Column(name = "state")
     private String state;
-    @Column(name = "country")
     private String country;
 
 
@@ -82,4 +77,15 @@ public class Address {
         this.country = country;
     }
 
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                '}';
+    }
 }

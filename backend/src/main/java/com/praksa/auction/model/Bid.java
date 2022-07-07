@@ -16,9 +16,7 @@ public class Bid {
     @ManyToOne
     @JoinColumn(name = "personId")
     private Person person;
-    @Column(name="bid")
     private Double bid;
-    @Column(name="bidDate")
     private Date bidDate;
 
     public Bid(Product product, Person person, Double bid, Date bidDate) {
@@ -71,4 +69,14 @@ public class Bid {
         this.bidDate = bidDate;
     }
 
+    @Override
+    public String toString() {
+        return "Bid{" +
+                "id=" + id +
+                ", product=" + product +
+                ", person=" + person +
+                ", bid=" + bid +
+                ", bidDate=" + bidDate +
+                '}';
+    }
 }

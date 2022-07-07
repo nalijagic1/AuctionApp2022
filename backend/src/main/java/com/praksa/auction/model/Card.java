@@ -9,13 +9,9 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name="cardOwner")
     private String cardOwner;
-    @Column(name="cardNumber")
     private String cardNumber;
-    @Column(name = "expirationDate")
     private Date expirationDate;
-    @Column(name = "cvc")
     private Integer cvc;
     @OneToOne(mappedBy = "card", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Person person;
@@ -76,5 +72,17 @@ public class Card {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id=" + id +
+                ", cardOwner='" + cardOwner + '\'' +
+                ", cardNumber='" + cardNumber + '\'' +
+                ", expirationDate=" + expirationDate +
+                ", cvc=" + cvc +
+                ", person=" + person +
+                '}';
     }
 }

@@ -1,14 +1,11 @@
 package com.praksa.auction.controller;
 
 import com.praksa.auction.model.Category;
-import com.praksa.auction.repository.CategoryRepository;
 import com.praksa.auction.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
