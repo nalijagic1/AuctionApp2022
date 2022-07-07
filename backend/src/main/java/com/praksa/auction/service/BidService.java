@@ -17,4 +17,8 @@ public class BidService {
     public Bid getHighestBid(int productId){
         return bidRepository.findFirstByProductIdOrderByBidDesc(productId);
     }
+
+    public int getCount(long productId){
+        return bidRepository.countBidsByProductId(productId);
+    }
 }

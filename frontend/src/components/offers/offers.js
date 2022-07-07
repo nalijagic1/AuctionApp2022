@@ -4,6 +4,7 @@ import {useEffect, useState,useRef} from "react";
 import productService from '../../services/product.service';
 import Card from '../card/card';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import {Link} from 'react-router-dom';
 import "./offers.css"
 
 function Offers() {
@@ -61,8 +62,10 @@ function Offers() {
                 hasMore={more} 
             >
                 {products.map(product => (
+<Link to={`/product/${product.id}`}>
                         <Card className="productCard" key={product.id} name={product.name} productId={product.id}
                               price={product.startingPrice}/>
+    </Link>
                 ))}
             </InfiniteScroll>
             }

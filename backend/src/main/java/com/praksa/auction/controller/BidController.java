@@ -23,4 +23,9 @@ public class BidController {
     public ResponseEntity<Bid> getHighestBid(@PathVariable int productId) {
         return ResponseEntity.ok(bidService.getHighestBid(productId));
     }
+
+    @GetMapping("/bidCount/{productId}")
+    public ResponseEntity<Integer> getBidCount(@PathVariable long productId){
+        return ResponseEntity.ok(bidService.getCount(productId));
+    }
 }
