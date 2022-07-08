@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="bid")
+@Table(name = "bid")
 public class Bid {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,14 +69,4 @@ public class Bid {
         this.bidDate = bidDate;
     }
 
-    @Override
-    public String toString() {
-        return "Bid{" +
-                "id=" + id +
-                ", product=" + product +
-                ", person=" + person +
-                ", bid=" + bid +
-                ", bidDate=" + bidDate +
-                '}';
-    }
 }

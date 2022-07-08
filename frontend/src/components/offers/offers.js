@@ -11,10 +11,11 @@ function Offers() {
   const count = 8;
   const [start,setStart] = useState(0)
   const[more,setMore] = useState(true);
-  function getData(option,start){
+  function getData(option){
+    console.log(start);
      productService.getNewestOrLastChance(option,start,count).
         then((response) => { 
-          setStart(start+count);
+          setStart(start+1);
           if(response.data.length==0 || response.data.length%count!=0){
             setMore(false);  
             console.log(response.data)
@@ -31,7 +32,7 @@ function Offers() {
   
   function getNext(){
     setTimeout(()=>{
-        getData(tab,start);
+        getData(tab);
     },500)
   
   }

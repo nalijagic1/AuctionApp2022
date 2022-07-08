@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,11 +12,13 @@ public class Category {
     private String name;
 
 
-
     public Category(String name) {
         this.name = name;
     }
-    public Category(){}
+
+    public Category() {
+    }
+
     public long getId() {
         return id;
     }
@@ -33,11 +35,4 @@ public class Category {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

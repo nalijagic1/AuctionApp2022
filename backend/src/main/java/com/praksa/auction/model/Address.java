@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="address")
+@Table(name = "address")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class Address {
     private String country;
 
 
-    public Address( String street, String city, String zipCode, String state, String country) {
+    public Address(String street, String city, String zipCode, String state, String country) {
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;
@@ -77,15 +77,4 @@ public class Address {
         this.country = country;
     }
 
-    @Override
-    public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", state='" + state + '\'' +
-                ", country='" + country + '\'' +
-                '}';
-    }
 }

@@ -9,33 +9,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class ProductController {
 
-        private final ProductService productService;
+    private final ProductService productService;
 
-        @Autowired
-        public ProductController(ProductService productService) {
-            this.productService = productService;
-        }
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
     @GetMapping("/productRandom")
     public ResponseEntity<Product> getRandomProduct() {
-            var value = productService.getOneRandom();
-            return ResponseEntity.ok(value);
+        return ResponseEntity.ok(productService.getOneRandom());
     }
 
     @GetMapping("/lastChance")
     public ResponseEntity<List<Product>> getLast(@RequestParam int start, @RequestParam int count) {
-        var value = productService.getLastChance(start,count);
-        return ResponseEntity.ok(value);
+        return ResponseEntity.ok(productService.getLastChance(start, count));
     }
 
     @GetMapping("/newest")
     public ResponseEntity<List<Product>> getNewest(@RequestParam int start, @RequestParam int count) {
-        var value = productService.getNewest(start,count);
-        return ResponseEntity.ok(value);
+        return ResponseEntity.ok(productService.getNewest(start, count));
     }
 }

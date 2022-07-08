@@ -3,7 +3,7 @@ package com.praksa.auction.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="wishlist")
+@Table(name = "wishlist")
 public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,12 +47,4 @@ public class Wishlist {
         this.person = person;
     }
 
-    @Override
-    public String toString() {
-        return "Wishlist{" +
-                "id=" + id +
-                ", product=" + product +
-                ", person=" + person +
-                '}';
-    }
 }
