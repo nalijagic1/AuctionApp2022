@@ -9,7 +9,6 @@ import './singleProduct.css'
 
 function SingleProduct() {
     const params = useParams();
-    console.log(params)
     const [product,setProduct] = useState();
     useEffect(() => {
       productService.getSelectedProduct(parseInt(params.productId))
@@ -24,7 +23,7 @@ function SingleProduct() {
         <div>
        <PathBar  prop ={{name: product.name , startPoint:"Shop", endPoint:"Single product"}}></PathBar>
        <div className='productView'>
-          <Gallery/>
+          <Gallery productId={params.productId}/>
           <ProductInfo product={product}/>
           <></>
        </div>
