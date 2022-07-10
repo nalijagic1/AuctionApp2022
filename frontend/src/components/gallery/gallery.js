@@ -1,8 +1,28 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import './gallery.css'
-function Gallery() {
+import pictureService from '../../services/picture.service';
+function Gallery({productId}) {
+  const [shown,setShown] = useState([]);
+  const [pictures,setPicture] = useState([]);
+  useEffect(() => {
+    pictureService.getProductPicture(productId).then((response) => {
+        setPicture(response.data);
+        setShown(response.data[0].imageUrl);
+        document.getElementsByClassName("pictureGrid")[0].addEventListener('click',(event) =>{
+          setShown(event.target.src);
+        });
+  });    
+}, []);
   return(
     <div className="gallery">
+      <div>
+      <img className='mainPicture' src={shown}></img>
+      <div class="pictureGrid">
+        {pictures.map(picture =>(
+          <img value = {picture} src={picture.imageUrl}></img>
+        ))}
+      </div>
+      </div>
     </div>
   );
 }
