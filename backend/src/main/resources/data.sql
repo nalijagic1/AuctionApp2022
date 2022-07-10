@@ -8,7 +8,7 @@ VALUES (1, 'Fashion'),
        (7, 'Electronics'),
        (8, 'Mobile'),
        (9, 'Computer');
-COMMIT;
+
 INSERT INTO product (id, name, description, starting_date, ending_date, starting_price)
 VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
         'They create lifelike swimming actions in water. 3D eyes make it a powerful catching tool. Bright colors to attract big fish',
@@ -36,7 +36,7 @@ VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
        (9, 'SONY PSP Playstation Portable Console Only+ Battery Various colors Used',
         'condition is good. It is a warehouse storage item. There may be some scratches during storage.', '2022-07-06',
         '2022-07-18', 30);
-COMMIT;
+
 INSERT INTO picture
 VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
        (2, 'https://i.ebayimg.com/images/g/yDEAAOSwjwJgPHFr/s-l1600.jpg', 2),

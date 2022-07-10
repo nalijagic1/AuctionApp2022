@@ -1,18 +1,18 @@
 import React from "react";
-import facebook from '../../images/facebook.png' 
-import instagram from '../../images/instagram.png' 
-import twitter from '../../images/twitter.png' 
+import facebook from '../../images/facebook.png'
+import instagram from '../../images/instagram.png'
+import twitter from '../../images/twitter.png'
 import "./footer.css"
 
 function Footer() {
 
-    return(
-      <div className="footer">
+    return (
+        <div className="footer">
             <div className="links">
                 <h1>AUCTION</h1>
                 <a href="/aboutUs">About us</a>
                 <br/>
-                <a href = "/terms">Terms and conditions</a>
+                <a href="/terms">Terms and conditions</a>
                 <br/>
                 <a href="/privacy">Privacy and policy</a>
             </div>
@@ -26,8 +26,8 @@ function Footer() {
                     <a href="https://twitter.com/atlantbh" target="_blank"><img src={twitter}/></a>
                 </div>
             </div>
-      </div>
+        </div>
     );
-  }
-  
-  export default Footer;
+}
+
+export default Footer;

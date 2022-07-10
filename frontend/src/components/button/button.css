@@ -1,7 +1,7 @@
-.bidding{
+.bidding {
     background: #FFFFFF;
     border: 3px solid #8367D8;
-    padding:16px 36px 19px 44px;
+    padding: 16px 36px 19px 44px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
@@ -12,10 +12,8 @@
     color: #252525;
 }
 
-.button img{
+.button img {
     width: 5.33px;
     height: 10.67px;
     margin-left: 21.33px;
 }
-
-

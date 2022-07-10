@@ -1,17 +1,20 @@
-.bar{
-    width:100%;
+.bar {
+    width: 100%;
     height: 60px;
     margin-bottom: 80px;
     background-color: #FCFCFC;
 }
-.path li.active{
+
+.path li.active {
     margin: 2px 16px 2px 0px;
 }
-.path{
+
+.path {
     float: right;
     margin-right: 160px;
 }
-.locationName{
+
+.locationName {
     float: left;
     margin-left: 160px;
     font-family: 'Lato';
@@ -27,7 +30,7 @@
     display: flex;
     list-style-type: none;
 }
- 
+
 .path li::before {
     content: " → ";
     width: 9.44px;
@@ -35,13 +38,13 @@
     color: #9B9B9B;;
     margin-right: 16px;
 }
-    
+
 .path li:first-child::before {
     content: "";
 }
 
-.path li{
-    font-family: 'Lato',sans-serif;
+.path li {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
@@ -51,8 +54,8 @@
     margin-right: 16px;
 }
 
-.path li a{
-    font-family: 'Lato',sans-serif;
+.path li a {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
