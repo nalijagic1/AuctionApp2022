@@ -31,8 +31,7 @@ public class ProductService {
         List<Product> products = productRepository.findProductsByEndingDateAfterOrderByStartingDateDesc(new Date(), PageRequest.of(start, count));
         return products;
     }
-
-    public Optional<Product> getSelectedProduct(long id){
+    public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
 

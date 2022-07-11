@@ -38,9 +38,9 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") int id){
+    public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
         Optional<Product> product = productService.getSelectedProduct(id);
-        if(product.isPresent()) return ResponseEntity.ok(product.get());
-        else return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (product.isPresent()) return ResponseEntity.ok(product.get());
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

@@ -8,7 +8,6 @@ VALUES (1, 'Fashion'),
        (7, 'Electronics'),
        (8, 'Mobile'),
        (9, 'Computer');
-
 INSERT INTO product (id, name, description, starting_date, ending_date, starting_price)
 VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
         'They create lifelike swimming actions in water. 3D eyes make it a powerful catching tool. Bright colors to attract big fish',
@@ -47,3 +46,14 @@ VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
        (7, 'https://i.ebayimg.com/images/g/Yl8AAOSwB3BaCF~W/s-l500.jpg', 7),
        (8, 'https://i.ebayimg.com/images/g/X2MAAOSwY1Vhk9Yo/s-l500.jpg', 8),
        (9, 'https://i.ebayimg.com/images/g/HfcAAOSwOAViGkIb/s-l500.jpg', 9)
+       (10, 'https://m.media-amazon.com/images/I/71KAGRNZceS.jpg', 8),
+       (11, 'https://secure.img1-fg.wfcdn.com/im/37707688/compr-r85/1492/149262583/77-wood-grandfather-clock.jpg', 8),
+       (12,
+        'https://ae01.alicdn.com/kf/Hada0b46c068a4f62a99d5e4821d7070cD/SHF-Avengers-Endgame-Iron-Man-MK85-PVC-Action-Figure-Collectible-Model-Toy.jpg_Q90.jpg_.webp',
+        5);
+INSERT INTO bid (id, bid, product_id)
+VALUES (1, 30, 5),
+       (2, 25, 5),
+       (3, 80, 8),
+       (4, 88, 8),
+       (5, 100, 8);

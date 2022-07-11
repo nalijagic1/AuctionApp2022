@@ -41,7 +41,8 @@
     width: 357px;
     height: 420px;
 }
-.highlight a{
+
+.highlight a {
     text-decoration: none;
     display: flex;
 }

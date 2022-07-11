@@ -59,13 +59,15 @@ function Offers() {
                 className='productList'
                 dataLength={products.length} //This is important field to render the next data
                 next={getNext}
-                hasMore={more} 
+                hasMore={more}
             >
                 {products.map(product => (
-<Link to={`/product/${product.id}`}>
-                        <Card className="productCard" key={product.id} name={product.name} productId={product.id}
-                              price={product.startingPrice}/>
-    </Link>
+                    <div className="productCard">
+                        <Link to={`/product/${product.id}`}>
+                            <Card key={product.id} name={product.name} productId={product.id}
+                                  price={product.startingPrice}/>
+                        </Link>
+                    </div>
                 ))}
             </InfiniteScroll>
             }

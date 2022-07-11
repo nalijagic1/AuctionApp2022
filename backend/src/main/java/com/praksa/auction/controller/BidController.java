@@ -25,7 +25,7 @@ public class BidController {
     }
 
     @GetMapping("/bidCount/{productId}")
-    public ResponseEntity<Integer> getBidCount(@PathVariable long productId){
+    public ResponseEntity<Integer> getBidCount(@PathVariable long productId) {
         return ResponseEntity.ok(bidService.getCount(productId));
     }
 }
