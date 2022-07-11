@@ -3,7 +3,7 @@ package com.praksa.auction.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="wishlist")
+@Table(name = "wishlist")
 public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

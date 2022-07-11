@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="card")
+@Table(name = "card")
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Card {
     @OneToOne(mappedBy = "card", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Person person;
 
-    public Card( String cardOwner, String cardNumber, Date expirationDate, Integer cvc) {
+    public Card(String cardOwner, String cardNumber, Date expirationDate, Integer cvc) {
         this.cardOwner = cardOwner;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;

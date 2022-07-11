@@ -1,4 +1,4 @@
-.productInfo{
+.productInfo {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -9,6 +9,7 @@
     margin-right: 36px;
 
 }
+
 .nameProduct {
     font-family: 'Lato';
     font-style: normal;
@@ -18,7 +19,8 @@
     letter-spacing: 0.84px;
     color: #000000;
 }
-.priceProduct{
+
+.priceProduct {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -28,21 +30,23 @@
     color: #8367D8;
     margin-bottom: 16px;
 }
-.highlight{
+
+.highlight {
     margin-left: 119px;
     display: flex;
     margin-top: 98px;
 }
 
-.highlight img{
+.highlight img {
     width: 357px;
     height: 420px;
 }
-.highlight a{
+
+.highlight a {
     text-decoration: none;
     display: flex;
 }
 
-.bidNow{
+.bidNow {
     margin-top: 79px;
 }

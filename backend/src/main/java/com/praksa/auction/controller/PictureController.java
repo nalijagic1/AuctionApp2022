@@ -20,8 +20,9 @@ public class PictureController {
     public PictureController(PictureService pictureService) {
         this.pictureService = pictureService;
     }
+
     @GetMapping("/pictures/{id}")
-    public ResponseEntity<List<Picture>> getProductImages(@PathVariable("id") int id){
+    public ResponseEntity<List<Picture>> getProductImages(@PathVariable("id") int id) {
         return ResponseEntity.ok(pictureService.getProductPictures((long) id));
     }
 

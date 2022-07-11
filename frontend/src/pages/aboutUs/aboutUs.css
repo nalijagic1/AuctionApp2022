@@ -1,25 +1,27 @@
-.us{
+.us {
     margin-left: 164px;
     margin-right: 160px;
     margin-bottom: 80px;
     margin-top: 64px;
     display: flex;
 }
-.aboutText{
+
+.aboutText {
     width: 546px;
 }
 
-.aboutText h2{
-    font-family: 'Lato',sans-serif;
+.aboutText h2 {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
     line-height: 51px;
     letter-spacing: 0.84px;
-    color: #000000; 
+    color: #000000;
 }
-.aboutText p{
-    font-family: 'Lato',sans-serif;
+
+.aboutText p {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -28,18 +30,18 @@
     float: left;
 }
 
-.aboutImg{
+.aboutImg {
     float: right;
     margin-left: 22px;
     margin-top: 130px;
     width: 548px;
 }
 
-.aboutImg img{
+.aboutImg img {
     margin-bottom: 24px;
     margin-right: 24px;
 }
 
-.inline{
+.inline {
     display: flex;
 }

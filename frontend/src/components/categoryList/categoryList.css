@@ -1,24 +1,24 @@
-.list{
-    height:616px;
+.list {
+    height: 616px;
     width: 262px;
     margin-left: 160px;
 }
 
-.list p{
+.list p {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 24px;
-    color: #8367D8; 
+    color: #8367D8;
 }
 
-.list li{
+.list li {
     border-bottom: 1px solid #D8D8D8;
-    padding: 16px;   
+    padding: 16px;
 }
 
-.category{
+.category {
     list-style-type: none;
     width: 262px;
     margin: 0px;

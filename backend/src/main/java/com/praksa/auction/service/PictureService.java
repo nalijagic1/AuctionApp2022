@@ -17,7 +17,8 @@ public class PictureService {
         this.pictureRepository = pictureRepository;
 
     }
-    public List<Picture> getProductPictures(Long id){
+
+    public List<Picture> getProductPictures(Long id) {
         return pictureRepository.findPicturesByProductId(id);
     }
 

@@ -12,13 +12,14 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-public class CategoryController{
+public class CategoryController {
     private final CategoryService categoryService;
 
     @Autowired
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok(categoryService.getCategories());

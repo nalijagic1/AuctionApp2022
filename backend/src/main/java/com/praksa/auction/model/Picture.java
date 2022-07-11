@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name="picture")
+@Table(name = "picture")
 public class Picture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,7 @@ public class Picture {
     @JoinColumn(name = "productId")
     private Product product;
 
-    public Picture( String imageUrl, Product product) {
+    public Picture(String imageUrl, Product product) {
         this.imageUrl = imageUrl;
         this.product = product;
     }

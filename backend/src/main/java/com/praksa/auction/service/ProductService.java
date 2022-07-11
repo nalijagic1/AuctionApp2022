@@ -17,28 +17,28 @@ public class ProductService {
         this.productRepository = procuctRepository;
     }
 
-    public Product getOneRandom(){
+    public Product getOneRandom() {
         Random rand = new Random();
         List<Product> products = productRepository.findAll();
         int randomElement = rand.nextInt(products.size());
         return products.get(randomElement);
     }
 
-    public List<Product> getLastChance(int start, int count){
+    public List<Product> getLastChance(int start, int count) {
         List<Product> products = productRepository.findProductsByEndingDateAfterOrderByEndingDateAsc(new Date());
-        if(products.size()-start<count) count = products.size()-start;
-        List<Product> show = products.subList(start,start+count);
+        if (products.size() - start < count) count = products.size() - start;
+        List<Product> show = products.subList(start, start + count);
         return show;
     }
 
-    public List<Product> getNewest(int start, int count){
+    public List<Product> getNewest(int start, int count) {
         List<Product> products = productRepository.findProductsByStartingDateBeforeOrderByStartingDateDesc(new Date());
-        if(products.size()-start<count) count = products.size()-start;
-        List<Product> show = products.subList(start,start+count);
+        if (products.size() - start < count) count = products.size() - start;
+        List<Product> show = products.subList(start, start + count);
         return show;
     }
 
-    public Optional<Product> getSelectedProduct(long id){
+    public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
 
