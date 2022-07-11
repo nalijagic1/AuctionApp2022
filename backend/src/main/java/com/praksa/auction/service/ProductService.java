@@ -19,7 +19,7 @@ public class ProductService {
     }
 
     public Product getOneRandom() {
-        return productRepository.selectRandom(PageRequest.of(0,1)).get(0);
+        return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
 
     public List<Product> getLastChance(int start, int count) {
