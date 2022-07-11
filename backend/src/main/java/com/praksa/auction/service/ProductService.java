@@ -19,10 +19,7 @@ public class ProductService {
     }
 
     public Product getOneRandom() {
-        Random rand = new Random();
-        List<Product> products = productRepository.findAll();
-        int randomElement = rand.nextInt(products.size());
-        return products.get(randomElement);
+        return productRepository.selectRandom(PageRequest.of(0,1)).get(0);
     }
 
     public List<Product> getLastChance(int start, int count) {
