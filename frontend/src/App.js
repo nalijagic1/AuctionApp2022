@@ -5,6 +5,7 @@ import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
+import { Helmet } from "react-helmet";
 import "./App.css"
 import {
     BrowserRouter as Router,
@@ -15,9 +16,9 @@ import {
 function App() {
     return (
         <div className="App">
-            <head>
+            <Helmet>
                 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'/>
-            </head>
+            </Helmet>
             <div className='content'>
                 <NavigationBlack/>
                 <NavigationWhite/>

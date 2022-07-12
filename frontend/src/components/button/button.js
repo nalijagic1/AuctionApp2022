@@ -4,7 +4,7 @@ import "./button.css"
 function Button({lable, icon}) {
 
     return (
-        <div class="button">
+        <div className="button">
             <button className={lable.toLowerCase().includes("bid") ? 'bidding' : 'exploing'}>{lable.toUpperCase()}
                 {icon = !"" &&
                     <img src={icon} alt=""></img>

@@ -10,24 +10,24 @@ function Card({name, productId, price}) {
             setImage(response.data);
 
         });
-    }, []);
+    }, [productId]);
     return (
-        <div class='card-container'>
-            <div class="image-container">
+        <div className='card-container'>
+            <div className="image-container">
                 {image &&
-                <img src={image[0].imageUrl} alt="Image"/>
+                <img src={image[0].imageUrl} alt={name}/>
                 }
 
             </div>
 
-            <div class="card-content">
+            <div className="card-content">
 
-                <div class="card-title">
+                <div className="card-title">
                     <h2>{name}</h2>
                 </div>
 
-                <div class="card-body">
-                    <p>Start price from <div> ${price}</div></p>
+                <div className="card-body">
+                    Start price from <p> ${price}</p>
                 </div>
 
             </div>
