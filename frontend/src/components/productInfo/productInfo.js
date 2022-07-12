@@ -19,21 +19,24 @@ function ProductInfo({product}) {
         bidService.getHighestBid(product.id).then(
             (response) => {
                 if (response.data.length == 0) {
-                    setHighestBid(product.startingPrice)
+                    setHighestBid(product.startingPrice);
                 } else setHighestBid(response.data.bid);
             }
         )
 
     }, []);
-    function renderDate({days,hours, minutes, seconds, completed }){
+
+    function renderDate({days, hours, minutes, seconds, completed}) {
         if (completed) {
-          } else {
-            var countdown = ""
-            if(days.toString()!=="0") countdown+= days + " days ";
-            countdown+= hours + " hours " + minutes + " minutes " + seconds + " seconds" ;
+            return <span>This auction has ended!</span>;
+        } else {
+            var countdown = "";
+            if (days.toString() !== "0") countdown += days + " days ";
+            countdown += hours + " hours " + minutes + " minutes " + seconds + " seconds";
             return <span>{countdown}</span>;
-          }
+        }
     }
+
     return (
         <div className="info">
             <h2>{product.name}</h2>
@@ -41,7 +44,8 @@ function ProductInfo({product}) {
             <div className='biddingInfo'>
                 <h3>Highest bid: <a>${highestBid}</a></h3>
                 <h3>Number of bids: <a>{count}</a></h3>
-                <h3>Time left: <a><Countdown date={Date.now() + (diferece.getTime()-Date.now())} renderer={renderDate}/></a></h3>
+                <h3>Time left: <a><Countdown date={Date.now() + (diferece.getTime() - Date.now())}
+                                             renderer={renderDate}/></a></h3>
             </div>
             <div className='bid'>
                 <Field placeHolder={`Enter $${highestBid + 1} or higher`}/>
