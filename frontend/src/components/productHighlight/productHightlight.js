@@ -32,7 +32,7 @@ function ProductHighlight() {
                 </div>
             </div>
             {image &&
-            <img src={image[0].imageUrl}/>}
+            <img src={image[0].imageUrl} alt={product.name}/>}
         </div>
     );
 }

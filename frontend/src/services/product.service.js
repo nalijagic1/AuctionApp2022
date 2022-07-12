@@ -6,7 +6,7 @@ class ProductDataService {
     }
 
     getNewestOrLastChance(offer, start, count) {
-        return httpCommon.get("/" + (offer === 1 ? "newest" : "lastChance") + "?start=" + start + "&count=" + count);
+        return httpCommon.get("/" + (offer.toString() === '1' ? "newest" : "lastChance") + "?start=" + start + "&count=" + count);
     }
 }
 

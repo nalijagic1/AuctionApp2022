@@ -7,7 +7,7 @@ function Button({lable, icon}) {
         <div class="button">
             <button className={lable.toLowerCase().includes("bid") ? 'bidding' : 'exploing'}>{lable.toUpperCase()}
                 {icon = !"" &&
-                    <img src={icon}></img>
+                    <img src={icon} alt=""></img>
                 }
             </button>
 

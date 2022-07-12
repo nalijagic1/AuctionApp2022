@@ -16,7 +16,7 @@ function Offers() {
     function getData(option) {
         productService.getNewestOrLastChance(option, start, count).then((response) => {
             setStart(start + 1);
-            if (response.data.length == 0 || response.data.length % count != 0) {
+            if (response.data.length === 0 || response.data.length % count !== 0) {
                 setMore(false);
             }
             if (products) {
