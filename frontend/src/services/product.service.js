@@ -14,7 +14,7 @@ class ProductDataService {
     }
 
     getSelectedProduct(product) {
-        return httpCommon.get("/product/" + product)
+        return httpCommon.get("/product/" + product);
     }
 }
 

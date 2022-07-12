@@ -10,7 +10,7 @@ function Gallery({productId}) {
             setPicture(response.data);
             setShown(response.data[0].imageUrl);
             document.getElementsByClassName("pictureGrid")[0].addEventListener('click', (event) => {
-                if(event.target.tagName.toLowerCase()==="img") setShown(event.target.src);
+                if (event.target.tagName.toLowerCase() === "img") setShown(event.target.src);
             });
         });
     }, []);
