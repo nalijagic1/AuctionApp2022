@@ -18,7 +18,7 @@ function Gallery({productId}) {
         <div className="gallery">
             <div>
                 <img className='mainPicture' src={shown}></img>
-                <div class="pictureGrid">
+                <div className="pictureGrid">
                     {pictures.map(picture => (
                         <img value={picture} src={picture.imageUrl}></img>
                     ))}

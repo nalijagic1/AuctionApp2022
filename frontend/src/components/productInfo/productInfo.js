@@ -3,14 +3,13 @@ import Field from '../field/field'
 import Button from '../button/button';
 import arrow from '../../images/arrow.png'
 import './productInfo.css'
+import Countdown from 'react-countdown';
 import bidService from '../../services/bid.service';
-import moment from 'moment';
 
 function ProductInfo({product}) {
     const [highestBid, setHighestBid] = useState(0);
     const [count, setCount] = useState(0);
-    const diferece = moment().diff(moment(product.endingDate, 'YYYY-MM-DD'))
-    var duration = moment.duration(diferece)
+    const diferece = new Date(product.endingDate);
     useEffect(() => {
         bidService.getBidCount(product.id).then(
             (response) => {
@@ -26,6 +25,15 @@ function ProductInfo({product}) {
         )
 
     }, []);
+    function renderDate({days,hours, minutes, seconds, completed }){
+        if (completed) {
+          } else {
+            var countdown = ""
+            if(days.toString()!=="0") countdown+= days + " days ";
+            countdown+= hours + " hours " + minutes + " minutes " + seconds + " seconds" ;
+            return <span>{countdown}</span>;
+          }
+    }
     return (
         <div className="info">
             <h2>{product.name}</h2>
@@ -33,7 +41,7 @@ function ProductInfo({product}) {
             <div className='biddingInfo'>
                 <h3>Highest bid: <a>${highestBid}</a></h3>
                 <h3>Number of bids: <a>{count}</a></h3>
-                <h3>Time left: <a>{duration.humanize()}</a></h3>
+                <h3>Time left: <a><Countdown date={Date.now() + (diferece.getTime()-Date.now())} renderer={renderDate}/></a></h3>
             </div>
             <div className='bid'>
                 <Field placeHolder={`Enter $${highestBid + 1} or higher`}/>
