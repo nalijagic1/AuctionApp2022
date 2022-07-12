@@ -43,4 +43,9 @@ public class ProductController {
         if (product.isPresent()) return ResponseEntity.ok(product.get());
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/products")
+    public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam long categoryId){
+        return ResponseEntity.ok(productService.getProductsFromCategory(categoryId));
+    }
 }

@@ -35,4 +35,8 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+    public List<Product> getProductsFromCategory(long categoryId){
+        return productRepository.getProdctsFromCategory(categoryId);
+    }
+
 }
