@@ -21,4 +21,7 @@ public class PictureService {
         return pictureRepository.findPicturesByProductId(id);
     }
 
+    public Picture getMainPhoto(Long id) {
+        return pictureRepository.findFirstByProductId(id);
+    }
 }

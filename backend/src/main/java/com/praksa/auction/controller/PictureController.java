@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/pictures")
 public class PictureController {
     private final PictureService pictureService;
 
@@ -18,9 +18,14 @@ public class PictureController {
         this.pictureService = pictureService;
     }
 
-    @GetMapping("/pictures/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<List<Picture>> getProductImages(@PathVariable long id) {
         return ResponseEntity.ok(pictureService.getProductPictures(id));
+    }
+
+    @GetMapping("/cover/{id}")
+    public ResponseEntity<Picture> getCoverImage(@PathVariable long id){
+        return ResponseEntity.ok(pictureService.getMainPhoto(id));
     }
 
 }

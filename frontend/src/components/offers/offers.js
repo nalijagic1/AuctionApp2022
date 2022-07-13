@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tab, Tabs} from '@mui/material';
-import {useEffect, useState} from "react";
+import {useEffect, useState, useCallback} from "react";
 import productService from '../../services/product.service';
 import Card from '../card/card';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -13,7 +13,7 @@ function Offers() {
     const [start, setStart] = useState(0);
     const [more, setMore] = useState(true);
 
-    function getData(option) {
+    const getData = useCallback((option) => {
         productService.getNewestOrLastChance(option, start, count).then((response) => {
             setStart(start + 1);
             if (response.data.length === 0 || response.data.length % count !== 0) {
@@ -27,7 +27,8 @@ function Offers() {
 
 
         })
-    }
+      }, [products,start]) 
+        
 
     function getNext() {
         setTimeout(() => {
@@ -40,14 +41,15 @@ function Offers() {
         document.getElementsByClassName("offers")[0].addEventListener('click', (event) => {
             setTab(event.target.id);
             setStart(0);
+            setProducts([]);
             getData(event.target.id);
             setMore(true);
         });
-        getData(tab, start);
-    }, []);
+        getData(tab);
+    }, [tab,getData]);
     return (
         <div className="grid">
-            <Tabs className="offers" variant="scrollable" scrollButtons={false}  textColor="secondary" indicatorColor="secondary" value={tab.toString()}>
+            <Tabs className="offers" variant="scrollable" scrollButtons={false} TabIndicatorProps={{style: {background:'#8367D8'}}}  textColor = 'inherit' value={tab.toString()}>
                 <Tab label="New Arrivals" id="1" value="1"/>
                 <Tab label="Last Chance" id="2" value="2"/>
             </Tabs>

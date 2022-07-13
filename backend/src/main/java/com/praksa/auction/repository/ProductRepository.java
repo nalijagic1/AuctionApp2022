@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query("SELECT p FROM Product p ORDER BY RANDOM()")
+    @Query(value = "SELECT * FROM Product p ORDER BY RANDOM()", nativeQuery = true)
     List<Product> selectRandom(Pageable pageable);
 
     List<Product> findProductsByEndingDateAfterOrderByEndingDateAsc(Date date, Pageable pageable);

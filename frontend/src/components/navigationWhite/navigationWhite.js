@@ -17,9 +17,9 @@ function NavigationWhite() {
                 <input type="submit" value=""/>
             </div>
             <div className='menu'>
-                <a href='/'>HOME</a>
-                <a href='#'>SHOP</a>
-                <a href="#">MY ACCOUNT</a>
+                <a href = '/'>HOME</a>
+                <a href = '/'>SHOP</a>
+                <a href = '/'>MY ACCOUNT</a>
             </div>
         </div>
     );

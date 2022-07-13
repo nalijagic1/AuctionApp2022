@@ -1,8 +1,12 @@
 import httpCommon from "../http-common";
 
 class PictureDataService {
-    getProductPicture(id) {
+    getProductPictures(id) {
         return httpCommon.get("/pictures/" + id);
+    }
+
+    getProductCoverPicture(id) {
+        return httpCommon.get("/pictures/cover/" + id);
     }
 }
 

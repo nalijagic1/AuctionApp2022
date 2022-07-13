@@ -142,20 +142,4 @@ public class Product {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", subcategory=" + subcategory +
-                ", person=" + person +
-                ", startingPrice=" + startingPrice +
-                ", startingDate=" + startingDate +
-                ", endingDate=" + endingDate +
-                ", address=" + address +
-                ", shippingOption=" + shippingOption +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                '}';
-    }
 }

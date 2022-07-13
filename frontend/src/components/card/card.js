@@ -6,7 +6,7 @@ import pictureService from '../../services/picture.service';
 function Card({name, productId, price}) {
     const [image, setImage] = useState();
     useEffect(() => {
-        pictureService.getProductPicture(productId).then((response) => {
+        pictureService.getProductCoverPicture(productId).then((response) => {
             setImage(response.data);
 
         });
@@ -15,7 +15,7 @@ function Card({name, productId, price}) {
         <div className='card-container'>
             <div className="image-container">
                 {image &&
-                <img src={image[0].imageUrl} alt={name}/>
+                <img src={image.imageUrl} alt={name}/>
                 }
 
             </div>

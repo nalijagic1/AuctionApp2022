@@ -13,7 +13,7 @@ function ProductHighlight() {
         productService.getHighlighted()
             .then((response) => {
                 setProduct(response.data);
-                pictureService.getProductPicture(response.data.id).then((response) => {
+                pictureService.getProductCoverPicture(response.data.id).then((response) => {
                     setImage(response.data);
                 });
             });
@@ -32,7 +32,7 @@ function ProductHighlight() {
                 </div>
             </div>
             {image &&
-            <img src={image[0].imageUrl} alt={product.name}/>}
+            <img src={image.imageUrl} alt={product.name}/>}
         </div>
     );
 }
