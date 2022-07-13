@@ -2,6 +2,7 @@ import React from 'react';
 import "./categoryList.css"
 import categoryService from '../../services/category.service';
 import {useEffect, useState} from "react";
+import {Link} from 'react-router-dom';
 
 function CategoryList() {
     const [categories, setCategories] = useState()
@@ -16,9 +17,13 @@ function CategoryList() {
             <p>CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
+                    <Link  to={`/shop/${cat.id}`}>
                     <li key={cat.id}>{cat.name}</li>
+                    </Link>
                 ))}
+                <Link to="/shop/0">
                 <li> All Categories</li>
+                </Link>
             </ul>
         </div>
     );

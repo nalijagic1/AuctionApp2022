@@ -7,6 +7,7 @@ import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
 import { Helmet } from "react-helmet";
 import SingleProduct from './pages/singleProduct/signgleProduct';
+import ShopPage from './pages/shopPage/shopPage';
 import "./App.css"
 import {
     BrowserRouter as Router,
@@ -30,6 +31,7 @@ function App() {
                         <Route path='/terms' element={<TermsAndConditions/>}/>
                         <Route path='/aboutUs' element={<AboutUs/>}/>
                         <Route path='/product/:productId' element={<SingleProduct/>}/>
+                        <Route path='/shop/:categoryId' element = {<ShopPage/>}/>
                     </Routes>
                 </Router>
             </div>

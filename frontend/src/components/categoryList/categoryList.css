@@ -1,5 +1,5 @@
 .list {
-    height: 616px;
+    height: auto;
     width: 262px;
     margin-left: 160px;
 }
@@ -17,8 +17,17 @@
 .list li {
     border-bottom: 1px solid #D8D8D8;
     padding: 16px;
+    text-decoration: none;
 }
 
+.list a{
+    text-decoration: none;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #252525;
+}
 .category {
     list-style-type: none;
     width: 262px;
