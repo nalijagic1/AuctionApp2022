@@ -1,14 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import './searchResult.css'
-import { Grid } from '@mui/material';
+import {Link} from 'react-router-dom';
+import Card from '../card/card';
 
-function SearchResult({category,search}) {
+function SearchResult({results}) {
     return (
         <div className="result">
-            <Grid>
-                
-            </Grid>
-        </div>
+                {results.map(product =>(
+                    <div className='resultItem'>
+                        <Link to={`/product/${product.id}`}>
+                            <Card name={product.name} productId={product.id}
+                                  price={product.startingPrice}/>
+                        </Link>
+                    </div>
+                        
+                ))}
+            </div>
     );
 }
 
