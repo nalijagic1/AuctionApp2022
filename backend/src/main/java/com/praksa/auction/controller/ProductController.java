@@ -22,11 +22,11 @@ public class ProductController {
 
     @GetMapping("/productRandom")
     public ResponseEntity<Product> getRandomProduct() {
-        return ResponseEntity.ok(productService.getOneRandom());
+        return ResponseEntity.ok(productService.getRandomProduct());
     }
 
     @GetMapping("/lastChance")
-    public ResponseEntity<List<Product>> getLast(@RequestParam int start, @RequestParam int count) {
+    public ResponseEntity<List<Product>> getLastChance(@RequestParam int start, @RequestParam int count) {
         return ResponseEntity.ok(productService.getLastChance(start, count));
     }
 

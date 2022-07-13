@@ -19,13 +19,13 @@ public class PictureController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<List<Picture>> getProductImages(@PathVariable long id) {
+    public ResponseEntity<List<Picture>> getProductPictures(@PathVariable long id) {
         return ResponseEntity.ok(pictureService.getProductPictures(id));
     }
 
     @GetMapping("/cover/{id}")
     public ResponseEntity<Picture> getCoverImage(@PathVariable long id){
-        return ResponseEntity.ok(pictureService.getMainPhoto(id));
+        return ResponseEntity.ok(pictureService.getCoverImage(id));
     }
 
 }

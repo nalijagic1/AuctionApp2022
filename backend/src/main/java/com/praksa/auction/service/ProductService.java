@@ -18,7 +18,7 @@ public class ProductService {
         this.productRepository = procuctRepository;
     }
 
-    public Product getOneRandom() {
+    public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
 
@@ -28,7 +28,7 @@ public class ProductService {
     }
 
     public List<Product> getNewest(int start, int count) {
-        List<Product> products = productRepository.findProductsByStartingDateBeforeOrderByStartingDateDesc(new Date(), PageRequest.of(start, count));
+        List<Product> products = productRepository.findProductsByEndingDateAfterOrderByStartingDateDesc(new Date(), PageRequest.of(start, count));
         return products;
     }
 
