@@ -13,9 +13,9 @@ function CategoryList({filter}) {
     const [show, setShow] = useState([]);
     let mainContainer = "list"
     let listContainer = "listItem"
-    let showArray = [...show]
     function showSubcategories(event){
-        let index = event.target.value;
+        let showArray = [...show]
+        let index = event.target.id;
         if (event.target.src === plus) {
             event.target.src = minus;
             showArray[index] = true
@@ -42,7 +42,7 @@ function CategoryList({filter}) {
                 });
         }
         
-    }, [categories]);
+    }, [categories,show]);
     if (filter) {
         mainContainer += " " + filter;
         listContainer += filter
@@ -58,7 +58,7 @@ function CategoryList({filter}) {
                                 <li key={cat.id}>{cat.name} </li>
                             </Link>
                             {filter &&
-                            <img  value={cat.id} className="showMore" src={plus} onClick={showSubcategories}></img>
+                            <img  id={cat.id} className="showMore" src={plus} onClick={showSubcategories}></img>
                             }
                         </div>
                         {filter && show[cat.id - 1] && subcategories[cat.id - 1].map(sub => (
