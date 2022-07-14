@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import CategoryList from '../../components/categoryList/categoryList,';
+import CategoryList from '../../components/categoryList/categoryList';
 import SearchResult from '../../components/searchResult/searchResult';
 import {useParams,useLocation} from 'react-router-dom';
 import './shopPage.css'
@@ -28,7 +28,7 @@ function ShopPage() {
     return (
         <div className="shopPage">
             <div class="shop">
-            <CategoryList/>
+            <CategoryList filter="filter"/>
             <SearchResult results={products}/>
             </div>
                     </div>

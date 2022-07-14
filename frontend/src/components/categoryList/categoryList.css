@@ -1,9 +1,14 @@
 .list {
-    height: auto;
+    height: fit-content;
     width: 262px;
     margin-left: 160px;
 }
-
+.filter{
+    border: 1px solid #D8D8D8;
+    padding:24px ;
+    margin-bottom:24px ;
+    height: fit-content;
+}
 .list p {
     font-family: 'Lato';
     font-style: normal;
@@ -18,8 +23,25 @@
     border-bottom: 1px solid #D8D8D8;
     padding: 16px;
     text-decoration: none;
+    width: 262px;
 }
 
+.filter li{
+    border: none;
+    width: 200px;
+    
+}
+.listItemfilter{
+    display: flex;
+    padding-bottom: 24px;
+    padding-left: 0px;
+}
+.filter img{
+    float:right;
+    width: 8px;
+    height: 8px;
+    margin-top: 20px;
+}
 .list a{
     text-decoration: none;
     font-family: 'Lato';
@@ -34,3 +56,14 @@
     margin: 0px;
     padding: 0px;
 }
+
+.listSubcategory{
+    list-style-image: url("../../images/squar.png");
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 17px;
+    color: #9B9B9B;
+}
+
