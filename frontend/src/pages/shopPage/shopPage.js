@@ -28,7 +28,7 @@ function ShopPage() {
     return (
         <div className="shopPage">
             <div class="shop">
-            <CategoryList filter="filter"/>
+            <CategoryList filter={param.category}/>
             <SearchResult results={products}/>
             </div>
                     </div>

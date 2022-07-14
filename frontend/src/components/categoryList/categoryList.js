@@ -5,17 +5,15 @@ import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 import plus from '../../images/Plus.png'
 import minus from "../../images/Minus.png"
-import subcategoryService from '../../services/subcategory.service';
 
 function CategoryList({filter}) {
     const [categories, setCategories] = useState();
-    const [subcategories, setSubcategories] = useState([]);
     const [show, setShow] = useState([]);
     let mainContainer = "list"
     let listContainer = "listItem"
     function showSubcategories(event){
         let showArray = [...show]
-        let index = event.target.id;
+        let index = event.target.id - 1;
         if (event.target.src === plus) {
             event.target.src = minus;
             showArray[index] = true
@@ -27,25 +25,24 @@ function CategoryList({filter}) {
     }
 
     useEffect(() => {
-        if (!categories) {
-            categoryService.getAll()
+            categoryService.getCategoriesWithSubcategories()
                 .then((response) => {
                     setCategories(response.data)
-                    response.data.forEach((category) => {
-                         subcategoryService.getSubcategoriesFromCategory(category.id).then((res) => {
-                            subcategories.push(res.data)
-                            show.push(false)
-                            setSubcategories(subcategories)
-                            setShow(show);
-                        })
+                    setShow(new Array(response.data.length).fill(false))
+                    /*if(filter){
+                        let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
+                        let showArray = [...show];
+                        showArray[selected.category.id-1] = true;
+                        setShow(showArray);
+                        document.getElementsByClassName("showMore")[selected.category.id-1].src = minus;
+                    }*/
                     })
-                });
-        }
+                
         
-    }, [categories,show]);
+    }, []);
     if (filter) {
-        mainContainer += " " + filter;
-        listContainer += filter
+        mainContainer += " filter";
+        listContainer += "filter"
     }
     return (
         <div className={mainContainer}>
@@ -54,21 +51,23 @@ function CategoryList({filter}) {
                 {categories && categories.map(cat => (
                     <div>
                         <div class={listContainer}>
-                            <Link to={`/shop/${cat.name}`}>
-                                <li key={cat.id}>{cat.name} </li>
+                            <Link to={`/shop/${cat.category.name}`}>
+                                <li key={cat.category.id}>{cat.category.name} </li>
                             </Link>
                             {filter &&
-                            <img  id={cat.id} className="showMore" src={plus} onClick={showSubcategories}></img>
+                            <img  id={cat.category.id} className="showMore" src={plus} onClick={showSubcategories}></img>
                             }
-                        </div>
-                        {filter && show[cat.id - 1] && subcategories[cat.id - 1].map(sub => (
+                            </div>
+                            {filter && show[cat.category.id - 1] && cat.subcategories.map(sub => (
                             <ul className='listSubcategory'>
-                                <li>{sub.name}</li>
+                                <li>{sub.name} ({sub.count})</li>
                             </ul>
                         ))
 
 
                         }
+                        
+        
                     </div>
 
                 ))}
