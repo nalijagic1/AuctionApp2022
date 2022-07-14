@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tab, Tabs} from '@mui/material';
-import {useEffect, useState, useCallback} from "react";
+import {useEffect, useState,useRef} from "react";
 import productService from '../../services/product.service';
 import Card from '../card/card';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -12,46 +12,45 @@ function Offers() {
     const count = 8;
     const [start, setStart] = useState(0);
     const [more, setMore] = useState(true);
+    var lastTab = useRef(0);
+    function changeTab(event){
+        setTab(event.target.id);
+        setStart(0);
+        setMore(true);
+    }
 
-    const getData = useCallback((option) => {
-        productService.getNewestOrLastChance(option, start, count).then((response) => {
-            setStart(start + 1);
-            if (response.data.length === 0 || response.data.length % count !== 0) {
-                setMore(false);
-            }
-            if (products) {
-                setProducts(products.concat(response.data));
-            } else {
-                setProducts(response.data);
-            }
-
-
-        })
-      }, [products,start]) 
         
 
     function getNext() {
         setTimeout(() => {
-            getData(tab);
+            setStart(start + 1);
         }, 500)
 
     }
 
     useEffect(() => {
-        document.getElementsByClassName("offers")[0].addEventListener('click', (event) => {
-            setTab(event.target.id);
-            setStart(0);
-            setProducts([]);
-            getData(event.target.id);
-            setMore(true);
-        });
+        const getData =((option) => {
+            productService.getNewestOrLastChance(option, start, count).then((response) => {
+                if (response.data.length === 0 || response.data.length % count !== 0) {
+                    setMore(false);
+                }
+                if (lastTab.current === option) {
+                    setProducts(p => p.concat(response.data));
+                } else {
+                    setProducts(response.data);
+                    lastTab.current = option;
+                }
+    
+    
+            })
+          }) 
         getData(tab);
-    }, [tab,getData]);
+    }, [tab,start]);
     return (
         <div className="grid">
             <Tabs className="offers" variant="scrollable" scrollButtons={false} TabIndicatorProps={{style: {background:'#8367D8'}}}  textColor = 'inherit' value={tab.toString()}>
-                <Tab label="New Arrivals" id="1" value="1"/>
-                <Tab label="Last Chance" id="2" value="2"/>
+                <Tab label="New Arrivals" id="1" value="1" onClick={changeTab}/>
+                <Tab label="Last Chance" id="2" value="2" onClick={changeTab}/>
             </Tabs>
             <hr/>
             {products &&
