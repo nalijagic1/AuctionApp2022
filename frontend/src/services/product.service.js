@@ -12,7 +12,11 @@ class ProductDataService {
     }
 
     getProductsFromCategory(category){
-        return httpCommon.get("/products?categoryId="+category)
+        return httpCommon.get("/products?category="+category)
+    }
+
+    getSearchResult(search){
+        return httpCommon.get("/search?search="+search)
     }
 }
 

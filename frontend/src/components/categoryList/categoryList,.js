@@ -17,7 +17,7 @@ function CategoryList() {
             <p>CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
-                    <Link  to={`/shop/${cat.id}`}>
+                    <Link  to={`/shop/${cat.name}`}>
                     <li key={cat.id}>{cat.name}</li>
                     </Link>
                 ))}

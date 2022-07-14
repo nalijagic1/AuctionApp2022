@@ -17,6 +17,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findProductsByEndingDateAfterOrderByStartingDateDesc(Date date, Pageable pageable);
 
-    @Query(value = "SELECT p.id,p.name,p.description,p.subcategory_id,p.person_id,p.starting_price,p.starting_date,p.ending_date, p.address_id,p.shipping_option, p.phone_number FROM Product p, Subcategory s WHERE  p.subcategory_id = s.id  AND s.category_id = :categoryId", nativeQuery = true)
-    List<Product> getProdctsFromCategory(@Param("categoryId") long categoryId);
+    @Query(value = "SELECT p.id,p.name,p.description,p.subcategory_id,p.person_id,p.starting_price,p.starting_date,p.ending_date, p.address_id,p.shipping_option, p.phone_number FROM Product p, Subcategory s, Category c WHERE  p.subcategory_id = s.id  AND  s.category_id = c.id AND c.name = :category", nativeQuery = true)
+    List<Product> getProductsFromCategory(@Param("category") String category);
+
+    List<Product> findProductsByNameContainsIgnoreCaseAndEndingDateAfter(String search,Date date);
 }

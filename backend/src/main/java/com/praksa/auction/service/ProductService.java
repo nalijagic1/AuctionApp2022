@@ -35,8 +35,12 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
-    public List<Product> getProductsFromCategory(long categoryId){
-        return productRepository.getProdctsFromCategory(categoryId);
+    public List<Product> getProductsFromCategory(String category){
+        return productRepository.getProductsFromCategory(category);
+    }
+
+    public List<Product> searchProducuts(String search){
+        return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search,new Date());
     }
 
 }
