@@ -14,23 +14,32 @@ function ShopPage() {
     const [count,setCount] = useState(9);
     let hasMore = useRef(true)
     let start = useRef(1);
+    let previous = useRef("")
     function showMore(){
         start.current+=1;
         setCount(9*start.current)
-        console.log(count)
     }
     useEffect(() => {
+        const testIfChanged = ((change) =>{
+            if(previous.current!==change) setCount(9);
+        })
         if(word){
+            testIfChanged(word)
+            previous.current = word;
             productService.getSearchResult(word,count).
                 then((response) => {
                     setProducts(response.data);
-                    if(response.data.length !== count) hasMore.current = false
+                    if(response.data.length !== count) hasMore.current = false;
+                    else hasMore.current = true;
                 });
         }else{
+            testIfChanged(param.category)
+            previous.current = param.category
             productService.getProductsFromCategory(param.category,count)
             .then((response) => {
                 setProducts(response.data);
-                if(response.data.length !== count) hasMore.current = false
+                if(response.data.length !== count) hasMore.current = false;
+                else hasMore.current = true;
 
             });
         }
