@@ -30,10 +30,10 @@ function AboutUs() {
                     <p>Thanks For Visiting Our Site </p>
                 </div>
                 <div className="aboutImg">
-                    <img src={photoOne}/>
+                    <img src={photoOne} alt=""/>
                     <div className="inline">
-                        <img src={photoTwo}/>
-                        <img src={photoThree}/>
+                        <img src={photoTwo} alt=""/>
+                        <img src={photoThree} alt=""/>
                     </div>
 
                 </div>
@@ -43,4 +43,3 @@ function AboutUs() {
 }
 
 export default AboutUs;
-  

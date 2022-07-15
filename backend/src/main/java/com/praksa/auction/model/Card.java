@@ -74,15 +74,4 @@ public class Card {
         this.person = person;
     }
 
-    @Override
-    public String toString() {
-        return "Card{" +
-                "id=" + id +
-                ", cardOwner='" + cardOwner + '\'' +
-                ", cardNumber='" + cardNumber + '\'' +
-                ", expirationDate=" + expirationDate +
-                ", cvc=" + cvc +
-                ", person=" + person +
-                '}';
-    }
 }

@@ -6,6 +6,7 @@ import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
 import SingleProduct from './pages/singleProduct/signgleProduct';
+import { Helmet } from "react-helmet";
 import "./App.css"
 import {
     BrowserRouter as Router,
@@ -16,9 +17,9 @@ import {
 function App() {
     return (
         <div className="App">
-            <head>
+            <Helmet>
                 <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'/>
-            </head>
+            </Helmet>
             <div className='content'>
                 <NavigationBlack/>
                 <NavigationWhite/>
@@ -29,7 +30,7 @@ function App() {
                         <Route path='/terms' element={<TermsAndConditions/>}/>
                         <Route path='/aboutUs' element={<AboutUs/>}/>
                         <Route path='/product/:productId' element={<SingleProduct/>}/>
-                    </Routes>
+                    </ Routes>
                 </Router>
             </div>
             <footer className='foot'>

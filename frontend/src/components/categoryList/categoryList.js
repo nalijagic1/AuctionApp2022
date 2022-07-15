@@ -4,11 +4,11 @@ import categoryService from '../../services/category.service';
 import {useEffect, useState} from "react";
 
 function CategoryList() {
-    const [categories, setCategories] = useState()
+    const [categories, setCategories] = useState();
     useEffect(() => {
         categoryService.getAll()
             .then((response) => {
-                setCategories(response.data)
+                setCategories(response.data);
             });
     }, []);
     return (

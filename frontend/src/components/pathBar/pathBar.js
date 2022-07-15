@@ -5,8 +5,8 @@ import './pathBar.css'
 function PathBar({prop}) {
     const [link, setLink] = useState();
     useEffect(() => {
-        if (prop.startPoint == "Home") setLink("/")
-    });
+        if (prop.startPoint === "Home") setLink("/");
+    },[prop]);
     return (
         <div className="bar">
             <div className='locationName'>

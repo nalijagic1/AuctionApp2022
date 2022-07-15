@@ -1,7 +1,6 @@
 package com.praksa.auction.service;
 
 import com.praksa.auction.model.Picture;
-import com.praksa.auction.repository.CategoryRepository;
 import com.praksa.auction.repository.PictureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +21,7 @@ public class PictureService {
         return pictureRepository.findPicturesByProductId(id);
     }
 
+    public Picture getCoverImage(Long id) {
+        return pictureRepository.findFirstByProductId(id);
+    }
 }

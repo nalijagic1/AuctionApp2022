@@ -13,6 +13,10 @@
 .offers button:focus {
     border-bottom: 3px solid #8367D8;
 }
+.offers button{
+    color: #000000;
+}
+
 
 .productList img {
     width: 262px;
@@ -35,6 +39,8 @@
     margin-left: 0px;
     margin-bottom: 32px;
     border: 1px solid #D8D8D8;
+    background-color: #D8D8D8;
+    margin-top: -2px;
 }
 
 .grid button {

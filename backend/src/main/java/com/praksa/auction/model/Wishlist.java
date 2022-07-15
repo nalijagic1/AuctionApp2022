@@ -47,12 +47,4 @@ public class Wishlist {
         this.person = person;
     }
 
-    @Override
-    public String toString() {
-        return "Wishlist{" +
-                "id=" + id +
-                ", product=" + product +
-                ", person=" + person +
-                '}';
-    }
 }

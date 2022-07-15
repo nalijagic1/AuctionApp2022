@@ -8,22 +8,22 @@ VALUES (1, 'Fashion'),
        (7, 'Electronics'),
        (8, 'Mobile'),
        (9, 'Computer');
-COMMIT;
+
 INSERT INTO product (id, name, description, starting_date, ending_date, starting_price)
 VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
         'They create lifelike swimming actions in water. 3D eyes make it a powerful catching tool. Bright colors to attract big fish',
-        '2022-06-15', '2022-07-15', 13),
+        '2022-06-15', '2022-08-15', 13),
        (2, 'Ageless Real Eye Cream for face',
         'Korea cosmetic. Multi function, All in one Cream : Eye treatment, Facial treatment.', '2022-07-03',
-        '2022-07-12', 15),
+        '2022-08-12', 15),
        (3, 'New Balance 997H Mens Running Sport Lifestyle Shoes',
         'Synthetic upper.Lightweight injection-molded EVA foam midsole provides lightweight cushioning. Rubber outsole',
         '2022-07-04', '2022-07-27', 50),
        (4, 'Morgan Silver Dollar San Francisco First Strike Label ',
-        'High Grade 1885 Morgan Silver Dollar PCGS 66+, Oh so Close to 67!', '2022-07-06', '2022-07-12', 100),
+        'High Grade 1885 Morgan Silver Dollar PCGS 66+, Oh so Close to 67!', '2022-07-06', '2022-08-12', 100),
        (5, 'Iron Man Avengers Endgame Marvel Action Figure',
         'Size: approx 7 inch.Package: 1x action figure ( Including accessories show in pictures)', '2022-07-05',
-        '2022-07-19', 22.3),
+        '2022-08-19', 22.3),
        (6, 'Rare YAMAHA YP-450 (1975) Turntable In Excellent Condition.',
         'It’s extremely well built and extraordinarily elegant. This is a fully manual, high end belt drive with a nice, thick platter and a lovely S-type tonearm. ',
         '2022-05-03', '2022-07-30', 75),
@@ -35,8 +35,8 @@ VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
         '2022-06-30', '2022-09-19', 79),
        (9, 'SONY PSP Playstation Portable Console Only+ Battery Various colors Used',
         'condition is good. It is a warehouse storage item. There may be some scratches during storage.', '2022-07-06',
-        '2022-07-18', 30);
-COMMIT;
+        '2022-08-18', 30);
+
 INSERT INTO picture
 VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
        (2, 'https://i.ebayimg.com/images/g/yDEAAOSwjwJgPHFr/s-l1600.jpg', 2),
@@ -58,3 +58,4 @@ VALUES (1, 30, 5),
        (3, 80, 8),
        (4, 88, 8),
        (5, 100, 8);
+===

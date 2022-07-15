@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryList from "../../components/categoryList/categoryList,";
+import CategoryList from "../../components/categoryList/categoryList";
 import "./landingPage.css"
 import ProductHighlight from "../../components/productHighlight/productHightlight";
 import Offers from "../../components/offers/offers";

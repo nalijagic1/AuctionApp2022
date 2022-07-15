@@ -9,17 +9,17 @@ function NavigationWhite() {
         <div className="whitenav">
             <div id="logo">
                 <a href='/'>
-                    <img src={logo}></img>
+                    <img src={logo} alt="Auction"></img>
                 </a>
             </div>
             <div className='search'>
-                <input type="text" value="Search"></input>
+                <input type="text" placeholder="Search"></input>
                 <input type="submit" value=""/>
             </div>
             <div className='menu'>
-                <a href='#'>HOME</a>
-                <a href='#'>SHOP</a>
-                <a href="#">MY ACCOUNT</a>
+                <a href = '/'>HOME</a>
+                <a href = '/'>SHOP</a>
+                <a href = '/'>MY ACCOUNT</a>
             </div>
         </div>
     );
