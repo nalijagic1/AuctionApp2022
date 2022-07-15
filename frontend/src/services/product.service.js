@@ -11,12 +11,12 @@ class ProductDataService {
         return httpCommon.get("/products/" + (offer.toString() === '1' ? "newest" : "lastChance") + "?start=" + start + "&count=" + count);
     }
 
-    getProductsFromCategory(category){
-        return httpCommon.get("/products?category="+category)
+    getProductsFromCategory(category,count){
+        return httpCommon.get("/products?category="+category+"&count="+count)
     }
 
-    getSearchResult(search){
-        return httpCommon.get("/search?search="+search)
+    getSearchResult(search,count){
+        return httpCommon.get("/search?search="+search+"&count="+count)
     }
 }
 

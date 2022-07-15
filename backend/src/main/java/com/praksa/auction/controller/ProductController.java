@@ -45,12 +45,12 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category){
-        return ResponseEntity.ok(productService.getProductsFromCategory(category));
+    public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category, @RequestParam  int count){
+        return ResponseEntity.ok(productService.getProductsFromCategory(category,count));
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam  String search){
-        return  ResponseEntity.ok(productService.searchProducuts(search));
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam  String search, @RequestParam  int count){
+        return  ResponseEntity.ok(productService.searchProducuts(search,count));
     }
 }
