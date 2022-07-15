@@ -1,11 +1,11 @@
-.privacy{
+.privacy {
     margin-left: 446px;
     margin-right: 448px;
     margin-bottom: 153px;
 }
 
-.privacy p{
-    font-family: 'Lato',sans-serif;
+.privacy p {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -13,8 +13,8 @@
     color: #9B9B9B;
 }
 
-.privacy h2{
-    font-family: 'Lato',sans-serif;
+.privacy h2 {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 32px;
@@ -22,8 +22,9 @@
     letter-spacing: 0.84px;
     color: #000000;
 }
-.privacy h3{
-    font-family: 'Lato',sans-serif;
+
+.privacy h3 {
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 24px;

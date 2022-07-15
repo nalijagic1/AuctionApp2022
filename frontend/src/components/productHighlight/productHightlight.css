@@ -1,0 +1,47 @@
+.productInfo {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #9B9B9B;
+    width: 346px;
+    margin-right: 36px;
+
+}
+
+.nameProduct {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 51px;
+    letter-spacing: 0.84px;
+    color: #000000;
+}
+
+.priceProduct {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 51px;
+    letter-spacing: 0.84px;
+    color: #8367D8;
+    margin-bottom: 16px;
+}
+
+.highlight {
+    margin-left: 119px;
+    display: flex;
+    margin-top: 98px;
+}
+
+.highlight img {
+    width: 357px;
+    height: 420px;
+}
+
+.bidNow {
+    margin-top: 79px;
+}
