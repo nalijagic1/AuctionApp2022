@@ -6,7 +6,7 @@ function Gallery({productId}) {
     const [shown, setShown] = useState([]);
     const [pictures, setPicture] = useState([]);
     useEffect(() => {
-        pictureService.getProductPicture(productId).then((response) => {
+        pictureService.getProductPictures(productId).then((response) => {
             setPicture(response.data);
             setShown(response.data[0].imageUrl);
             document.getElementsByClassName("pictureGrid")[0].addEventListener('click', (event) => {

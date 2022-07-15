@@ -3,10 +3,12 @@ package com.praksa.auction.controller;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -35,7 +37,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.getNewest(start, count));
     }
 
-    @GetMapping("/product/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
         Optional<Product> product = productService.getSelectedProduct(id);
         if (product.isPresent()) return ResponseEntity.ok(product.get());

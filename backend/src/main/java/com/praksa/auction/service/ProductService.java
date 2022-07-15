@@ -20,6 +20,7 @@ public class ProductService {
 
     public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
+    }
     public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }

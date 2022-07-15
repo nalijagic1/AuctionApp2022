@@ -18,22 +18,13 @@
     color: #9B9B9B;
 }
 
-<<<<<<< HEAD
-.card-body p {
-=======
 .card-body {
->>>>>>> main
     display: flex;
     column-gap: 5px;
 }
 
-<<<<<<< HEAD
-.card-body div {
-    color: #8367D8;
-=======
 .card-body p {
     color: #8367D8;
     margin: 0px 0px 0px 0px;
     font-weight: bold;
->>>>>>> main
 }
