@@ -18,13 +18,13 @@ function ProductInfo({product}) {
         )
         bidService.getHighestBid(product.id).then(
             (response) => {
-                if (response.data.length == 0) {
+                if (response.data.length === 0) {
                     setHighestBid(product.startingPrice);
                 } else setHighestBid(response.data.bid);
             }
         )
 
-    }, []);
+    }, [product]);
 
     function renderDate({days, hours, minutes, seconds, completed}) {
         if (completed) {
@@ -40,12 +40,12 @@ function ProductInfo({product}) {
     return (
         <div className="info">
             <h2>{product.name}</h2>
-            <h3>Start with <a>${product.startingPrice}</a></h3>
+            <h3>Start with <p>${product.startingPrice}</p></h3>
             <div className='biddingInfo'>
-                <h3>Highest bid: <a>${highestBid}</a></h3>
-                <h3>Number of bids: <a>{count}</a></h3>
-                <h3>Time left: <a><Countdown date={Date.now() + (diferece.getTime() - Date.now())}
-                                             renderer={renderDate}/></a></h3>
+                <h3>Highest bid: <p>${highestBid}</p></h3>
+                <h3>Number of bids: <p>{count}</p></h3>
+                <h3>Time left: <p><Countdown date={Date.now() + (diferece.getTime() - Date.now())}
+                                             renderer={renderDate}/></p></h3>
             </div>
             <div className='bid'>
                 <Field placeHolder={`Enter $${highestBid + 1} or higher`}/>

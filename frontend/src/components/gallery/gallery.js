@@ -5,22 +5,22 @@ import pictureService from '../../services/picture.service';
 function Gallery({productId}) {
     const [shown, setShown] = useState([]);
     const [pictures, setPicture] = useState([]);
+    function onImageClick(event){
+        if (event.target.tagName.toLowerCase() === "img") setShown(event.target.src);
+    }
     useEffect(() => {
         pictureService.getProductPictures(productId).then((response) => {
             setPicture(response.data);
             setShown(response.data[0].imageUrl);
-            document.getElementsByClassName("pictureGrid")[0].addEventListener('click', (event) => {
-                if (event.target.tagName.toLowerCase() === "img") setShown(event.target.src);
-            });
         });
-    }, []);
+    }, [productId]);
     return (
         <div className="gallery">
             <div>
-                <img className='mainPicture' src={shown}></img>
+                <img className='mainPicture' src={shown} alt="Main"></img>
                 <div className="pictureGrid">
                     {pictures.map(picture => (
-                        <img value={picture} src={picture.imageUrl}></img>
+                        <img  key ={picture.id} value={picture} src={picture.imageUrl} onClick={onImageClick} alt="Item"></img>
                     ))}
                 </div>
             </div>

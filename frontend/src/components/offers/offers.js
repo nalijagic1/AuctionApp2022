@@ -62,9 +62,9 @@ function Offers() {
                 hasMore={more}
             >
                 {products.map(product => (
-                        <div className="productCard">
+                        <div key={product.id} className="productCard">
                             <Link to={`/product/${product.id}`}>
-                                <Card key={product.id} name={product.name} productId={product.id}
+                                <Card  name={product.name} productId={product.id}
                                       price={product.startingPrice}/>
                             </Link>
                         </div>
