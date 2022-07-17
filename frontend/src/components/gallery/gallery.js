@@ -6,13 +6,15 @@ function Gallery({productId}) {
     const [shown, setShown] = useState([]);
     const [pictures, setPicture] = useState([]);
     function onImageClick(event){
-        if (event.target.tagName.toLowerCase() === "img") setShown(event.target.src);
+        setShown(event.target.src);
     }
     useEffect(() => {
         pictureService.getProductPictures(productId).then((response) => {
             setPicture(response.data);
-            setShown(response.data[0].imageUrl);
         });
+        pictureService.getProductCoverPicture(productId).then((response) =>{
+            setShown(response.data.imageUrl);
+        })
     }, [productId]);
     return (
         <div className="gallery">

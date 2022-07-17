@@ -40,7 +40,6 @@ public class ProductController {
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
         Optional<Product> product = productService.getSelectedProduct(id);
-        if (product.isPresent()) return ResponseEntity.ok(product.get());
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return ResponseEntity.ok(product.get());
     }
 }
