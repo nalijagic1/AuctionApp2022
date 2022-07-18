@@ -5,9 +5,6 @@ import pictureService from '../../services/picture.service';
 function Gallery({productId}) {
     const [shown, setShown] = useState([]);
     const [pictures, setPicture] = useState([]);
-    function onImageClick(event){
-        setShown(event.target.src);
-    }
     useEffect(() => {
         pictureService.getProductPictures(productId).then((response) => {
             setPicture(response.data);
@@ -22,7 +19,7 @@ function Gallery({productId}) {
                 <img className='mainPicture' src={shown} alt="Main"></img>
                 <div className="pictureGrid">
                     {pictures.map(picture => (
-                        <img  key ={picture.id} value={picture} src={picture.imageUrl} onClick={onImageClick} alt="Item"></img>
+                        <img  key ={picture.id} value={picture} src={picture.imageUrl} onClick={event =>  setShown(event.target.src)} alt="Item"></img>
                     ))}
                 </div>
             </div>
