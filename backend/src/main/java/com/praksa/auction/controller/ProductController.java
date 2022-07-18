@@ -46,6 +46,10 @@ public class ProductController {
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String search, @RequestParam int count) {
         return ResponseEntity.ok(productService.searchProducuts(search, count));
     }
+    @GetMapping("/search/check")
+    public ResponseEntity<List<String>> checkSpelling(@RequestParam String search) {
+        return ResponseEntity.ok(productService.checkSpelling(search));
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getProductsFromAllCategories(@RequestParam int count) {
@@ -57,4 +61,6 @@ public class ProductController {
         Optional<Product> product = productService.getSelectedProduct(id);
         return ResponseEntity.ok(product.get());
     }
+
+
 }

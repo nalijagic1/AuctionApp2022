@@ -1,5 +1,6 @@
 package com.praksa.auction.service;
 
+import com.atlascopco.hunspell.Hunspell;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,4 +49,9 @@ public class ProductService {
         return productRepository.findProductsByEndingDateAfter(new Date(), PageRequest.of(0, count));
     }
 
+    public List<String> checkSpelling(String search) {
+        Hunspell speller = new Hunspell("/dictionary.dic","/dictionary.aff");
+        if(speller.spell(search)) return new ArrayList<>();
+        return speller.suggest(search);
+    }
 }
