@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-public interface SubcategoryRepository extends JpaRepository<Subcategory,Long> {
+public interface SubcategoryRepository extends JpaRepository<Subcategory, Long> {
     List<Subcategory> findAllByCategoryId(long catagoryId);
 
 }

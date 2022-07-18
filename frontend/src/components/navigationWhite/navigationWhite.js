@@ -1,17 +1,18 @@
-import {React, useEffect,useCallback, useRef} from 'react';
+import {React, useEffect, useRef} from 'react';
 import './navigationWhite.css'
 import logo from '../../images/auction-app-logo 1.png'
 
 
-function NavigationWhite() { 
+function NavigationWhite() {
     let searchField = useRef();
-    function search(){
-                if(searchField.current.value.length >= 3)window.location.assign("/shop?search="+searchField.value);
-            };
+
+    function search() {
+        if (searchField.current.value.length >= 3) window.location.assign("/shop?search=" + searchField.value);
+    };
 
     useEffect(() => {
-        searchField.current =  document.getElementById('searchField');
-    },[]);
+        searchField.current = document.getElementById('searchField');
+    }, []);
 
     return (
         <div className="whitenav">
@@ -21,13 +22,15 @@ function NavigationWhite() {
                 </a>
             </div>
             <div className='search'>
-                <input id = "searchField" type="text" placeholder="Search" onKeyDown={e =>  {if(e.key.toLowerCase() === 'enter') search();}}></input>
-                <input id = "searchButton"type="submit" value=""  onClick={search}/>
+                <input id="searchField" type="text" placeholder="Search" onKeyDown={e => {
+                    if (e.key.toLowerCase() === 'enter') search();
+                }}></input>
+                <input id="searchButton" type="submit" value="" onClick={search}/>
             </div>
             <div className='menu'>
-                <a href = '/'>HOME</a>
-                <a href = '/'>SHOP</a>
-                <a href = '/'>MY ACCOUNT</a>
+                <a href='/'>HOME</a>
+                <a href='/'>SHOP</a>
+                <a href='/'>MY ACCOUNT</a>
             </div>
         </div>
     );

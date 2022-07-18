@@ -5,7 +5,7 @@ import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
-import SingleProduct from './pages/singleProduct/signgleProduct';
+import SingleProduct from './pages/singleProduct/singleProduct';
 import { Helmet } from "react-helmet";
 import ShopPage from './pages/shopPage/shopPage';
 import "./App.css"

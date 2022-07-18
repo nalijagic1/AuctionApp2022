@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CategoryDto {
     private Category category;
-    private List<SubcategoryDto>  subcategories;
+    private List<SubcategoryDto> subcategories;
 
     public CategoryDto(Category category, List<SubcategoryDto> subcategories) {
         this.category = category;

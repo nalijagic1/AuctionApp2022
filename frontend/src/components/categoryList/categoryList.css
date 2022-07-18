@@ -3,12 +3,14 @@
     width: 240px;
     margin-left: 160px;
 }
-.filter{
+
+.filter {
     border: 1px solid #D8D8D8;
-    padding:24px ;
-    margin-bottom:24px ;
+    padding: 24px;
+    margin-bottom: 24px;
     height: fit-content;
 }
+
 .list p {
     font-family: 'Lato';
     font-style: normal;
@@ -26,23 +28,26 @@
     width: 262px;
 }
 
-.filter li{
+.filter li {
     border: none;
     width: 200px;
-    
+
 }
-.listItemfilter{
+
+.listItemfilter {
     display: flex;
     padding-bottom: 24px;
     padding-left: 0px;
 }
-.filter img{
-    float:right;
+
+.filter img {
+    float: right;
     width: 8px;
     height: 8px;
     margin-top: 20px;
 }
-.list a{
+
+.list a {
     text-decoration: none;
     font-family: 'Lato';
     font-style: normal;
@@ -50,6 +55,7 @@
     font-size: 16px;
     color: #252525;
 }
+
 .category {
     list-style-type: none;
     width: 262px;
@@ -57,7 +63,7 @@
     padding: 0px;
 }
 
-.listSubcategory{
+.listSubcategory {
     list-style-image: url("../../images/squar.png");
     font-family: 'Lato';
     font-style: normal;
@@ -66,4 +72,3 @@
     line-height: 17px;
     color: #9B9B9B;
 }
-

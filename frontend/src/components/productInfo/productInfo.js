@@ -10,9 +10,9 @@ function ProductInfo({product}) {
     const [highestBid, setHighestBid] = useState(0);
     const [count, setCount] = useState(0);
     let countdown;
-    if(moment(product.endingDate) <= moment.now()){
+    if (moment(product.endingDate) <= moment.now()) {
         countdown = "This auction has ended!";
-    }else{
+    } else {
         countdown = moment(product.endingDate).fromNow(true);
     }
     useEffect(() => {

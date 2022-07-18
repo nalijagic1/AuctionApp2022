@@ -19,7 +19,7 @@ public class SubcategoryService {
         this.subcategoryRepository = subcategoryRepository;
     }
 
-    public List<Subcategory> getSubcategoriesFromCategory(long categoryId){
+    public List<Subcategory> getSubcategoriesFromCategory(long categoryId) {
         return subcategoryRepository.findAllByCategoryId(categoryId);
     }
 

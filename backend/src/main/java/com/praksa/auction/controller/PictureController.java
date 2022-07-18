@@ -24,7 +24,7 @@ public class PictureController {
     }
 
     @GetMapping("/cover/{id}")
-    public ResponseEntity<Picture> getCoverImage(@PathVariable long id){
+    public ResponseEntity<Picture> getCoverImage(@PathVariable long id) {
         return ResponseEntity.ok(pictureService.getCoverImage(id));
     }
 

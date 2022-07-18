@@ -20,7 +20,7 @@ VALUES (1, 'Iphone', 8),
        (8, 'Playstation', 7),
        (9, 'Dress', 1),
        (10, 'Scarf', 2),
-       (11,'High heals',4);
+       (11, 'High heals', 4);
 
 
 INSERT INTO product (id, name, description, starting_date, ending_date, starting_price, subcategory_id)
@@ -54,10 +54,10 @@ VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
         'Protect your phone from every day bumps, scratches, marks and dust. Easy to clip on and off. Easy Access to all your controls available. No more worrying as this case will provide you with the ultimate protection. Cut out slot for camera access.',
         '2022-07-17', '2022-07-26', 5.50, 1),
        (11, 'V-Neck 1/2 Sleeves Mini Dresses',
-        'Length: Mini\nNeckline: V-Neck\nSleeve: 1/2 Sleeves\nSilhouette: A-line\nBack Style: Zipper Up\nFabric: Cotton Blends\nSeason: Spring, Summer\nStraps: Sleeves',
+        'Length: Mini; Neckline: V-Neck;Sleeve: 1/2 Sleeves;Silhouette: A-line;Back Style: Zipper Up;Fabric: Cotton Blends;Season: Spring, Summer;Straps: Sleeves',
         '2022-03-15', '2022-08-30', 48, 9),
        (12, 'Women Men Blanket Oversized Tartan Long Cashmere Feel Scarf Wrap Shawl Pashmina',
-        'hese pictures i took from the digital camera. The real color of the item might be slightly different from the pictures shown on web site caused by many factors such as brightness of your monitor and light',
+        'These pictures i took from the digital camera. The real color of the item might be slightly different from the pictures shown on web site caused by many factors such as brightness of your monitor and light',
         '2022-07-03', '2022-08-03', 17, 10);
 INSERT INTO picture
 VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
@@ -74,12 +74,11 @@ VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
        (12,
         'https://ae01.alicdn.com/kf/Hada0b46c068a4f62a99d5e4821d7070cD/SHF-Avengers-Endgame-Iron-Man-MK85-PVC-Action-Figure-Collectible-Model-Toy.jpg_Q90.jpg_.webp',
         5),
-        (13,'https://i.ebayimg.com/images/g/Y-UAAOSwYelbiT3J/s-l1600.jpg',10),
-        (14,'https://i.ebayimg.com/images/g/E9wAAOSwFIRbqk2h/s-l1600.jpg',10),
-        (15,'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/4f/31/8763599673d9d29375e340f081634f31.jpg',11),
-        (16,'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/46/28/c81fd01d8c8106f28215a48a8d1f4628.jpg',11),
-        (17,'https://i.ebayimg.com/images/g/7IYAAOSwD1FdrhAa/s-l1600.jpg',12);
-        5);
+       (13, 'https://i.ebayimg.com/images/g/Y-UAAOSwYelbiT3J/s-l1600.jpg', 10),
+       (14, 'https://i.ebayimg.com/images/g/E9wAAOSwFIRbqk2h/s-l1600.jpg', 10),
+       (15, 'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/4f/31/8763599673d9d29375e340f081634f31.jpg', 11),
+       (16, 'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/46/28/c81fd01d8c8106f28215a48a8d1f4628.jpg', 11),
+       (17, 'https://i.ebayimg.com/images/g/7IYAAOSwD1FdrhAa/s-l1600.jpg', 12);
 INSERT INTO bid (id, bid, product_id)
 VALUES (1, 30, 5),
        (2, 25, 5),

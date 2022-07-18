@@ -8,14 +8,15 @@ import minus from "../../images/Minus.png"
 
 function CategoryList({filter}) {
     const [categories, setCategories] = useState();
-    const [show, setShow] = useState([]);
+    let show = useRef([]);
     let mainContainer = "list"
     let listContainer = "listItem"
     let previousCategory = useRef(-1);
-    let sign = useRef(-1);
+    const [sign, setSign] = useState(-1);
     let prodCat = useRef("");
+
     function showSubcategories(event) {
-        let showArray = [...show]
+        let showArray = [...show.current]
         let index = event.target.id - 1;
         if (event.target.src === plus) {
             event.target.src = minus;
@@ -24,29 +25,28 @@ function CategoryList({filter}) {
             event.target.src = plus;
             showArray[index] = false;
         }
-        setShow(showArray);
+        show.current = showArray;
     }
 
     useEffect(() => {
-        console.log(filter)
         categoryService.getCategoriesWithSubcategories()
             .then((response) => {
                 setCategories(response.data)
                 if (filter) {
-                    prodCat.current ="PRODUCT "
-                    setShow(new Array(response.data.length).fill(false))
+                    prodCat.current = "PRODUCT "
+                    show.current = new Array(response.data.length).fill(false)
                     let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
-                    let showArray = [...show];
+                    let showArray = [...show.current];
                     if (selected) {
                         if (previousCategory.current !== -1 && previousCategory.current !== selected.category.id - 1) {
                             showArray[previousCategory.current] = false;
                             document.getElementsByClassName("showMore")[previousCategory.current].src = plus;
                         }
                         showArray[selected.category.id - 1] = true;
-                        setShow(showArray);
+                        show.current = showArray;
                         if (previousCategory.current !== -1) {
                             document.getElementsByClassName("showMore")[selected.category.id - 1].src = minus;
-                        } else sign.current = 1
+                        } else setSign(1)
                         previousCategory.current = selected.category.id - 1
 
                     } else {
@@ -57,11 +57,11 @@ function CategoryList({filter}) {
                     }
                 }
             })
-        if (sign.current === 1) {
+        if (sign === 1) {
             document.getElementsByClassName("showMore")[previousCategory.current].src = minus;
         }
 
-    }, [filter, sign.current]);
+    }, [filter, sign, show]);
     if (filter) {
         mainContainer += " filter";
         listContainer += "filter"
@@ -71,16 +71,17 @@ function CategoryList({filter}) {
             <p>{prodCat.current}CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
-                    <div>
+                    <div key={cat.category.id}>
                         <div className={listContainer}>
                             <Link to={`/shop/${cat.category.name}`}>
-                                <li key={cat.category.id}>{cat.category.name} </li>
+                                <li>{cat.category.name} </li>
                             </Link>
                             {filter &&
-                            <img id={cat.category.id} className="showMore" src={plus} onClick={showSubcategories}></img>
+                            <img id={cat.category.id} className="showMore" src={plus} onClick={showSubcategories}
+                                 alt="sign"></img>
                             }
                         </div>
-                        {filter && show[cat.category.id - 1] && cat.subcategories.map(sub => (
+                        {filter && show.current[cat.category.id - 1] && cat.subcategories.map(sub => (
                             <ul className='listSubcategory'>
                                 <li>{sub.name} ({sub.count})</li>
                             </ul>

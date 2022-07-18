@@ -21,6 +21,7 @@ public class ProductService {
     public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
+
     public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
@@ -34,20 +35,17 @@ public class ProductService {
         List<Product> products = productRepository.findProductsByEndingDateAfterOrderByStartingDateDesc(new Date(), PageRequest.of(start, count));
         return products;
     }
-    public Optional<Product> getSelectedProduct(long id) {
-        return productRepository.findById(id);
+
+    public List<Product> getProductsFromCategory(String category, int count) {
+        return productRepository.getProductsFromCategory(category, PageRequest.of(0, count));
     }
 
-    public List<Product> getProductsFromCategory(String category,int count){
-        return productRepository.getProductsFromCategory(category, PageRequest.of(0,count));
+    public List<Product> searchProducuts(String search, int count) {
+        return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search, new Date(), PageRequest.of(0, count));
     }
 
-    public List<Product> searchProducuts(String search,int count){
-        return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search,new Date(),PageRequest.of(0,count));
-    }
-
-    public List<Product> getProductsFromAllCategories(int count){
-        return productRepository.findProductsByEndingDateAfter(new Date(),PageRequest.of(0,count));
+    public List<Product> getProductsFromAllCategories(int count) {
+        return productRepository.findProductsByEndingDateAfter(new Date(), PageRequest.of(0, count));
     }
 
 }
