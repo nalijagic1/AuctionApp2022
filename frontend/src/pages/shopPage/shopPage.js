@@ -5,6 +5,7 @@ import {useParams,useLocation} from 'react-router-dom';
 import './shopPage.css'
 import productService from '../../services/product.service';
 import Button from '../../components/button/button';
+import PathBar from '../../components/pathBar/pathBar';
 
 function ShopPage() {
     const param = useParams();
@@ -15,6 +16,11 @@ function ShopPage() {
     let hasMore = useRef(true)
     let start = useRef(1);
     let previous = useRef("")
+    let filter = "";
+    if(word){
+        filter = word;
+    }else filter = param.category;
+
     function showMore(){
         start.current+=1;
         setCount(9*start.current)
@@ -47,8 +53,11 @@ function ShopPage() {
     }, [param,word,count]);
     return (
         <div className="shopPage">
-            <div class="shop">
-            <CategoryList filter={param.category}/>
+            {word &&
+                <PathBar prop={{name: "", startPoint: "Home", endPoint: `Search results for ${word}`}}></PathBar>
+            }     
+            <div className="shop">
+            <CategoryList filter={filter}/>
             <SearchResult results={products}/>
             </div>
             {hasMore.current &&

@@ -13,7 +13,7 @@ function CategoryList({filter}) {
     let listContainer = "listItem"
     let previousCategory = useRef(-1);
     let sign = useRef(-1);
-
+    let prodCat = useRef("");
     function showSubcategories(event) {
         let showArray = [...show]
         let index = event.target.id - 1;
@@ -28,10 +28,12 @@ function CategoryList({filter}) {
     }
 
     useEffect(() => {
+        console.log(filter)
         categoryService.getCategoriesWithSubcategories()
             .then((response) => {
                 setCategories(response.data)
                 if (filter) {
+                    prodCat.current ="PRODUCT "
                     setShow(new Array(response.data.length).fill(false))
                     let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
                     let showArray = [...show];
@@ -66,11 +68,11 @@ function CategoryList({filter}) {
     }
     return (
         <div className={mainContainer}>
-            <p>CATEGORIES</p>
+            <p>{prodCat.current}CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
                     <div>
-                        <div class={listContainer}>
+                        <div className={listContainer}>
                             <Link to={`/shop/${cat.category.name}`}>
                                 <li key={cat.category.id}>{cat.category.name} </li>
                             </Link>
