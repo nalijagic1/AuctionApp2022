@@ -17,7 +17,7 @@ class ProductDataService {
     }
 
     getSearchResult(search,count){
-        return httpCommon.get("/search?search="+search+"&count="+count);
+        return httpCommon.get("products/search?search="+search+"&count="+count);
     }
 }
 

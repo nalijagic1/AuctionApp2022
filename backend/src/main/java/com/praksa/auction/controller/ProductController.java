@@ -44,7 +44,7 @@ public class ProductController {
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/products")
+    @GetMapping()
     public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category, @RequestParam  int count){
         return ResponseEntity.ok(productService.getProductsFromCategory(category,count));
     }
@@ -54,7 +54,7 @@ public class ProductController {
         return  ResponseEntity.ok(productService.searchProducuts(search,count));
     }
 
-    @GetMapping("/products/all")
+    @GetMapping("/all")
     public ResponseEntity<List<Product>> getProductsFromAllCategories(@RequestParam  int count){
         return  ResponseEntity.ok(productService.getProductsFromAllCategories(count));
     }
