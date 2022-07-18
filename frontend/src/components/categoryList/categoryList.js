@@ -8,7 +8,9 @@ import minus from "../../images/Minus.png"
 
 function CategoryList({filter}) {
     const [categories, setCategories] = useState();
+    const [refresh,setRefresh] = useState(0);
     let show = useRef([]);
+    let expand = useRef([]);
     let mainContainer = "list"
     let listContainer = "listItem"
     let previousCategory = useRef(-1);
@@ -16,55 +18,61 @@ function CategoryList({filter}) {
     let prodCat = useRef("");
 
     function showSubcategories(event) {
-        let showArray = [...show.current]
-        let index = event.target.id - 1;
-        if (event.target.src === plus) {
-            event.target.src = minus;
-            showArray[index] = true
+        let showArray = [...show.current];
+        let expandArray = [...expand.current];
+        let index = event.target.id-1;
+       if (expand.current[index] === plus) {
+            expandArray[index]= minus;
+            showArray[index] = true;
         } else {
-            event.target.src = plus;
+            expandArray[index] = plus;
             showArray[index] = false;
         }
         show.current = showArray;
+        expand.current = expandArray;
+        setRefresh(r => r + 1);
     }
 
     useEffect(() => {
         categoryService.getCategoriesWithSubcategories()
             .then((response) => {
-                setCategories(response.data)
+                setCategories(response.data);
                 if (filter) {
-                    prodCat.current = "PRODUCT "
-                    show.current = new Array(response.data.length).fill(false)
+                    prodCat.current = "PRODUCT ";
+                    if(sign === -1){
+                         show.current = new Array(response.data.length).fill(false);
+                        expand.current = new Array(response.data.length).fill(plus);
+                    }
                     let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
                     let showArray = [...show.current];
                     if (selected) {
                         if (previousCategory.current !== -1 && previousCategory.current !== selected.category.id - 1) {
                             showArray[previousCategory.current] = false;
-                            document.getElementsByClassName("showMore")[previousCategory.current].src = plus;
+                            expand.current[previousCategory.current] = plus;
                         }
                         showArray[selected.category.id - 1] = true;
                         show.current = showArray;
                         if (previousCategory.current !== -1) {
-                            document.getElementsByClassName("showMore")[selected.category.id - 1].src = minus;
-                        } else setSign(1)
-                        previousCategory.current = selected.category.id - 1
+                            expand.current[selected.category.id - 1] = minus;
+                        } else setSign(1);
+                        previousCategory.current = selected.category.id - 1;
 
                     } else {
                         if (previousCategory.current !== -1) {
                             showArray[previousCategory.current] = false;
-                            document.getElementsByClassName("showMore")[previousCategory.current].src = plus;
+                            expand.current[previousCategory.current] = plus;
                         }
                     }
                 }
             })
         if (sign === 1) {
-            document.getElementsByClassName("showMore")[previousCategory.current].src = minus;
+            expand.current[previousCategory.current] = minus;
         }
 
-    }, [filter, sign, show]);
+    }, [filter, sign, refresh]);
     if (filter) {
         mainContainer += " filter";
-        listContainer += "filter"
+        listContainer += "filter";
     }
     return (
         <div className={mainContainer}>
@@ -77,12 +85,12 @@ function CategoryList({filter}) {
                                 <li>{cat.category.name} </li>
                             </Link>
                             {filter &&
-                            <img id={cat.category.id} className="showMore" src={plus} onClick={showSubcategories}
+                            <img id={cat.category.id} className="showMore" src={expand.current[cat.category.id-1]} onClick={showSubcategories}
                                  alt="sign"></img>
                             }
                         </div>
                         {filter && show.current[cat.category.id - 1] && cat.subcategories.map(sub => (
-                            <ul className='listSubcategory'>
+                            <ul  key = {sub.id} className='listSubcategory'>
                                 <li>{sub.name} ({sub.count})</li>
                             </ul>
                         ))

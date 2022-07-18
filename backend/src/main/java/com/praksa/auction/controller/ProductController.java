@@ -44,12 +44,12 @@ public class ProductController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String search, @RequestParam int count) {
-        return ResponseEntity.ok(productService.searchProducuts(search, count));
+        return ResponseEntity.ok(productService.searchProducts(search, count));
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getProductsFromAllCategories(@RequestParam int count) {
-        return ResponseEntity.ok(productService.getProductsFromAllCategories(count));
+        return ResponseEntity.ok(productService.getAllProducts(count));
     }
 
     @GetMapping("/{id}")

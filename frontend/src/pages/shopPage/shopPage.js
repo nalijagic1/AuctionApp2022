@@ -9,10 +9,11 @@ import PathBar from '../../components/pathBar/pathBar';
 
 function ShopPage() {
     const param = useParams();
+    const nine = 9;
     const [products, setProducts] = useState([])
     const query = new URLSearchParams(useLocation().search);
     const word = query.get("search");
-    const [count, setCount] = useState(9);
+    const [count, setCount] = useState(nine);
     let hasMore = useRef(true)
     let start = useRef(1);
     let previous = useRef("")
@@ -23,30 +24,28 @@ function ShopPage() {
 
     function showMore() {
         start.current += 1;
-        setCount(9 * start.current)
+        setCount(nine * start.current);
     }
 
     useEffect(() => {
         const testIfChanged = ((change) => {
-            if (previous.current !== change) setCount(9);
+            if (previous.current !== change) setCount(nine);
         })
         if (word) {
-            testIfChanged(word)
+            testIfChanged(word);
             previous.current = word;
             productService.getSearchResult(word, count)
                 .then((response) => {
                     setProducts(response.data);
-                    if (response.data.length !== count) hasMore.current = false;
-                    else hasMore.current = true;
+                    hasMore.current = response.data.length === count;
                 });
         } else {
-            testIfChanged(param.category)
+            testIfChanged(param.category);
             previous.current = param.category
             productService.getProductsFromCategory(param.category, count)
                 .then((response) => {
                     setProducts(response.data);
-                    if (response.data.length !== count) hasMore.current = false;
-                    else hasMore.current = true;
+                    hasMore.current = response.data.length === count;
 
                 });
         }

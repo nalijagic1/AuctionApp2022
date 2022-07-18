@@ -26,7 +26,7 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/categoriesWithSubcategories")
+    @GetMapping("/subcategories")
     public ResponseEntity<List<CategoryDto>> get() {
         return ResponseEntity.ok(categoryService.getCategoriesWithSubcategories());
     }

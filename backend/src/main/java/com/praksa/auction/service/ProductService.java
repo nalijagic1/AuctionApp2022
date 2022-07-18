@@ -40,12 +40,12 @@ public class ProductService {
         return productRepository.getProductsFromCategory(category, PageRequest.of(0, count));
     }
 
-    public List<Product> searchProducuts(String search, int count) {
+    public List<Product> searchProducts(String search, int count) {
         return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search, new Date(), PageRequest.of(0, count));
     }
 
-    public List<Product> getProductsFromAllCategories(int count) {
-        return productRepository.findProductsByEndingDateAfter(new Date(), PageRequest.of(0, count));
+    public List<Product> getAllProducts(int count) {
+        return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
 }

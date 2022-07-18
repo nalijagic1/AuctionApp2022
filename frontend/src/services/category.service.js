@@ -6,7 +6,7 @@ class CategoryDataService {
     }
 
     getCategoriesWithSubcategories() {
-        return http.get("/categories/categoriesWithSubcategories");
+        return http.get("/categories/subcategories");
     }
 }
 
