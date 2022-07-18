@@ -6,6 +6,13 @@
     width: 1166px
 }
 
+.productCard a {
+    text-decoration: none;
+}
+
+.offers button:focus {
+    border-bottom: 3px solid #8367D8;
+}
 .offers button{
     color: #000000;
 }

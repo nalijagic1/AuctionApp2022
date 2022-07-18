@@ -16,7 +16,7 @@ function SingleProduct() {
                 setProduct(response.data);
 
             });
-    }, []);
+    }, [params]);
     return (
         <div className="singleProduct">
             {product &&

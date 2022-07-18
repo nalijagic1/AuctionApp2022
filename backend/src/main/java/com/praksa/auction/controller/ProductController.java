@@ -36,14 +36,6 @@ public class ProductController {
     public ResponseEntity<List<Product>> getNewest(@RequestParam int start, @RequestParam int count) {
         return ResponseEntity.ok(productService.getNewest(start, count));
     }
-
-    @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
-        Optional<Product> product = productService.getSelectedProduct(id);
-        if (product.isPresent()) return ResponseEntity.ok(product.get());
-        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
     @GetMapping()
     public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category, @RequestParam  int count){
         return ResponseEntity.ok(productService.getProductsFromCategory(category,count));
@@ -57,5 +49,10 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getProductsFromAllCategories(@RequestParam  int count){
         return  ResponseEntity.ok(productService.getProductsFromAllCategories(count));
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
+        Optional<Product> product = productService.getSelectedProduct(id);
+        return ResponseEntity.ok(product.get());
     }
 }

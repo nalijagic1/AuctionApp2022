@@ -1,10 +1,10 @@
 import React from 'react';
 import {Tab, Tabs} from '@mui/material';
+import {Link} from 'react-router-dom';
 import {useEffect, useState,useRef} from "react";
 import productService from '../../services/product.service';
 import Card from '../card/card';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {Link} from 'react-router-dom';
 import "./offers.css"
 
 function Offers() {
@@ -62,12 +62,12 @@ function Offers() {
                 hasMore={more}
             >
                 {products.map(product => (
-                    <div className="productCard">
-                        <Link to={`/product/${product.id}`}>
-                            <Card key={product.id} name={product.name} productId={product.id}
-                                  price={product.startingPrice}/>
-                        </Link>
-                    </div>
+                        <div key={product.id} className="productCard">
+                            <Link to={`/product/${product.id}`}>
+                                <Card  name={product.name} productId={product.id}
+                                      price={product.startingPrice}/>
+                            </Link>
+                        </div>
                 ))}
             </InfiniteScroll>
             }

@@ -23,11 +23,11 @@ function ProductHighlight() {
         <div className="highlight">
             <Link to={`/product/${product.id}`}>
                 <div className='productInfo'>
-                    <h3 className='nameProduct'>{product.name}</h3>
-                    <h3 className='priceProduct'>Start from ${product.startingPrice}</h3>
-                    <div className='descProduct'>
-                        {product.description}
-                    </div>
+                <h3 className='nameProduct'>{product.name}</h3>
+                <h3 className='priceProduct'>Start from ${product.startingPrice}</h3>
+                <div className='descProduct'>
+                    {product.description}
+                </div>
 
                 <div className='bidNow'>
                     <Button lable="Bid now" icon={arrow}/>

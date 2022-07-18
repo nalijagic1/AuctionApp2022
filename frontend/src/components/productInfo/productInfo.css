@@ -25,15 +25,19 @@
 
 }
 
+.info h3 p{
+    font-weight: bold;
+    color: #8367D8;
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+
+}
 .biddingInfo h3 {
     color: #252525;
     margin-bottom: 16px;
 }
 
-.info a {
-    font-weight: bold;
-    color: #8367D8;
-}
 
 .biddingInfo {
     margin-top: 36px;

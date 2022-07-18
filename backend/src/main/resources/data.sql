@@ -8,6 +8,7 @@ VALUES (1, 'Fashion'),
        (7, 'Electronics'),
        (8, 'Mobile'),
        (9, 'Music');
+
 INSERT INTO subcategory
 VALUES (1, 'Iphone', 8),
        (2, 'Anique', 6),
@@ -78,6 +79,7 @@ VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
         (15,'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/4f/31/8763599673d9d29375e340f081634f31.jpg',11),
         (16,'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/46/28/c81fd01d8c8106f28215a48a8d1f4628.jpg',11),
         (17,'https://i.ebayimg.com/images/g/7IYAAOSwD1FdrhAa/s-l1600.jpg',12);
+        5);
 INSERT INTO bid (id, bid, product_id)
 VALUES (1, 30, 5),
        (2, 25, 5),

@@ -2,11 +2,11 @@ import httpCommon from "../http-common";
 
 class BidDataService {
     getBidCount(productId) {
-        return httpCommon.get("/bidCount/" + productId);
+        return httpCommon.get("/bids/bidCount/" + productId);
     }
 
     getHighestBid(productId) {
-        return httpCommon.get("/highestBid/" + productId);
+        return httpCommon.get("/bids/highestBid/" + productId);
     }
 }
 
