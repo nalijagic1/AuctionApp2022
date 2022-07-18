@@ -83,7 +83,7 @@ function CategoryList({filter}) {
                     </div>
 
                 ))}
-                <Link to="/shop/0">
+                <Link to="/shop/all">
                     <li> All Categories</li>
                 </Link>
             </ul>

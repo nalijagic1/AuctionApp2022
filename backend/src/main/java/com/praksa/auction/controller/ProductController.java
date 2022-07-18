@@ -53,4 +53,9 @@ public class ProductController {
     public ResponseEntity<List<Product>> searchProducts(@RequestParam  String search, @RequestParam  int count){
         return  ResponseEntity.ok(productService.searchProducuts(search,count));
     }
+
+    @GetMapping("/products/all")
+    public ResponseEntity<List<Product>> getProductsFromAllCategories(@RequestParam  int count){
+        return  ResponseEntity.ok(productService.getProductsFromAllCategories(count));
+    }
 }

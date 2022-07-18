@@ -12,11 +12,12 @@ class ProductDataService {
     }
 
     getProductsFromCategory(category,count){
-        return httpCommon.get("/products?category="+category+"&count="+count)
+        if(category === "all") return httpCommon.get("/products/all?count="+count);
+        return httpCommon.get("/products?category="+category+"&count="+count);
     }
 
     getSearchResult(search,count){
-        return httpCommon.get("/search?search="+search+"&count="+count)
+        return httpCommon.get("/search?search="+search+"&count="+count);
     }
 }
 

@@ -43,4 +43,8 @@ public class ProductService {
         return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search,new Date(),PageRequest.of(0,count));
     }
 
+    public List<Product> getProductsFromAllCategories(int count){
+        return productRepository.findProductsByEndingDateAfter(new Date(),PageRequest.of(0,count));
+    }
+
 }
