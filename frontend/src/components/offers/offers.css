@@ -20,6 +20,9 @@
     width: 262px;
 }
 
+.productCard a {
+    text-decoration: none;
+}
 .grid {
     margin-left: 160px;
     margin-right: 160px;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './searchResult.css'
 import {Link} from 'react-router-dom';
 import Card from '../card/card';
