@@ -3,6 +3,7 @@ import "./productHightlight.css"
 import productService from '../../services/product.service';
 import pictureService from '../../services/picture.service';
 import {useEffect, useState} from "react";
+import {Link} from 'react-router-dom';
 import Button from '../button/button';
 import arrow from "../../images/arrow.png"
 
@@ -20,7 +21,8 @@ function ProductHighlight() {
     }, []);
     return (
         <div className="highlight">
-            <div className='productInfo'>
+            <Link to={`/product/${product.id}`}>
+                <div className='productInfo'>
                 <h3 className='nameProduct'>{product.name}</h3>
                 <h3 className='priceProduct'>Start from ${product.startingPrice}</h3>
                 <div className='descProduct'>
@@ -33,6 +35,7 @@ function ProductHighlight() {
             </div>
             {image &&
             <img src={image.imageUrl} alt={product.name}/>}
+            </Link>
         </div>
     );
 }

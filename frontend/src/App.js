@@ -5,6 +5,7 @@ import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
+import SingleProduct from './pages/singleProduct/signgleProduct';
 import { Helmet } from "react-helmet";
 import "./App.css"
 import {
@@ -28,6 +29,7 @@ function App() {
                         <Route path='/privacy' element={<PrivacyAndPolicy/>}/>
                         <Route path='/terms' element={<TermsAndConditions/>}/>
                         <Route path='/aboutUs' element={<AboutUs/>}/>
+                        <Route path='/product/:productId' element={<SingleProduct/>}/>
                     </ Routes>
                 </Router>
             </div>

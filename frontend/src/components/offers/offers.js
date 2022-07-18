@@ -1,5 +1,6 @@
 import React from 'react';
 import {Tab, Tabs} from '@mui/material';
+import {Link} from 'react-router-dom';
 import {useEffect, useState,useRef} from "react";
 import productService from '../../services/product.service';
 import Card from '../card/card';
@@ -58,11 +59,15 @@ function Offers() {
                 className='productList'
                 dataLength={products.length} //This is important field to render the next data
                 next={getNext}
-                hasMore={more} 
+                hasMore={more}
             >
                 {products.map(product => (
-                        <Card className="productCard" key={product.id} name={product.name} productId={product.id}
-                              price={product.startingPrice}/>
+                        <div key={product.id} className="productCard">
+                            <Link to={`/product/${product.id}`}>
+                                <Card  name={product.name} productId={product.id}
+                                      price={product.startingPrice}/>
+                            </Link>
+                        </div>
                 ))}
             </InfiniteScroll>
             }
