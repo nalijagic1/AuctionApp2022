@@ -1,12 +1,14 @@
 import {React, useEffect, useRef} from 'react';
+import { useNavigate } from 'react-router';
 import './navigationWhite.css'
 import logo from '../../images/auction-app-logo 1.png'
 
 
 function NavigationWhite() {
     let searchField = useRef();
+    let navigate = useNavigate();
     function search() {
-        if (searchField.current.value.length >= 3) window.location.assign("/shop?search=" + searchField.current.value);
+        if (searchField.current.value.length >= 3) navigate("/shop?search=" + searchField.current.value);
     };
 
     useEffect(() => {

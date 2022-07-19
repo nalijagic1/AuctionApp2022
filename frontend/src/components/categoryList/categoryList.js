@@ -39,7 +39,7 @@ function CategoryList({filter}) {
                 if (filter) {
                     prodCat.current = "PRODUCT ";
                     let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
-                    if (previousCategory.current!=-2 && (!selected  || previousCategory.current !== selected.category.id - 1)) {
+                    if (previousCategory.current !== -2 && (!selected  || previousCategory.current !== selected.category.id - 1)) {
                         show.current = new Array(response.data.length).fill(false);
                         expand.current = new Array(response.data.length).fill(plus);
                     }
