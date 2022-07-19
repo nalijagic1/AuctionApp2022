@@ -19,4 +19,3 @@ public class ShopPageTest {
         assertEquals(categoryRepository.findSubcategoriesWithCount(2).size(),2);
     }
 }
-t

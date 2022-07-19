@@ -28,11 +28,11 @@ function ShopPage() {
     }
 
     useEffect(() => {
-        const testIfChanged = ((change) => {
+        const testIfFilerChanged = ((change) => {
             if (previous.current !== change) setCount(nine);
         })
         if (word) {
-            testIfChanged(word);
+            testIfFilerChanged(word);
             previous.current = word;
             productService.getSearchResult(word, count)
                 .then((response) => {
@@ -40,13 +40,12 @@ function ShopPage() {
                     hasMore.current = response.data.length === count;
                 });
         } else {
-            testIfChanged(param.category);
+            testIfFilerChanged(param.category);
             previous.current = param.category
             productService.getProductsFromCategory(param.category, count)
                 .then((response) => {
                     setProducts(response.data);
                     hasMore.current = response.data.length === count;
-
                 });
         }
 
