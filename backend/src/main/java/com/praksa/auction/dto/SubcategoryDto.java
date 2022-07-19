@@ -1,6 +1,5 @@
 package com.praksa.auction.dto;
 
-import com.praksa.auction.model.Subcategory;
 
 public class SubcategoryDto {
     private long subcategoryId;

@@ -2,7 +2,6 @@ package com.praksa.auction.controller;
 
 
 import com.praksa.auction.model.Bid;
-import com.praksa.auction.model.Product;
 import com.praksa.auction.service.BidService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

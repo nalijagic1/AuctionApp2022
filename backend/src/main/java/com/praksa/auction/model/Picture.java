@@ -1,6 +1,5 @@
 package com.praksa.auction.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 

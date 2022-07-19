@@ -1,9 +1,7 @@
 package com.praksa.auction.service;
 
 import com.praksa.auction.model.Subcategory;
-import com.praksa.auction.repository.ProductRepository;
 import com.praksa.auction.repository.SubcategoryRepository;
-import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

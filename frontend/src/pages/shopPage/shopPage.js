@@ -10,13 +10,13 @@ import PathBar from '../../components/pathBar/pathBar';
 function ShopPage() {
     const param = useParams();
     const nine = 9;
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
     const query = new URLSearchParams(useLocation().search);
     const word = query.get("search");
     const [count, setCount] = useState(nine);
-    let hasMore = useRef(true)
+    let hasMore = useRef(true);
     let start = useRef(1);
-    let previous = useRef("")
+    let previous = useRef("");
     let filter = "";
     if (word) {
         filter = word;

@@ -11,8 +11,8 @@ function CategoryList({filter}) {
     const [refresh,setRefresh] = useState(0);
     let show = useRef([]);
     let expand = useRef([]);
-    let mainContainer = "list"
-    let listContainer = "listItem"
+    let mainContainerClass = "list";
+    let listContainerClass = "listItem";
     let previousCategory = useRef(-1);
     const [sign, setSign] = useState(-1);
     let prodCat = useRef("");
@@ -71,16 +71,16 @@ function CategoryList({filter}) {
 
     }, [filter, sign, refresh]);
     if (filter) {
-        mainContainer += " filter";
-        listContainer += "filter";
+        mainContainerClass += " filter";
+        listContainerClass += "filter";
     }
     return (
-        <div className={mainContainer}>
+        <div className={mainContainerClass}>
             <p>{prodCat.current}CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
                     <div key={cat.category.id}>
-                        <div className={listContainer}>
+                        <div className={listContainerClass}>
                             <Link to={`/shop/${cat.category.name}`}>
                                 <li>{cat.category.name} </li>
                             </Link>
