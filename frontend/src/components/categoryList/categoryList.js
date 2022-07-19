@@ -17,10 +17,9 @@ function CategoryList({filter}) {
     const [sign, setSign] = useState(-1);
     let prodCat = useRef("");
 
-    function showSubcategories(event) {
+    function showSubcategories(index) {
         let showArray = [...show.current];
         let expandArray = [...expand.current];
-        let index = event.target.id-1;
        if (expand.current[index] === plus) {
             expandArray[index]= minus;
             showArray[index] = true;
@@ -39,28 +38,22 @@ function CategoryList({filter}) {
                 setCategories(response.data);
                 if (filter) {
                     prodCat.current = "PRODUCT ";
-                    if(sign === -1){
-                         show.current = new Array(response.data.length).fill(false);
+                    let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
+                    if (previousCategory.current!=-2 && (!selected  || previousCategory.current !== selected.category.id - 1)) {
+                        show.current = new Array(response.data.length).fill(false);
                         expand.current = new Array(response.data.length).fill(plus);
                     }
-                    let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
-                    let showArray = [...show.current];
                     if (selected) {
-                        if (previousCategory.current !== -1 && previousCategory.current !== selected.category.id - 1) {
-                            showArray[previousCategory.current] = false;
-                            expand.current[previousCategory.current] = plus;
-                        }
-                        showArray[selected.category.id - 1] = true;
-                        show.current = showArray;
-                        if (previousCategory.current !== -1) {
+                        show.current[selected.category.id - 1] = true;
+                        if (previousCategory.current < 0 ) {
                             expand.current[selected.category.id - 1] = minus;
                         } else setSign(1);
                         previousCategory.current = selected.category.id - 1;
 
                     } else {
-                        if (previousCategory.current !== -1) {
-                            showArray[previousCategory.current] = false;
-                            expand.current[previousCategory.current] = plus;
+                        if(previousCategory.current === -1) {
+                            previousCategory.current = -2;
+                            setSign(-2);
                         }
                     }
                 }
@@ -85,7 +78,7 @@ function CategoryList({filter}) {
                                 <li>{cat.category.name} </li>
                             </Link>
                             {filter &&
-                            <img id={cat.category.id} className="showMore" src={expand.current[cat.category.id-1]} onClick={showSubcategories}
+                            <img id={cat.category.id} className="showMore" src={expand.current[cat.category.id-1]} onClick={event => showSubcategories(event.target.id-1)}
                                  alt="sign"></img>
                             }
                         </div>

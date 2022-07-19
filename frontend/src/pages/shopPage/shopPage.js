@@ -9,30 +9,27 @@ import PathBar from '../../components/pathBar/pathBar';
 
 function ShopPage() {
     const param = useParams();
-    const nine = 9;
+    const initCount = 9;
     const [products, setProducts] = useState([]);
     const query = new URLSearchParams(useLocation().search);
     const word = query.get("search");
-    const [count, setCount] = useState(nine);
+    const [count, setCount] = useState(initCount);
     let hasMore = useRef(true);
     let start = useRef(1);
     let previous = useRef("");
-    let filter = "";
-    if (word) {
-        filter = word;
-    } else filter = param.category;
+    const filter = word ? word : param.category;
 
     function showMore() {
         start.current += 1;
-        setCount(nine * start.current);
+        setCount(initCount * start.current);
     }
 
     useEffect(() => {
-        const testIfFilerChanged = ((change) => {
-            if (previous.current !== change) setCount(nine);
+        const testIfFilterChanged = ((change) => {
+            if (previous.current !== change) setCount(initCount);
         })
         if (word) {
-            testIfFilerChanged(word);
+            testIfFilterChanged(word);
             previous.current = word;
             productService.getSearchResult(word, count)
                 .then((response) => {
@@ -40,7 +37,7 @@ function ShopPage() {
                     hasMore.current = response.data.length === count;
                 });
         } else {
-            testIfFilerChanged(param.category);
+            testIfFilterChanged(param.category);
             previous.current = param.category
             productService.getProductsFromCategory(param.category, count)
                 .then((response) => {

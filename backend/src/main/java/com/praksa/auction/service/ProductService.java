@@ -41,7 +41,7 @@ public class ProductService {
     }
 
     public List<Product> searchProducts(String search, int count) {
-        return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search, new Date(), PageRequest.of(0, count));
+        return productRepository.searchProducts(search, PageRequest.of(0, count));
     }
 
     public List<Product> getAllProducts(int count) {
