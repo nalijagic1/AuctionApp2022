@@ -47,7 +47,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.searchProducuts(search, count));
     }
     @GetMapping("/search/check")
-    public ResponseEntity<List<String>> checkSpelling(@RequestParam String search) {
+    public ResponseEntity<String> checkSpelling(@RequestParam String search) {
         return ResponseEntity.ok(productService.checkSpelling(search));
     }
 
