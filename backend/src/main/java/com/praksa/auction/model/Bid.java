@@ -69,14 +69,5 @@ public class Bid {
         this.bidDate = bidDate;
     }
 
-    @Override
-    public String toString() {
-        return "Bid{" +
-                "id=" + id +
-                ", product=" + product +
-                ", person=" + person +
-                ", bid=" + bid +
-                ", bidDate=" + bidDate +
-                '}';
-    }
+
 }

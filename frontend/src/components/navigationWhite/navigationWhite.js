@@ -7,6 +7,7 @@ function NavigationWhite() {
     let searchField = useRef();
     let navigate = useNavigate();
     function search() {
+        if(searchField.current.value.length === 0) navigate("/shop/all");
         if (searchField.current.value.length >= 3) navigate("/shop?search=" + searchField.current.value);
     };
 

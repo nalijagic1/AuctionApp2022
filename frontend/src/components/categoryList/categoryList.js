@@ -1,7 +1,7 @@
 import React from 'react';
 import "./categoryList.css"
 import categoryService from '../../services/category.service';
-import {useEffect, useState, useRef} from "react";
+import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import { useLocation } from 'react-router-dom'
@@ -11,7 +11,6 @@ function CategoryList({filter}) {
     const [categories, setCategories] = useState();
     const navigate = useNavigate();
     const location = useLocation();
-    let prodCat = useRef("");
 
     function showSubcategories(selectedCategory) {
         if(location.pathname.includes(selectedCategory)) navigate("/shop/all");
@@ -27,7 +26,7 @@ function CategoryList({filter}) {
 
     return (
         <div className={filter ? "list filter" : "list"}>
-            <p>{prodCat.current}CATEGORIES</p>
+            <p>{ filter ? "PRODUCT " : ""}CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
                     <div key={cat.category.id}>
