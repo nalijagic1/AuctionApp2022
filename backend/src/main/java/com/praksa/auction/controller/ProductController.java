@@ -3,6 +3,7 @@ package com.praksa.auction.controller;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +50,11 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam int count) {
         return ResponseEntity.ok(productService.getAllProducts(count));
+    }
+
+    @GetMapping("/check")
+    public ResponseEntity<String> checkSpelling(@RequestParam String search) {
+        return ResponseEntity.ok(productService.checkSpelling(search));
     }
 
     @GetMapping("/{id}")

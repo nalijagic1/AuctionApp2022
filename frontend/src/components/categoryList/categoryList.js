@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import "./categoryList.css"
 import categoryService from '../../services/category.service';
 import {useEffect, useState} from "react";
@@ -11,7 +11,6 @@ function CategoryList({filter}) {
     const [categories, setCategories] = useState();
     const navigate = useNavigate();
     const location = useLocation();
-    let prodCat = useRef("");
 
     function showSubcategories(selectedCategory) {
         if(location.pathname.includes(selectedCategory)) navigate("/shop/all");
@@ -27,13 +26,13 @@ function CategoryList({filter}) {
 
     return (
         <div className={filter ? "list filter" : "list"}>
-            <p>{prodCat.current}CATEGORIES</p>
+            <p>{ filter ? "PRODUCT " : ""}CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
                     <div key={cat.category.id}>
                         <div className={filter ? "listItemfilter" : "listItem"} onClick={() => showSubcategories(cat.category.name)}>
                                 <li>{cat.category.name} </li>
-                                {filter && 
+                                {filter &&
                                     <div>{filter === cat.category.name ? <TiMinus className='icon' style={{fontSize: 16, color: '#252525'}}/> : <TiPlus  className='icon' style={{fontSize: 16, color: '#252525'}}/>}</div>
                                 }
                         </div>

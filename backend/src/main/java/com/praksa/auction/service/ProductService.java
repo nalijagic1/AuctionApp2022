@@ -1,5 +1,7 @@
 package com.praksa.auction.service;
 
+import com.atlascopco.hunspell.Hunspell;
+import com.praksa.auction.config.HunspellConfiguration;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,17 +13,17 @@ import java.util.*;
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-
+    private final HunspellConfiguration hunspellConfiguration;
     @Autowired
-    public ProductService(ProductRepository procuctRepository) {
+    public ProductService(ProductRepository procuctRepository,HunspellConfiguration config) {
 
         this.productRepository = procuctRepository;
+        this.hunspellConfiguration = config;
     }
 
     public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
-
     public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
@@ -48,4 +50,16 @@ public class ProductService {
         return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
+
+    public String checkSpelling(String search) {
+        Hunspell speller = hunspellConfiguration.speller();
+        List<String> suggestons = speller.suggest(search);
+        for(String suggest : suggestons) {
+            if(suggest.length() < 3) continue;
+            List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
+            if (searchResult.size() != 0) return suggest;
+        }
+        return "";
+
+    }
 }

@@ -21,6 +21,10 @@ class ProductDataService {
     getSelectedProduct(product) {
         return httpCommon.get("/products/" + product);
     }
+
+    getSuggestion(search){
+        return httpCommon.get("/products/check?search=" + search)
+    }
 }
 
 export default new ProductDataService();

@@ -14,7 +14,6 @@
 
 .search input[type=text] {
     width: 548px;
-    height: 56;
     padding: 12px 20px 12px 20px;
     border: 1px solid #E3E3E3;
     margin-top: 16px;
@@ -27,7 +26,7 @@
     line-height: 19px;
 }
 
-.search input[type=submit] {
+#searchButton {
     position: absolute;
     top: 70px;
     margin-left: -50px;
@@ -37,7 +36,24 @@
     width: 30px;
     height: 30px;
     background-color: transparent;
-    border: 0em;
+    border: 0px;
+}
+
+#exitButton {
+    position: absolute;
+    top: 70px;
+    margin-left: -80px;
+    background-image: url('../../images/exit.png');
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 0px;
+}
+
+#searchField:focus-visible {
+    outline: 1px solid #E3E3E3;
 }
 
 .menu {

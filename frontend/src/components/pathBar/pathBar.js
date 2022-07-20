@@ -9,7 +9,7 @@ function PathBar({prop}) {
         if (prop.startPoint === "Home") setLink("/");
         else if (prop.startPoint === "Shop") setLink("/shop/all");
         if (prop.endPoint.includes("Search")) classType.current += " searchPath";
-    }, [prop]);
+    },[prop]);
     return (
         <div className="bar">
             {prop.name !== "" &&
