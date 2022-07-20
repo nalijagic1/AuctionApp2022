@@ -26,11 +26,24 @@
     line-height: 19px;
 }
 
-.search input[type=submit] {
+#searchButton {
     position: absolute;
     top: 70px;
     margin-left: -50px;
     background-image: url('../../images/look.png');
+    background-repeat: no-repeat;
+    background-position: 95% center;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border: 0px;
+}
+
+#exitButton {
+    position: absolute;
+    top: 70px;
+    margin-left: -80px;
+    background-image: url('../../images/exit.png');
     background-repeat: no-repeat;
     background-position: 95% center;
     width: 30px;
