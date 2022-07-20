@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './pathBar.css'
 
@@ -7,6 +7,8 @@ function PathBar({prop}) {
     const [link, setLink] = useState();
     useEffect(() => {
         if (prop.startPoint === "Home") setLink("/");
+        else if (prop.startPoint === "Shop") setLink("/shop/all");
+        if (prop.endPoint.includes("Search")) classType.current += " searchPath";
     },[prop]);
     return (
         <div className="bar">

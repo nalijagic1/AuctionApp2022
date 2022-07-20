@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './navigationWhite.css'
 import logo from '../../images/auction-app-logo 1.png'
-
+import { useNavigate } from 'react-router-dom';
 
 function NavigationWhite() {
     let searchField = useRef();

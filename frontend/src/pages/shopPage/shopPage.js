@@ -6,6 +6,7 @@ import './shopPage.css'
 import productService from '../../services/product.service';
 import Button from '../../components/button/button';
 import PathBar from '../../components/pathBar/pathBar';
+import DidYouMean from '../../components/didYouMean/didYouMean';
 
 function ShopPage() {
     const param = useParams();

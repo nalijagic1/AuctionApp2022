@@ -1,5 +1,7 @@
 package com.praksa.auction.service;
 
+import com.atlascopco.hunspell.Hunspell;
+import com.praksa.auction.config.HunspellConfiguration;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,24 +50,13 @@ public class ProductService {
         return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
-    public List<Product> getProductsFromCategory(String category, int count) {
-        return productRepository.getProductsFromCategory(category, PageRequest.of(0, count));
-    }
-
-    public List<Product> searchProducuts(String search, int count) {
-        return productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(search, new Date(), PageRequest.of(0, count));
-    }
-
-    public List<Product> getProductsFromAllCategories(int count) {
-        return productRepository.findProductsByEndingDateAfter(new Date(), PageRequest.of(0, count));
-    }
 
     public String checkSpelling(String search) {
         Hunspell speller = hunspellConfiguration.speller();
         List<String> suggestons = speller.suggest(search);
         for(String suggest : suggestons) {
             if(suggest.length() < 3) continue;
-            List<Product> searchResult = productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(suggest, new Date(), PageRequest.of(0, 9));
+            List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
             if (searchResult.size() != 0) return suggest;
         }
         return "";

@@ -1,7 +1,11 @@
 package com.praksa.auction.repository;
 
+import com.praksa.auction.dto.SubcategoryDto;
 import com.praksa.auction.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {

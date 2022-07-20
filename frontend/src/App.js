@@ -23,7 +23,6 @@ function App() {
             <div className='content'>
                 <NavigationBlack/>
                 <NavigationWhite/>
-                <Router>
                     < Routes>
                         <Route path='/' element={<LandingPage/>}/>
                         <Route path='/privacy' element={<PrivacyAndPolicy/>}/>
@@ -33,7 +32,6 @@ function App() {
                         <Route path='/shop/:category' element = {<ShopPage/>}/>
                         <Route path='/shop' element = {<ShopPage/>}/>
                     </Routes>
-                </Router>
             </div>
             <footer className='foot'>
                 <Footer/>
