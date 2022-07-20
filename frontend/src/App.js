@@ -5,11 +5,11 @@ import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
 import LandingPage from './pages/landingPage/landingPage';
-import SingleProduct from './pages/singleProduct/signgleProduct';
+import SingleProduct from './pages/singleProduct/singleProduct';
 import { Helmet } from "react-helmet";
+import ShopPage from './pages/shopPage/shopPage';
 import "./App.css"
 import {
-    BrowserRouter as Router,
     Route,
     Routes
 } from "react-router-dom";
@@ -23,15 +23,15 @@ function App() {
             <div className='content'>
                 <NavigationBlack/>
                 <NavigationWhite/>
-                <Router>
                     < Routes>
                         <Route path='/' element={<LandingPage/>}/>
                         <Route path='/privacy' element={<PrivacyAndPolicy/>}/>
                         <Route path='/terms' element={<TermsAndConditions/>}/>
                         <Route path='/aboutUs' element={<AboutUs/>}/>
                         <Route path='/product/:productId' element={<SingleProduct/>}/>
-                    </ Routes>
-                </Router>
+                        <Route path='/shop/:category' element = {<ShopPage/>}/>
+                        <Route path='/shop' element = {<ShopPage/>}/>
+                    </Routes>
             </div>
             <footer className='foot'>
                 <Footer/>

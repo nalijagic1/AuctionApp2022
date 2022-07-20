@@ -9,7 +9,7 @@ function Gallery({productId}) {
         pictureService.getProductPictures(productId).then((response) => {
             setPicture(response.data);
         });
-        pictureService.getProductCoverPicture(productId).then((response) =>{
+        pictureService.getProductCoverPicture(productId).then((response) => {
             setShown(response.data.imageUrl);
         })
     }, [productId]);
@@ -19,7 +19,8 @@ function Gallery({productId}) {
                 <img className='mainPicture' src={shown} alt="Main"></img>
                 <div className="pictureGrid">
                     {pictures.map(picture => (
-                        <img  key ={picture.id} value={picture} src={picture.imageUrl} onClick={event =>  setShown(event.target.src)} alt="Item"></img>
+                        <img key={picture.id} value={picture} src={picture.imageUrl}
+                             onClick={event => setShown(event.target.src)} alt="Item"></img>
                     ))}
                 </div>
             </div>

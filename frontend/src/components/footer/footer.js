@@ -21,9 +21,9 @@ function Footer() {
                 <p>Call us at +123 797-567-2535</p>
                 <p>support@auction.com</p>
                 <div>
-                    <a href="https://www.facebook.com/AtlantBH"><img src={facebook} alt = "facebook"/></a>
-                    <a href="https://www.instagram.com/atlantbh/?hl=hr"><img src={instagram} alt = "instagram"/></a>
-                    <a href="https://twitter.com/atlantbh"><img src={twitter} alt = "twitter"/></a>
+                    <a href="https://www.facebook.com/AtlantBH"><img src={facebook} alt="facebook"/></a>
+                    <a href="https://www.instagram.com/atlantbh/?hl=hr"><img src={instagram} alt="instagram"/></a>
+                    <a href="https://twitter.com/atlantbh"><img src={twitter} alt="twitter"/></a>
                 </div>
             </div>
         </div>

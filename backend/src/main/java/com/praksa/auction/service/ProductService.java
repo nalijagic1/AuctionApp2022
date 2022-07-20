@@ -21,6 +21,7 @@ public class ProductService {
     public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
+
     public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
@@ -33,6 +34,18 @@ public class ProductService {
     public List<Product> getNewest(int start, int count) {
         List<Product> products = productRepository.findProductsByEndingDateAfterOrderByStartingDateDesc(new Date(), PageRequest.of(start, count));
         return products;
+    }
+
+    public List<Product> getProductsFromCategory(String category, int count) {
+        return productRepository.getProductsFromCategory(category, PageRequest.of(0, count));
+    }
+
+    public List<Product> searchProducts(String search, int count) {
+        return productRepository.searchProducts(search, PageRequest.of(0, count));
+    }
+
+    public List<Product> getAllProducts(int count) {
+        return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
 }

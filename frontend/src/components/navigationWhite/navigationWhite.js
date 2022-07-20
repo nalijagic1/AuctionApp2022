@@ -1,9 +1,19 @@
-import React from 'react';
+import {React, useEffect, useRef} from 'react';
+import { useNavigate } from 'react-router';
 import './navigationWhite.css'
 import logo from '../../images/auction-app-logo 1.png'
 
 
 function NavigationWhite() {
+    let searchField = useRef();
+    let navigate = useNavigate();
+    function search() {
+        if (searchField.current.value.length >= 3) navigate("/shop?search=" + searchField.current.value);
+    };
+
+    useEffect(() => {
+        searchField.current = document.getElementById('searchField');
+    }, []);
 
     return (
         <div className="whitenav">
@@ -13,13 +23,15 @@ function NavigationWhite() {
                 </a>
             </div>
             <div className='search'>
-                <input type="text" placeholder="Search"></input>
-                <input type="submit" value=""/>
+                <input id="searchField" type="text" placeholder="Search" onKeyDown={e => {
+                    if (e.key.toLowerCase() === 'enter') search();
+                }}></input>
+                <input id="searchButton" type="submit" value="" onClick={search}/>
             </div>
             <div className='menu'>
-                <a href = '/'>HOME</a>
-                <a href = '/'>SHOP</a>
-                <a href = '/'>MY ACCOUNT</a>
+                <a href='/'>HOME</a>
+                <a href='/shop/all'>SHOP</a>
+                <a href='/'>MY ACCOUNT</a>
             </div>
         </div>
     );

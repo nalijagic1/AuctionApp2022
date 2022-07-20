@@ -17,3 +17,17 @@
     height: 10.67px;
     margin-left: 21.33px;
 }
+
+.exploring {
+    background: #8367D8;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: 0.63px;
+    text-transform: capitalize;
+    color: #FFFFFF;
+    border: 3px solid #8367D8;
+    padding: 16px 56px 16px 56px;
+}
