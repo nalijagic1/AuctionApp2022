@@ -6,6 +6,7 @@ import './shopPage.css'
 import productService from '../../services/product.service';
 import Button from '../../components/button/button';
 import PathBar from '../../components/pathBar/pathBar';
+import DidYouMean from '../../components/didYouMean/didYouMean';
 
 function ShopPage() {
     const param = useParams();
@@ -55,7 +56,13 @@ function ShopPage() {
     return (
         <div className="shopPage">
             {word &&
-            <PathBar prop={{name: "", startPoint: "Home", endPoint: `Search results for ${word}`}}></PathBar>
+            <div>
+                {products.length === 0 && 
+                    <DidYouMean search={word}/>
+                }
+                <PathBar prop={{name: "", startPoint: "Home", endPoint: `Search results for ${word}`}}></PathBar>
+            </div>
+            
             }
             <div className="shop">
                 <CategoryList filter={filter}/>

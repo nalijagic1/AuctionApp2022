@@ -53,7 +53,13 @@ public class ProductService {
 
     public String checkSpelling(String search) {
         Hunspell speller = hunspellConfiguration.speller();
-        if(speller.spell(search)) return null;
-        return speller.suggest(search).get(0);
+        List<String> suggestons = speller.suggest(search);
+        for(String suggest : suggestons) {
+            if(suggest.length() < 3) continue;
+            List<Product> searchResult = productRepository.findProductsByNameContainsIgnoreCaseAndEndingDateAfter(suggest, new Date(), PageRequest.of(0, 9));
+            if (searchResult.size() != 0) return suggest;
+        }
+        return "";
+
     }
 }

@@ -9,11 +9,16 @@ function DidYouMean({search}) {
             .then((response)=>{
                 setSuggestion(response.data)
             });
-    },[])
+    },[search])
     return (
-        <div className="did">
-            Did you mean?
-            <a href={"/shop?search="+suggestion}>{suggestion}</a>
+        <div className="suggestion">
+            {suggestion !== "" &&
+                <div>
+                    Did you mean?
+                    <a href={"/shop?search="+suggestion}>{suggestion}</a>
+                </div>
+            }
+            
         </div>
     );
 }

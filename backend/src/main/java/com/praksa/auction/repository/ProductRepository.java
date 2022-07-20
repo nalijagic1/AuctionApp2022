@@ -25,4 +25,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductsByNameContainsIgnoreCaseAndEndingDateAfter(String search, Date date, Pageable pageable);
 
     List<Product> findProductsByEndingDateAfter(Date date, Pageable pageable);
+
 }

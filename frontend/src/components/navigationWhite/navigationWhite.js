@@ -7,7 +7,7 @@ function NavigationWhite() {
     let searchField = useRef();
 
     function search() {
-        if (searchField.current.value.length >= 3) window.location.assign("/shop?search=" + searchField.value);
+        if (searchField.current.value.length >= 3) window.location.assign("/shop?search=" + searchField.current.value);
     };
 
     useEffect(() => {
