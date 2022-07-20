@@ -1,6 +1,5 @@
 package com.praksa.auction.controller;
 
-import com.praksa.auction.dto.CategoryDto;
 import com.praksa.auction.model.Category;
 import com.praksa.auction.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,8 @@ public class CategoryController {
 
     }
 
-    @GetMapping("/categoriesWithSubcategories")
-    public ResponseEntity<List<CategoryDto>> get() {
+    @GetMapping("/subcategories")
+    public ResponseEntity<List<CategoryDto>> getCategoriesWithSubcategories() {
         return ResponseEntity.ok(categoryService.getCategoriesWithSubcategories());
     }
 

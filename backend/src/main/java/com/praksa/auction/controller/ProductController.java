@@ -44,6 +44,21 @@ public class ProductController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Product>> searchProducts(@RequestParam String search, @RequestParam int count) {
+        return ResponseEntity.ok(productService.searchProducts(search, count));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Product>> getAllProducts(@RequestParam int count) {
+        return ResponseEntity.ok(productService.getAllProducts(count));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category, @RequestParam int count) {
+        return ResponseEntity.ok(productService.getProductsFromCategory(category, count));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String search, @RequestParam int count) {
         return ResponseEntity.ok(productService.searchProducuts(search, count));
     }
     @GetMapping("/check")
@@ -51,16 +66,9 @@ public class ProductController {
         return ResponseEntity.ok(productService.checkSpelling(search));
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Product>> getProductsFromAllCategories(@RequestParam int count) {
-        return ResponseEntity.ok(productService.getProductsFromAllCategories(count));
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable int id) {
+    public ResponseEntity<Product> getProductById(@PathVariable("id") int id) {
         Optional<Product> product = productService.getSelectedProduct(id);
         return ResponseEntity.ok(product.get());
     }
-
-
 }

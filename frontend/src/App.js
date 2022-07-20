@@ -10,7 +10,6 @@ import { Helmet } from "react-helmet";
 import ShopPage from './pages/shopPage/shopPage';
 import "./App.css"
 import {
-    BrowserRouter as Router,
     Route,
     Routes
 } from "react-router-dom";

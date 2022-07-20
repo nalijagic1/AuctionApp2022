@@ -1,13 +1,12 @@
 package com.praksa.auction.dto;
 
-import com.praksa.auction.model.Subcategory;
 
 public class SubcategoryDto {
     private long subcategoryId;
     private String name;
-    private Integer count;
+    private long count;
 
-    public SubcategoryDto(long subcategoryId, String name, Integer count) {
+    public SubcategoryDto(long subcategoryId, String name, long count) {
         this.subcategoryId = subcategoryId;
         this.name = name;
         this.count = count;
@@ -32,11 +31,11 @@ public class SubcategoryDto {
         this.name = name;
     }
 
-    public Integer getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(long count) {
         this.count = count;
     }
 }

@@ -1,88 +1,44 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import "./categoryList.css"
 import categoryService from '../../services/category.service';
 import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
-import plus from '../../images/Plus.png'
-import minus from "../../images/Minus.png"
+import { useNavigate } from 'react-router';
+import { useLocation } from 'react-router-dom'
+import {TiPlus, TiMinus} from 'react-icons/ti';
 
 function CategoryList({filter}) {
     const [categories, setCategories] = useState();
-    let show = useRef([]);
-    let mainContainer = "list"
-    let listContainer = "listItem"
-    let previousCategory = useRef(-1);
-    const [sign, setSign] = useState(-1);
+    const navigate = useNavigate();
+    const location = useLocation();
     let prodCat = useRef("");
 
-    function showSubcategories(event) {
-        let showArray = [...show.current]
-        let index = event.target.id - 1;
-        if (event.target.src === plus) {
-            event.target.src = minus;
-            showArray[index] = true
-        } else {
-            event.target.src = plus;
-            showArray[index] = false;
-        }
-        show.current = showArray;
+    function showSubcategories(selectedCategory) {
+        if(location.pathname.includes(selectedCategory)) navigate("/shop/all");
+        else navigate("/shop/" + selectedCategory);
     }
 
     useEffect(() => {
         categoryService.getCategoriesWithSubcategories()
             .then((response) => {
-                setCategories(response.data)
-                if (filter) {
-                    prodCat.current = "PRODUCT "
-                    show.current = new Array(response.data.length).fill(false)
-                    let selected = response.data.find(element => element.category.name.toLowerCase() === filter.toLowerCase());
-                    let showArray = [...show.current];
-                    if (selected) {
-                        if (previousCategory.current !== -1 && previousCategory.current !== selected.category.id - 1) {
-                            showArray[previousCategory.current] = false;
-                            document.getElementsByClassName("showMore")[previousCategory.current].src = plus;
-                        }
-                        showArray[selected.category.id - 1] = true;
-                        show.current = showArray;
-                        if (previousCategory.current !== -1) {
-                            document.getElementsByClassName("showMore")[selected.category.id - 1].src = minus;
-                        } else setSign(1)
-                        previousCategory.current = selected.category.id - 1
-
-                    } else {
-                        if (previousCategory.current !== -1) {
-                            showArray[previousCategory.current] = false;
-                            document.getElementsByClassName("showMore")[previousCategory.current].src = plus;
-                        }
-                    }
-                }
+                setCategories(response.data);
             })
-        if (sign === 1) {
-            document.getElementsByClassName("showMore")[previousCategory.current].src = minus;
-        }
+    }, []);
 
-    }, [filter, sign, show]);
-    if (filter) {
-        mainContainer += " filter";
-        listContainer += "filter"
-    }
     return (
-        <div className={mainContainer}>
+        <div className={filter ? "list filter" : "list"}>
             <p>{prodCat.current}CATEGORIES</p>
             <ul className='category'>
                 {categories && categories.map(cat => (
                     <div key={cat.category.id}>
-                        <div className={listContainer}>
-                            <Link to={`/shop/${cat.category.name}`}>
+                        <div className={filter ? "listItemfilter" : "listItem"} onClick={() => showSubcategories(cat.category.name)}>
                                 <li>{cat.category.name} </li>
-                            </Link>
-                            {filter &&
-                            <img id={cat.category.id} className="showMore" src={plus} onClick={showSubcategories}
-                                 alt="sign"></img>
-                            }
+                                {filter &&
+                                    <div>{filter === cat.category.name ? <TiMinus className='icon' style={{fontSize: 16, color: '#252525'}}/> : <TiPlus  className='icon' style={{fontSize: 16, color: '#252525'}}/>}</div>
+                                }
                         </div>
-                        {filter && show.current[cat.category.id - 1] && cat.subcategories.map(sub => (
-                            <ul className='listSubcategory'>
+                        {filter && filter === cat.category.name &&  cat.subcategories.map(sub => (
+                            <ul  key = {sub.id} className='listSubcategory'>
                                 <li>{sub.name} ({sub.count})</li>
                             </ul>
                         ))
