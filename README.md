@@ -5,7 +5,7 @@ AuctionApp is an e-commerce web application that provides consumer-to-consumer s
 * JDBC_DATABASE_PASSWORD – password needed to access database  
 Also, user has to have npm and maven installed on his desktop.
 To run the backend part of the application, user needs to go to backend directory and do following commands in his terminal: mvn clean install, java -jar target/auction-0.0.1-SNAPSHOT.jar. User needs to run the backend part of the app before he runs frontend in order to be able to get data from database. 
-To run the frontend part of the application, user needs to go to frontend directory and run npm start. Locally, fronted is ran on localhost:3000 and backend is ran on localhost:8080. There are following routes in this project:
+To run the frontend part of the application, user needs to go to frontend directory and run npm start. Locally, fronted is ran on localhost:3000 and backend is ran on localhost:8080. There are following routes in this project:  
 FRONTEND:
 * Localhost:3000/ - landing page of the application
 * Localhost:3000/shop/all – shop page which features all of the products 
