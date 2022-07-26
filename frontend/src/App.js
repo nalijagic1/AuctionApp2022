@@ -18,7 +18,7 @@ function App() {
     return (
         <div className="App">
             <Helmet>
-                <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'/>
+                <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'/>
             </Helmet>
             <div className='content'>
                 <NavigationBlack/>
