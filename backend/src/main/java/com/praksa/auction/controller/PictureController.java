@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pictures")
+@RequestMapping("/all/pictures")
 public class PictureController {
     private final PictureService pictureService;
 
