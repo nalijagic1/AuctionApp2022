@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class UserAuthentication extends UsernamePasswordAuthenticationFilter {
     public UserAuthentication() {
-        System.out.println("tr");
         super.setUsernameParameter("email");
         super.setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/auth/people/login","POST"));
     }
@@ -19,7 +18,6 @@ public class UserAuthentication extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        System.out.println("gre");
         String mail = request.getParameter("email");
         return super.attemptAuthentication(request, response);
     }

@@ -18,7 +18,7 @@ public class UserDetailsImpl implements UserDetails {
     private long id;
     private String firstName;
     private String lastName;
-    private char gender;
+    private byte[] gender;
     private Date dateOfBirth;
     private String phoneNumber;
     private String email;
@@ -27,7 +27,7 @@ public class UserDetailsImpl implements UserDetails {
     private Address address;
     private Card card;
 
-    public UserDetailsImpl(long id, String firstName, String lastName, char gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public UserDetailsImpl(long id, String firstName, String lastName, byte[] gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -80,11 +80,11 @@ public class UserDetailsImpl implements UserDetails {
         this.lastName = lastName;
     }
 
-    public char getGender() {
+    public byte[] getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(byte[] gender) {
         this.gender = gender;
     }
 
@@ -147,32 +147,32 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return getEmail();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
 }

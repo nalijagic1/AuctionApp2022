@@ -16,7 +16,7 @@ public class Person {
     private long id;
     private String firstName;
     private String lastName;
-    private char gender;
+    private byte[] gender;
     private Date dateOfBirth;
     private String phoneNumber;
     @Email
@@ -31,7 +31,7 @@ public class Person {
     private Card card;
 
 
-    public Person(String firstName, String lastName, char gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public Person(String firstName, String lastName, byte[] gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -71,11 +71,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public char getGender() {
+    public byte[] getGender() {
         return gender;
     }
 
-    public void setGender(char gender) {
+    public void setGender(byte[] gender) {
         this.gender = gender;
     }
 
