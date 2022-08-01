@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/all/bids")
+@RequestMapping("/bids")
 public class BidController {
     @Autowired
     public final BidService bidService;

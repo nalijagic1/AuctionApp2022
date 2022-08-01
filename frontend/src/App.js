@@ -13,6 +13,8 @@ import {
     Route,
     Routes
 } from "react-router-dom";
+import LogIn from './pages/logIn/logIn';
+import Registration from './pages/registration/registration';
 
 function App() {
     return (
@@ -31,6 +33,8 @@ function App() {
                         <Route path='/product/:productId' element={<SingleProduct/>}/>
                         <Route path='/shop/:category' element = {<ShopPage/>}/>
                         <Route path='/shop' element = {<ShopPage/>}/>
+                        <Route path='/login' element={<LogIn/>}/>
+                        <Route path='/register' element={<Registration/>}/>
                     </Routes>
             </div>
             <footer className='foot'>

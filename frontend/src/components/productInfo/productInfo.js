@@ -41,7 +41,7 @@ function ProductInfo({product}) {
                 <h3>Time left: <p>{countdown}</p></h3>
             </div>
             <div className='bid'>
-                <Field placeHolder={`Enter $${highestBid + 1} or higher`}/>
+                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = "placeBid" id ="placeBid"type = "text"/>
                 <Button lable="Place bid" icon={arrow}/>
             </div>
             <div className="desc">

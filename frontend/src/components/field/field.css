@@ -1,4 +1,4 @@
-.field input[type="text"] {
+.placeBid{
     font-family: 'Lato';
     font-style: normal;
     font-weight: 300;
@@ -10,4 +10,31 @@
     padding-bottom: 17px;
     border: 1px solid #E3E3E3;
     background: #FFFFFF;
+}
+
+.loginAndRegisterField{
+    margin-top: 16px;
+    margin-bottom: 32px;
+    width: 542px;
+    padding:18px 0px 18px 24px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #9B9B9B;
+    border: 1px solid #E3E3E3;
+}
+
+.field input:focus-visible {
+    outline: 1px solid #E3E3E3;
+}
+
+.field label{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #252525;
 }

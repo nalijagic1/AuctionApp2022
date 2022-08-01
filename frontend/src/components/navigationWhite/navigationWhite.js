@@ -2,11 +2,15 @@ import React, { useEffect, useRef } from 'react';
 import './navigationWhite.css'
 import logo from '../../images/auction-app-logo 1.png'
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function NavigationWhite() {
+    const user = JSON.parse(localStorage.getItem('user'));
     let searchField = useRef();
     let navigate = useNavigate();
+    const location = useLocation();
     const showExitButton = useRef(false);
+    const showSearchAndMenu = useRef(location.pathname.includes("/login") || location.pathname.includes("/register") ? false :true);
     function search() {
         if(searchField.current.value.length === 0) {
             navigate("/shop/all");
@@ -27,14 +31,17 @@ function NavigationWhite() {
         searchField.current = document.getElementById('searchField');
     }, []);
 
+
     return (
         <div className="whitenav">
-            <div id="logo">
+            <div id="logo" className={showSearchAndMenu.current ? "navHome":"navLogIn"}>
                 <a href='/'>
                     <img src={logo} alt="Auction"></img>
                 </a>
             </div>
-            <div className='search'>
+            {showSearchAndMenu.current &&
+            <div className='searchAndMenu'>
+                <div className='search'>
                 <input id="searchField" type="text" placeholder="Search" onKeyDown={e => {
                     if (e.key.toLowerCase() === 'enter') search();
                 }}>
@@ -44,11 +51,16 @@ function NavigationWhite() {
                 }
                 <input id="searchButton" type="submit" value="" onClick={search}/>
             </div>
-            <div className='menu'>
+            <div className='menu' align="right">
                 <a href='/'>HOME</a>
                 <a href='/shop/all'>SHOP</a>
-                <a href='/'>MY ACCOUNT</a>
+                {user &&
+                    <a href='/'>MY ACCOUNT</a>
+                }
+                
             </div>
+            </div>}
+            
         </div>
     );
 }

@@ -27,19 +27,23 @@
 }
 
 .user a {
-    font-family: 'Lato-Bold', sans-serif;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
     font-size: 14px;
+    line-height: 17px;
     color: #FFFFFF;
-    letter-spacing: 0.49px;
     text-decoration: none;
 }
 
 .user h1 {
     display: inline;
-    font-family: 'Lato-Bold', sans-serif;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
     font-size: 14px;
+    line-height: 17px;
     color: #9B9B9B;
-    letter-spacing: 0.49px;
     margin-left: 20px;
     text-decoration: none;
     margin-right: 20px;
