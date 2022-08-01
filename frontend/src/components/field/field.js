@@ -1,12 +1,12 @@
-import React from 'react';
+import {React} from 'react';
 import './field.css'
 
-function Field({placeHolder,fieldClass,label,type,id,onKeyUp}) {
-
+function Field({placeHolder,fieldClass,label,type,id,onKeyUp,error}) {
     return (
         <div className="field">
             {label && <label>{label}</label>}
-            <input type={type} className={fieldClass} id={id} placeholder={placeHolder} onKeyUp ={onKeyUp}></input>
+            <input type={type} className={fieldClass} id={id} name={id} placeholder={placeHolder} onKeyUp ={onKeyUp}></input>
+            {error && <p>{error}</p>}
         </div>
     );
 }

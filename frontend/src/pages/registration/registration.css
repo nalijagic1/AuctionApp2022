@@ -37,5 +37,16 @@
     font-size: 16px;
     line-height: 19px;
     color: #8367D8;
-    margin-left: 306px;
+    margin-left: 32px;
+
+}
+
+.accountLogIn{
+    margin-left: 243px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #9B9B9B;   
 }

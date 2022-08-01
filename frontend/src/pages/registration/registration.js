@@ -20,6 +20,9 @@ function Registration() {
                 <Field placeHolder="Enter your password" label="Password" fieldClass ="loginAndRegisterField"  id="password" type="password"  onKeyUp ={e => setPassword(e.target.value)}></Field>
                 <Button lable="Register"/> 
             </form>
+            <div className='accountLogIn'>
+                Already have and account? <a href='/login'>Login</a>
+            </div>
 
         </div>
         </div>

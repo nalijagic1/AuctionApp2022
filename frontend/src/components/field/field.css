@@ -38,3 +38,8 @@
     line-height: 27px;
     color: #252525;
 }
+.field p{
+    margin-top: -30px;
+    margin-bottom: 32px;
+    color: red;
+}
