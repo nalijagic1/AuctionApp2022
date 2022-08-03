@@ -4,6 +4,7 @@ import Field from '../../components/field/field';
 import './registration.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
+import validation from '../../validation';
 
 function Registration() {
     const [email,setEmail] = useState();
@@ -19,44 +20,26 @@ function Registration() {
                 window.location.reload();
             }
         }).catch(error =>{
-            console.log(error.response);
+            if(error.response.data.toLowerCase().includes("email")){
+                setError({firstName:"",lastName:"",email:error.response.data,password:""});
+            }else if(error.response.data.toLowerCase().includes("first")){
+                setError({firstName:error.response.data,lastName:"",email:"",password:""});
+            }else if(error.response.data.toLowerCase().includes("last")){
+                setError({firstName:"",lastName:error.response.data,email:"",password:""});
+            }else{
+                setError({firstName:"",lastName:"",email:"",password:error.response.data}); 
+            }
         }) 
     }
 
     function validateData(){
         let errorMessages = {firstName:"",lastName:"",email:"",password:""};
         var valid = true;
-        if(!firstName){
-            valid = false;
-            errorMessages.firstName = "First name is requered!"
-        }else if( !/^[a-zA-Z]+$/.test(firstName)){
-            valid = false;
-            errorMessages.firstName = "First name must contain only letters!"
-        }
-        if(!lastName){
-            valid = false;
-            errorMessages.lastName = "Last name is requered!"
-        }else if( !/^[a-zA-Z]+$/.test(lastName)){
-            valid = false;
-            errorMessages.firstName = "Last name must contain only letters!"
-        }
-        if(!email){
-            errorMessages.email = "Email is requered!";
-            valid = false;
-        }else{
-            const expression = /(?!.*\.{2})^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([\t]*\r\n)?[\t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([\t]*\r\n)?[\t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
-            valid = expression.test(String(email).toLowerCase());
-            if(valid === false){
-              errorMessages.email = "Email format is not valid, please try again!"; 
-            }
-        }
-        if(!password){
-            errorMessages.password = "Password is requered!";
-            valid = false;
-        }else if(!/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/.test(password)){
-            errorMessages.password ="Your password is week!";
-            valid = false;
-        }
+        errorMessages.firstName = validation.validateNames(firstName,"First");
+        errorMessages.lastName = validation.validateNames(lastName,"Last");
+        errorMessages.email = validation.validateEmail(email);
+        errorMessages.password = validation.validatePassword(password);
+        if(Object.values(errorMessages).findIndex(object=>{return object!=="";})!==-1)valid = false;
         setError(errorMessages);
         return valid;
     }

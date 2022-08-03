@@ -23,6 +23,6 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         final ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(response.getOutputStream(),new MessageResponseDto(authException.getMessage()));
+        mapper.writeValue(response.getOutputStream(),authException.getMessage());
     }
 }

@@ -39,6 +39,12 @@ public class PersonController {
 
     @PostMapping("/login")
     public ResponseEntity<?> logIn(@Valid @RequestBody PersonLogInDto loginInfo){
+        String validation = loginInfo.validateData();
+        if(validation!=null){
+            return ResponseEntity
+                    .badRequest()
+                    .body(validation);
+        }
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginInfo.getEmail(), loginInfo.getPassword()));
 
@@ -50,10 +56,16 @@ public class PersonController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createAccount(@Valid @RequestBody PersonRegistrationDto signUpRequest) {
+        String validation = signUpRequest.validateRegistration();
+        if(validation != null){
+            return ResponseEntity
+                    .badRequest()
+                    .body(validation);
+        }
         if (personService.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponseDto("Email is already in use!"));
+                    .body("Email is already in use!");
         }
         Person p = new Person();
         p.setEmail(signUpRequest.getEmail());
