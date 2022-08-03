@@ -1,7 +1,7 @@
 package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
-import com.praksa.auction.config.security.services.UserDetailsImpl;
+import com.praksa.auction.config.security.services.PersonDetails;
 import com.praksa.auction.dto.BasicInfoDto;
 import com.praksa.auction.dto.JwtResponseDto;
 import com.praksa.auction.dto.LogInDto;
@@ -39,11 +39,16 @@ public class PersonController {
 
     @PostMapping("/login")
     public ResponseEntity<?> logIn(@Valid @RequestBody LogInDto loginInfo){
+        if(!personService.existsByEmail(loginInfo.getEmail())){
+            return ResponseEntity
+                    .badRequest()
+                    .body("No user with this email found!");
+        }
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginInfo.getEmail(), loginInfo.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         BasicInfoDto basicPersonInfo = new BasicInfoDto(userDetails.getId(), userDetails.getFirstName(), userDetails.getLastName(), userDetails.getEmail());
         return ResponseEntity.ok(new JwtResponseDto(jwt,basicPersonInfo));
     }
