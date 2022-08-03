@@ -1,16 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import './navigationWhite.css'
 import logo from '../../images/auction-app-logo 1.png'
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-
+import { useNavigate,useLocation } from 'react-router-dom';
+import personService from '../../services/person.service';
 function NavigationWhite() {
     const user = JSON.parse(localStorage.getItem('user'));
     let searchField = useRef();
     let navigate = useNavigate();
     const location = useLocation();
     const showExitButton = useRef(false);
-    const showSearchAndMenu = useRef(location.pathname.includes("/login") || location.pathname.includes("/register") ? false :true);
+    const [displayMenu,setDisplayMenu] = useState(false);
+    const showSearchAndMenu = useRef(location.pathname.includes("/login") || location.pathname.includes("/register") ? false : true);
+
     function search() {
         if(searchField.current.value.length === 0) {
             navigate("/shop/all");
@@ -25,6 +26,13 @@ function NavigationWhite() {
     function exit() {
         searchField.current.value = "";
         search();
+    }
+
+    function logOut(){
+        personService.logout().then(()=>{
+            navigate("/");
+            window.location.reload();
+        });
     }
 
     useEffect(() => {
@@ -51,12 +59,20 @@ function NavigationWhite() {
                 }
                 <input id="searchButton" type="submit" value="" onClick={search}/>
             </div>
-            <div className='menu' align="right">
-                <a href='/'>HOME</a>
-                <a href='/shop/all'>SHOP</a>
+            <div className="menu" align='right'>
                 {user &&
-                    <a href='/'>MY ACCOUNT</a>
+                    <div className="myAccountMenu" onMouseOver={()=>{setDisplayMenu(true)}} onMouseOut={()=>setDisplayMenu(false)}>
+                        <a href='/'>MY ACCOUNT</a>
+                        {displayMenu &&
+                        <div className='accountSubmenu'>
+                            <a href ="/" onClick={()=>logOut()}>LOG OUT</a>
+                        </div>}
+                    </div>
+                    
                 }
+                <a href='/shop/all'>SHOP</a>
+                
+                <a href='/'>HOME</a>
                 
             </div>
             </div>}
