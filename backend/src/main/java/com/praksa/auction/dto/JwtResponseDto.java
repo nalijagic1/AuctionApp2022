@@ -1,13 +1,10 @@
 package com.praksa.auction.dto;
 
-import com.praksa.auction.config.security.services.UserDetailsImpl;
-import com.praksa.auction.model.Person;
-
 public class JwtResponseDto {
     private String token;
-    private UserDetailsImpl user;
+    private BasicInfoDto user;
 
-    public JwtResponseDto(String token, UserDetailsImpl user) {
+    public JwtResponseDto(String token, BasicInfoDto user) {
         this.token = token;
         this.user = user;
     }
@@ -23,11 +20,11 @@ public class JwtResponseDto {
         this.token = token;
     }
 
-    public UserDetailsImpl getUser() {
+    public BasicInfoDto getUser() {
         return user;
     }
 
-    public void setUser(UserDetailsImpl user) {
+    public void setUser(BasicInfoDto user) {
         this.user = user;
     }
 }

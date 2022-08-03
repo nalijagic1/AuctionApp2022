@@ -12,7 +12,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/all/products")
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;

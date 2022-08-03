@@ -1,7 +1,7 @@
 package com.praksa.auction;
 
 import com.praksa.auction.controller.PersonController;
-import com.praksa.auction.dto.PersonRegistrationDto;
+import com.praksa.auction.dto.RegistrationDto;
 import com.praksa.auction.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class LogInRegistationTests {
 
     @Test
     void addUser(){
-        PersonRegistrationDto person = new PersonRegistrationDto("Amna","Bejtagić","amna@gmail.com","amnabej6622");
+        RegistrationDto person = new RegistrationDto("Amna","Bejtagić","amna@gmail.com","amnabej6622");
         personController.createAccount(person);
         assertTrue(personService.existsByEmail(person.getEmail()));
     }

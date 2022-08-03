@@ -1,15 +1,15 @@
 package com.praksa.auction.dto;
 
-public class PersonLogInDto {
+public class LogInDto {
     private String email;
     private String password;
 
-    public PersonLogInDto(String email, String password) {
+    public LogInDto(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public PersonLogInDto() {
+    public LogInDto() {
     }
 
     public String getEmail() {
