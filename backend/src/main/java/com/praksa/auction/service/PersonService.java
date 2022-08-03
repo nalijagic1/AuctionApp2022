@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 public class PersonService {
     private final PersonRepository personRepositoy;
     @Autowired
-    PasswordEncoder encoder;
-    @Autowired
     public PersonService(PersonRepository personRepository){
         this.personRepositoy = personRepository;
     }
