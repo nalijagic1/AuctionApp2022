@@ -24,4 +24,8 @@ public class PersonService {
     public void createAccount(Person person) {
         personRepositoy.save(person);
     }
+
+    public Person getPersonById(long id){
+        return personRepositoy.findById(id).get();
+    }
 }

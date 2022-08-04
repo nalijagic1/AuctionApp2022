@@ -1,7 +1,6 @@
 package com.praksa.auction.config.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.praksa.auction.dto.MessageResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
