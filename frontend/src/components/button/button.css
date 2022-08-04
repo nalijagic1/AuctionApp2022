@@ -12,9 +12,8 @@
     color: #252525;
 }
 
-.button img {
-    width: 5.33px;
-    height: 10.67px;
+.buttonIcon {
+    font-size: 20px;
     margin-left: 21.33px;
 }
 
@@ -35,4 +34,10 @@
 .userManagment{
     width:548px;
     margin-bottom: 48px; 
+}
+
+.disabledButton{
+    pointer-events: none;
+    border: 3px solid #C1B3EB;
+    color: #9B9B9B;
 }

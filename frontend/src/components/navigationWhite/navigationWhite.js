@@ -4,7 +4,7 @@ import logo from '../../images/auction-app-logo 1.png'
 import { useNavigate,useLocation } from 'react-router-dom';
 import personService from '../../services/person.service';
 function NavigationWhite() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = personService.getCurrentUser();
     let searchField = useRef();
     let navigate = useNavigate();
     const location = useLocation();

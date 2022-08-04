@@ -25,7 +25,6 @@ function SingleProduct() {
                 <div className='productView'>
                     <Gallery productId={params.productId}/>
                     <ProductInfo product={product}/>
-                    <></>
                 </div>
             </div>
             }

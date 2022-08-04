@@ -5,7 +5,7 @@ import pictureService from '../../services/picture.service';
 import {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 import Button from '../button/button';
-import arrow from "../../images/arrow.png"
+import {MdOutlineKeyboardArrowRight} from "react-icons/md"
 
 function ProductHighlight() {
     const [product, setProduct] = useState([]);
@@ -30,7 +30,7 @@ function ProductHighlight() {
                     </div>
 
                     <div className='bidNow'>
-                        <Button lable="Bid now" icon={arrow}/>
+                        <Button lable="Bid now" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}/>
                     </div>
                 </div>
                 {image &&

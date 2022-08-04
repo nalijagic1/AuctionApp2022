@@ -5,17 +5,26 @@ import arrow from '../../images/arrow.png';
 import './productInfo.css';
 import bidService from '../../services/bid.service';
 import moment from 'moment';
+import personService from '../../services/person.service';
+import {MdOutlineKeyboardArrowRight} from "react-icons/md"
 
 function ProductInfo({product}) {
     const [highestBid, setHighestBid] = useState(0);
     const [count, setCount] = useState(0);
+    const [biddingEnabled,setBiddingEnabled] = useState();
     let countdown;
+    const user = personService.getCurrentUser();
     if (moment(product.endingDate) <= moment.now()) {
         countdown = "This auction has ended!";
     } else {
         countdown = moment(product.endingDate).fromNow(true);
     }
     useEffect(() => {
+        if(user){
+            setBiddingEnabled("");
+        }else{
+            setBiddingEnabled('disabled');
+        }
         bidService.getBidCount(product.id).then(
             (response) => {
                 setCount(response.data);
@@ -41,8 +50,8 @@ function ProductInfo({product}) {
                 <h3>Time left: <p>{countdown}</p></h3>
             </div>
             <div className='bid'>
-                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = "placeBid" id ="placeBid"type = "text"/>
-                <Button lable="Place bid" icon={arrow}/>
+                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = {`placeBid ${biddingEnabled}`} id ="placeBid" type = "text"/>
+                <Button lable="Place bid" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>} buttonClass={biddingEnabled+"Button"}/>
             </div>
             <div className="desc">
                 <h3>Details</h3>
