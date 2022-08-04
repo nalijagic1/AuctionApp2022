@@ -1,7 +1,6 @@
 package com.praksa.auction.config.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.praksa.auction.dto.MessageResponseDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -16,6 +15,7 @@ import java.io.IOException;
 @Component
 public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
+
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException)
             throws IOException, ServletException {
@@ -23,6 +23,6 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
         final ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(response.getOutputStream(),authException.getMessage());
+        mapper.writeValue(response.getOutputStream(), authException.getMessage());
     }
 }

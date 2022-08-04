@@ -30,10 +30,13 @@ public class WebSecurityConfiguration {
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
+
     @Bean
-    public AuthTokenFilter authenticationJwtTokenFilter() { ;
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        ;
         return new AuthTokenFilter();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -44,6 +47,7 @@ public class WebSecurityConfiguration {
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);

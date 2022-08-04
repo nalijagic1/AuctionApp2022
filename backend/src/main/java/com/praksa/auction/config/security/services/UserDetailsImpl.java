@@ -5,6 +5,7 @@ import com.praksa.auction.model.Card;
 import com.praksa.auction.model.Person;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -170,5 +171,3 @@ public class UserDetailsImpl implements UserDetails {
     }
 
 }
-
-

@@ -30,7 +30,7 @@ function ProductHighlight() {
                     </div>
 
                     <div className='bidNow'>
-                        <Button lable="Bid now" icon={arrow}/>
+                        <Button lable="Bid now" icon={arrow} buttonClass="bidding"/>
                     </div>
                 </div>
                 {image &&

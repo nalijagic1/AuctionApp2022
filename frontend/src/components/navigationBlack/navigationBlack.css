@@ -26,7 +26,7 @@
     margin-bottom: 11px;
 }
 
-.user a {
+.user a, .user p{
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
@@ -34,6 +34,10 @@
     line-height: 17px;
     color: #FFFFFF;
     text-decoration: none;
+}
+
+.user p{
+    margin-top: 5px;
 }
 
 .user h1 {

@@ -12,12 +12,13 @@ public class PersonService {
     private final PersonRepositoy personRepositoy;
     @Autowired
     PasswordEncoder encoder;
+
     @Autowired
-    public PersonService(PersonRepositoy personRepositoy){
+    public PersonService(PersonRepositoy personRepositoy) {
         this.personRepositoy = personRepositoy;
     }
-    
-    public Boolean existsByEmail(String email){
+
+    public Boolean existsByEmail(String email) {
         return personRepositoy.existsByEmail(email);
     }
 

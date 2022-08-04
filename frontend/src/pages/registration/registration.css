@@ -1,11 +1,12 @@
-.registration{
-    margin-left:351px;
+.registration {
+    margin-left: 351px;
     border: 2px solid #D8D8D8;
     width: 738px;
     margin-bottom: 80px;
     padding-bottom: 64px;
 }
-.registration h5{
+
+.registration h5 {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
@@ -18,18 +19,18 @@
     margin-bottom: 71px;
 }
 
-.registration form{
+.registration form {
     margin-left: 95px;
     margin-right: 95px;
 }
 
-.userRegistration hr{
-    background:#D8D8D8;
+.userRegistration hr {
+    background: #D8D8D8;
     border: 1px solid #D8D8D8;
     margin-bottom: 40px;
 }
 
-.registration a{
+.registration a {
     text-decoration: none;
     font-family: 'Lato';
     font-style: normal;
@@ -41,12 +42,12 @@
 
 }
 
-.accountLogIn{
+.accountLogIn {
     margin-left: 243px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: #9B9B9B;   
+    color: #9B9B9B;
 }

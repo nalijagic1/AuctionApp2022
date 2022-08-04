@@ -32,15 +32,16 @@ public class PersonController {
     JwtUtils jwtUtils;
     @Autowired
     PasswordEncoder encoder;
+
     @Autowired
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> logIn(@Valid @RequestBody PersonLogInDto loginInfo){
+    public ResponseEntity<?> logIn(@Valid @RequestBody PersonLogInDto loginInfo) {
         String validation = loginInfo.validateData();
-        if(validation!=null){
+        if (validation != null) {
             return ResponseEntity
                     .badRequest()
                     .body(validation);
@@ -51,13 +52,13 @@ public class PersonController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        return ResponseEntity.ok(new JwtResponseDto(jwt,userDetails));
+        return ResponseEntity.ok(new JwtResponseDto(jwt, userDetails));
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> createAccount(@Valid @RequestBody PersonRegistrationDto signUpRequest) {
         String validation = signUpRequest.validateRegistration();
-        if(validation != null){
+        if (validation != null) {
             return ResponseEntity
                     .badRequest()
                     .body(validation);
@@ -74,9 +75,8 @@ public class PersonController {
         p.setPassword(encoder.encode(signUpRequest.getPassword()));
         personService.createAccount(p);
 
-        return logIn(new PersonLogInDto(signUpRequest.getEmail(),signUpRequest.getPassword()));
+        return logIn(new PersonLogInDto(signUpRequest.getEmail(), signUpRequest.getPassword()));
     }
-
 
 
 }

@@ -14,12 +14,12 @@ function NavigationBlack() {
                 <a href="https://twitter.com/atlantbh"><img src={twitter} alt="twitter"/></a>
             </div>
             <div className='user'>
-                {user ? <a>Hi, {user.user.firstName} {user.user.lastName}</a> :<div>
-                        <a href='/login'>Log in</a>
-                        <h1>or</h1>
-                        <a href='/register'>Create an account</a>
-                    </div>}
-                
+                {user ? <p>Hi, {user.user.firstName} {user.user.lastName}</p> : <div>
+                    <a href='/login'>Log in</a>
+                    <h1>or</h1>
+                    <a href='/register'>Create an account</a>
+                </div>}
+
             </div>
         </div>
     );

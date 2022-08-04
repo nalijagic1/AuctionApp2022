@@ -1,4 +1,4 @@
-.placeBid{
+.placeBid {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 300;
@@ -12,11 +12,11 @@
     background: #FFFFFF;
 }
 
-.loginAndRegisterField{
+.loginAndRegisterField {
     margin-top: 16px;
     margin-bottom: 32px;
     width: 542px;
-    padding:18px 0px 18px 24px;
+    padding: 18px 0px 18px 24px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -30,7 +30,7 @@
     outline: 1px solid #E3E3E3;
 }
 
-.field label{
+.field label {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 400;
@@ -38,7 +38,8 @@
     line-height: 27px;
     color: #252525;
 }
-.field p{
+
+.field p {
     margin-top: -30px;
     margin-bottom: 32px;
     color: red;

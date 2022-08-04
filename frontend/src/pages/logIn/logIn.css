@@ -1,11 +1,12 @@
-.logIn{
-    margin-left:351px;
+.logIn {
+    margin-left: 351px;
     border: 2px solid #D8D8D8;
     width: 738px;
     margin-bottom: 80px;
     padding-bottom: 64px;
 }
-.logIn h5{
+
+.logIn h5 {
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
@@ -18,18 +19,18 @@
     margin-bottom: 71px;
 }
 
-.logIn form{
+.logIn form {
     margin-left: 95px;
     margin-right: 95px;
 }
 
-.userLogIn hr{
-    background:#D8D8D8;
+.userLogIn hr {
+    background: #D8D8D8;
     border: 1px solid #D8D8D8;
     margin-bottom: 40px;
 }
 
-.logIn a{
+.logIn a {
     text-decoration: none;
     font-family: 'Lato';
     font-style: normal;
@@ -39,4 +40,3 @@
     color: #8367D8;
     margin-left: 306px;
 }
-
