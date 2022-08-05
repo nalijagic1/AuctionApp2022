@@ -2,9 +2,9 @@ package com.praksa.auction.dto;
 
 public class JwtResponseDto {
     private String token;
-    private BasicInfoDto user;
+    private BasicUserInfoDto user;
 
-    public JwtResponseDto(String token, BasicInfoDto user) {
+    public JwtResponseDto(String token, BasicUserInfoDto user) {
         this.token = token;
         this.user = user;
     }
@@ -20,11 +20,11 @@ public class JwtResponseDto {
         this.token = token;
     }
 
-    public BasicInfoDto getUser() {
+    public BasicUserInfoDto getUser() {
         return user;
     }
 
-    public void setUser(BasicInfoDto user) {
+    public void setUser(BasicUserInfoDto user) {
         this.user = user;
     }
 }

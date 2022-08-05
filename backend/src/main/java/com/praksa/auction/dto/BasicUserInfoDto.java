@@ -1,15 +1,15 @@
 package com.praksa.auction.dto;
 
-public class BasicInfoDto {
+public class BasicUserInfoDto {
     private long id;
     private String firstName;
     private String lastName;
     private String email;
 
-    public BasicInfoDto() {
+    public BasicUserInfoDto() {
     }
 
-    public BasicInfoDto(long id, String firstName, String lastName, String email) {
+    public BasicUserInfoDto(long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

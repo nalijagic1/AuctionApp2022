@@ -1,7 +1,6 @@
 package com.praksa.auction.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Date;
 
 
@@ -16,7 +15,6 @@ public class Person {
     private Gender gender;
     private Date dateOfBirth;
     private String phoneNumber;
-    @Email
     private String email;
     private String password;
     private String picture;

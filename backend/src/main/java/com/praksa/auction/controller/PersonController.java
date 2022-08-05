@@ -2,7 +2,7 @@ package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.config.security.services.PersonDetails;
-import com.praksa.auction.dto.BasicInfoDto;
+import com.praksa.auction.dto.BasicUserInfoDto;
 import com.praksa.auction.dto.JwtResponseDto;
 import com.praksa.auction.dto.LogInDto;
 import com.praksa.auction.dto.RegistrationDto;
@@ -49,7 +49,7 @@ public class PersonController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        BasicInfoDto basicPersonInfo = new BasicInfoDto(userDetails.getId(), userDetails.getFirstName(), userDetails.getLastName(), userDetails.getEmail());
+        BasicUserInfoDto basicPersonInfo = new BasicUserInfoDto(userDetails.getId(), userDetails.getFirstName(), userDetails.getLastName(), userDetails.getEmail());
         return ResponseEntity.ok(new JwtResponseDto(jwt,basicPersonInfo));
     }
 
