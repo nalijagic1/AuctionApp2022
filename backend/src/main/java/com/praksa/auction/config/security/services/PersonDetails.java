@@ -1,14 +1,15 @@
-package com.praksa.auction.model;
+package com.praksa.auction.config.security.services;
 
-import javax.persistence.*;
+import com.praksa.auction.model.Address;
+import com.praksa.auction.model.Card;
+import com.praksa.auction.model.Gender;
+import com.praksa.auction.model.Person;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Collection;
 import java.util.Date;
 
-
-@Entity
-@Table(name = "person")
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PersonDetails implements UserDetails {
     private long id;
     private String firstName;
     private String lastName;
@@ -18,15 +19,11 @@ public class Person {
     private String email;
     private String password;
     private String picture;
-    @ManyToOne
-    @JoinColumn(name = "addressId")
     private Address address;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardId")
     private Card card;
 
-
-    public Person(String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public PersonDetails(long id, String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -39,8 +36,19 @@ public class Person {
         this.card = card;
     }
 
+    public static PersonDetails build(Person user) {
+        return new PersonDetails(user.getId(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getGender(),
+                user.getDateOfBirth(),
+                user.getPhoneNumber(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getPicture(),
+                user.getAddress(),
+                user.getCard());
 
-    public Person() {
     }
 
     public long getId() {
@@ -99,10 +107,6 @@ public class Person {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -131,4 +135,41 @@ public class Person {
         this.card = card;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return getEmail();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 }
+
+
