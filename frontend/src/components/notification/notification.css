@@ -1,0 +1,15 @@
+.notification{
+    padding-top: 20px;
+    padding-left: 160px;
+    padding-bottom: 20px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.succes{
+    background-color: #F0F3EE;
+    color: #417505;
+}

@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import Field from '../field/field'
 import Button from '../button/button';
-import arrow from '../../images/arrow.png';
 import './productInfo.css';
 import bidService from '../../services/bid.service';
 import moment from 'moment';
 import personService from '../../services/person.service';
 import {MdOutlineKeyboardArrowRight} from "react-icons/md"
+import TooltipMessage from '../tooltipMessage/tooltipMessage';
 
-function ProductInfo({product}) {
+function ProductInfo({product,showNotification}) {
     const [highestBid, setHighestBid] = useState(0);
     const [count, setCount] = useState(0);
     const [biddingEnabled,setBiddingEnabled] = useState();
+    const [warningText,setWarningText] = useState("");
+    const [bid,setBid] = useState();
     let countdown;
     const user = personService.getCurrentUser();
     if (moment(product.endingDate) <= moment.now()) {
@@ -19,12 +21,21 @@ function ProductInfo({product}) {
     } else {
         countdown = moment(product.endingDate).fromNow(true);
     }
+
+    function placeBid(){
+        if(bid.match(/^\d+(\.\d+)?$/)){
+            showNotification('succes')
+        }else{
+            
+        }
+     }
     useEffect(() => {
-        if(user){
+    if(user){
             setBiddingEnabled("");
         }else{
             setBiddingEnabled('disabled');
-        }
+            setWarningText("Please login or register to place a bid.")
+    }
         bidService.getBidCount(product.id).then(
             (response) => {
                 setCount(response.data);
@@ -38,7 +49,7 @@ function ProductInfo({product}) {
             }
         )
 
-    }, [product])
+    }, [product,user])
 
     return (
         <div className="info">
@@ -49,10 +60,13 @@ function ProductInfo({product}) {
                 <h3>Number of bids: <p>{count}</p></h3>
                 <h3>Time left: <p>{countdown}</p></h3>
             </div>
+
+            <TooltipMessage  className =""title={warningText == null ? "" : warningText} placement="top-end" arrow>
             <div className='bid'>
-                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = {`placeBid ${biddingEnabled}`} id ="placeBid" type = "text"/>
-                <Button lable="Place bid" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>} buttonClass={biddingEnabled+"Button"}/>
+                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = {`placeBid ${biddingEnabled}`} id ="placeBid" type = "text" onKeyUp={(event) => setBid(event.target.value)}/>
+                <Button lable="Place bid" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>} buttonClass={biddingEnabled+"Button"} onClick={()=> placeBid()}/>
             </div>
+            </TooltipMessage>
             <div className="desc">
                 <h3>Details</h3>
             </div>
