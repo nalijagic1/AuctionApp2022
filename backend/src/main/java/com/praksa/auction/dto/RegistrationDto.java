@@ -44,7 +44,6 @@ public class RegistrationDto {
         } else if (Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))").matcher(password).matches()) {
             return "Your password is medium strength";
         }else return "Your password is weak!";
-        return null;
     }
 
     public String getFirstName() {
