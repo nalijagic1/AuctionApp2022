@@ -27,7 +27,7 @@
 }
 
 .field input:focus-visible {
-    outline: 1px solid #E3E3E3;
+    outline: 1px solid #8367D8;
 }
 
 .field label {
@@ -39,8 +39,81 @@
     color: #252525;
 }
 
-.field p {
+.showPassword{
+    position: absolute;
+    margin-top: 65px;
+    margin-left: 450px;
+}
+
+.showPassword path{
+    width: 22px;
+    height: 15px;
+}
+
+.error{
+    border: 1px solid #E10000;
+}
+.errormessage{
     margin-top: -30px;
     margin-bottom: 32px;
-    color: red;
+    color: #E10000;
 }
+
+.successmessage{
+    margin-top: -30px;
+    margin-bottom: 32px;
+    color: #417505;
+}
+.success{
+    border: 1px solid #417505;
+}
+.fieldInfo{
+    width: 567px;
+    display: flex;
+    margin-top: -15px;
+    margin-bottom: 32px;
+}
+
+.fieldInfo p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+}
+
+.fieldInfo i{
+    margin-left: 14px;
+}
+
+.progressBar{
+    background: #EDEDED;
+    width:126px;
+    height: 13px;
+    position: absolute;
+    left: 890px;
+}
+
+
+.progress{
+    height: 13px;
+}
+
+.strong{
+    width: 100%;
+    background-color: #417505;
+}
+
+.medium{
+    width: 66%;
+    background-color: #F8A508;
+}
+
+.weak{
+    width: 33%;
+    background-color: #E10000;
+}
+
+.progressInfo{
+    display: flex;
+}
+
+

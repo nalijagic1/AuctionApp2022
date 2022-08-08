@@ -5,12 +5,14 @@ import './logIn.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
 import validation from '../../validation';
+import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
 
 function LogIn() {
     let navigate = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState({email: "", password: ""})
+    const [showPassword,setShowPassword] = useState(false);
 
     function logIntoAccount() {
         personService.logIn(email, password).then((response) => {
@@ -21,7 +23,7 @@ function LogIn() {
         }).catch(error => {
 
             if (error.response.data === "Bad credentials") {
-                setError({email: "", password: "Incorrect password"});
+                setError({email: "", password: "Incorrect password."});
             } else if (error.response.data.toLowerCase().includes("email")) {
                 setError({email: error.response.data, password: ""});
             } else {
@@ -37,7 +39,7 @@ function LogIn() {
         errorMessages.email = validation.validateEmail(email)
         if (errorMessages.email !== "") valid = false;
         if (!password) {
-            errorMessages.password = "Password is requered!"
+            errorMessages.password = "Please enter your password."
             valid = false;
         }
         setError(errorMessages)
@@ -53,8 +55,8 @@ function LogIn() {
                     <Field placeHolder="Enter your email" label="Email" fieldClass="loginAndRegisterField" id="email"
                            type="email" onKeyUp={e => setEmail(e.target.value)} error={error.email}></Field>
                     <Field placeHolder="Enter your password" label="Password" fieldClass="loginAndRegisterField"
-                           id="password" type="password" onKeyUp={e => setPassword(e.target.value)}
-                           error={error.password}></Field>
+                           id="password" type={showPassword ? 'text' : 'password'} onKeyUp={e => setPassword(e.target.value)}
+                           error={error.password} iconShow ={showPassword ? <AiOutlineEyeInvisible    style={{fontSize: 16, width:'22px', height:'15px'}} onClick={() => setShowPassword(false)}/> : <AiOutlineEye  style={{fontSize: 16, width:'22px', height:'15px'}} onClick={() => setShowPassword(true)}/>}></Field>
                     <Button lable="Login"  buttonClass ="purpleButton userManagment" onClick={() => {
                         if (formValidation()) logIntoAccount();
                     }}/>

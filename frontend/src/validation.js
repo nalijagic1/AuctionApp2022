@@ -2,11 +2,11 @@ class Validation {
     validateEmail(email) {
         var errorMessage = "";
         if (!email) {
-            errorMessage = "Email is requered!"
+            errorMessage = "Please enter your email address.";
         } else {
-            const expression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+            const expression = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if (!expression.test(email.toLowerCase())) {
-                errorMessage = "Email format is not valid, please try again!"
+                errorMessage = "Please enter a valid email address.";
             }
         }
         return errorMessage;
@@ -15,9 +15,9 @@ class Validation {
     validateNames(name, type) {
         var errorMessage = "";
         if (!name) {
-            errorMessage = type + " name is requered!"
+            errorMessage ="Please enter your "+  type  + " name.";
         } else if (!/^[a-zA-Z]+$/.test(name)) {
-            errorMessage = type + " name must contain only letters!"
+            errorMessage = "Please enter your " + type + " name correctly.";
         }
         return errorMessage;
     }
@@ -25,11 +25,29 @@ class Validation {
     validatePassword(password) {
         var errorMessage = "";
         if (!password) {
-            errorMessage = "Password is requered!";
-        } else if (!/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/.test(password)) {
-            errorMessage = "Your password is week!";
+            errorMessage = "Please enter your password";
+        }
+        else if(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/.test(password)){
+            errorMessage = "Your password is strong";
+        } else if (/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/.test(password)) {
+            errorMessage = "Your password is medium strength.";
+        }else{
+            errorMessage = "Your password is weak.";
         }
         return errorMessage;
+    }
+
+    determainPasswordStrength(password){
+        if (!password) {
+            return "";
+        }
+        else if(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})/.test(password)){
+            return "strong";
+        } else if (/((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))/.test(password)) {
+            return "medium";
+        }else{
+            return "weak";
+        }
     }
 
 
