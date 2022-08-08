@@ -54,7 +54,7 @@ function NavigationWhite() {
                 </div>
                 <div className="menu" align='right'>
                     {user &&
-                        <a href='/'>MY ACCOUNT</a>
+                    <a href='/'>MY ACCOUNT</a>
                     }
                     <a href='/shop/all'>SHOP</a>
                     <a href='/'>HOME</a>

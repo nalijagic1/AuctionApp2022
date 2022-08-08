@@ -22,5 +22,4 @@ public class PersonService {
         personRepositoy.save(person);
     }
 
-
 }

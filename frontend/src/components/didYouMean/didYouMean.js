@@ -3,22 +3,22 @@ import productService from '../../services/product.service';
 import './didYouMean.css'
 
 function DidYouMean({search}) {
-    const [suggestion,setSuggestion] = useState();
-    useEffect (() => {
-            productService.getSuggestion(search)
-            .then((response)=>{
+    const [suggestion, setSuggestion] = useState();
+    useEffect(() => {
+        productService.getSuggestion(search)
+            .then((response) => {
                 setSuggestion(response.data)
             });
-    },[search])
+    }, [search])
     return (
         <div className="suggestion">
             {suggestion !== "" &&
-                <div>
-                    Did you mean?
-                    <a href={"/shop?search="+suggestion}>{suggestion}</a>
-                </div>
+            <div>
+                Did you mean?
+                <a href={"/shop?search=" + suggestion}>{suggestion}</a>
+            </div>
             }
-            
+
         </div>
     );
 }

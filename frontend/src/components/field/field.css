@@ -39,81 +39,82 @@
     color: #252525;
 }
 
-.showPassword{
+.showPassword {
     position: absolute;
     margin-top: 65px;
     margin-left: 450px;
 }
 
-.showPassword path{
+.showPassword path {
     width: 22px;
     height: 15px;
 }
 
-.error{
+.error {
     border: 1px solid #E10000;
 }
-.errormessage{
+
+.errormessage {
     margin-top: -30px;
     margin-bottom: 32px;
     color: #E10000;
 }
 
-.successmessage{
+.successmessage {
     margin-top: -30px;
     margin-bottom: 32px;
     color: #417505;
 }
-.success{
+
+.success {
     border: 1px solid #417505;
 }
-.fieldInfo{
+
+.fieldInfo {
     width: 567px;
     display: flex;
     margin-top: -15px;
     margin-bottom: 32px;
 }
 
-.fieldInfo p{
+.fieldInfo p {
     margin-top: 0px;
     margin-bottom: 0px;
 
 }
 
-.fieldInfo i{
+.fieldInfo i {
     margin-left: 14px;
 }
 
-.progressBar{
+.progressBar {
     background: #EDEDED;
-    width:126px;
+    width: 126px;
     height: 13px;
     position: absolute;
     left: 890px;
 }
 
 
-.progress{
+.progress {
     height: 13px;
 }
 
-.strong{
+.strong {
     width: 100%;
     background-color: #417505;
 }
 
-.medium{
+.medium {
     width: 66%;
     background-color: #F8A508;
 }
 
-.weak{
+.weak {
     width: 33%;
     background-color: #E10000;
 }
 
-.progressInfo{
+.progressInfo {
     display: flex;
 }
-
-

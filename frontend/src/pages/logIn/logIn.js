@@ -5,14 +5,14 @@ import './logIn.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
 import validation from '../../validation';
-import { AiOutlineEyeInvisible,AiOutlineEye } from "react-icons/ai";
+import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
 
 function LogIn() {
     let navigate = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [error, setError] = useState({email: "", password: ""})
-    const [showPassword,setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     function logIntoAccount() {
         personService.logIn(email, password).then((response) => {
@@ -55,9 +55,14 @@ function LogIn() {
                     <Field placeHolder="Enter your email" label="Email" fieldClass="loginAndRegisterField" id="email"
                            type="email" onKeyUp={e => setEmail(e.target.value)} error={error.email}></Field>
                     <Field placeHolder="Enter your password" label="Password" fieldClass="loginAndRegisterField"
-                           id="password" type={showPassword ? 'text' : 'password'} onKeyUp={e => setPassword(e.target.value)}
-                           error={error.password} iconShow ={showPassword ? <AiOutlineEyeInvisible    style={{fontSize: 16, width:'22px', height:'15px'}} onClick={() => setShowPassword(false)}/> : <AiOutlineEye  style={{fontSize: 16, width:'22px', height:'15px'}} onClick={() => setShowPassword(true)}/>}></Field>
-                    <Button lable="Login"  buttonClass ="purpleButton userManagment" onClick={() => {
+                           id="password" type={showPassword ? 'text' : 'password'}
+                           onKeyUp={e => setPassword(e.target.value)}
+                           error={error.password} iconShow={showPassword ?
+                        <AiOutlineEyeInvisible style={{fontSize: 16, width: '22px', height: '15px'}}
+                                               onClick={() => setShowPassword(false)}/> :
+                        <AiOutlineEye style={{fontSize: 16, width: '22px', height: '15px'}}
+                                      onClick={() => setShowPassword(true)}/>}></Field>
+                    <Button lable="Login" buttonClass="purpleButton userManagment" onClick={() => {
                         if (formValidation()) logIntoAccount();
                     }}/>
                 </form>
