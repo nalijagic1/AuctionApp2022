@@ -36,6 +36,12 @@
     outline: 1px solid #E3E3E3;
 }
 
+.field input[type=number]::-webkit-inner-spin-button, 
+.field input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .field label{
     font-family: 'Lato';
     font-style: normal;

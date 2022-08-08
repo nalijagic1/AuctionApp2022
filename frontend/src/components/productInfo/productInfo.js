@@ -23,10 +23,8 @@ function ProductInfo({product,showNotification}) {
     }
 
     function placeBid(){
-        if(bid.match(/^\d+(\.\d+)?$/)){
-            showNotification('succes')
-        }else{
-            
+        if(highestBid >= bid){
+            showNotification('warning',"There are higher bids than yours. You could give a second try!")
         }
      }
     useEffect(() => {
@@ -63,7 +61,7 @@ function ProductInfo({product,showNotification}) {
 
             <TooltipMessage  className =""title={warningText == null ? "" : warningText} placement="top-end" arrow>
             <div className='bid'>
-                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = {`placeBid ${biddingEnabled}`} id ="placeBid" type = "text" onKeyUp={(event) => setBid(event.target.value)}/>
+                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = {`placeBid ${biddingEnabled}`} id ="placeBid" type = "number" onKeyUp={(event) => setBid(event.target.value)}/>
                 <Button lable="Place bid" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>} buttonClass={biddingEnabled+"Button"} onClick={()=> placeBid()}/>
             </div>
             </TooltipMessage>

@@ -6,6 +6,7 @@
 
 .path li.active {
     margin: 2px 16px 2px 0px;
+    color: #8367D8;
 }
 
 .path {

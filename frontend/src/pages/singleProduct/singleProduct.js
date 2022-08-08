@@ -4,7 +4,7 @@ import Gallery from '../../components/gallery/gallery';
 import ProductInfo from '../../components/productInfo/productInfo';
 import productService from '../../services/product.service';
 import {useParams} from 'react-router-dom';
-import Notification from '../../components/notification/notification';
+import {Alert} from 'react-bootstrap';
 
 import './singleProduct.css'
 
@@ -13,6 +13,7 @@ function SingleProduct() {
     const [product, setProduct] = useState();
     const [showNotification,setShowNotification] = useState(false);
     const [notificationType,setNotificationType] = useState();
+    const [notificationMessage,setNotificationMessage ] = useState();
     useEffect(() => {
         productService.getSelectedProduct(parseInt(params.productId))
             .then((response) => {
@@ -21,9 +22,10 @@ function SingleProduct() {
             });
     }, [params]);
 
-    function displayNotification(type){
+    function displayNotification(type,message){
         setNotificationType(type);
         setShowNotification(true);
+        setNotificationMessage(message);
         setTimeout(function() {
             setShowNotification(false)
                }, 3000);
@@ -34,10 +36,11 @@ function SingleProduct() {
             <div>
                 <PathBar prop={{name: product.name, startPoint: "Shop", endPoint: "Single product"}}></PathBar>
                 {showNotification && 
-                    <Notification type ={notificationType}/>}
+                    <Alert  variant={notificationType} className="notification"> {notificationMessage}</Alert>}
+                        
                 <div className='productView'>
                     <Gallery productId={params.productId}/>
-                    <ProductInfo product={product} showNotification={(type)=>displayNotification(type)}/>
+                    <ProductInfo product={product} showNotification={(type,message)=>displayNotification(type,message)}/>
                 </div>
             </div>
             }
