@@ -2,18 +2,18 @@ package com.praksa.auction.config.security.services;
 
 import com.praksa.auction.model.Address;
 import com.praksa.auction.model.Card;
+import com.praksa.auction.model.Gender;
 import com.praksa.auction.model.Person;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Date;
 
-public class UserDetailsImpl implements UserDetails {
+public class PersonDetails implements UserDetails {
     private long id;
     private String firstName;
     private String lastName;
-    private byte[] gender;
+    private Gender gender;
     private Date dateOfBirth;
     private String phoneNumber;
     private String email;
@@ -22,7 +22,7 @@ public class UserDetailsImpl implements UserDetails {
     private Address address;
     private Card card;
 
-    public UserDetailsImpl(long id, String firstName, String lastName, byte[] gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public PersonDetails(long id, String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,8 +36,8 @@ public class UserDetailsImpl implements UserDetails {
         this.card = card;
     }
 
-    public static UserDetailsImpl build(Person user) {
-        return new UserDetailsImpl(user.getId(),
+    public static PersonDetails build(Person user) {
+        return new PersonDetails(user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getGender(),
@@ -75,11 +75,11 @@ public class UserDetailsImpl implements UserDetails {
         this.lastName = lastName;
     }
 
-    public byte[] getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(byte[] gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -171,3 +171,5 @@ public class UserDetailsImpl implements UserDetails {
     }
 
 }
+
+
