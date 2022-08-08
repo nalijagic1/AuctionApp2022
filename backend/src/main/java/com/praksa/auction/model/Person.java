@@ -1,25 +1,20 @@
 package com.praksa.auction.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import java.util.Date;
 
 
 @Entity
-@Table(name = "person",
-        uniqueConstraints = {
-                @UniqueConstraint(columnNames = "email")
-        })
+@Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
-    private byte[] gender;
+    private Gender gender;
     private Date dateOfBirth;
     private String phoneNumber;
-    @Email
     private String email;
     private String password;
     private String picture;
@@ -31,7 +26,7 @@ public class Person {
     private Card card;
 
 
-    public Person(String firstName, String lastName, byte[] gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public Person(String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -43,6 +38,7 @@ public class Person {
         this.address = address;
         this.card = card;
     }
+
 
     public Person() {
     }
@@ -71,11 +67,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public byte[] getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(byte[] gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 

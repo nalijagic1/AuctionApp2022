@@ -1,20 +1,20 @@
 package com.praksa.auction.dto;
 
-import java.util.regex.Pattern;
-
-public class PersonRegistrationDto {
+public class RegistrationDto {
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    public PersonRegistrationDto(String firstName, String lastName, String email, String password) {
+    public RegistrationDto(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
     }
 
+    public RegistrationDto() {
+    }
     public String validateRegistration(){
         if(firstName == null){
             return "First name is requered!";
@@ -40,9 +40,6 @@ public class PersonRegistrationDto {
             return "Your password is week!";
         }
         return null;
-    }
-
-    public PersonRegistrationDto() {
     }
 
     public String getFirstName() {

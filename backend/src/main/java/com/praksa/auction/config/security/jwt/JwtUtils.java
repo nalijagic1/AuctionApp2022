@@ -1,6 +1,6 @@
 package com.praksa.auction.config.security.jwt;
 
-import com.praksa.auction.config.security.services.UserDetailsImpl;
+import com.praksa.auction.config.security.services.PersonDetails;
 import io.jsonwebtoken.*;
 import org.springframework.security.core.Authentication;
 import org.slf4j.Logger;
@@ -18,7 +18,7 @@ public class JwtUtils {
     @Value("${jwtExpirationMs}")
     private int jwtExpirationMs;
     public String generateJwtToken(Authentication authentication) {
-        UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+        PersonDetails userPrincipal = (PersonDetails) authentication.getPrincipal();
         return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
