@@ -4,7 +4,7 @@ import Gallery from '../../components/gallery/gallery';
 import ProductInfo from '../../components/productInfo/productInfo';
 import productService from '../../services/product.service';
 import {useParams} from 'react-router-dom';
-import {Alert} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 import './singleProduct.css'
 

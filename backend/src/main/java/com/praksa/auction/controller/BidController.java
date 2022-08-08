@@ -40,6 +40,8 @@ public class BidController {
 
     @PostMapping("/bid")
     public ResponseEntity<?> bidOnProduct(@Valid @RequestBody BiddingInfoDto biddingInfo){
+        System
+                .out.println(biddingInfo);
         Bid newBid = new Bid();
         Date today  = new Date();
         newBid.setProduct(productService.getSelectedProduct(biddingInfo.getProduct()).get());

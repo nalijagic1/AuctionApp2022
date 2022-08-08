@@ -1,7 +1,6 @@
 import NavigationBlack from './components/navigationBlack/navigationBlack';
 import NavigationWhite from './components/navigationWhite/navigationWhite';
 import Footer from './components/footer/footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import PrivacyAndPolicy from './pages/privacyAndPolicy/privacyAndPolicy';
 import TermsAndConditions from './pages/termsAndConditions/termsAndConditions';
 import AboutUs from './pages/aboutUs/aboutUs';
