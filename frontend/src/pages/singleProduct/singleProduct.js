@@ -11,9 +11,9 @@ import './singleProduct.css'
 function SingleProduct() {
     const params = useParams();
     const [product, setProduct] = useState();
-    const [showNotification,setShowNotification] = useState(false);
-    const [notificationType,setNotificationType] = useState();
-    const [notificationMessage,setNotificationMessage ] = useState();
+    const [showNotification, setShowNotification] = useState(false);
+    const [notificationType, setNotificationType] = useState();
+    const [notificationMessage, setNotificationMessage] = useState();
     useEffect(() => {
         productService.getSelectedProduct(parseInt(params.productId))
             .then((response) => {
@@ -22,24 +22,27 @@ function SingleProduct() {
             });
     }, [params]);
 
-    function displayNotification(type,message){
+    function displayNotification(type, message) {
         setNotificationType(type);
         setShowNotification(true);
         setNotificationMessage(message);
-        setTimeout(function() {
+        setTimeout(function () {
             setShowNotification(false)
-               }, 5000);
+        }, 5000);
     }
+
     return (
         <div className="singleProduct">
             {product &&
             <div>
                 <PathBar prop={{name: product.name, startPoint: "Shop", endPoint: "Single product"}}></PathBar>
-                <Alert show={showNotification} variant={notificationType} className="notification"> {notificationMessage}</Alert>
-                        
+                <Alert show={showNotification} variant={notificationType}
+                       className="notification"> {notificationMessage}</Alert>
+
                 <div className='productView'>
                     <Gallery productId={params.productId}/>
-                    <ProductInfo product={product} showNotification={(type,message)=>displayNotification(type,message)}/>
+                    <ProductInfo product={product}
+                                 showNotification={(type, message) => displayNotification(type, message)}/>
                 </div>
             </div>
             }

@@ -25,7 +25,7 @@ public class BidService {
         return bidRepository.countBidsByProductId(productId);
     }
 
-    public void bidOnProduct(Bid bid){
+    public void bidOnProduct(Bid bid) {
         bidRepository.save(bid);
     }
 }

@@ -13,20 +13,22 @@ public class LogInDto {
 
     public LogInDto() {
     }
-    public String validateData(){
-        if(email == null){
+
+    public String validateData() {
+        if (email == null) {
             return "Email is requered!";
-        }else{
+        } else {
             Pattern pattern = Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$");
-            if(!pattern.matcher(email.toLowerCase()).matches()){
+            if (!pattern.matcher(email.toLowerCase()).matches()) {
                 return "Email format is not valid, please try again!";
             }
         }
-        if(password == null){
+        if (password == null) {
             return "Password is requered!";
         }
         return null;
     }
+
     public String getEmail() {
         return email;
     }

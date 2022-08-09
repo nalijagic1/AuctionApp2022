@@ -31,12 +31,12 @@
     padding: 16px 56px 16px 56px;
 }
 
-.userManagment{
-    width:548px;
-    margin-bottom: 48px; 
+.userManagment {
+    width: 548px;
+    margin-bottom: 48px;
 }
 
-.disabledButton{
+.disabledButton {
     pointer-events: none;
     border: 3px solid #C1B3EB;
     color: #9B9B9B;

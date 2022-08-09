@@ -21,6 +21,7 @@ public class BidController {
     public final ProductService productService;
     @Autowired
     public final PersonService personService;
+
     public BidController(BidService bidService, PersonService personService, ProductService productService) {
         this.bidService = bidService;
         this.personService = personService;
@@ -38,24 +39,24 @@ public class BidController {
     }
 
     @PostMapping("/auth/bid")
-    public ResponseEntity<?> bidOnProduct(@Valid @RequestBody BiddingInfoDto biddingInfo){
+    public ResponseEntity<?> bidOnProduct(@Valid @RequestBody BiddingInfoDto biddingInfo) {
         Bid newBid = new Bid();
-        Date today  = new Date();
+        Date today = new Date();
         newBid.setProduct(productService.getSelectedProduct(biddingInfo.getProduct()).get());
         newBid.setPerson(personService.getPersonById(biddingInfo.getPerson()));
         newBid.setBid(biddingInfo.getBid());
         newBid.setBidDate(today);
-        if(bidService.getHighestBid(biddingInfo.getPerson()).getPerson().getId() == biddingInfo.getPerson()){
+        if (bidService.getHighestBid(biddingInfo.getPerson()).getPerson().getId() == biddingInfo.getPerson()) {
             return ResponseEntity
                     .badRequest()
                     .body("You cannot outbid yourself!");
         }
-        if(newBid.getProduct().getEndingDate().before(today)){
+        if (newBid.getProduct().getEndingDate().before(today)) {
             return ResponseEntity
                     .badRequest()
                     .body("This auction has ended!");
         }
         bidService.bidOnProduct(newBid);
-        return  ResponseEntity.ok("Succesfull bidding");
+        return ResponseEntity.ok("Succesfull bidding");
     }
 }

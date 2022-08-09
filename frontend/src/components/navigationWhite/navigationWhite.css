@@ -5,14 +5,15 @@
 
 #logo {
     margin-top: 17px;
- 
     margin-right: 120px;
 }
-.navLogIn{
+
+.navLogIn {
     margin-left: 638.5px;
     margin-bottom: 18px;
 }
-.navHome{
+
+.navHome {
     margin-left: 164px;
     margin-bottom: 37px;
 }
@@ -43,6 +44,7 @@
     background-color: transparent;
     border: 0px;
 }
+
 #exitButton {
     position: absolute;
     top: 70px;
@@ -91,7 +93,7 @@
     line-height: 19px;
 }
 
-.menu a:hover{
+.menu a:hover {
     color: #8367D8;
     height: 19px;
     font-family: 'Lato', sans-serif;
@@ -100,12 +102,13 @@
     font-size: 16px;
     line-height: 19px;
 }
-.searchAndMenu{
+
+.searchAndMenu {
     width: 1000px;
     display: flex;
 }
 
-.accountSubmenu{
+.accountSubmenu {
     position: absolute;
     height: fit-content;
 }

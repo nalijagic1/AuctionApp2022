@@ -1,7 +1,7 @@
 package com.praksa.auction.dto;
 
 public class BiddingInfoDto {
-    private  long product;
+    private long product;
     private long person;
     private Double bid;
 

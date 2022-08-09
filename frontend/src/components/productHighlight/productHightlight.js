@@ -30,7 +30,8 @@ function ProductHighlight() {
                     </div>
 
                     <div className='bidNow'>
-                        <Button lable="Bid now" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}/>
+                        <Button lable="Bid now"
+                                icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}/>
                     </div>
                 </div>
                 {image &&

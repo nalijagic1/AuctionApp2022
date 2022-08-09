@@ -17,22 +17,25 @@ public class JwtUtils {
     private String jwtSecret;
     @Value("${jwtExpirationMs}")
     private int jwtExpirationMs;
+
     public String generateJwtToken(Authentication authentication) {
         PersonDetails userPrincipal = (PersonDetails) authentication.getPrincipal();
         return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
+
     public String getEmailFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
+
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
-        } catch (SignatureException e){
+        } catch (SignatureException e) {
             logger.error("Invalid JWT token: {}", e.getMessage());
-        }catch (MalformedJwtException e) {
+        } catch (MalformedJwtException e) {
             logger.error("Invalid JWT token: {}", e.getMessage());
         } catch (ExpiredJwtException e) {
             logger.error("JWT token is expired: {}", e.getMessage());

@@ -4,6 +4,7 @@ import facebook from '../../images/facebook.png'
 import instagram from '../../images/instagram.png'
 import twitter from '../../images/twitter.png'
 import personService from '../../services/person.service';
+
 function NavigationBlack() {
     const user = personService.getCurrentUser();
     return (
@@ -14,12 +15,12 @@ function NavigationBlack() {
                 <a href="https://twitter.com/atlantbh"><img src={twitter} alt="twitter"/></a>
             </div>
             <div className='user'>
-                {user ? <a href='/'>Hi, {user.user.firstName} {user.user.lastName}</a> :<div>
-                        <a href='/login'>Log in</a>
-                        <h1>or</h1>
-                        <a href='/register'>Create an account</a>
-                    </div>}
-                
+                {user ? <a href='/'>Hi, {user.user.firstName} {user.user.lastName}</a> : <div>
+                    <a href='/login'>Log in</a>
+                    <h1>or</h1>
+                    <a href='/register'>Create an account</a>
+                </div>}
+
             </div>
         </div>
     );
