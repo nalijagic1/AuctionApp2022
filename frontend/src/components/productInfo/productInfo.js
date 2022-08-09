@@ -30,8 +30,6 @@ function ProductInfo({product,showNotification}) {
             bidService.placeBid(user.user.id,product.id,bid).then((response)=>{
                 if(response.data.includes('Succesful')){
                     showNotification('success',"Congrats! You are the highest bider!");
-                    setBiddingEnabled('disabled');
-                    setWarningText("You cannot outbid yourself")
                 }
             })
         }
@@ -40,12 +38,13 @@ function ProductInfo({product,showNotification}) {
     if(user){
             if(user.user.id === product.person.id){
                 setSeller(false);
-            }else setSeller(true)
+            }else setSeller(true);
             setBiddingEnabled("");
         }else{
             setBiddingEnabled('disabled');
-            setWarningText("Please login or register to place a bid.")
+            setWarningText("Please login or register to place a bid.");
     }
+        if(countdown === "This auction has ended!")setSeller(false);
         bidService.getBidCount(product.id).then(
             (response) => {
                 setCount(response.data);
@@ -57,8 +56,7 @@ function ProductInfo({product,showNotification}) {
                     setHighestBid(product.startingPrice);
                 } else {
                     setHighestBid(response.data.bid);
-                    if(response.data.person.id === user.user.id){
-                        console.log("here")
+                    if(user && response.data.person.id === user.user.id){
                         setBiddingEnabled('disabled');
                         setWarningText("You cannot outbid yourself");
                     }
@@ -75,7 +73,7 @@ function ProductInfo({product,showNotification}) {
             <div className='biddingInfo'>
                 <h3>Highest bid: <p>${highestBid}</p></h3>
                 <h3>Number of bids: <p>{count}</p></h3>
-                <h3>Time left: <p>{countdown}</p></h3>
+                {moment(product.endingDate) > moment.now() && <h3>Time left: <p>{countdown}</p></h3> }
             </div>
             {seller &&
             <TooltipMessage  className =""title={warningText == null ? "" : warningText} placement="top-end" arrow>

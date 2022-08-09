@@ -4,7 +4,7 @@ import Gallery from '../../components/gallery/gallery';
 import ProductInfo from '../../components/productInfo/productInfo';
 import productService from '../../services/product.service';
 import {useParams} from 'react-router-dom';
-import Alert from 'react-bootstrap/Alert';
+import Alert from "react-bootstrap/Alert";
 
 import './singleProduct.css'
 
@@ -28,15 +28,14 @@ function SingleProduct() {
         setNotificationMessage(message);
         setTimeout(function() {
             setShowNotification(false)
-               }, 3000);
+               }, 5000);
     }
     return (
         <div className="singleProduct">
             {product &&
             <div>
                 <PathBar prop={{name: product.name, startPoint: "Shop", endPoint: "Single product"}}></PathBar>
-                {showNotification && 
-                    <Alert  variant={notificationType} className="notification"> {notificationMessage}</Alert>}
+                <Alert show={showNotification} variant={notificationType} className="notification"> {notificationMessage}</Alert>
                         
                 <div className='productView'>
                     <Gallery productId={params.productId}/>

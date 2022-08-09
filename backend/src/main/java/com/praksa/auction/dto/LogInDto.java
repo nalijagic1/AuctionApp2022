@@ -1,5 +1,7 @@
 package com.praksa.auction.dto;
 
+import java.util.regex.Pattern;
+
 public class LogInDto {
     private String email;
     private String password;

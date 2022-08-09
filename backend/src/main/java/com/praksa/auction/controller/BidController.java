@@ -14,7 +14,6 @@ import javax.validation.Valid;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/bids")
 public class BidController {
     @Autowired
     public final BidService bidService;
@@ -29,7 +28,7 @@ public class BidController {
     }
 
     @GetMapping("/highestBid/{productId}")
-    public ResponseEntity<Bid> getHighestBid(@PathVariable int productId) {
+    public ResponseEntity<Bid> getHighestBid(@PathVariable long productId) {
         return ResponseEntity.ok(bidService.getHighestBid(productId));
     }
 
@@ -38,16 +37,19 @@ public class BidController {
         return ResponseEntity.ok(bidService.getCount(productId));
     }
 
-    @PostMapping("/bid")
+    @PostMapping("/auth/bid")
     public ResponseEntity<?> bidOnProduct(@Valid @RequestBody BiddingInfoDto biddingInfo){
-        System
-                .out.println(biddingInfo);
         Bid newBid = new Bid();
         Date today  = new Date();
         newBid.setProduct(productService.getSelectedProduct(biddingInfo.getProduct()).get());
         newBid.setPerson(personService.getPersonById(biddingInfo.getPerson()));
         newBid.setBid(biddingInfo.getBid());
         newBid.setBidDate(today);
+        if(bidService.getHighestBid(biddingInfo.getPerson()).getPerson().getId() == biddingInfo.getPerson()){
+            return ResponseEntity
+                    .badRequest()
+                    .body("You cannot outbid yourself!");
+        }
         if(newBid.getProduct().getEndingDate().before(today)){
             return ResponseEntity
                     .badRequest()

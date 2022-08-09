@@ -17,7 +17,7 @@ public class BidService {
         this.bidRepository = bidRepository;
     }
 
-    public Bid getHighestBid(int productId) {
+    public Bid getHighestBid(long productId) {
         return bidRepository.findFirstByProductIdOrderByBidDesc(productId);
     }
 

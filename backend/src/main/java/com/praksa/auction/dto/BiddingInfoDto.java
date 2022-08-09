@@ -38,12 +38,5 @@ public class BiddingInfoDto {
         this.bid = bid;
     }
 
-    @Override
-    public String toString() {
-        return "BiddingInfoDto{" +
-                "product=" + product +
-                ", person=" + person +
-                ", bid=" + bid +
-                '}';
-    }
+
 }

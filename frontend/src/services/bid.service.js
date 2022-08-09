@@ -1,16 +1,17 @@
 import httpCommon from "../http-common";
+import authHeader from "../auth-header";
 
 class BidDataService {
     getBidCount(productId) {
-        return httpCommon.get("/bids/bidCount/" + productId);
+        return httpCommon.get("/bidCount/" + productId);
     }
 
     getHighestBid(productId) {
-        return httpCommon.get("/bids/highestBid/" + productId);
+        return httpCommon.get("/highestBid/" + productId);
     }
 
     placeBid(person,product,bid){
-        return httpCommon.post("/bids/bid",{product,person,bid})
+        return httpCommon.post("/auth/bid",{product,person,bid}, {headers: authHeader() })
     }
 }
 

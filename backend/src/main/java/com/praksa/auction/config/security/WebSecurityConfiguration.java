@@ -49,10 +49,9 @@ public class WebSecurityConfiguration {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/auth/**").permitAll()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated().and().authenticationManager(authenticationManager);
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class).exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
+                .authorizeRequests().antMatchers("/auth/**").authenticated()
+                .anyRequest().permitAll().and().authenticationManager(authenticationManager);
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
