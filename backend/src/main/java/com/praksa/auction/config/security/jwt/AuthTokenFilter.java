@@ -1,13 +1,11 @@
 package com.praksa.auction.config.security.jwt;
 
 import com.praksa.auction.config.security.services.PersonDetails;
-import com.praksa.auction.config.security.services.UserDetailsServiceImpl;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;

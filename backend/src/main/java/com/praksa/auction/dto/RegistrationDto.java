@@ -1,6 +1,5 @@
 package com.praksa.auction.dto;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistrationDto {

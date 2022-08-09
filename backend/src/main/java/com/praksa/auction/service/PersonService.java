@@ -3,7 +3,6 @@ package com.praksa.auction.service;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
