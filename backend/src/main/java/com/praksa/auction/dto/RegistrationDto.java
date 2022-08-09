@@ -1,5 +1,6 @@
 package com.praksa.auction.dto;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistrationDto {
@@ -37,11 +38,13 @@ public class RegistrationDto {
                 return "Please enter a valid email address.";
             }
         }
+        Pattern patternStrong= Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})");
+        Pattern patternMedium = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))");
         if (password == null) {
             return "Please enter your password.";
-        } else if (Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})").matcher(password).matches()) {
+        } else if (patternStrong.matcher(password).find()) {
             return null;
-        } else if (Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))").matcher(password).matches()) {
+        } else if (patternMedium.matcher(password).find()) {
             return "Your password is medium strength";
         } else return "Your password is weak!";
     }
