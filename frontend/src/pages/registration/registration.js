@@ -4,7 +4,7 @@ import Field from '../../components/field/field';
 import './registration.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
-import validation from '../../validation';
+import validation from '../../utils/validation';
 import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
 
 function Registration() {
@@ -25,35 +25,20 @@ function Registration() {
                 window.location.reload();
             }
         }).catch(error => {
-            if (error.response.data.toLowerCase().includes("email")) {
-                setError({firstName: "", lastName: "", email: error.response.data, password: ""});
-            } else if (error.response.data.toLowerCase().includes("first")) {
-                setError({firstName: error.response.data, lastName: "", email: "", password: ""});
-            } else if (error.response.data.toLowerCase().includes("last")) {
-                setError({firstName: "", lastName: error.response.data, email: "", password: ""});
-            } else {
-                setError({firstName: "", lastName: "", email: "", password: error.response.data});
-            }
+            const errortype = error.response.headers.errortype;
+            setError(data =>{
+                let updatedData ={...data};
+                updatedData[errortype] = error.response.data;
+                return updatedData;
+            });
         })
     }
 
     function validateData() {
         setPasswordStrengthMessage("");
-        let errorMessages = {firstName: "", lastName: "", email: "", password: ""};
-        var valid = true;
-        errorMessages.firstName = validation.validateNames(firstName, "First");
-        errorMessages.lastName = validation.validateNames(lastName, "Last");
-        errorMessages.email = validation.validateEmail(email);
-        var passwordMessage = validation.validatePassword(password);
-        if (!passwordMessage.includes('strong')) {
-            valid = false;
-            errorMessages.password = passwordMessage;
-        }
-        if (Object.values(errorMessages).findIndex(object => {
-            return object !== "";
-        }) !== -1) valid = false;
-        setError(errorMessages);
-        return valid;
+        let validationResult = validation.formValidation({firstName,lastName,email,password});
+        setError(validationResult.errorMessages);
+        return validationResult.valid;
     }
 
     return (

@@ -2,13 +2,12 @@ package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.config.security.services.PersonDetails;
-import com.praksa.auction.dto.BasicUserInfoDto;
-import com.praksa.auction.dto.JwtResponseDto;
-import com.praksa.auction.dto.LogInDto;
-import com.praksa.auction.dto.RegistrationDto;
+import com.praksa.auction.dto.*;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,16 +39,16 @@ public class PersonController {
 
     @PostMapping("/login")
     public ResponseEntity<?> logIn(@Valid @RequestBody LogInDto loginInfo) {
-        String validation = loginInfo.validateData();
+        ErrorMessageDto validation = loginInfo.validateData();
         if (validation != null) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(validation);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("errorType",validation.getErrorField());
+            return new ResponseEntity<>(validation.getErrorMessage(),headers,HttpStatus.BAD_REQUEST);
         }
         if (!personService.existsByEmail(loginInfo.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body("Email address not found");
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("errorType","email");
+            return new ResponseEntity<>("Email address not found", headers,HttpStatus.BAD_REQUEST);
         }
 
         Authentication authentication = authenticationManager.authenticate(
@@ -63,16 +62,16 @@ public class PersonController {
 
     @PostMapping("/register")
     public ResponseEntity<?> createAccount(@Valid @RequestBody RegistrationDto signUpRequest) {
-        String validation = signUpRequest.validateRegistration();
+        ErrorMessageDto validation = signUpRequest.validateRegistration();
         if (validation != null) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(validation);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("errorType",validation.getErrorField());
+            return new ResponseEntity<>(validation.getErrorMessage(),headers,HttpStatus.BAD_REQUEST);
         }
         if (personService.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body("This email address is already taken. Please try another one.");
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("errorType","email");
+            return new ResponseEntity<>("This email address is already taken. Please try another one.", headers,HttpStatus.BAD_REQUEST);
         }
         Person p = new Person();
         p.setEmail(signUpRequest.getEmail());

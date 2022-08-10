@@ -4,7 +4,7 @@ import Field from '../../components/field/field';
 import './logIn.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
-import validation from '../../validation';
+import validation from '../../utils/validation';
 import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
 
 function LogIn() {
@@ -23,26 +23,22 @@ function LogIn() {
         }).catch(error => {
             if (error.response.data === "Bad credentials") {
                 setError({email: "", password: "Incorrect password."});
-            } else if (error.response.data.toLowerCase().includes("email")) {
-                setError({email: error.response.data, password: ""});
-            } else {
-                setError({email: "", password: error.response.data});
+            } else{
+                const errortype = error.response.headers.errortype;
+                setError(data =>{
+                    let updatedData ={...data};
+                    updatedData[errortype] = error.response.data;
+                    return updatedData;
+                });
             }
         })
 
     }
 
     function formValidation() {
-        var valid = true;
-        var errorMessages = {email: "", password: ""}
-        errorMessages.email = validation.validateEmail(email)
-        if (errorMessages.email !== "") valid = false;
-        if (!password) {
-            errorMessages.password = "Please enter your password."
-            valid = false;
-        }
-        setError(errorMessages)
-        return valid;
+        let validationResult = validation.formValidation({email,password});
+        setError(validationResult.errorMessages);
+        return validationResult.valid;
     }
 
     return (

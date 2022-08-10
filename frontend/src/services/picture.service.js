@@ -1,4 +1,4 @@
-import httpCommon from "../http-common";
+import httpCommon from "../utils/http-common";
 
 class PictureDataService {
     getProductPictures(id) {

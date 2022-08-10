@@ -1,7 +1,7 @@
 package com.praksa.auction.dto;
 
 import java.util.regex.Pattern;
-import static com.praksa.auction.Constants.*;
+import static com.praksa.auction.common.Constants.*;
 
 public class LogInDto {
     private String email;
@@ -15,17 +15,17 @@ public class LogInDto {
     public LogInDto() {
     }
 
-    public String validateData() {
+    public ErrorMessageDto validateData() {
         if (email == null) {
-            return "Please enter your email address.";
+            return new ErrorMessageDto("email","Please enter your email address.");
         } else {
             Pattern pattern = Pattern.compile(EMAIL_REGEX);
             if (!pattern.matcher(email.toLowerCase()).matches()) {
-                return "Please enter a valid email address";
+                return new ErrorMessageDto("email","Please enter a valid email address");
             }
         }
         if (password == null) {
-            return "Please enter your password.";
+            return new ErrorMessageDto("password","Please enter your password.");
         }
         return null;
     }
