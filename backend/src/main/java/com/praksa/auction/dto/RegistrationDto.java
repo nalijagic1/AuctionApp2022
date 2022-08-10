@@ -1,6 +1,7 @@
 package com.praksa.auction.dto;
 
 import java.util.regex.Pattern;
+import static com.praksa.auction.Constants.*;
 
 public class RegistrationDto {
     private String firstName;
@@ -21,31 +22,28 @@ public class RegistrationDto {
     public String validateRegistration() {
         if (firstName == null) {
             return "Please enter your first name.";
-        } else if (!Pattern.compile("^[a-zA-Z]+$").matcher(firstName).matches()) {
+        } else if (!Pattern.compile(LETTERS_ONLY).matcher(firstName).matches()) {
             return "Please enter your first name correctly";
         }
         if (lastName == null) {
             return "Please enter your last name.";
-        } else if (!Pattern.compile("^[a-zA-Z]+$").matcher(lastName).matches()) {
+        } else if (!Pattern.compile(LETTERS_ONLY).matcher(lastName).matches()) {
             return "Please enter your last name correctly";
         }
         if (email == null) {
             return "Please enter your email address.";
         } else {
-            Pattern pattern = Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$");
-            if (!pattern.matcher(email.toLowerCase()).matches()) {
+            Pattern patternEmail = Pattern.compile(EMAIL_REGEX);
+            if (!patternEmail.matcher(email.toLowerCase()).matches()) {
                 return "Please enter a valid email address.";
             }
         }
-        Pattern patternStrong= Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})");
-        Pattern patternMedium = Pattern.compile("((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))");
+        Pattern patternStrong= Pattern.compile(PASSWORD_STRONG);
         if (password == null) {
             return "Please enter your password.";
         } else if (patternStrong.matcher(password).find()) {
             return null;
-        } else if (patternMedium.matcher(password).find()) {
-            return "Your password is medium strength";
-        } else return "Your password is weak!";
+        } else return "Your password is not strong enough!";
     }
 
     public String getFirstName() {

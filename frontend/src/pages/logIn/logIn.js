@@ -21,7 +21,6 @@ function LogIn() {
                 window.location.reload();
             }
         }).catch(error => {
-
             if (error.response.data === "Bad credentials") {
                 setError({email: "", password: "Incorrect password."});
             } else if (error.response.data.toLowerCase().includes("email")) {

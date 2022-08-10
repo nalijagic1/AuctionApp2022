@@ -1,6 +1,7 @@
 package com.praksa.auction.dto;
 
 import java.util.regex.Pattern;
+import static com.praksa.auction.Constants.*;
 
 public class LogInDto {
     private String email;
@@ -18,7 +19,7 @@ public class LogInDto {
         if (email == null) {
             return "Please enter your email address.";
         } else {
-            Pattern pattern = Pattern.compile("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$");
+            Pattern pattern = Pattern.compile(EMAIL_REGEX);
             if (!pattern.matcher(email.toLowerCase()).matches()) {
                 return "Please enter a valid email address";
             }
