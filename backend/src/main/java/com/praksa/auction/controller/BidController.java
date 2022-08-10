@@ -46,7 +46,13 @@ public class BidController {
         newBid.setPerson(personService.getPersonById(biddingInfo.getPerson()));
         newBid.setBid(biddingInfo.getBid());
         newBid.setBidDate(today);
-        if (bidService.getHighestBid(biddingInfo.getPerson()).getPerson().getId() == biddingInfo.getPerson()) {
+        Bid highestBid = bidService.getHighestBid(biddingInfo.getProduct());
+        if(highestBid.getBid() >= biddingInfo.getBid()){
+            return ResponseEntity
+                    .badRequest()
+                    .body("");
+        }
+        if (highestBid != null && highestBid.getPerson().getId() == biddingInfo.getPerson()) {
             return ResponseEntity
                     .badRequest()
                     .body("You cannot outbid yourself!");

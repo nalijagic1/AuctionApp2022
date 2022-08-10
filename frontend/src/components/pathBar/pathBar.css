@@ -36,7 +36,7 @@
     list-style-type: none;
 }
 
-.path li::before {
+.breadcrumb-item + .breadcrumb-item::before {
     content: " → ";
     width: 9.44px;
     height: 8.67px;
