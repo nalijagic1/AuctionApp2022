@@ -14,14 +14,10 @@ function ProductInfo({product, showNotification}) {
     const [biddingEnabled, setBiddingEnabled] = useState();
     const [warningText, setWarningText] = useState("");
     const [bid, setBid] = useState();
-    const [seller, setSeller] = useState(true);
-    let countdown;
+    const [notSeller, setNotSeller] = useState(true);
+    const [ended,setEnded] = useState(false);
+    let countdown = moment(product.endingDate).fromNow(true);;
     const user = personService.getCurrentUser();
-    if (moment(product.endingDate) <= moment.now()) {
-        countdown = "This auction has ended!";
-    } else {
-        countdown = moment(product.endingDate).fromNow(true);
-    }
 
     function placeBid() {
         if (highestBid >= bid) {
@@ -36,16 +32,16 @@ function ProductInfo({product, showNotification}) {
     }
 
     useEffect(() => {
+        if(moment(product.endingDate) <= moment.now()) setEnded(true);
         if (user) {
             if (user.user.id === product.person.id) {
-                setSeller(false);
-            } else setSeller(true);
+                setNotSeller(false);
+            }
             setBiddingEnabled("");
         } else {
             setBiddingEnabled('disabled');
             setWarningText("Please login or register to place a bid.");
         }
-        if (countdown === "This auction has ended!") setSeller(false);
         bidService.getBidCount(product.id).then(
             (response) => {
                 setCount(response.data);
@@ -74,10 +70,10 @@ function ProductInfo({product, showNotification}) {
             <div className='biddingInfo'>
                 <h3>Highest bid: <p>${highestBid}</p></h3>
                 <h3>Number of bids: <p>{count}</p></h3>
-                {moment(product.endingDate) > moment.now() && <h3>Time left: <p>{countdown}</p></h3>}
+                {!ended && <h3>Time left: <p>{countdown}</p></h3>}
             </div>
-            {seller &&
-            <TooltipMessage className="" title={warningText == null ? "" : warningText} placement="top-end" arrow>
+            {notSeller && !ended  &&
+            <TooltipMessage className="" title={warningText} placement="top-end" arrow>
                 <div className='bid'>
                     <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass={`placeBid ${biddingEnabled}`}
                            id="placeBid" type="number" onKeyUp={(event) => setBid(event.target.value)}/>
@@ -87,6 +83,7 @@ function ProductInfo({product, showNotification}) {
                 </div>
             </TooltipMessage>
             }
+
             <div className="desc">
                 <h3>Details</h3>
             </div>
