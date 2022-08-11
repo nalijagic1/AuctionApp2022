@@ -57,7 +57,7 @@ class Validation {
                 if (!passwordMessage.includes('strong')) errorMessages.password = passwordMessage;
             }
             else if(keys[i] === 'lastName') errorMessages.lastName = this.validateNames(data.lastName,"last");
-            else if(keys[i] === 'firstName') errorMessages.firstName = this.validateNames(data.first,"first");
+            else if(keys[i] === 'firstName') errorMessages.firstName = this.validateNames(data.firstName,"first");
         }
 
         if (Object.values(errorMessages).findIndex(object => {

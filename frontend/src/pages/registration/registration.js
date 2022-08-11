@@ -35,6 +35,7 @@ function Registration() {
     }
 
     function validateData() {
+        console.log(firstName);
         setPasswordStrengthMessage("");
         let validationResult = validation.formValidation({firstName,lastName,email,password});
         setError(validationResult.errorMessages);
