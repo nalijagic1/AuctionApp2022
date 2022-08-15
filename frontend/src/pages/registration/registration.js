@@ -5,7 +5,7 @@ import './registration.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
 import validation from '../../utils/validation';
-import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
+import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 
 function Registration() {
     const [email, setEmail] = useState();
@@ -25,19 +25,14 @@ function Registration() {
                 window.location.reload();
             }
         }).catch(error => {
-            const errortype = error.response.headers.errortype;
-            setError(data =>{
-                let updatedData ={...data};
-                updatedData[errortype] = error.response.data;
-                return updatedData;
-            });
+            setError(error.response.data)
         })
     }
 
     function validateData() {
         console.log(firstName);
         setPasswordStrengthMessage("");
-        let validationResult = validation.formValidation({firstName,lastName,email,password});
+        let validationResult = validation.formValidation({firstName, lastName, email, password}, 2);
         setError(validationResult.errorMessages);
         return validationResult.valid;
     }

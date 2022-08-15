@@ -4,7 +4,7 @@ import Tooltip, {tooltipClasses} from '@mui/material/Tooltip';
 
 const TooltipMessage = styled(({className, ...props}) => (
     <Tooltip {...props} classes={{popper: className}}/>
-))(({theme}) => ({
+))(() => ({
     [`& .${tooltipClasses.tooltip}`]: {
         background: '#8367D8',
         color: '#FFFFFF',

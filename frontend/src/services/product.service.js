@@ -22,7 +22,7 @@ class ProductDataService {
         return httpCommon.get("/products/" + product);
     }
 
-    getSuggestion(search){
+    getSuggestion(search) {
         return httpCommon.get("/products/check?search=" + search)
     }
 }

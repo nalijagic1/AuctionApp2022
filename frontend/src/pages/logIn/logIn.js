@@ -5,7 +5,7 @@ import './logIn.css'
 import personService from '../../services/person.service';
 import {useNavigate} from "react-router-dom";
 import validation from '../../utils/validation';
-import {AiOutlineEyeInvisible, AiOutlineEye} from "react-icons/ai";
+import {AiOutlineEye, AiOutlineEyeInvisible} from "react-icons/ai";
 
 function LogIn() {
     let navigate = useNavigate();
@@ -15,7 +15,7 @@ function LogIn() {
     const [showPassword, setShowPassword] = useState(false);
 
     function logIntoAccount() {
-        personService.logIn(email, password).then((response) => {
+        personService.logIn(email, password).then(() => {
             if (localStorage.getItem('user')) {
                 navigate("/");
                 window.location.reload();
@@ -24,19 +24,14 @@ function LogIn() {
             if (error.response.data === "Bad credentials") {
                 setError({email: "", password: "Incorrect password."});
             } else{
-                const errortype = error.response.headers.errortype;
-                setError(data =>{
-                    let updatedData ={...data};
-                    updatedData[errortype] = error.response.data;
-                    return updatedData;
-                });
+                setError(error.response.data);
             }
         })
 
     }
 
     function formValidation() {
-        let validationResult = validation.formValidation({email,password});
+        let validationResult = validation.formValidation({email, password}, 1);
         setError(validationResult.errorMessages);
         return validationResult.valid;
     }
