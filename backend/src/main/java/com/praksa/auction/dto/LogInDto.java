@@ -1,21 +1,26 @@
 package com.praksa.auction.dto;
 
-import java.util.regex.Pattern;
+import lombok.*;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import static com.praksa.auction.common.Constants.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Validated
 public class LogInDto {
+    @NotEmpty
+    @Email(message = "Email should be valid")
     private String email;
+    @NotEmpty
+    @Pattern(regexp = PASSWORD_STRONG , message = "Must be strong")
     private String password;
 
-    public LogInDto(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public LogInDto() {
-    }
-
-    public ErrorMessageDto validateData() {
+   /* public ErrorMessageDto validateData() {
         if (email == null) {
             return new ErrorMessageDto("email","Please enter your email address.");
         } else {
@@ -28,22 +33,5 @@ public class LogInDto {
             return new ErrorMessageDto("password","Please enter your password.");
         }
         return null;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    }*/
 }

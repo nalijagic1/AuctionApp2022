@@ -3,9 +3,11 @@ package com.praksa.auction.config.security.jwt;
 import com.praksa.auction.config.security.services.PersonDetails;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.repository.PersonRepository;
+import com.praksa.auction.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -22,7 +24,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
     @Autowired
-    private PersonRepository personRepository;
+    private PersonService personService;
     private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
     @Override
@@ -32,10 +34,10 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
                 String email = jwtUtils.getEmailFromJwtToken(jwt);
-                if (!personRepository.existsByEmail(email)) {
-                    throw new Exception();
+                if (!personService.existsByEmail(email)) {
+                    throw new UsernameNotFoundException("Email address not found");
                 }
-                Person person = personRepository.findByEmail(email).get();
+                Person person = personService.getByEmail(email);
                 PersonDetails userDetails = PersonDetails.build(person);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
                         userDetails.getAuthorities());

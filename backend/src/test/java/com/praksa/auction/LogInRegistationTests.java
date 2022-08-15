@@ -18,7 +18,7 @@ public class LogInRegistationTests {
 
     @Test
     void addUser() {
-        RegistrationDto person = new RegistrationDto("Amna", "Bejtagić", "amna@gmail.com", "amnabej6622");
+        RegistrationDto person = new RegistrationDto("Amna", "Bejtagic", "amna@gmail.com", "amnaBej6622$");
         personController.createAccount(person);
         assertTrue(personService.existsByEmail(person.getEmail()));
     }

@@ -59,13 +59,11 @@ class Validation {
             else if(keys[i] === 'lastName') errorMessages.lastName = this.validateNames(data.lastName,"last");
             else if(keys[i] === 'firstName') errorMessages.firstName = this.validateNames(data.firstName,"first");
         }
-
         if (Object.values(errorMessages).findIndex(object => {
             return object !== "";
         }) !== -1) valid = false;
         return {errorMessages:errorMessages,valid:valid};
     }
-
 }
 
 export default new Validation();
