@@ -11,7 +11,7 @@ class BidDataService {
     }
 
     placeBid(person, product, bid) {
-        return httpCommon.post("/auth/bid", {product, person, bid}, {headers: authHeader()})
+        return httpCommon.post("/auth/placeBid", {product, person, bid}, {headers: authHeader()})
     }
 }
 
