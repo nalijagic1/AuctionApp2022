@@ -5,9 +5,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-
-import static com.praksa.auction.common.Constants.*;
 
 @Getter
 @Setter
