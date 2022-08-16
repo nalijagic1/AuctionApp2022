@@ -40,7 +40,7 @@ public class BidService {
         newBid.setBid(biddingInfo.getBid());
         newBid.setBidDate(today);
         Bid highestBid = getHighestBid(biddingInfo.getProduct());
-        if(highestBid.getBid() >= biddingInfo.getBid()){
+        if(highestBid != null && highestBid.getBid() >= biddingInfo.getBid()){
             throw new IllegalArgumentException("There are higher bids than yours. You could give a second try!");
         }
         if (highestBid != null && highestBid.getPerson().getId() == biddingInfo.getPerson()) {
