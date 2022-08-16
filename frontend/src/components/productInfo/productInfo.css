@@ -73,3 +73,27 @@
     color: #9B9B9B;
 }
 
+.paymentOption{
+    width: 548px;
+    display: flex;
+    margin-top: 40px;
+}
+.paymentOption h1{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #9B9B9B;
+}
+
+.paymentOption h2{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #252525;
+    margin-left: 16px;
+}
+
+

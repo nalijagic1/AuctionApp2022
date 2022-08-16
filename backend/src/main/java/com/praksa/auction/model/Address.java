@@ -13,10 +13,13 @@ public class Address {
     private String city;
     private String zipCode;
     private String state;
-    private String country;
+    @ManyToOne
+    @JoinColumn(name = "countryId")
+    private Country country;
 
 
-    public Address(String street, String city, String zipCode, String state, String country) {
+    public Address(long id, String street, String city, String zipCode, String state, Country country) {
+        this.id = id;
         this.street = street;
         this.city = city;
         this.zipCode = zipCode;
@@ -67,12 +70,11 @@ public class Address {
         this.state = state;
     }
 
-    public String getCountry() {
+    public Country getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(Country country) {
         this.country = country;
     }
-
 }

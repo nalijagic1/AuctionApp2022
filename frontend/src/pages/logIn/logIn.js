@@ -49,7 +49,7 @@ function LogIn() {
                 <form>
                 <Field placeHolder="Enter your email" label="Email"  fieldClass ="loginAndRegisterField"  id="email" type="email" onKeyUp ={e => setEmail(e.target.value)} error={error.email}></Field>
                 <Field placeHolder="Enter your password" label="Password" fieldClass ="loginAndRegisterField"  id="password" type="password"  onKeyUp ={e => setPassword(e.target.value)}  error={error.password}></Field>
-                <Button lable="Login" onClick={() => {if(formValidation())logIntoAccount();}}/> 
+                <Button lable="Login" buttonClass="purpleButton userManagment" onClick={() => {if(formValidation())logIntoAccount();}}/> 
             </form>
            <a>Forgot password?</a>
         </div>

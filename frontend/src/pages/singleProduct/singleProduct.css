@@ -17,3 +17,9 @@
     width: 100%;
     border-radius: 0px
 }
+
+.alert-info {
+    --bs-alert-color:#8367D8;
+    --bs-alert-bg: #F1EFFA;
+    --bs-alert-border-color: #F1EFFA;
+}

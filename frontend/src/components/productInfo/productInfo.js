@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Field from '../field/field'
 import Button from '../button/button';
 import './productInfo.css';
@@ -7,8 +7,12 @@ import moment from 'moment';
 import personService from '../../services/person.service';
 import {MdOutlineKeyboardArrowRight} from "react-icons/md"
 import TooltipMessage from '../tooltipMessage/tooltipMessage';
+import { Avatar } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 function ProductInfo({product, showNotification}) {
+    const navigate = useNavigate();
+    const showOnce = useRef(1);
     const [highestBid, setHighestBid] = useState(0);
     const [count, setCount] = useState(0);
     const [biddingEnabled, setBiddingEnabled] = useState();
@@ -16,9 +20,9 @@ function ProductInfo({product, showNotification}) {
     const [bid, setBid] = useState();
     const [notSeller, setNotSeller] = useState(true);
     const [ended,setEnded] = useState(false);
+    const [winner,setWinner] = useState(false);
     let countdown = moment(product.endingDate).fromNow(true);;
     const user = personService.getCurrentUser();
-
     function placeBid() {
         if (highestBid >= bid) {
             showNotification('warning', "There are higher bids than yours. You could give a second try!")
@@ -57,6 +61,13 @@ function ProductInfo({product, showNotification}) {
                         setBiddingEnabled('disabled');
                         setWarningText("You cannot outbid yourself");
                     }
+                    if(ended && showOnce.current){
+                        showOnce.current = 0;
+                        if(user && response.data.person.id === user.user.id){
+                            setWinner(true);
+                            showNotification("info","Congratulations! You outbid the competition.");
+                        }
+                    }
                 }
             }
         )
@@ -79,9 +90,16 @@ function ProductInfo({product, showNotification}) {
                            id="placeBid" type="number" onKeyUp={(event) => setBid(event.target.value)}/>
                     <Button lable="Place bid"
                             icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}
-                            buttonClass={biddingEnabled + "Button"} onClick={() => placeBid()}/>
+                            buttonClass={biddingEnabled + "Button purpleBorder"} onClick={() => placeBid()}/>
                 </div>
             </TooltipMessage>
+            }{winner && 
+                <div className='paymentOption'>
+                    <h1>Seller:</h1>
+                    <Avatar src={product.person.picture}/>
+                    <h2>{product.person.firstName} {product.person.lastName}</h2>
+                    <Button lable ="Pay" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>} onClick={()=> navigate("/payment",{state:{price:highestBid,seller:product.person.id,product:product.id}}) } buttonClass="purpleBorder"/>
+                </div>
             }
 
             <div className="desc">

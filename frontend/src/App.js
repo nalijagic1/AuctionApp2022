@@ -17,6 +17,7 @@ import {
 } from "react-router-dom";
 import LogIn from './pages/logIn/logIn';
 import Registration from './pages/registration/registration';
+import Payment from './pages/payment/payment';
 
 function App() {
     return (
@@ -37,6 +38,7 @@ function App() {
                         <Route path='/shop' element = {<ShopPage/>}/>
                         <Route path='/login' element={<LogIn/>}/>
                         <Route path='/register' element={<Registration/>}/>
+                        <Route path='/payment' element={<Payment/>}/>
                     </Routes>
             </div>
             <footer className='foot'>

@@ -53,7 +53,7 @@ function Registration() {
                 <Field placeHolder="Enter your last name" label="Last name" fieldClass ="loginAndRegisterField"  id="lastName" type="text"  onKeyUp ={e => setLastName(e.target.value)} error={error.lastName}></Field>
                 <Field placeHolder="Enter your email" label="Email"  fieldClass ="loginAndRegisterField"  id="email" type="email" onKeyUp ={e => setEmail(e.target.value)} error={error.email}></Field>
                 <Field placeHolder="Enter your password" label="Password" fieldClass ="loginAndRegisterField"  id="password" type="password"  onKeyUp ={e => setPassword(e.target.value)} error={error.password}></Field>
-                <Button lable="Register" onClick={() => {if(validateData())createAccount();}}/> 
+                <Button lable="Register" onClick={() => {if(validateData())createAccount();}} buttonClass="purpleButton userManagment"/> 
             </form>
             <div className='accountLogIn'>
                 Already have and account? <a href='/login'>Login</a>

@@ -65,7 +65,7 @@ function ShopPage() {
             </div>
             {hasMore.current &&
             <div className="explore">
-                <Button className="exploreButton" lable="Explore More" onClick={showMore}/>
+                <Button className="exploreButton" lable="Explore More"  buttonClass="purpleButton" onClick={showMore}/>
             </div>}
 
         </div>

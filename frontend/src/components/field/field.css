@@ -28,7 +28,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
-    color: #9B9B9B;
+    color: "#000000";
     border: 1px solid #E3E3E3;
 }
 
@@ -55,4 +55,9 @@
     margin-top: -30px;
     margin-bottom: 32px;
     color: red;
+}
+
+.smaller{
+    width: 263px;
+    margin-right: 20px;
 }
