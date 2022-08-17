@@ -1,38 +1,38 @@
 .bidding {
-    background: #FFFFFF;
-    border: 3px solid #8367D8;
-    padding: 10px 36px 10px 44px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
-    letter-spacing: 0.63px;
-    text-transform: capitalize;
-    color: #252525;
+  background: #ffffff;
+  border: 3px solid #8367d8;
+  padding: 10px 36px 10px 44px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.63px;
+  text-transform: capitalize;
+  color: #252525;
 }
 
 .button img {
-    width: 5.33px;
-    height: 10.67px;
-    margin-left: 21.33px;
+  width: 5.33px;
+  height: 10.67px;
+  margin-left: 21.33px;
 }
 
 .purpleButton {
-    background: #8367D8;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
-    letter-spacing: 0.63px;
-    text-transform: capitalize;
-    color: #FFFFFF;
-    border: 3px solid #8367D8;
-    padding: 16px 56px 16px 56px;
+  background: #8367d8;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.63px;
+  text-transform: capitalize;
+  color: #ffffff;
+  border: 3px solid #8367d8;
+  padding: 16px 56px 16px 56px;
 }
 
 .userManagment {
-    width: 565px;
-    margin-bottom: 48px;
+  width: 565px;
+  margin-bottom: 48px;
 }

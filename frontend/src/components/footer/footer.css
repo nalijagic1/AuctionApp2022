@@ -1,53 +1,53 @@
 .footer {
-    width: 100%;
-    height: 356px;
-    background-color: #252525;
+  width: 100%;
+  height: 356px;
+  background-color: #252525;
 }
 
 .links {
-    margin-left: 160px;
-    float: left;
+  margin-left: 160px;
+  float: left;
 }
 
 h1 {
-    font-family: 'Lato,', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    color: #FFFFFF;
-    opacity: 0.5;
-    padding-top: 31px;
-    padding-bottom: 24px;
+  font-family: "Lato,", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  opacity: 0.5;
+  padding-top: 31px;
+  padding-bottom: 24px;
 }
 
 .links a {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    color: #D8D8D8;
-    padding-bottom: 12px;
-    text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #d8d8d8;
+  padding-bottom: 12px;
+  text-decoration: none;
 }
 
 .contact {
-    float: right;
-    margin-right: 160px;
+  float: right;
+  margin-right: 160px;
 }
 
 .contact img {
-    margin-right: 16.4px;
+  margin-right: 16.4px;
 }
 
 .contact p {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    color: #D8D8D8;
-    margin-top: 0;
-    margin-bottom: 12px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #d8d8d8;
+  margin-top: 0;
+  margin-bottom: 12px;
 }

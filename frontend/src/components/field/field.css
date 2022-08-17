@@ -1,117 +1,117 @@
 .placeBid {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 300;
-    width: 331px;
-    font-size: 16px;
-    line-height: 19px;
-    padding-left: 30px;
-    padding-top: 16px;
-    padding-bottom: 17px;
-    border: 1px solid #E3E3E3;
-    background: #FFFFFF;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  width: 331px;
+  font-size: 16px;
+  line-height: 19px;
+  padding-left: 30px;
+  padding-top: 16px;
+  padding-bottom: 17px;
+  border: 1px solid #e3e3e3;
+  background: #ffffff;
 }
 
 .loginAndRegisterField {
-    margin-top: 16px;
-    margin-bottom: 32px;
-    width: 542px;
-    padding: 18px 0px 18px 24px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    border: 1px solid #E3E3E3;
+  margin-top: 16px;
+  margin-bottom: 32px;
+  width: 542px;
+  padding: 18px 0px 18px 24px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  border: 1px solid #e3e3e3;
 }
 
 .field input:focus-visible {
-    outline: 1px solid #8367D8;
+  outline: 1px solid #8367d8;
 }
 
 .field label {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    color: #252525;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #252525;
 }
 
 .showPassword {
-    position: absolute;
-    margin-top: 65px;
-    margin-left: 450px;
+  position: absolute;
+  margin-top: 65px;
+  margin-left: 450px;
 }
 
 .showPassword path {
-    width: 22px;
-    height: 15px;
+  width: 22px;
+  height: 15px;
 }
 
 .error {
-    border: 1px solid #E10000;
+  border: 1px solid #e10000;
 }
 
 .errormessage {
-    margin-top: -30px;
-    margin-bottom: 32px;
-    color: #E10000;
+  margin-top: -30px;
+  margin-bottom: 32px;
+  color: #e10000;
 }
 
 .successmessage {
-    margin-top: -30px;
-    margin-bottom: 32px;
-    color: #417505;
+  margin-top: -30px;
+  margin-bottom: 32px;
+  color: #417505;
 }
 
 .success {
-    border: 1px solid #417505;
+  border: 1px solid #417505;
 }
 
 .fieldInfo {
-    width: 567px;
-    display: flex;
-    margin-top: -15px;
-    margin-bottom: 32px;
+  width: 567px;
+  display: flex;
+  margin-top: -15px;
+  margin-bottom: 32px;
 }
 
 .fieldInfo p {
-    margin-top: 0px;
-    margin-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .fieldInfo i {
-    margin-left: 14px;
+  margin-left: 14px;
 }
 
 .progressBar {
-    background: #EDEDED;
-    width: 126px;
-    height: 13px;
-    position: absolute;
-    left: 890px;
+  background: #ededed;
+  width: 126px;
+  height: 13px;
+  position: absolute;
+  left: 890px;
 }
 
 .progress {
-    height: 13px;
+  height: 13px;
 }
 
 .strong {
-    width: 100%;
-    background-color: #417505;
+  width: 100%;
+  background-color: #417505;
 }
 
 .medium {
-    width: 66%;
-    background-color: #F8A508;
+  width: 66%;
+  background-color: #f8a508;
 }
 
 .weak {
-    width: 33%;
-    background-color: #E10000;
+  width: 33%;
+  background-color: #e10000;
 }
 
 .progressInfo {
-    display: flex;
+  display: flex;
 }

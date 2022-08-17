@@ -1,47 +1,47 @@
 .us {
-    margin-left: 164px;
-    margin-right: 160px;
-    margin-bottom: 80px;
-    margin-top: 64px;
-    display: flex;
+  margin-left: 164px;
+  margin-right: 160px;
+  margin-bottom: 80px;
+  margin-top: 64px;
+  display: flex;
 }
 
 .aboutText {
-    width: 546px;
+  width: 546px;
 }
 
 .aboutText h2 {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 51px;
-    letter-spacing: 0.84px;
-    color: #000000;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 51px;
+  letter-spacing: 0.84px;
+  color: #000000;
 }
 
 .aboutText p {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #9B9B9B;
-    float: left;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #9b9b9b;
+  float: left;
 }
 
 .aboutImg {
-    float: right;
-    margin-left: 22px;
-    margin-top: 130px;
-    width: 548px;
+  float: right;
+  margin-left: 22px;
+  margin-top: 130px;
+  width: 548px;
 }
 
 .aboutImg img {
-    margin-bottom: 24px;
-    margin-right: 24px;
+  margin-bottom: 24px;
+  margin-right: 24px;
 }
 
 .inline {
-    display: flex;
+  display: flex;
 }

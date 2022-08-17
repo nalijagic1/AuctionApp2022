@@ -1,30 +1,30 @@
 .card-title h2 {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    letter-spacing: 0.84px;
-    color: #252525;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #252525;
 }
 
 .card-body {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    letter-spacing: 0.84px;
-    color: #9B9B9B;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.84px;
+  color: #9b9b9b;
 }
 
 .card-body {
-    display: flex;
-    column-gap: 5px;
+  display: flex;
+  column-gap: 5px;
 }
 
 .card-body p {
-    color: #8367D8;
-    margin: 0px 0px 0px 0px;
-    font-weight: bold;
+  color: #8367d8;
+  margin: 0px 0px 0px 0px;
+  font-weight: bold;
 }
