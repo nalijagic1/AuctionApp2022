@@ -38,7 +38,7 @@ public class PersonController {
         try {
             return ResponseEntity.ok(personService.logIn(loginInfo));
         } catch (UsernameNotFoundException e) {
-            return new ResponseEntity(new LogInRegistationFailedDto(e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new LogInRegistationFailedDto("email",e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -47,7 +47,7 @@ public class PersonController {
         try {
             return ResponseEntity.ok(personService.createAccount(signUpRequest));
         } catch (IllegalArgumentException e) {
-            return new ResponseEntity(new LogInRegistationFailedDto(e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new LogInRegistationFailedDto("email",e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }

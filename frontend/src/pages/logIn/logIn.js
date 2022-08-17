@@ -27,7 +27,14 @@ function LogIn() {
         if (error.response.data === "Bad credentials") {
           setError({ email: "", password: "Incorrect password." });
         } else {
-          setError(error.response.data);
+          setError((data) => {
+            if (error.response.data.field) {
+              const errorData = { ...data };
+              errorData[error.response.data.field] = error.response.data.message;
+              return errorData;
+            }
+            return error.response.data;
+          });
         }
       });
   }

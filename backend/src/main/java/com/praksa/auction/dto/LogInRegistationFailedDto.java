@@ -10,5 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogInRegistationFailedDto {
-    private String email;
+    private String field;
+    private String message;
 }

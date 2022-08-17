@@ -33,12 +33,18 @@ function Registration() {
         }
       })
       .catch((error) => {
-        setError(error.response.data);
+        setError((data) => {
+          if (error.response.data.field) {
+            const errorData = { ...data };
+            errorData[error.response.data.field] = error.response.data.message;
+            return errorData;
+          }
+          return error.response.data;
+        });
       });
   }
 
   function validateData() {
-    console.log(firstName);
     setPasswordStrengthMessage("");
     let validationResult = validation.formValidation(
       { firstName, lastName, email, password },
