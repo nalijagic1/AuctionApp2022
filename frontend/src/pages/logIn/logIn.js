@@ -6,7 +6,6 @@ import personService from "../../services/person.service";
 import { useNavigate } from "react-router-dom";
 import validation from "../../utils/validation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
 function LogIn() {
   let navigate = useNavigate();
   const [email, setEmail] = useState();
@@ -30,11 +29,12 @@ function LogIn() {
           setError((data) => {
             if (error.response.data.field) {
               const errorData = { ...data };
-              errorData[error.response.data.field] = error.response.data.message;
+              var type = validation.getFieldType(error.response.data.field)
+              errorData[type] = error.response.data.message;
               return errorData;
             }
             return error.response.data;
-          });
+          })
         }
       });
   }

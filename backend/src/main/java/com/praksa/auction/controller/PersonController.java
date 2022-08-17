@@ -4,6 +4,7 @@ import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.dto.LogInDto;
 import com.praksa.auction.dto.LogInRegistationFailedDto;
 import com.praksa.auction.dto.RegistrationDto;
+import com.praksa.auction.model.ErrorCode;
 import com.praksa.auction.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +39,7 @@ public class PersonController {
         try {
             return ResponseEntity.ok(personService.logIn(loginInfo));
         } catch (UsernameNotFoundException e) {
-            return new ResponseEntity(new LogInRegistationFailedDto("email",e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new LogInRegistationFailedDto(ErrorCode.EMAIL,e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -47,7 +48,7 @@ public class PersonController {
         try {
             return ResponseEntity.ok(personService.createAccount(signUpRequest));
         } catch (IllegalArgumentException e) {
-            return new ResponseEntity(new LogInRegistationFailedDto("email",e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new LogInRegistationFailedDto(ErrorCode.EMAIL,e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }

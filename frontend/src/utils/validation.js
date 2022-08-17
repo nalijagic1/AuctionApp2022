@@ -3,6 +3,7 @@ import {
   LETTERS_ONLY,
   PASSWORD_MEDIUM,
   PASSWORD_STRONG,
+  FIELDS
 } from "./constants";
 
 class Validation {
@@ -76,6 +77,10 @@ class Validation {
     )
       valid = false;
     return { errorMessages: errorMessages, valid: valid };
+  }
+
+  getFieldType(field){
+    return FIELDS[field];
   }
 }
 

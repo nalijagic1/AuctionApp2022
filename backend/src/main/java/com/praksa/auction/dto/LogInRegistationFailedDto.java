@@ -1,5 +1,6 @@
 package com.praksa.auction.dto;
 
+import com.praksa.auction.model.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LogInRegistationFailedDto {
-    private String field;
+    private ErrorCode field;
     private String message;
 }
