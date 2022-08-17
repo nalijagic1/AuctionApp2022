@@ -36,7 +36,7 @@ function Registration() {
         setError((data) => {
           if (error.response.data.field) {
             const errorData = { ...data };
-            var type = validation.getFieldType(error.response.data.field)
+            var type = validation.getFieldType(error.response.data.field);
             errorData[type] = error.response.data.message;
             return errorData;
           }

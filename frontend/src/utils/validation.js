@@ -79,7 +79,7 @@ class Validation {
     return { errorMessages: errorMessages, valid: valid };
   }
 
-  getFieldType(field){
+  getFieldType(field) {
     return FIELDS[field];
   }
 }
