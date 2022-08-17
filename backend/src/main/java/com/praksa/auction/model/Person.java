@@ -21,12 +21,11 @@ public class Person {
     @ManyToOne
     @JoinColumn(name = "addressId")
     private Address address;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cardId")
-    private Card card;
+    private String customerId;
 
 
-    public Person(String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public Person(long id, String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, String customerId) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -36,9 +35,8 @@ public class Person {
         this.password = password;
         this.picture = picture;
         this.address = address;
-        this.card = card;
+        this.customerId = customerId;
     }
-
 
     public Person() {
     }
@@ -123,12 +121,12 @@ public class Person {
         this.address = address;
     }
 
-    public Card getCard() {
-        return card;
+
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
-
 }

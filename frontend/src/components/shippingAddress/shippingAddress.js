@@ -40,7 +40,6 @@ function ShippingAddress(props) {
                 <div className="nextButton" >
                     <Button className="nextButton" lable ="NEXT" buttonClass="purpleButton" onClick={() => props.nextStep()}></Button>
                 </div>
-                
             </div>
         </div>
     );

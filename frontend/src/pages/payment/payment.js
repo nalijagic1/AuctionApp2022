@@ -1,23 +1,44 @@
 import {React,useState,useEffect} from 'react';
-import { useParams,useLocation } from 'react-router-dom';
+import {useLocation } from 'react-router-dom';
 import './payment.css';
 import PurpleStepper from '../../components/stepper/purpleStepper';
 import PathBar from '../../components/pathBar/pathBar';
 import StepWizard from "react-step-wizard";
 import ShippingAddress from '../../components/shippingAddress/shippingAddress';
 import PaymentInfo from '../../components/paymentInfo/paymentInfo';
+import { loadStripe } from "@stripe/stripe-js";
+import paymentService from '../../services/payment.service';
+import { Elements} from "@stripe/react-stripe-js";
+import PaymentOverview from '../../components/paymentOverview/paymentOverview';
 
 function Payment() {
     const {state} = useLocation();
     const {price,seller,product} = state;
     const [currentStep,setCurrentStep] = useState(0)
+    const stripePromise = loadStripe("pk_test_51LVB8xBj1vinbdx6NyD5IYpzSgWonLR41HNAETguKGEXelw3DcPqP0l3JQ69NAsJOjrfPue0tK2rjJ423fr5PgJS00fSun4phx");
+    const [clientSecret,setClientSecret] = useState();
+    const appearance = {
+        theme: 'stripe',    
+  };
+      const options = {
+        clientSecret,
+        appearance,
+      };
+    useEffect(()=>{
+        paymentService.createIntent(price,product,seller).then((response)=>{
+            setClientSecret(response.data.clientSecret);
+        })
+    },[])
     return (
         <div className='payment'>
             <PathBar prop={{name: "Pay for Item", startPoint: "Shop",endPoint: "Pay for Item", path:"Single product"}}></PathBar>
             <PurpleStepper   className ="stepperPayment" current={currentStep} numberOfSteps={3}/>
             <StepWizard onStepChange={(e)=> setCurrentStep(e.activeStep-1)}>
                 <ShippingAddress/>
-                <PaymentInfo/>
+                {clientSecret &&
+                    <PaymentInfo options={options} stripe={stripePromise}/>
+                }
+                <PaymentOverview product={product} amount={price}/>
             </StepWizard>
 
         </div>

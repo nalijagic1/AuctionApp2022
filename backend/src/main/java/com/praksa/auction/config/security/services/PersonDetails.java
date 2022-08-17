@@ -1,7 +1,6 @@
 package com.praksa.auction.config.security.services;
 
 import com.praksa.auction.model.Address;
-import com.praksa.auction.model.Card;
 import com.praksa.auction.model.Gender;
 import com.praksa.auction.model.Person;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,9 +20,9 @@ public class PersonDetails implements UserDetails {
     private String password;
     private String picture;
     private Address address;
-    private Card card;
+    private String customerId;
 
-    public PersonDetails(long id, String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, Card card) {
+    public PersonDetails(long id, String firstName, String lastName, Gender gender, Date dateOfBirth, String phoneNumber, String email, String password, String picture, Address address, String customerId) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -34,7 +33,7 @@ public class PersonDetails implements UserDetails {
         this.password = password;
         this.picture = picture;
         this.address = address;
-        this.card = card;
+        this.customerId = customerId;
     }
 
     public static PersonDetails build(Person user) {
@@ -48,7 +47,7 @@ public class PersonDetails implements UserDetails {
                 user.getPassword(),
                 user.getPicture(),
                 user.getAddress(),
-                user.getCard());
+                user.getCustomerId());
 
     }
 
@@ -128,12 +127,12 @@ public class PersonDetails implements UserDetails {
         this.address = address;
     }
 
-    public Card getCard() {
-        return card;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCard(Card card) {
-        this.card = card;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     @Override

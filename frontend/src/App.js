@@ -18,6 +18,7 @@ import {
 import LogIn from './pages/logIn/logIn';
 import Registration from './pages/registration/registration';
 import Payment from './pages/payment/payment';
+import SuccesfulPayment from './pages/succesfulPayment/succesfulPayment';
 
 function App() {
     return (
@@ -39,6 +40,7 @@ function App() {
                         <Route path='/login' element={<LogIn/>}/>
                         <Route path='/register' element={<Registration/>}/>
                         <Route path='/payment' element={<Payment/>}/>
+                        <Route path='/paymentComplete' element={<SuccesfulPayment/>}/>
                     </Routes>
             </div>
             <footer className='foot'>

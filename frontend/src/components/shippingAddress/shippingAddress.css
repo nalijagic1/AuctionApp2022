@@ -1,6 +1,5 @@
 .shippingAddress{
     width:737px;
-    height: 733px;
     margin-left: 351px;
     margin-top:40px;
     border: 2px solid #D8D8D8;
@@ -70,6 +69,7 @@
     margin-left: 92px;
     grid-template-columns: repeat(2, 1fr);
     width: 547px;
+    margin-bottom: 64px;
 }
 
 .menuButtons button{

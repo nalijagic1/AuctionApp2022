@@ -1,0 +1,36 @@
+.dropdownHeader{
+    display: flex;
+    width: 100%;
+    border: 1px solid #D8D8D8;
+    padding-top: 16px;
+    padding-left: 34.67px;
+    padding-bottom: 16px;
+}
+
+.dropdownHeader h2{
+    margin-left: 12px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #252525
+}
+
+.dropdownIcon{
+    margin-top: 5px;
+}
+
+.dropdownContent{
+    width: 100%;
+    border: 1px solid #D8D8D8;
+    padding-top: 16px;
+    padding-left: 34.67px;
+    padding-bottom: 16px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #252525;
+}
