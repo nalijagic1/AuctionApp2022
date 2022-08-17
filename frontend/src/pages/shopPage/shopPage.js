@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CategoryList from '../../components/categoryList/categoryList';
 import SearchResult from '../../components/searchResult/searchResult';
-import {useParams, useLocation} from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import './shopPage.css'
 import productService from '../../services/product.service';
 import Button from '../../components/button/button';
@@ -51,22 +51,22 @@ function ShopPage() {
     return (
         <div className="shopPage">
             {word &&
-            <div>
-                {products.length === 0 &&
-                    <DidYouMean search={word}/>
-                }
-                <PathBar prop={{name: "", startPoint: "Home", endPoint: `Search results for ${word}`}}></PathBar>
-            </div>
+                <div>
+                    {products.length === 0 &&
+                        <DidYouMean search={word} />
+                    }
+                    <PathBar prop={{ name: "", startPoint: "Home", endPoint: `Search results for ${word}` }}></PathBar>
+                </div>
 
             }
             <div className="shop">
-                <CategoryList filter={filter}/>
-                <SearchResult results={products}/>
+                <CategoryList filter={filter} />
+                <SearchResult results={products} />
             </div>
             {hasMore.current &&
-            <div className="explore">
-                <Button className="exploreButton" lable="Explore More" buttonClass ="purpleButton" onClick={showMore}/>
-            </div>}
+                <div className="explore">
+                    <Button className="exploreButton" lable="Explore More" buttonClass="purpleButton" onClick={showMore} />
+                </div>}
 
         </div>
     );

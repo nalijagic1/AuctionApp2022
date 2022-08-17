@@ -8,10 +8,10 @@ function LandingPage() {
     return (
         <div>
             <div className="home">
-                <CategoryList/>
-                <ProductHighlight/>
+                <CategoryList />
+                <ProductHighlight />
             </div>
-            <Offers/>
+            <Offers />
 
         </div>
     );

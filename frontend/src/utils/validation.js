@@ -1,4 +1,4 @@
-import {EMAIL_REGEX, LETTERS_ONLY, PASSWORD_MEDIUM, PASSWORD_STRONG} from "./constants";
+import { EMAIL_REGEX, LETTERS_ONLY, PASSWORD_MEDIUM, PASSWORD_STRONG } from "./constants";
 
 class Validation {
     validateEmail(email) {
@@ -6,7 +6,7 @@ class Validation {
         if (!email) {
             errorMessage = "Please enter your email address.";
         } else if (!EMAIL_REGEX.test(email.toLowerCase())) {
-                errorMessage = "Please enter a valid email address.";
+            errorMessage = "Please enter a valid email address.";
         }
         return errorMessage;
     }
@@ -49,7 +49,7 @@ class Validation {
     formValidation(data, option) {
         let keys = Object.keys(data);
         let errorMessages = keys.reduce((accumulator, value) => {
-            return {...accumulator, [value]: ''}
+            return { ...accumulator, [value]: '' }
         }, {});
         let valid = true;
         for (var i = 0; i < keys.length; i++) {
@@ -58,12 +58,12 @@ class Validation {
                 var passwordMessage = this.validatePassword(data.password, option);
                 if (!passwordMessage.includes('strong')) errorMessages.password = passwordMessage;
             } else if (keys[i] === 'lastName') errorMessages.lastName = this.validateNames(data.lastName, "last");
-            else if(keys[i] === 'firstName') errorMessages.firstName = this.validateNames(data.firstName,"first");
+            else if (keys[i] === 'firstName') errorMessages.firstName = this.validateNames(data.firstName, "first");
         }
         if (Object.values(errorMessages).findIndex(object => {
             return object !== "";
         }) !== -1) valid = false;
-        return {errorMessages:errorMessages,valid:valid};
+        return { errorMessages: errorMessages, valid: valid };
     }
 }
 

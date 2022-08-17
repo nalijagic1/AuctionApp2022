@@ -1,9 +1,9 @@
-import {React} from 'react';
+import { React } from 'react';
 import './field.css'
-import {AiOutlineInfoCircle} from 'react-icons/ai'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
 import TooltipMessage from '../tooltipMessage/tooltipMessage';
 
-function Field({placeHolder, fieldClass, label, type, id, onKeyUp, error, info, infoType, iconShow}) {
+function Field({ placeHolder, fieldClass, label, type, id, onKeyUp, error, info, infoType, iconShow }) {
     let messageClass = "";
     if (error) {
         messageClass = "error";
@@ -16,7 +16,7 @@ function Field({placeHolder, fieldClass, label, type, id, onKeyUp, error, info, 
             {label && <label>{label}</label>}
             {iconShow && <i className='showPassword'>{iconShow}</i>}
             <input type={type} className={`${fieldClass} ${messageClass}`} id={id} name={id} placeholder={placeHolder}
-                   onKeyUp={onKeyUp}></input>
+                onKeyUp={onKeyUp}></input>
             {(error || info) && <div className='fieldInfo'>
                 <p className={`${messageClass}message`}>{error || info} {info && <TooltipMessage title={<ul>
                     <li>Password you provided must have at least 8 characters.</li>
@@ -25,13 +25,13 @@ function Field({placeHolder, fieldClass, label, type, id, onKeyUp, error, info, 
                     <li>Use special characters</li>
                 </ul>} arrow placement="top">
                     <i>
-                        <AiOutlineInfoCircle/>
+                        <AiOutlineInfoCircle />
                     </i>
                 </TooltipMessage>}</p>
                 {info &&
-                <div className="progressBar">
-                    <div className={`progress ${infoType}`}></div>
-                </div>
+                    <div className="progressBar">
+                        <div className={`progress ${infoType}`}></div>
+                    </div>
                 }
             </div>}
         </div>

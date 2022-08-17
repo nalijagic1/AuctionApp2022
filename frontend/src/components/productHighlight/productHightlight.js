@@ -2,8 +2,8 @@ import React from 'react';
 import "./productHightlight.css"
 import productService from '../../services/product.service';
 import pictureService from '../../services/picture.service';
-import {useEffect, useState} from "react";
-import {Link} from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import Button from '../button/button';
 import arrow from "../../images/arrow.png"
 
@@ -30,11 +30,11 @@ function ProductHighlight() {
                     </div>
 
                     <div className='bidNow'>
-                        <Button lable="Bid now" icon={arrow} buttonClass="bidding"/>
+                        <Button lable="Bid now" icon={arrow} buttonClass="bidding" />
                     </div>
                 </div>
                 {image &&
-                <img src={image.imageUrl} alt={product.name}/>}
+                    <img src={image.imageUrl} alt={product.name} />}
             </Link>
         </div>
     );

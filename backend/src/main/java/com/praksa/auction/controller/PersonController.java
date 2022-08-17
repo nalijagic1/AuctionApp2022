@@ -1,9 +1,10 @@
 package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
-import com.praksa.auction.dto.*;
+import com.praksa.auction.dto.LogInDto;
+import com.praksa.auction.dto.LogInRegistationFailedDto;
+import com.praksa.auction.dto.RegistrationDto;
 import com.praksa.auction.service.PersonService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.*;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/people")
@@ -36,17 +37,17 @@ public class PersonController {
     public ResponseEntity<?> logIn(@Valid @RequestBody LogInDto loginInfo) {
         try {
             return ResponseEntity.ok(personService.logIn(loginInfo));
-        }catch (UsernameNotFoundException e){
-            return  new ResponseEntity(new JSONObject(e.getMessage()).toMap(),HttpStatus.BAD_REQUEST);
+        } catch (UsernameNotFoundException e) {
+            return new ResponseEntity(new LogInRegistationFailedDto(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> createAccount(@Valid @RequestBody RegistrationDto signUpRequest) {
-        try{
+        try {
             return ResponseEntity.ok(personService.createAccount(signUpRequest));
-        }catch (IllegalArgumentException e){
-            return  new ResponseEntity(new JSONObject(e.getMessage()).toMap(),HttpStatus.BAD_REQUEST);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity(new LogInRegistationFailedDto(e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }

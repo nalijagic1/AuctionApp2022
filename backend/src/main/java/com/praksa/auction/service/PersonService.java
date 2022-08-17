@@ -36,17 +36,20 @@ public class PersonService {
         return personRepositoy.existsByEmail(email);
     }
 
+    private Person getPersonFromRegistrationRequest(RegistrationDto registrationDto) {
+        Person p = new Person();
+        p.setEmail(registrationDto.getEmail());
+        p.setFirstName(registrationDto.getFirstName());
+        p.setLastName(registrationDto.getLastName());
+        p.setPassword(encoder.encode(registrationDto.getPassword()));
+        return p;
+    }
+
     public JwtResponseDto createAccount(RegistrationDto signUpRequest) {
         if (personRepositoy.existsByEmail(signUpRequest.getEmail())) {
-            String error = "{\"email\":\"This email address is already taken. Please try another one.\"}";
-            throw new IllegalArgumentException(error);
+            throw new IllegalArgumentException("This email address is already taken. Please try another one.");
         }
-        Person p = new Person();
-        p.setEmail(signUpRequest.getEmail());
-        p.setFirstName(signUpRequest.getFirstName());
-        p.setLastName(signUpRequest.getLastName());
-        p.setPassword(encoder.encode(signUpRequest.getPassword()));
-        personRepositoy.save(p);
+        personRepositoy.save(getPersonFromRegistrationRequest(signUpRequest));
         return logIn(new LogInDto(signUpRequest.getEmail(), signUpRequest.getPassword()));
     }
 
@@ -56,8 +59,7 @@ public class PersonService {
 
     public JwtResponseDto logIn(LogInDto loginInfo) {
         if (!personRepositoy.existsByEmail(loginInfo.getEmail())) {
-            String error = "{\"email\":\"Email address not found\"}";
-            throw new UsernameNotFoundException(error);
+            throw new UsernameNotFoundException("Email address not found");
         }
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginInfo.getEmail(), loginInfo.getPassword()));

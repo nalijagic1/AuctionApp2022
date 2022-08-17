@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Field from '../field/field'
 import Button from '../button/button';
 import arrow from '../../images/arrow.png';
@@ -6,7 +6,7 @@ import './productInfo.css';
 import bidService from '../../services/bid.service';
 import moment from 'moment';
 
-function ProductInfo({product}) {
+function ProductInfo({ product }) {
     const [highestBid, setHighestBid] = useState(0);
     const [count, setCount] = useState(0);
     let countdown;
@@ -41,8 +41,8 @@ function ProductInfo({product}) {
                 <h3>Time left: <p>{countdown}</p></h3>
             </div>
             <div className='bid'>
-                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass = "placeBid" id ="placeBid"type = "text"/>
-                <Button lable="Place bid" icon={arrow} buttonClass="bidding"/>
+                <Field placeHolder={`Enter $${highestBid + 1} or higher`} fieldClass="placeBid" id="placeBid" type="text" />
+                <Button lable="Place bid" icon={arrow} buttonClass="bidding" />
             </div>
             <div className="desc">
                 <h3>Details</h3>

@@ -4,8 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.validation.constraints.*;
-import static com.praksa.auction.common.Constants.*;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import static com.praksa.auction.common.Constants.LETTERS_ONLY;
+import static com.praksa.auction.common.Constants.PASSWORD_STRONG;
 
 @Getter
 @Setter

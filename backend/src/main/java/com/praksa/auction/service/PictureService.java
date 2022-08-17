@@ -14,7 +14,6 @@ public class PictureService {
     @Autowired
     public PictureService(PictureRepository pictureRepository) {
         this.pictureRepository = pictureRepository;
-
     }
 
     public List<Picture> getProductPictures(Long id) {

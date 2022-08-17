@@ -17,9 +17,9 @@ function NavigationBlack() {
     return (
         <div className="blacknav">
             <div className="socialMedia">
-                <a href="https://www.facebook.com/AtlantBH"><img src={facebook} alt="facebook"/></a>
-                <a href="https://www.instagram.com/atlantbh/?hl=hr"><img src={instagram} alt="instagram"/></a>
-                <a href="https://twitter.com/atlantbh"><img src={twitter} alt="twitter"/></a>
+                <a href="https://www.facebook.com/AtlantBH"><img src={facebook} alt="facebook" /></a>
+                <a href="https://www.instagram.com/atlantbh/?hl=hr"><img src={instagram} alt="instagram" /></a>
+                <a href="https://twitter.com/atlantbh"><img src={twitter} alt="twitter" /></a>
             </div>
             <div className='user'>
                 {user ? <a href="/" onClick={() => logOut()}>Logout</a> : <div>
@@ -27,7 +27,6 @@ function NavigationBlack() {
                     <h1>or</h1>
                     <a href='/register'>Create an account</a>
                 </div>}
-
             </div>
         </div>
     );

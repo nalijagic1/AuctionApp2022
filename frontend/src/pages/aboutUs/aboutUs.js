@@ -8,7 +8,7 @@ import PathBar from "../../components/pathBar/pathBar";
 function AboutUs() {
     return (
         <div>
-            <PathBar prop={{name: "About Us", startPoint: "Home", endPoint: "About us"}}/>
+            <PathBar prop={{ name: "About Us", startPoint: "Home", endPoint: "About us" }} />
             <div className="us">
                 <div className="aboutText">
                     <h2>About Us</h2>
@@ -30,10 +30,10 @@ function AboutUs() {
                     <p>Thanks For Visiting Our Site </p>
                 </div>
                 <div className="aboutImg">
-                    <img src={photoOne} alt=""/>
+                    <img src={photoOne} alt="" />
                     <div className="inline">
-                        <img src={photoTwo} alt=""/>
-                        <img src={photoThree} alt=""/>
+                        <img src={photoTwo} alt="" />
+                        <img src={photoThree} alt="" />
                     </div>
 
                 </div>

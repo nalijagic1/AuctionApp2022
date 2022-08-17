@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './gallery.css'
 import pictureService from '../../services/picture.service';
 
-function Gallery({productId}) {
+function Gallery({ productId }) {
     const [shown, setShown] = useState([]);
     const [pictures, setPicture] = useState([]);
     useEffect(() => {
@@ -20,7 +20,7 @@ function Gallery({productId}) {
                 <div className="pictureGrid">
                     {pictures.map(picture => (
                         <img key={picture.id} value={picture} src={picture.imageUrl}
-                             onClick={event => setShown(event.target.src)} alt="Item"></img>
+                            onClick={event => setShown(event.target.src)} alt="Item"></img>
                     ))}
                 </div>
             </div>

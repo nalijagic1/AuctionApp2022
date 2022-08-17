@@ -89,10 +89,8 @@ function Registration() {
                     }}
                            error={error.password} info={passwordStrengthMessage} infoType={passwordStrength}
                            iconShow={showPassword ?
-                               <AiOutlineEyeInvisible style={{fontSize: 16, width: '22px', height: '15px'}}
-                                                      onClick={() => setShowPassword(false)}/> :
-                               <AiOutlineEye style={{fontSize: 16, width: '22px', height: '15px'}}
-                                             onClick={() => setShowPassword(true)}/>}></Field>
+                               <AiOutlineEyeInvisible  className="passwordIcon" onClick={() => setShowPassword(false)}/> :
+                               <AiOutlineEye  className="passwordIcon"onClick={() => setShowPassword(true)}/>}></Field>
                     <Button lable="Register" buttonClass="purpleButton userManagment" onClick={() => {
                         if (validateData()) createAccount();
                     }}/>
@@ -100,7 +98,6 @@ function Registration() {
                 <div className='accountLogIn'>
                     Already have and account? <a href='/login'>Login</a>
                 </div>
-
             </div>
         </div>
     );

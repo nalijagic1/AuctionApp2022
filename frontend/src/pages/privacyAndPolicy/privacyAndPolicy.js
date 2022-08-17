@@ -5,12 +5,12 @@ import PathBar from "../../components/pathBar/pathBar";
 function PrivacyAndPolicy() {
     return (
         <div>
-            <PathBar prop={{name: "Privacy and policy", startPoint: "Home", endPoint: "Privacy and policy"}}/>
+            <PathBar prop={{ name: "Privacy and policy", startPoint: "Home", endPoint: "Privacy and policy" }} />
             <div className="privacy">
                 <h2>Privacy And Policy</h2>
                 <p>This privacy policy ("policy") will help you understand how Auction uses and protects the data you
                     provide to us when you visit and use websites.
-                    <br/>
+                    <br />
                     We reserve the right to change this policy at any given time, of which you will be promptly updated.
                     If you want to make sure that you are up to date with the latest changes, we advise you to
                     frequently visit this page.
@@ -41,7 +41,7 @@ function PrivacyAndPolicy() {
                     Once you agree to allow our website to use cookies, you also agree to use the data it collects
                     regarding your online behavior (analyze web traffic, web pages you spend the most time on,
                     and websites you visit)
-                    <br/>
+                    <br />
                     The data we collect by using cookies is used to customize our website to your needs. After we
                     use the data for statistical analysis, the data is completely removed from our systems.
                     Please note that cookies don't allow us to gain control of your computer in any way. They are
