@@ -3,7 +3,6 @@ import {
   LETTERS_ONLY,
   PASSWORD_MEDIUM,
   PASSWORD_STRONG,
-  FIELDS
 } from "./constants";
 
 class Validation {
@@ -79,8 +78,15 @@ class Validation {
     return { errorMessages: errorMessages, valid: valid };
   }
 
-  getFieldType(field) {
-    return FIELDS[field];
+  determanError(errorCode){
+    switch(errorCode){
+        case 1:
+            return {email:"Email address not found"};
+        case 2:
+            return {email:"This email address is already taken. Please try another one."};
+        default:
+            return;
+    }
   }
 }
 

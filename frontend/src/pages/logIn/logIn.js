@@ -26,12 +26,10 @@ function LogIn() {
         if (error.response.data === "Bad credentials") {
           setError({ email: "", password: "Incorrect password." });
         } else {
-          setError((data) => {
-            if (error.response.data.field) {
-              const errorData = { ...data };
-              var type = validation.getFieldType(error.response.data.field);
-              errorData[type] = error.response.data.message;
-              return errorData;
+            console.log(error)
+            setError((data) => {
+            if (error.response.data.errorCode) {
+              return validation.determanError(error.response.data.errorCode);
             }
             return error.response.data;
           });
