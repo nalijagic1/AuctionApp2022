@@ -93,7 +93,7 @@ function LogIn() {
             }}
           />
         </form>
-        <a>Forgot password?</a>
+        <a href="/">Forgot password?</a>
       </div>
     </div>
   );

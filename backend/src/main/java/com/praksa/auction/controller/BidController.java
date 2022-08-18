@@ -1,22 +1,18 @@
 package com.praksa.auction.controller;
 
-
 import com.praksa.auction.dto.BiddingInfoDto;
 import com.praksa.auction.model.Bid;
 import com.praksa.auction.service.BidService;
-import com.praksa.auction.service.PersonService;
-import com.praksa.auction.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.Valid;
 import java.time.DateTimeException;
-import java.util.Date;
 
 @RestController
 public class BidController {

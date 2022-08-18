@@ -1,6 +1,7 @@
 import httpCommon from "../utils/http-common";
 
 class PersonDataService {
+
   logIn(email, password) {
     return httpCommon
       .post("/people/login", { email, password })
@@ -25,6 +26,10 @@ class PersonDataService {
 
   logout() {
     localStorage.removeItem("user");
+  }
+
+  getCurrentUser () {
+    return JSON.parse(localStorage.getItem("user"));
   }
 }
 
