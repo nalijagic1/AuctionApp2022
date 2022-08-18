@@ -69,7 +69,7 @@ const PurpleConnector = styled(StepConnector)(({ theme }) => ({
   };
 
   function PurpleStepper({current,numberOfSteps}){
-    const steps = Array(numberOfSteps).fill(0);
+    const steps = Array.from({length: numberOfSteps}, (_, i) => i + 1);
         return (
           <div className="stepperContainer">
             <div className="stepper">

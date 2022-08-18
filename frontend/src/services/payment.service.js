@@ -1,5 +1,5 @@
-import httpCommon from "../http-common";
-import authHeader from "../auth-header";
+import httpCommon from "../utils/http-common";
+import authHeader from "../utils/auth-header";
 
 class PaymentDataService {
     createIntent(amount,productId,customerId) {

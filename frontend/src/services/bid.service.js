@@ -1,5 +1,5 @@
 import httpCommon from "../utils/http-common";
-import authHeader from "../auth-header";
+import authHeader from "../utils/auth-header";
 
 class BidDataService {
     getBidCount(productId) {

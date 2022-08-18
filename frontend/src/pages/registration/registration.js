@@ -69,7 +69,7 @@ function Registration() {
                 firstName: "",
                 lastName: error.lastName,
                 email: error.email,
-                password: error.password,
+                password: error.password
               });
               setFirstName(e.target.value);
             }}
@@ -86,7 +86,7 @@ function Registration() {
                 firstName: error.firstName,
                 lastName: "",
                 email: error.email,
-                password: error.password,
+                password: error.password
               });
               setLastName(e.target.value);
             }}
@@ -103,7 +103,7 @@ function Registration() {
                 firstName: error.firstName,
                 lastName: error.lastName,
                 email: "",
-                password: error.password,
+                password: error.password
               });
               setEmail(e.target.value);
             }}
@@ -120,7 +120,7 @@ function Registration() {
                 firstName: error.firstName,
                 lastName: error.lastName,
                 email: error.email,
-                password: "",
+                password: ""
               });
               setPassword(e.target.value);
               setPasswordStrengthMessage(

@@ -15,7 +15,7 @@
 .loginAndRegisterField {
   margin-top: 16px;
   margin-bottom: 32px;
-  width: 542px;
+  width: 568px;
   padding: 18px 0px 18px 24px;
   font-family: "Lato";
   font-style: normal;
@@ -70,7 +70,7 @@
 }
 
 .fieldInfo {
-  width: 567px;
+  width: fit-content;
   display: flex;
   margin-top: -15px;
   margin-bottom: 32px;
@@ -114,7 +114,6 @@
 
 .progressInfo {
   display: flex;
->>>>>>> main
 }
 
 .disabled {

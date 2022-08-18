@@ -1,16 +1,14 @@
 import React from 'react';
 import "./cardInfo.css"
-import { Elements,PaymentElement, useElements } from "@stripe/react-stripe-js";
-import Button from '../button/button';
-import { useNavigate } from 'react-router';
+import {PaymentElement, useElements } from "@stripe/react-stripe-js";
 
 function CardInfo({changeCardData}) {
     const elements = useElements();
     return (
         <div>
-            <PaymentElement className="payment-element" onChange={()=>changeCardData(elements)}/>
+            <PaymentElement className="payment-element" onChange={(event)=>{changeCardData(elements,event.complete)}} />
         </div>
     );
 }
 
-export default CardInfo;
+export default CardInfo;;

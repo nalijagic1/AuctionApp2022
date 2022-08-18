@@ -72,7 +72,7 @@ function ProductInfo({product, showNotification}) {
             }
         )
 
-    }, [product, user])
+    }, [product, user,showNotification,ended])
 
     return (
         <div className="info">
@@ -95,9 +95,9 @@ function ProductInfo({product, showNotification}) {
             </TooltipMessage>
             }{winner && 
                 <div className='paymentOption'>
-                    <h1>Seller:</h1>
+                    <h1 className='sellerLabel'>Seller:</h1>
                     <Avatar src={product.person.picture}/>
-                    <h2>{product.person.firstName} {product.person.lastName}</h2>
+                    <h2 className='sellerName'>{product.person.firstName} {product.person.lastName}</h2>
                     <Button lable ="Pay" icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>} onClick={()=> navigate("/payment",{state:{price:highestBid,seller:product.person.id,product:product.id}}) } buttonClass="purpleBorder"/>
                 </div>
             }

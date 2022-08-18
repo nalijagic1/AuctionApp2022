@@ -1,16 +1,17 @@
 .whitenav {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 #logo {
-    margin-top: 17px;
-    margin-right: 120px;
+  margin-top: 17px;
+
+  margin-right: 120px;
 }
 
 .navLogIn {
-    margin-left: 638.5px;
-    margin-bottom: 18px;
+  margin-left: 638.5px;
+  margin-bottom: 18px;
 }
 
 .navHome {
@@ -19,7 +20,7 @@
 }
 
 .search input[type="text"] {
-  width: 548px;
+  width: 590px;
   padding: 12px 20px 12px 20px;
   border: 1px solid #e3e3e3;
   margin-top: 16px;
