@@ -1,22 +1,22 @@
 .suggestion {
-    margin-left: 446px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    letter-spacing: 0.63px;
-    color: #9B9B9B;
+  margin-left: 446px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.63px;
+  color: #9b9b9b;
 }
 
 .suggestion a {
-    margin-left: 16px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    letter-spacing: 0.63px;
-    color: #8367D8;
-    text-decoration: none;
+  margin-left: 16px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.63px;
+  color: #8367d8;
+  text-decoration: none;
 }

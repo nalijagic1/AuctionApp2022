@@ -1,5 +1,6 @@
 package com.praksa.auction.dto;
 
+import com.praksa.auction.model.ErrorCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,8 +10,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SubcategoryDto {
-    private long subcategoryId;
-    private String name;
-    private long count;
+public class LogInRegistationFailedDto {
+    private Integer errorCode;
 }

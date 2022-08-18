@@ -1,51 +1,54 @@
 .blacknav {
-    left: 0%;
-    right: 0%;
-    top: 0%;
-    bottom: 0%;
-    height: 40px;
-    width: 100%;
-    background: #252525;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  height: 40px;
+  width: 100%;
+  background: #252525;
 }
 
 .socialMedia {
-    margin-left: 174px;
-    margin-top: 8.5px;
-    margin-bottom: 7.5px;
-    float: left;
+  margin-left: 174px;
+  margin-top: 8.5px;
+  margin-bottom: 7.5px;
+  float: left;
 }
 
 .socialMedia img {
-    margin-right: 16.4px;
+  margin-right: 16.4px;
 }
 
 .user {
-    float: right;
-    margin-right: 160px;
-    margin-top: 12px;
-    margin-bottom: 11px;
+  float: right;
+  margin-right: 160px;
+  margin-top: 12px;
+  margin-bottom: 11px;
 }
 
 .user a {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    color: #FFFFFF;
-    text-decoration: none;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  text-decoration: none;
 }
 
+.user p {
+  margin-top: 5px;
+}
 
 .user h1 {
-    display: inline;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 17px;
-    color: #9B9B9B;
-    margin-left: 20px;
-    text-decoration: none;
-    margin-right: 20px;
+  display: inline;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #9b9b9b;
+  margin-left: 20px;
+  text-decoration: none;
+  margin-right: 20px;
 }

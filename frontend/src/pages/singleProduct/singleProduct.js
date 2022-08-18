@@ -5,8 +5,7 @@ import ProductInfo from '../../components/productInfo/productInfo';
 import productService from '../../services/product.service';
 import {useParams} from 'react-router-dom';
 import Alert from "react-bootstrap/Alert";
-
-import './singleProduct.css'
+import "./singleProduct.css";
 
 function SingleProduct() {
     const params = useParams();
@@ -47,7 +46,7 @@ function SingleProduct() {
             </div>
             }
         </div>
-    );
+      )
 }
 
 export default SingleProduct;

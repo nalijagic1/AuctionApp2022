@@ -1,5 +1,5 @@
 .gallery {
-    width: 453px;
+  width: 453px;
 }
 
 .pictureGrid {
@@ -11,11 +11,11 @@
 }
 
 .mainPicture {
-    width: 453px;
-    height: 622px;
+  width: 453px;
+  height: 622px;
 }
 
 .pictureGrid img {
-    width: 71px;
-    height: 97.5px;
+  width: 71px;
+  height: 97.5px;
 }

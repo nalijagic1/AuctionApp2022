@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
-import './pathBar.css'
+import React, { useState, useEffect, useRef } from "react";
+import Breadcrumb from "react-bootstrap/Breadcrumb";
+import "./pathBar.css";
 
 function PathBar({prop}) {
     var classType = useRef("path");
@@ -29,4 +29,4 @@ function PathBar({prop}) {
     );
 }
 
-export default PathBar; 
+export default PathBar;

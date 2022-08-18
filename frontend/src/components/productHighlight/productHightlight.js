@@ -8,27 +8,25 @@ import Button from '../button/button';
 import {MdOutlineKeyboardArrowRight} from "react-icons/md"
 
 function ProductHighlight() {
-    const [product, setProduct] = useState([]);
-    const [image, setImage] = useState();
-    useEffect(() => {
-        productService.getHighlighted()
-            .then((response) => {
-                setProduct(response.data);
-                pictureService.getProductCoverPicture(response.data.id).then((response) => {
-                    setImage(response.data);
-                });
-            });
-    }, []);
-    return (
-        <div className="highlight">
-            <Link to={`/product/${product.id}`}>
-                <div className='productInfo'>
-                    <h3 className='nameProduct'>{product.name}</h3>
-                    <h3 className='priceProduct'>Start from ${product.startingPrice}</h3>
-                    <div className='descProduct'>
-                        {product.description}
-                    </div>
-
+  const [product, setProduct] = useState([]);
+  const [image, setImage] = useState();
+  useEffect(() => {
+    productService.getHighlighted().then((response) => {
+      setProduct(response.data);
+      pictureService
+        .getProductCoverPicture(response.data.id)
+        .then((response) => {
+          setImage(response.data);
+        });
+    });
+  }, []);
+  return (
+    <div className="highlight">
+      <Link to={`/product/${product.id}`}>
+        <div className="productInfo">
+          <h3 className="nameProduct">{product.name}</h3>
+          <h3 className="priceProduct">Start from ${product.startingPrice}</h3>
+          <div className="descProduct">{product.description}</div>
                     <div className='bidNow'>
                         <Button lable="Bid now" buttonClass="purpleBorder"
                                 icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}/>
@@ -37,8 +35,8 @@ function ProductHighlight() {
                 {image &&
                 <img src={image.imageUrl} alt={product.name}/>}
             </Link>
-        </div>
-    );
+    </div>
+  );
 }
 
 export default ProductHighlight;

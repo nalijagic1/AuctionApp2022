@@ -1,44 +1,41 @@
 .info {
-    margin-left: 117px;
+  margin-left: 117px;
 }
 
 .info h2 {
-    width: 548px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 51px;
-    letter-spacing: 0.84px;
-    color: #000000;
-    margin-bottom: 16px;
-    margin-top: 0px;
+  width: 548px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 51px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  margin-bottom: 16px;
+  margin-top: 0px;
 }
 
 .info h3 {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
-    line-height: 19px;
-    color: #8367D8;
-
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+  color: #8367d8;
 }
 
 .info h3 p {
-    font-weight: bold;
-    color: #8367D8;
-    margin: 0px;
-    padding: 0px;
-    display: inline;
-
+  font-weight: bold;
+  color: #8367d8;
+  margin: 0px;
+  padding: 0px;
+  display: inline;
 }
 
 .biddingInfo h3 {
-    color: #252525;
-    margin-bottom: 16px;
+  color: #252525;
+  margin-bottom: 16px;
 }
-
 
 .biddingInfo {
     margin-top: 36px;
@@ -60,17 +57,17 @@
 }
 
 .desc h3 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .info p {
-    width: 548px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #9B9B9B;
+  width: 548px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #9b9b9b;
 }
 
 .paymentOption{
