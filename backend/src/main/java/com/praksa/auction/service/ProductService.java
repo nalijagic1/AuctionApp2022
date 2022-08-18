@@ -7,7 +7,6 @@ import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -53,7 +52,6 @@ public class ProductService {
         return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
-
     public String checkSpelling(String search) {
         Hunspell speller = hunspellConfiguration.speller();
         List<String> suggestons = speller.suggest(search);
@@ -63,6 +61,5 @@ public class ProductService {
             if (searchResult.size() != 0) return suggest;
         }
         return "";
-
     }
 }

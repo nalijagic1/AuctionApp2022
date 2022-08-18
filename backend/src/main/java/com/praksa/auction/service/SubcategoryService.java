@@ -4,7 +4,6 @@ import com.praksa.auction.model.Subcategory;
 import com.praksa.auction.repository.SubcategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -19,6 +18,4 @@ public class SubcategoryService {
     public List<Subcategory> getSubcategoriesFromCategory(long categoryId) {
         return subcategoryRepository.findAllByCategoryId(categoryId);
     }
-
-
 }

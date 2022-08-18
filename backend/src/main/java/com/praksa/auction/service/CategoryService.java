@@ -6,7 +6,6 @@ import com.praksa.auction.model.Category;
 import com.praksa.auction.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
