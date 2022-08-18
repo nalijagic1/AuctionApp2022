@@ -78,14 +78,16 @@ class Validation {
     return { errorMessages: errorMessages, valid: valid };
   }
 
-  determanError(errorCode){
-    switch(errorCode){
-        case 1:
-            return {email:"Email address not found"};
-        case 2:
-            return {email:"This email address is already taken. Please try another one."};
-        default:
-            return;
+  determineError(errorCode) {
+    switch (errorCode) {
+      case 1:
+        return { email: "Email address not found" };
+      case 2:
+        return {
+          email: "This email address is already taken. Please try another one.",
+        };
+      default:
+        return;
     }
   }
 }

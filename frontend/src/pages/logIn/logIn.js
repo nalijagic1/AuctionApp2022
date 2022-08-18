@@ -26,10 +26,9 @@ function LogIn() {
         if (error.response.data === "Bad credentials") {
           setError({ email: "", password: "Incorrect password." });
         } else {
-            console.log(error)
-            setError((data) => {
+          setError(() => {
             if (error.response.data.errorCode) {
-              return validation.determanError(error.response.data.errorCode);
+              return validation.determineError(error.response.data.errorCode);
             }
             return error.response.data;
           });
@@ -55,7 +54,10 @@ function LogIn() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
-            onKeyUp={(e) => setEmail(e.target.value)}
+            onKeyUp={(e) => {
+              setError({ email: "", password: error.password });
+              setEmail(e.target.value);
+            }}
             error={error.email}
           ></Field>
           <Field
@@ -64,7 +66,10 @@ function LogIn() {
             fieldClass="loginAndRegisterField"
             id="password"
             type={showPassword ? "text" : "password"}
-            onKeyUp={(e) => setPassword(e.target.value)}
+            onKeyUp={(e) => {
+              setError({ email: error.email, password: "" });
+              setPassword(e.target.value);
+            }}
             error={error.password}
             iconShow={
               showPassword ? (

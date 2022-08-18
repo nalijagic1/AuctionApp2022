@@ -33,12 +33,9 @@ function Registration() {
         }
       })
       .catch((error) => {
-        setError((data) => {
-          if (error.response.data.field) {
-            const errorData = { ...data };
-            var type = validation.getFieldType(error.response.data.field);
-            errorData[type] = error.response.data.message;
-            return errorData;
+        setError(() => {
+          if (error.response.data.errorCode) {
+            return validation.determineError(error.response.data.errorCode);
           }
           return error.response.data;
         });
