@@ -96,7 +96,7 @@ function ProductInfo({ product, showNotification }) {
               onKeyUp={(event) => setBid(event.target.value)}
             />
             <Button
-              lable="Place bid"
+              label="Place bid"
               icon={
                 <MdOutlineKeyboardArrowRight
                   className="buttonIcon"

@@ -148,7 +148,7 @@ function Registration() {
             }
           ></Field>
           <Button
-            lable="Register"
+            label="Register"
             buttonClass="purpleButton userManagment"
             onClick={() => {
               if (validateData()) createAccount();

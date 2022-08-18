@@ -69,7 +69,7 @@ function ShopPage() {
         <div className="explore">
           <Button
             className="exploreButton"
-            lable="Explore More"
+            label="Explore More"
             buttonClass="purpleButton"
             onClick={showMore}
           />

@@ -86,7 +86,7 @@ function LogIn() {
             }
           ></Field>
           <Button
-            lable="Login"
+            label="Login"
             buttonClass="purpleButton userManagment"
             onClick={() => {
               if (formValidation()) logIntoAccount();
