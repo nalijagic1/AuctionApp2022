@@ -1,80 +1,79 @@
 .list {
-    height: fit-content;
-    width: 240px;
-    margin-left: 160px;
+  height: fit-content;
+  width: 240px;
+  margin-left: 160px;
 }
 
 .filter {
-    border: 1px solid #D8D8D8;
-    padding: 24px;
-    margin-bottom: 24px;
-    height: fit-content;
+  border: 1px solid #d8d8d8;
+  padding: 24px;
+  margin-bottom: 24px;
+  height: fit-content;
 }
 
 .list p {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-    color: #8367D8;
-    padding-left: 16px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #8367d8;
+  padding-left: 16px;
 }
 
 .list li {
-    border-bottom: 1px solid #D8D8D8;
-    padding: 16px;
-    text-decoration: none;
-    width: 262px;
+  border-bottom: 1px solid #d8d8d8;
+  padding: 16px;
+  text-decoration: none;
+  width: 262px;
 }
 
 .filter li {
-    border: none;
-    width: 200px;
-
+  border: none;
+  width: 200px;
 }
 
-.listItem{
-    cursor: pointer;
+.listItem {
+  cursor: pointer;
 }
 
 .listItemfilter {
-    display: flex;
-    padding-bottom: 24px;
-    padding-left: 0px;
-    cursor: pointer;
+  display: flex;
+  padding-bottom: 24px;
+  padding-left: 0px;
+  cursor: pointer;
 }
 
-
-
 .icon {
-    width: 8px;
-    height: 8px;
-    margin-top: 20px;
+  width: 8px;
+  height: 8px;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #252525;
 }
 
 .list a {
-    text-decoration: none;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    color: #252525;
+  text-decoration: none;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #252525;
 }
 
 .category {
-    list-style-type: none;
-    width: 262px;
-    margin: 0px;
-    padding: 0px;
+  list-style-type: none;
+  width: 262px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .listSubcategory {
-    list-style-image: url("../../images/squar.png");
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 17px;
-    color: #9B9B9B;
+  list-style-image: url("../../images/squar.png");
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 17px;
+  color: #9b9b9b;
 }

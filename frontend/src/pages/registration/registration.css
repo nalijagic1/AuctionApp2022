@@ -1,0 +1,58 @@
+.registration {
+  margin-left: 351px;
+  border: 2px solid #d8d8d8;
+  width: 738px;
+  margin-bottom: 80px;
+  padding-bottom: 64px;
+}
+
+.registration h5 {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  margin-left: 330px;
+  margin-top: 23px;
+  margin-bottom: 71px;
+}
+
+.registration form {
+  margin-left: 95px;
+  margin-right: 95px;
+}
+
+.userRegistration hr {
+  background: #d8d8d8;
+  border: 1px solid #d8d8d8;
+  margin-bottom: 40px;
+}
+
+.registration a {
+  text-decoration: none;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #8367d8;
+  margin-left: 32px;
+}
+
+.accountLogIn {
+  margin-left: 243px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #9b9b9b;
+}
+
+.passwordIcon {
+  font-size: 16px;
+  width: 22px;
+  height: 15px;
+}

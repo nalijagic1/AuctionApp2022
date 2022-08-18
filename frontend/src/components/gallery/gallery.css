@@ -1,19 +1,19 @@
 .gallery {
-    width: 453px;
+  width: 453px;
 }
 
 .pictureGrid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 24.5px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 24.5px;
 }
 
 .mainPicture {
-    width: 453px;
-    height: 622px;
+  width: 453px;
+  height: 622px;
 }
 
 .pictureGrid img {
-    width: 71px;
-    height: 97.5px;
+  width: 71px;
+  height: 97.5px;
 }
