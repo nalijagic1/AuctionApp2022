@@ -2,10 +2,10 @@ package com.praksa.auction.config.security.jwt;
 
 import com.praksa.auction.config.security.services.PersonDetails;
 import io.jsonwebtoken.*;
-import org.springframework.security.core.Authentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -20,8 +20,12 @@ public class JwtUtils {
 
     public String generateJwtToken(Authentication authentication) {
         PersonDetails userPrincipal = (PersonDetails) authentication.getPrincipal();
-        return Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs)).signWith(SignatureAlgorithm.HS512, jwtSecret)
+        final Date createdDate = new Date();
+        final Date expirationDate = new Date(createdDate.getTime() + jwtExpirationMs);
+        return Jwts.builder().
+                setSubject((userPrincipal.getUsername())).
+                setIssuedAt(createdDate)
+                .setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
 

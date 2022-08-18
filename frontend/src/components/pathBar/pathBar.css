@@ -1,72 +1,85 @@
 .bar {
-    width: 100%;
-    height: 60px;
-    background-color: #FCFCFC;
+  width: 100%;
+  height: 60px;
+  background-color: #fcfcfc;
 }
 
 .path li.active {
+<<<<<<< HEAD
     margin: 2px 16px 2px 0px;
     color: #8367D8;
+=======
+  margin: 2px 16px 2px 0px;
+>>>>>>> main
 }
 
 .path {
-    float: right;
-    margin-right: 160px;
+  float: right;
+  margin-right: 160px;
 }
 
 .searchPath {
-    float: left;
-    margin-left: 172px;
+  float: left;
+  margin-left: 172px;
 }
 
 .locationName {
-    float: left;
-    margin-left: 160px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #000000;
-    margin-top: 15px;
+  float: left;
+  margin-left: 160px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #000000;
+  margin-top: 15px;
 }
 
 .path ol {
-    display: flex;
-    list-style-type: none;
+  display: flex;
+  list-style-type: none;
 }
 
+<<<<<<< HEAD
 .breadcrumb-item + .breadcrumb-item::before {
     content: " → ";
     width: 9.44px;
     height: 8.67px;
     color: #9B9B9B;;
     margin-right: 16px;
+=======
+.path li::before {
+  content: " → ";
+  width: 9.44px;
+  height: 8.67px;
+  color: #9b9b9b;
+  margin-right: 16px;
+>>>>>>> main
 }
 
 .path li:first-child::before {
-    content: "";
+  content: "";
 }
 
 .path li {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: right;
-    color: #8367D8;
-    margin-right: 16px;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  color: #8367d8;
+  margin-right: 16px;
 }
 
 .path li a {
-    font-family: 'Lato', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 22px;
-    text-align: right;
-    letter-spacing: 0.63px;
-    color: #9B9B9B;
-    text-decoration: none;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  letter-spacing: 0.63px;
+  color: #9b9b9b;
+  text-decoration: none;
 }

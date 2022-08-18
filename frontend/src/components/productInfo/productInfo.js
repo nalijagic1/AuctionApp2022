@@ -79,7 +79,7 @@ function ProductInfo({product, showNotification}) {
                            id="placeBid" type="number" onKeyUp={(event) => setBid(event.target.value)}/>
                     <Button lable="Place bid"
                             icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}
-                            buttonClass={biddingEnabled + "Button"} onClick={() => placeBid()}/>
+                            buttonClass={biddingEnabled + "Button bidding"} onClick={() => placeBid()}/>
                 </div>
             </TooltipMessage>
             }
