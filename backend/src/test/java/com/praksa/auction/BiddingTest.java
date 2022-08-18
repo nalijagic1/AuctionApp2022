@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
@@ -17,10 +16,11 @@ public class BiddingTest {
     BidController bidController;
     @Autowired
     BidRepository bidRepository;
+
     @Test
     void bidding() {
-        Bid highestBidOld =  bidRepository.findFirstByProductIdOrderByBidDesc(5);
-        bidController.placeBid(new BiddingInfoDto(5,2,35.50));
+        Bid highestBidOld = bidRepository.findFirstByProductIdOrderByBidDesc(5);
+        bidController.placeBid(new BiddingInfoDto(5, 2, 35.50));
         Bid highesrBidNew = bidRepository.findFirstByProductIdOrderByBidDesc(5);
         assertTrue(highesrBidNew.getBid() > highestBidOld.getBid());
     }

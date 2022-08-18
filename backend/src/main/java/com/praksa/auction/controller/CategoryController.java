@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
@@ -25,12 +24,10 @@ public class CategoryController {
     @GetMapping()
     public ResponseEntity<List<Category>> getCategories() {
         return ResponseEntity.ok(categoryService.getCategories());
-
     }
 
     @GetMapping("/subcategories")
     public ResponseEntity<List<CategoryDto>> getCategoriesWithSubcategories() {
         return ResponseEntity.ok(categoryService.getCategoriesWithSubcategories());
     }
-
 }

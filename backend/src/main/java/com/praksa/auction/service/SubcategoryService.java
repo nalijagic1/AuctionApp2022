@@ -13,7 +13,6 @@ public class SubcategoryService {
 
     @Autowired
     public SubcategoryService(SubcategoryRepository subcategoryRepository) {
-
         this.subcategoryRepository = subcategoryRepository;
     }
 

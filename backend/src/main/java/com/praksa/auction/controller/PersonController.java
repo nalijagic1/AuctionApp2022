@@ -50,6 +50,5 @@ public class PersonController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity(new LogInRegistationFailedDto(ErrorCodeEnum.DUPLICATE_EMAIL.getErrorCode()), HttpStatus.BAD_REQUEST);
         }
-
     }
 }

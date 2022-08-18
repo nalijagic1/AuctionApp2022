@@ -1,6 +1,5 @@
 package com.praksa.auction.dto;
 
-import com.praksa.auction.model.ErrorCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

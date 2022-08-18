@@ -70,7 +70,7 @@ public class PersonService {
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
 
-    public Person getPersonById(long id){
+    public Person getPersonById(long id) {
         return personRepositoy.findById(id).get();
     }
 

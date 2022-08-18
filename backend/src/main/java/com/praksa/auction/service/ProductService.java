@@ -16,9 +16,9 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final HunspellConfiguration hunspellConfiguration;
-    @Autowired
-    public ProductService(ProductRepository procuctRepository,HunspellConfiguration config) {
 
+    @Autowired
+    public ProductService(ProductRepository procuctRepository, HunspellConfiguration config) {
         this.productRepository = procuctRepository;
         this.hunspellConfiguration = config;
     }
@@ -26,6 +26,7 @@ public class ProductService {
     public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
+
     public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
@@ -56,8 +57,8 @@ public class ProductService {
     public String checkSpelling(String search) {
         Hunspell speller = hunspellConfiguration.speller();
         List<String> suggestons = speller.suggest(search);
-        for(String suggest : suggestons) {
-            if(suggest.length() < 3) continue;
+        for (String suggest : suggestons) {
+            if (suggest.length() < 3) continue;
             List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
             if (searchResult.size() != 0) return suggest;
         }
