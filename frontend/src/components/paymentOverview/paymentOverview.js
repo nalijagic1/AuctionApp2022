@@ -12,7 +12,7 @@ function PaymentOverview(props) {
         <div className="paymentOverview">
             <h5>REVIEW AND CONFIRM PAYMENT</h5>
             <div className='reviewContent'>
-            <Dropdown title="Shipping Address" content={[<p>Uslo</p>]}/>
+           {props.location && <Dropdown title="Shipping Address" content={[<p>{props.location.address}</p>,<p>{props.location.city}</p>,<p>{props.location.country}</p>,<p>{props.location.zipCode}</p>,<p className='change' onClick={() => props.goToStep(1)}>Change</p>]}/>}
             <Dropdown title="Credit card" content={[<p>Uslo</p>]}/>
             </div>
             <div className='auctionContent'>

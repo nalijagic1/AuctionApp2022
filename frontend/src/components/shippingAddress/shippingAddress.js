@@ -4,6 +4,7 @@ import './shippingAddress.css'
 import countryService from '../../services/country.service';
 import Button from '../button/button';
 import { useNavigate } from 'react-router';
+import validation from '../../validation';
 
 function ShippingAddress(props) {
     const [address,setAddress] = useState();
@@ -30,7 +31,7 @@ function ShippingAddress(props) {
                 <select className="countrySelector" onChange={(e) => {console.log(e.target.value);setCountry(e.target.value)}}>
                     <option disabled selected >Select your country</option>
                     {countries && countries.map(country =>{
-                        return <option value={country.id}>{country.name}</option>
+                        return <option value={country.name}>{country.name}</option>
                     })}
                 </select>
             </form>
@@ -38,7 +39,7 @@ function ShippingAddress(props) {
             <div className='menuButtons'>
                 <Button lable="CANCEL" buttonClass="cancel" onClick={() => navigate(-1)}></Button>
                 <div className="nextButton" >
-                    <Button className="nextButton" lable ="NEXT" buttonClass="purpleButton" onClick={() => props.nextStep()}></Button>
+                    <Button className="nextButton" lable ="NEXT" buttonClass="purpleButton" onClick={() => {props.rememberLocation({address:address,city:city,zipCode:zipCode,country:country}); props.nextStep()}}></Button>
                 </div>
             </div>
         </div>

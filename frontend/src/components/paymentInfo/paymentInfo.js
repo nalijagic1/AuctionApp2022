@@ -1,22 +1,24 @@
-import React from 'react';
+import {React,useState} from 'react';
 import "./paymentInfo.css"
-import { Elements,PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { Elements} from "@stripe/react-stripe-js";
 import Button from '../button/button';
 import { useNavigate } from 'react-router';
+import CardInfo from '../cardInfo/cardInfo';
 
 function PaymentInfo(props) {
     const navigate = useNavigate();
+    const [cardInformatio,setCardInformation] = useState()
     return (
         <div className="paymentInformation">
             <h5>Credit Card</h5>
             <Elements options={props.options} stripe={props.stripe}>
-                <PaymentElement className="payment-element"/>
+                <CardInfo changeCardData={(cardData) => setCardInformation(cardData)}/>
             </Elements>
             <div className='commandButtons'>
                 <Button lable="CANCEL" buttonClass="cancel" onClick={() => navigate(-1)}></Button>
                 <div className="moveButtons" >
                     <Button lable ="BACK" buttonClass="purpleBorder" onClick = {() => props.previousStep()}/>
-                    <Button lable ="NEXT" buttonClass="purpleButton" onClick={() => props.nextStep()}></Button>
+                    <Button lable ="NEXT" buttonClass="purpleButton" onClick={() => {console.log(cardInformatio);props.nextStep()}}></Button>
                 </div>
                 
             </div>

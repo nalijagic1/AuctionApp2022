@@ -1,6 +1,7 @@
 .paymentOverview{
     width:737px;
     margin-left: 351px;
+    height: fit-content;
     margin-top:40px;
     border: 2px solid #D8D8D8;
     margin-bottom: 211px;

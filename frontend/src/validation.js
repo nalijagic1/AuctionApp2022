@@ -67,6 +67,16 @@ class Validation {
     }
     return errorMessage;
   }
+
+  validateZipCode(zipCode){
+    var errorMessage = "";
+    if(!zipCode){
+        errorMessage = "Please enter your zip code"
+    }else if(!/^[0-9]{5}(?:-[0-9]{4})?$/.test(zipCode)){
+        errorMessage = "Please enter zip code correctly"
+    }
+    return errorMessage;
+  }
 }
 
 export default new Validation();
