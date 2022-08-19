@@ -3,14 +3,11 @@ import { Stepper,Step,StepLabel } from "@mui/material";
 import {styled} from '@mui/material/styles';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import PropTypes from 'prop-types';
-import './purpleStepper.css'
+import "./purpleStepper.css"
 
 const PurpleConnector = styled(StepConnector)(({ theme }) => ({
-  width:96,
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
       top: 10,
-      left: 'calc(-50% + 16px)',
-      right: 'calc(50% + 16px)',
     },
     [`& .${stepConnectorClasses.line}`]: {
       borderColor:'#8367D8',
@@ -68,11 +65,11 @@ const PurpleConnector = styled(StepConnector)(({ theme }) => ({
     completed: PropTypes.bool,
   };
 
-  function PurpleStepper({current,numberOfSteps}){
+  function PurpleStepper({current,numberOfSteps,stepperClass}){
     const steps = Array.from({length: numberOfSteps}, (_, i) => i + 1);
         return (
           <div className="stepperContainer">
-            <div className="stepper">
+            <div className={stepperClass}>
                  <Stepper alternativeLabel activeStep={current} connector={<PurpleConnector/>}>
         {steps.map( (index) => {
             return <Step key={index}>

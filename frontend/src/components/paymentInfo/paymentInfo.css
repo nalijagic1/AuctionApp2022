@@ -23,23 +23,28 @@
     margin-left: 94px;
     margin-right: 94px;
 }
-.commandButtons{
+
+.navigationButtons{
     display: grid;
     margin-top: 64px;
     margin-left: 92px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, auto);
     width: 547px;
     margin-bottom: 64px;
 }
 
-.commandButtons button{
+.navigationButtons .cancel{
+    margin-right: 50px;
+}
+.navigationButtons button{
     padding: 12px 32px 12px 32px;
 }
-.moveButtons{
+
+.optionButtons{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, auto);
 }
 
-.moveButtons button{
-    float: right;
+.optionButtons button{
+    float:right
 }

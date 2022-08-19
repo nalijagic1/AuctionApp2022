@@ -1,14 +1,14 @@
 import {React,useState,useEffect} from 'react';
 import {useLocation } from 'react-router-dom';
-import './payment.css';
-import PurpleStepper from '../../components/stepper/purpleStepper';
+
+import PurpleStepper from '../../components/purpleStepper/purpleStepper';
 import PathBar from '../../components/pathBar/pathBar';
 import StepWizard from "react-step-wizard";
 import ShippingAddress from '../../components/shippingAddress/shippingAddress';
 import PaymentInfo from '../../components/paymentInfo/paymentInfo';
 import { loadStripe } from "@stripe/stripe-js";
 import paymentService from '../../services/payment.service';
-import PaymentOverview from '../../components/paymentOverview/paymentOverview';
+import './payment.css';
 
 function Payment() {
     const {state} = useLocation();
@@ -35,13 +35,12 @@ function Payment() {
     return (
         <div className='payment'>
             <PathBar prop={{name: "Pay for Item", startPoint: "Shop",endPoint: "Pay for Item", path:"Single product"}}></PathBar>
-            <PurpleStepper   className ="stepperPayment" current={currentStep} numberOfSteps={3}/>
+            <PurpleStepper   stepperClass="stepperTwoSteps" current={currentStep} numberOfSteps={2}/>
             <StepWizard onStepChange={(e)=> setCurrentStep(e.activeStep-1)}>
                 <ShippingAddress rememberLocation ={(location) => rememberLocation(location)}/>
                 {clientSecret &&
-                    <PaymentInfo options={options} stripe={stripePromise}/>
+                    <PaymentInfo options={options} stripe={stripePromise} product={product} amount={price} location = {enteredAddress}/>
                 }
-                <PaymentOverview product={product} amount={price} location ={enteredAddress}/>
             </StepWizard>
 
         </div>
