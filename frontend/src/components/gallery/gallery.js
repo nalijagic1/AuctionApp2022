@@ -7,10 +7,10 @@ function Gallery({ productId }) {
   const [pictures, setPicture] = useState([]);
   useEffect(() => {
     pictureService.getProductPictures(productId).then((response) => {
-      setPicture(response.data);
+      if (response.status === 200) setPicture(response.data);
     });
     pictureService.getProductCoverPicture(productId).then((response) => {
-      setShown(response.data.imageUrl);
+      if (response.status === 200) setShown(response.data.imageUrl);
     });
   }, [productId]);
   return (

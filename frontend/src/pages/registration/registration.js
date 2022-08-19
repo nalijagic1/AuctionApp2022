@@ -27,9 +27,11 @@ function Registration() {
     personService
       .createAccount(firstName, lastName, email, password)
       .then((response) => {
-        if (localStorage.getItem("user")) {
-          navigate("/");
-          window.location.reload();
+        if (response.status === 200) {
+          if (localStorage.getItem("user")) {
+            navigate("/");
+            window.location.reload();
+          }
         }
       })
       .catch((error) => {

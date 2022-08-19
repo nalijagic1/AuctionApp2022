@@ -46,7 +46,7 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam int count) {
-        return ResponseEntity.ok(productService.getAllProducts(count));
+        return ResponseEntity.ok(productService.getAllActiveProducts(count));
     }
 
     @GetMapping("/check")

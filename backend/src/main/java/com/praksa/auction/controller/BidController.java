@@ -29,14 +29,12 @@ public class BidController {
         return ResponseEntity.ok(bidService.getCount(productId));
     }
 
-    @PostMapping("/auth/placeBid")
+    @PostMapping("/registered/placeBid")
     public ResponseEntity<?> placeBid(@Valid @RequestBody BiddingInfoDto biddingInfo) {
         try {
             bidService.placeBid(biddingInfo);
             return ResponseEntity.ok("Succesfull bidding");
-        } catch (DateTimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | DateTimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }

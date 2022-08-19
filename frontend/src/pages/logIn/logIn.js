@@ -16,10 +16,12 @@ function LogIn() {
   function logIntoAccount() {
     personService
       .logIn(email, password)
-      .then(() => {
-        if (localStorage.getItem("user")) {
-          navigate("/");
-          window.location.reload();
+      .then((response) => {
+        if (response.status === 200) {
+          if (localStorage.getItem("user")) {
+            navigate("/");
+            window.location.reload();
+          }
         }
       })
       .catch((error) => {

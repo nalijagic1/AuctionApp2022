@@ -19,7 +19,7 @@ function CategoryList({ filter }) {
 
   useEffect(() => {
     categoryService.getCategoriesWithSubcategories().then((response) => {
-      setCategories(response.data);
+      if (response.status === 200) setCategories(response.data);
     });
   }, []);
 

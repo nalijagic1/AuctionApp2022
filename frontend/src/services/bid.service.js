@@ -1,5 +1,5 @@
 import httpCommon from "../utils/http-common";
-import authHeader from "../auth-header";
+import authHeader from "../utils/auth-header";
 
 class BidDataService {
   getBidCount(productId) {
@@ -10,10 +10,10 @@ class BidDataService {
     return httpCommon.get("/highestBid/" + productId);
   }
 
-  placeBid(person, product, bid) {
+  placeBid(personId, productId, bid) {
     return httpCommon.post(
-      "/auth/placeBid",
-      { product, person, bid },
+      "/registered/placeBid",
+      { productId, personId, bid },
       { headers: authHeader() }
     );
   }

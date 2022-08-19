@@ -32,17 +32,19 @@ function Offers() {
       productService
         .getNewestOrLastChance(option, start, count)
         .then((response) => {
-          if (
-            response.data.length === 0 ||
-            response.data.length % count !== 0
-          ) {
-            setMore(false);
-          }
-          if (lastTab.current === option) {
-            setProducts((p) => p.concat(response.data));
-          } else {
-            setProducts(response.data);
-            lastTab.current = option;
+          if (response.status === 200) {
+            if (
+              response.data.length === 0 ||
+              response.data.length % count !== 0
+            ) {
+              setMore(false);
+            }
+            if (lastTab.current === option) {
+              setProducts((p) => p.concat(response.data));
+            } else {
+              setProducts(response.data);
+              lastTab.current = option;
+            }
           }
         });
     };

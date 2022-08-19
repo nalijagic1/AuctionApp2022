@@ -6,7 +6,7 @@ function DidYouMean({ search }) {
   const [suggestion, setSuggestion] = useState();
   useEffect(() => {
     productService.getSuggestion(search).then((response) => {
-      setSuggestion(response.data);
+      if (response.status === 200) setSuggestion(response.data);
     });
   }, [search]);
   return (

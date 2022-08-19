@@ -12,12 +12,14 @@ function ProductHighlight() {
   const [image, setImage] = useState();
   useEffect(() => {
     productService.getHighlighted().then((response) => {
-      setProduct(response.data);
-      pictureService
-        .getProductCoverPicture(response.data.id)
-        .then((response) => {
-          setImage(response.data);
-        });
+      if (response.status === 200) {
+        setProduct(response.data);
+        pictureService
+          .getProductCoverPicture(response.data.id)
+          .then((response) => {
+            if (response.status === 200) setImage(response.data);
+          });
+      }
     });
   }, []);
   return (

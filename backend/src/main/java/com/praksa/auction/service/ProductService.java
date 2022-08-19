@@ -48,15 +48,16 @@ public class ProductService {
         return productRepository.searchProducts(search, PageRequest.of(0, count));
     }
 
-    public List<Product> getAllProducts(int count) {
+    public List<Product> getAllActiveProducts(int count) {
         return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
     public String checkSpelling(String search) {
         Hunspell speller = hunspellConfiguration.speller();
         List<String> suggestons = speller.suggest(search);
+        int minWordLength = 3;
         for (String suggest : suggestons) {
-            if (suggest.length() < 3) continue;
+            if (suggest.length() < minWordLength) continue;
             List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
             if (searchResult.size() != 0) return suggest;
         }

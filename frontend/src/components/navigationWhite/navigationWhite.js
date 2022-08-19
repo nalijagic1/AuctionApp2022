@@ -1,4 +1,4 @@
-import React, {useRef,useState } from "react";
+import React, { useRef, useState } from "react";
 import "./navigationWhite.css";
 import logo from "../../images/auction-app-logo 1.png";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -8,20 +8,21 @@ function NavigationWhite() {
   let navigate = useNavigate();
   const location = useLocation();
   const showExitButton = useRef(false);
-  const [searchField,setSearchField] = useState("");
+  const [searchField, setSearchField] = useState("");
   const showSearchAndMenu = useRef(
     location.pathname.includes("/login") ||
       location.pathname.includes("/register")
       ? false
       : true
   );
+  const minWordLength = 3;
 
   function search() {
     if (searchField.length === 0) {
       navigate("/shop/all");
       showExitButton.current = false;
     }
-    if (searchField.length >= 3) {
+    if (searchField.length >= minWordLength) {
       navigate("/shop?search=" + searchField);
       showExitButton.current = true;
     }
@@ -50,9 +51,8 @@ function NavigationWhite() {
               type="text"
               placeholder="Search"
               onKeyUp={(e) => {
-                console.log(searchField);
                 if (e.key.toLowerCase() === "enter") search();
-                setSearchField(e.target.value)
+                setSearchField(e.target.value);
               }}
             ></input>
             {showExitButton.current && (

@@ -17,7 +17,7 @@ function SingleProduct() {
     productService
       .getSelectedProduct(parseInt(params.productId))
       .then((response) => {
-        setProduct(response.data);
+        if (response.status === 200) setProduct(response.data);
       });
   }, [params]);
 

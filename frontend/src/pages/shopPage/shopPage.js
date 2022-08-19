@@ -33,8 +33,10 @@ function ShopPage() {
       testIfFilterChanged(word);
       previous.current = word;
       productService.getSearchResult(word, count).then((response) => {
-        setProducts(response.data);
-        hasMore.current = response.data.length === count;
+        if (response.status === 200) {
+          setProducts(response.data);
+          hasMore.current = response.data.length === count;
+        }
       });
     } else {
       testIfFilterChanged(param.category);
@@ -42,8 +44,10 @@ function ShopPage() {
       productService
         .getProductsFromCategory(param.category, count)
         .then((response) => {
-          setProducts(response.data);
-          hasMore.current = response.data.length === count;
+          if (response.status === 200) {
+            setProducts(response.data);
+            hasMore.current = response.data.length === count;
+          }
         });
     }
   }, [param, word, count]);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Field from "../field/field";
 import Button from "../button/button";
 import "./productInfo.css";
@@ -7,28 +7,33 @@ import moment from "moment";
 import personService from "../../services/person.service";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import TooltipMessage from "../tooltipMessage/tooltipMessage";
+import { SIMPLE_NOTIFICATION_TYPES } from "../../utils/constants";
 
 function ProductInfo({ product, showNotification }) {
   const [highestBid, setHighestBid] = useState(0);
   const [count, setCount] = useState(0);
-  const [biddingEnabled, setBiddingEnabled] = useState();
+  const [biddingEnabled, setBiddingEnabled] = useState(false);
   const [warningText, setWarningText] = useState("");
   const [bid, setBid] = useState();
   const [notSeller, setNotSeller] = useState(true);
   const [ended, setEnded] = useState(false);
   let countdown = moment(product.endingDate).fromNow(true);
   const user = personService.getCurrentUser();
+  const showOnce = useRef(1);
 
   function placeBid() {
     if (highestBid >= bid) {
       showNotification(
-        "warning",
+        SIMPLE_NOTIFICATION_TYPES.WARNING,
         "There are higher bids than yours. You could give a second try!"
       );
     } else {
-      bidService.placeBid(user.user.id, product.id, bid).then((response) => {
-        if (response.data.includes("Succesful")) {
-          showNotification("success", "Congrats! You are the highest bider!");
+      bidService.placeBid(user.id, product.id, bid).then((response) => {
+        if (response.status === 200) {
+          showNotification(
+            SIMPLE_NOTIFICATION_TYPES.SUCCESS,
+            "Congrats! You are the highest bider!"
+          );
         }
       });
     }
@@ -37,25 +42,34 @@ function ProductInfo({ product, showNotification }) {
   useEffect(() => {
     if (moment(product.endingDate) <= moment.now()) setEnded(true);
     if (user) {
-      if (user.user.id === product.person.id) {
+      if (user.id === product.person.id) {
         setNotSeller(false);
       }
-      setBiddingEnabled("");
+      setBiddingEnabled(true);
     } else {
-      setBiddingEnabled("disabled");
+      setBiddingEnabled(false);
       setWarningText("Please login or register to place a bid.");
     }
     bidService.getBidCount(product.id).then((response) => {
-      setCount(response.data);
+      if (response.status === 200) setCount(response.data);
     });
     bidService.getHighestBid(product.id).then((response) => {
-      if (response.data.length === 0) {
-        setHighestBid(product.startingPrice);
-      } else {
-        setHighestBid(response.data.bid);
-        if (user && response.data.person.id === user.user.id) {
-          setBiddingEnabled("disabled");
-          setWarningText("You cannot outbid yourself");
+      if (response.status === 200) {
+        if (response.data.length === 0) {
+          setHighestBid(product.startingPrice);
+        } else {
+          setHighestBid(response.data.bid);
+          if (user && response.data.person.id === user.id) {
+            if (!ended && showOnce.current) {
+              showNotification(
+                SIMPLE_NOTIFICATION_TYPES.SUCCESS,
+                "Congrats! You are the highest bider!"
+              );
+            }
+            showOnce.current = 0;
+            setBiddingEnabled(false);
+            setWarningText("You cannot outbid yourself");
+          }
         }
       }
     });
@@ -90,7 +104,7 @@ function ProductInfo({ product, showNotification }) {
           <div className="bid">
             <Field
               placeHolder={`Enter $${highestBid + 1} or higher`}
-              fieldClass={`placeBid ${biddingEnabled}`}
+              fieldClass={biddingEnabled ? `placeBid` : "placeBid disabled"}
               id="placeBid"
               type="number"
               onKeyUp={(event) => setBid(event.target.value)}
@@ -103,7 +117,9 @@ function ProductInfo({ product, showNotification }) {
                   viewBox="none"
                 />
               }
-              buttonClass={biddingEnabled + "Button bidding"}
+              buttonClass={
+                biddingEnabled ? "bidding" : "disabledButton bidding"
+              }
               onClick={() => placeBid()}
             />
           </div>

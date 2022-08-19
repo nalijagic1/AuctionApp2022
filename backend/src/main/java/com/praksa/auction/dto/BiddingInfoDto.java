@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BiddingInfoDto {
-    private long product;
-    private long person;
+    private long productId;
+    private long personId;
     private Double bid;
 }

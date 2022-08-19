@@ -7,7 +7,7 @@ function Card({ name, productId, price }) {
   const [image, setImage] = useState();
   useEffect(() => {
     pictureService.getProductCoverPicture(productId).then((response) => {
-      setImage(response.data);
+      if (response.status === 200) setImage(response.data);
     });
   }, [productId]);
   return (
