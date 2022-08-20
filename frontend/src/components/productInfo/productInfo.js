@@ -7,7 +7,10 @@ import moment from "moment";
 import personService from "../../services/person.service";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import TooltipMessage from "../tooltipMessage/tooltipMessage";
-import { SIMPLE_NOTIFICATION_TYPES } from "../../utils/constants";
+import {
+  NOTIFICATION_TYPES,
+  NOTIFICATION_MESSAGES,
+} from "../../utils/notificationConstnts";
 
 function ProductInfo({ product, showNotification }) {
   const [highestBid, setHighestBid] = useState(0);
@@ -24,15 +27,15 @@ function ProductInfo({ product, showNotification }) {
   function placeBid() {
     if (highestBid >= bid) {
       showNotification(
-        SIMPLE_NOTIFICATION_TYPES.WARNING,
-        "There are higher bids than yours. You could give a second try!"
+        NOTIFICATION_TYPES.WARNING,
+        NOTIFICATION_MESSAGES.BID_HIGHER_MESSAGE
       );
     } else {
       bidService.placeBid(user.id, product.id, bid).then((response) => {
         if (response.status === 200) {
           showNotification(
-            SIMPLE_NOTIFICATION_TYPES.SUCCESS,
-            "Congrats! You are the highest bider!"
+            NOTIFICATION_TYPES.SUCCESS,
+            NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
           );
         }
       });
@@ -62,8 +65,8 @@ function ProductInfo({ product, showNotification }) {
           if (user && response.data.person.id === user.id) {
             if (!ended && showOnce.current) {
               showNotification(
-                SIMPLE_NOTIFICATION_TYPES.SUCCESS,
-                "Congrats! You are the highest bider!"
+                NOTIFICATION_TYPES.SUCCESS,
+                NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
               );
             }
             showOnce.current = 0;
