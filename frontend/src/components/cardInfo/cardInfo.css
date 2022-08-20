@@ -1,4 +1,28 @@
-.payment-element{
-    margin-left: 94px;
-    margin-right: 94px;
+.payment-element {
+  margin-left: 94px;
+  margin-right: 94px;
+}
+.navigationButtons {
+  display: grid;
+  margin-top: 64px;
+  margin-left: 92px;
+  grid-template-columns: repeat(2, auto);
+  width: 547px;
+  margin-bottom: 64px;
+}
+
+.navigationButtons .cancel {
+  margin-right: 50px;
+}
+.navigationButtons button {
+  padding: 12px 32px 12px 32px;
+}
+
+.optionButtons {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.optionButtons button {
+  float: right;
 }

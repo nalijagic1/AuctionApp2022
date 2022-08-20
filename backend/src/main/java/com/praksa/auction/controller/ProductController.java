@@ -61,4 +61,10 @@ public class ProductController {
         Optional<Product> product = productService.getSelectedProduct(id);
         return ResponseEntity.ok(product.get());
     }
+
+    @PutMapping("/updatePayedStatus")
+    public ResponseEntity<?> updatePayedStatus(@RequestBody boolean payed, @RequestParam long product) {
+        productService.updatePayedStatus(payed, product);
+        return ResponseEntity.ok("Successful update");
+    }
 }

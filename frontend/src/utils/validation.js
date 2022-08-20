@@ -70,7 +70,7 @@ class Validation {
 
   validateCountry(country) {
     var errorMessage = "";
-    if (!country) {
+    if (country === 0) {
       errorMessage = "Please select your country";
     }
     return errorMessage;
@@ -114,7 +114,6 @@ class Validation {
   }
 
   locationValidation(location) {
-    console.log(location);
     let keys = Object.keys(location);
     let errorMessages = keys.reduce((accumulator, value) => {
       return { ...accumulator, [value]: "" };
@@ -131,8 +130,8 @@ class Validation {
         case "zipCode":
           errorMessages.zipCode = this.validateZipCode(location.zipCode);
           break;
-        case "country":
-          errorMessages.country = this.validateCountry(location.country);
+        case "countryId":
+          errorMessages.country = this.validateCountry(location.countryId);
           break;
         default:
           break;

@@ -1,11 +1,11 @@
-import React from 'react';
-import "./productHightlight.css"
-import productService from '../../services/product.service';
-import pictureService from '../../services/picture.service';
-import {useEffect, useState} from "react";
-import {Link} from 'react-router-dom';
-import Button from '../button/button';
-import {MdOutlineKeyboardArrowRight} from "react-icons/md"
+import React from "react";
+import "./productHightlight.css";
+import productService from "../../services/product.service";
+import pictureService from "../../services/picture.service";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Button from "../button/button";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 function ProductHighlight() {
   const [product, setProduct] = useState([]);
@@ -27,14 +27,21 @@ function ProductHighlight() {
           <h3 className="nameProduct">{product.name}</h3>
           <h3 className="priceProduct">Start from ${product.startingPrice}</h3>
           <div className="descProduct">{product.description}</div>
-                    <div className='bidNow'>
-                        <Button lable="Bid now" buttonClass="purpleBorder"
-                                icon={<MdOutlineKeyboardArrowRight className='buttonIcon' viewBox='none'/>}/>
-                    </div>
-                </div>
-                {image &&
-                <img src={image.imageUrl} alt={product.name}/>}
-            </Link>
+          <div className="bidNow">
+            <Button
+              lable="Bid now"
+              buttonClass="purpleBorder"
+              icon={
+                <MdOutlineKeyboardArrowRight
+                  className="buttonIcon"
+                  viewBox="none"
+                />
+              }
+            />
+          </div>
+        </div>
+        {image && <img src={image.imageUrl} alt={product.name} />}
+      </Link>
     </div>
   );
 }

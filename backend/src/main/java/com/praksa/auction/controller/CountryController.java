@@ -14,8 +14,9 @@ import java.util.List;
 @RequestMapping("/countries")
 public class CountryController {
     private final CountryService countryService;
+
     @Autowired
-    public CountryController(CountryService countryService){
+    public CountryController(CountryService countryService) {
         this.countryService = countryService;
     }
 

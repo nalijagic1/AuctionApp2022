@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Field from "../field/field";
 import "./shippingAddress.css";
 import countryService from "../../services/country.service";
@@ -12,7 +12,7 @@ function ShippingAddress(props) {
   const [city, setCity] = useState();
   const [zipCode, setZipCode] = useState();
   const [countries, setCoutries] = useState();
-  const [country, setCountry] = useState();
+  const [countryId, setCountry] = useState();
   const [error, setError] = useState({
     address: "",
     city: "",
@@ -23,16 +23,14 @@ function ShippingAddress(props) {
     countryService.getAll().then((response) => {
       setCoutries(response.data);
     });
-    if (error.country) {
-    }
-  }, [error.country]);
+  }, []);
 
   function locationValidation() {
     let validationResult = validation.locationValidation({
       address,
       city,
       zipCode,
-      country,
+      countryId,
     });
     setError(validationResult.errorMessages);
     return validationResult.valid;
@@ -106,13 +104,18 @@ function ShippingAddress(props) {
             });
             setCountry(e.target.value);
           }}
+          defaultValue="0"
         >
-          <option disabled selected>
+          <option key="0" value="0" disabled>
             Select your country
           </option>
           {countries &&
             countries.map((country) => {
-              return <option value={country.name}>{country.name}</option>;
+              return (
+                <option key={country.id} value={country.id}>
+                  {country.name}
+                </option>
+              );
             })}
         </select>
         {error.country && <p className="errorCountry">{error.country}</p>}
@@ -131,7 +134,7 @@ function ShippingAddress(props) {
             buttonClass="purpleButton"
             onClick={() => {
               if (locationValidation()) {
-                props.rememberLocation({ address, city, zipCode, country });
+                props.rememberLocation({ address, city, zipCode, countryId });
                 props.nextStep();
               }
             }}

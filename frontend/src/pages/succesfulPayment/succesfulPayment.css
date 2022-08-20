@@ -1,47 +1,46 @@
-.succesMessage{
-    width:737px;
-    margin-left: 351px;
-    margin-top:40px;
-    border: 2px solid #D8D8D8;
-    margin-bottom: 211px;
-    padding-left: 95px;
-    padding-right: 95px;
-    padding-bottom: 64px;
+.succesMessage {
+  width: 737px;
+  margin-left: 351px;
+  margin-top: 40px;
+  border: 2px solid #d8d8d8;
+  margin-bottom: 211px;
+  padding-left: 95px;
+  padding-right: 95px;
+  padding-bottom: 64px;
 }
 
-.succesMessage h5{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 29px;
-    letter-spacing: 0.84px;
-    color: #000000;
-    margin-left: 145.5px;
-    margin-top: 23px;
-    margin-bottom: 71px;
+.succesMessage h5 {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  margin-left: 145.5px;
+  margin-top: 23px;
+  margin-bottom: 71px;
 }
 
-.succesMessage p{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 27px;
-    color: #9B9B9B;
-    margin-bottom: 48px;
+.succesMessage p {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #9b9b9b;
+  margin-bottom: 48px;
 }
 
-.buttonsMenu{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 3px;
-    margin-top: 64px;
-
+.buttonsMenu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3px;
+  margin-top: 64px;
 }
 
-.buttonsMenu button{
-    width:262px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+.buttonsMenu button {
+  width: 262px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }

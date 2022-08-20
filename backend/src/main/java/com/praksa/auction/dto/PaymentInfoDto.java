@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PaymentInfoDto {
     private double amount;
-    private String costumerId;
-    private String productId;
+    private long customerId;
+    private long productId;
 }

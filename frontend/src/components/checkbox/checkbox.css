@@ -1,11 +1,11 @@
 .container {
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #252525;
-    padding-left: 38.5px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #252525;
+  padding-left: 38.5px;
   display: block;
   position: relative;
   cursor: pointer;
@@ -24,7 +24,6 @@
   width: 0;
 }
 
-/* Create a custom checkbox */
 .checkmark {
   position: absolute;
   top: 5px;
@@ -32,28 +31,24 @@
   height: 15px;
   width: 15px;
   background-color: #ffffff;
-  border: 1px solid #8367D8;
+  border: 1px solid #8367d8;
   border-radius: 10%;
 }
 
-/* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-  background-color: #8367D8;
+  background-color: #8367d8;
 }
 
-/* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-/* Show the checkmark when checked */
 .container input:checked ~ .checkmark:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
 .container .checkmark:after {
   left: 5px;
   width: 5px;

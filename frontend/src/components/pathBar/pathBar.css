@@ -5,8 +5,8 @@
 }
 
 .path li.active {
-    margin: 2px 16px 2px 0px;
-    color: #8367D8;
+  margin: 2px 16px 2px 0px;
+  color: #8367d8;
 }
 
 .path {
@@ -37,11 +37,11 @@
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-    content: " → ";
-    width: 9.44px;
-    height: 8.67px;
-    color: #9B9B9B;;
-    margin-right: 16px;
+  content: " → ";
+  width: 9.44px;
+  height: 8.67px;
+  color: #9b9b9b;
+  margin-right: 16px;
 }
 
 .path li:first-child::before {

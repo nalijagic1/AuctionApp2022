@@ -1,20 +1,21 @@
 .purpleBorder {
-    background: #FFFFFF;
-    border: 3px solid #8367D8;
-    padding: 10px 36px 10px 44px;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
-    letter-spacing: 0.63px;
-    text-transform: capitalize;
-    color: #252525;
+  background: #ffffff;
+  border: 3px solid #8367d8;
+  padding: 10px 36px 10px 44px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.63px;
+  text-transform: capitalize;
+  color: #252525;
 }
 
 .buttonIcon {
-    font-size: 20px;
-    margin-left: 21.33px;
+  font-size: 20px;
+  margin-left: 21.33px;
+  margin-bottom: 5px;
 }
 
 .purpleButton {
@@ -37,21 +38,20 @@
 }
 
 .disabledButton {
-    pointer-events: none;
-    border: 3px solid #C1B3EB;
-    color: #9B9B9B;
+  pointer-events: none;
+  border: 3px solid #c1b3eb;
+  color: #9b9b9b;
 }
 
-.cancel{
-    border: 3px solid #d8d8d8;
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 27px;
-    letter-spacing: 0.63px;
-    text-transform: capitalize;
-    color: #252525;
-    background-color: #FFFFFF;
+.cancel {
+  border: 3px solid #d8d8d8;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: 0.63px;
+  text-transform: capitalize;
+  color: #252525;
+  background-color: #ffffff;
 }
-

@@ -26,6 +26,7 @@ public class Product {
     @JoinColumn(name = "addressId")
     private Address address;
     private Boolean shippingOption;
+    private Boolean payed;
     private String phoneNumber;
 
     public Product(String name, String description, Subcategory subcategory, Person person, Double startingPrice, Date startingDate, Date endingDate, Address address, Boolean shippingOption, String phoneNumber) {
@@ -140,4 +141,11 @@ public class Product {
         this.address = address;
     }
 
+    public Boolean getPayed() {
+        return payed;
+    }
+
+    public void setPayed(Boolean payed) {
+        this.payed = payed;
+    }
 }

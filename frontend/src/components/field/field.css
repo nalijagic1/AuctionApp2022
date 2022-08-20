@@ -26,7 +26,7 @@
 }
 
 .field input:focus-visible {
-  outline: 1px solid #E3E3E3;
+  outline: 1px solid #e3e3e3;
 }
 
 .field label {
@@ -117,18 +117,18 @@
 }
 
 .disabled {
-    pointer-events: none;
-    background: #ECECEC;
-    border: 1px solid #D9D9D9;
+  pointer-events: none;
+  background: #ececec;
+  border: 1px solid #d9d9d9;
 }
 
-.field input[type=number]::-webkit-inner-spin-button,
-.field input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.smaller{
-    width: 263px;
-    margin-right: 20px;
+.smaller {
+  width: 263px;
+  margin-right: 20px;
 }

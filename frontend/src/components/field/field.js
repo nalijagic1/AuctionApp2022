@@ -33,7 +33,7 @@ function Field({
         name={id}
         placeholder={placeHolder}
         onKeyUp={onKeyUp}
-        min='1'
+        min="1"
       ></input>
       {(error || info) && (
         <div className="fieldInfo">
