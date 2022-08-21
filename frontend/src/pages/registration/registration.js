@@ -74,6 +74,7 @@ function Registration() {
               setFirstName(e.target.value);
             }}
             error={error.firstName}
+            value={firstName}
           ></Field>
           <Field
             placeHolder="Enter your last name"
@@ -91,6 +92,7 @@ function Registration() {
               setLastName(e.target.value);
             }}
             error={error.lastName}
+            value={lastName}
           ></Field>
           <Field
             placeHolder="Enter your email"
@@ -98,6 +100,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
+            value={email}
             onChange={(e) => {
               setError({
                 firstName: error.firstName,
@@ -115,6 +118,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="password"
             type={showPassword ? "text" : "password"}
+            value={password}
             onChange={(e) => {
               setError({
                 firstName: error.firstName,

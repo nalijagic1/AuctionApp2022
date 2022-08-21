@@ -34,7 +34,7 @@ function Field({
         name={id}
         placeholder={placeHolder}
         onChange={onChange}
-        value={value ? value : ""}
+        value={value}
         min="1"
       ></input>
       {(error || info) && (
