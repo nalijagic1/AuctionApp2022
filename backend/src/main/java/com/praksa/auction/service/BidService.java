@@ -1,12 +1,9 @@
 package com.praksa.auction.service;
 
-import com.praksa.auction.dto.BiddingInfoDto;
 import com.praksa.auction.model.Bid;
 import com.praksa.auction.repository.BidRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
 
 @Service
 public class BidService {

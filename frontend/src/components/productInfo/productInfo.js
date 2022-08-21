@@ -116,7 +116,7 @@ function ProductInfo({ product, showNotification }) {
               fieldClass={`placeBid ${biddingEnabled}`}
               id="placeBid"
               type="number"
-              onKeyUp={(event) => setBid(event.target.value)}
+              onChange={(event) => setBid(event.target.value)}
             />
             <Button
               lable="Place bid"

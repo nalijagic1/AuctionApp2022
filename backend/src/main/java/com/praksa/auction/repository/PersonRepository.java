@@ -13,4 +13,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query(value = "UPDATE Person SET customer_id = :customerId WHERE id = :userId", nativeQuery = true)
     void updateCustomerInfo(String customerId, long userId);
+
+    @Query(value = "UPDATE Person SET address_id = :addressId WHERE id = :userId", nativeQuery = true)
+    void updateAddressInfo(long addressId, long userId);
 }

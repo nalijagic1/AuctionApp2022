@@ -64,12 +64,12 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="firstName"
             type="text"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 firstName: "",
                 lastName: error.lastName,
                 email: error.email,
-                password: error.password
+                password: error.password,
               });
               setFirstName(e.target.value);
             }}
@@ -81,12 +81,12 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="lastName"
             type="text"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 firstName: error.firstName,
                 lastName: "",
                 email: error.email,
-                password: error.password
+                password: error.password,
               });
               setLastName(e.target.value);
             }}
@@ -98,12 +98,12 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 firstName: error.firstName,
                 lastName: error.lastName,
                 email: "",
-                password: error.password
+                password: error.password,
               });
               setEmail(e.target.value);
             }}
@@ -115,12 +115,12 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="password"
             type={showPassword ? "text" : "password"}
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 firstName: error.firstName,
                 lastName: error.lastName,
                 email: error.email,
-                password: ""
+                password: "",
               });
               setPassword(e.target.value);
               setPasswordStrengthMessage(

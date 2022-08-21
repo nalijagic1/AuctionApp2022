@@ -47,7 +47,7 @@ public class BidController {
         newBid.setBid(biddingInfo.getBid());
         newBid.setBidDate(today);
         Bid highestBid = bidService.getHighestBid(biddingInfo.getProduct());
-        if(highestBid!= null && highestBid.getBid() >= biddingInfo.getBid()){
+        if (highestBid != null && highestBid.getBid() >= biddingInfo.getBid()) {
             return ResponseEntity
                     .badRequest()
                     .body("");

@@ -1,27 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Field from "../field/field";
 import "./shippingAddress.css";
 import countryService from "../../services/country.service";
 import Button from "../button/button";
 import { useNavigate } from "react-router";
 import validation from "../../utils/validation";
+import addressService from "../../services/address.service";
 
 function ShippingAddress(props) {
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
-  const [city, setCity] = useState();
-  const [zipCode, setZipCode] = useState();
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState("");
   const [countries, setCoutries] = useState();
-  const [countryId, setCountry] = useState();
+  const [countryId, setCountry] = useState(0);
   const [error, setError] = useState({
     address: "",
     city: "",
     zipCode: "",
     country: "",
   });
+  const defaultCountry = useRef();
   useEffect(() => {
     countryService.getAll().then((response) => {
-      setCoutries(response.data);
+      if (response.status === 200) setCoutries(response.data);
+    });
+    addressService.getAddressFromUser(props.buyer).then((response) => {
+      if (response.status === 200 && response.data) {
+        setAddress(response.data.street);
+        setCity(response.data.city);
+        setZipCode(response.data.zipCode);
+        setCountry(response.data.country.id);
+      }
     });
   }, []);
 
@@ -45,7 +55,7 @@ function ShippingAddress(props) {
           label="Address*"
           type="text"
           id="addrss"
-          onKeyUp={(e) => {
+          onChange={(e) => {
             setError({
               address: "",
               city: error.city,
@@ -55,6 +65,7 @@ function ShippingAddress(props) {
             setAddress(e.target.value);
           }}
           error={error.address}
+          value={address}
         />
         <div className="cityAndZipCode">
           <Field
@@ -63,7 +74,7 @@ function ShippingAddress(props) {
             label="City*"
             type="text"
             id="city"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 address: error.address,
                 city: "",
@@ -73,6 +84,7 @@ function ShippingAddress(props) {
               setCity(e.target.value);
             }}
             error={error.city}
+            value={city}
           />
           <Field
             placeHolder="Enter your zip code"
@@ -80,7 +92,7 @@ function ShippingAddress(props) {
             label="Zip Code*"
             type="text"
             id="zipCode"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 address: error.address,
                 city: error.city,
@@ -90,6 +102,7 @@ function ShippingAddress(props) {
               setZipCode(e.target.value);
             }}
             error={error.zipCode}
+            value={zipCode}
           />
         </div>
         <label>Country*</label>
@@ -104,7 +117,7 @@ function ShippingAddress(props) {
             });
             setCountry(e.target.value);
           }}
-          defaultValue="0"
+          value={`${countryId}`}
         >
           <option key="0" value="0" disabled>
             Select your country

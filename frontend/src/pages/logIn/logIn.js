@@ -54,7 +54,7 @@ function LogIn() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({ email: "", password: error.password });
               setEmail(e.target.value);
             }}
@@ -66,7 +66,7 @@ function LogIn() {
             fieldClass="loginAndRegisterField"
             id="password"
             type={showPassword ? "text" : "password"}
-            onKeyUp={(e) => {
+            onChang={(e) => {
               setError({ email: error.email, password: "" });
               setPassword(e.target.value);
             }}

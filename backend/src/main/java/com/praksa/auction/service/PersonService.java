@@ -94,4 +94,7 @@ public class PersonService {
         return customer.getId();
     }
 
+    public void updateAddressToUser(long addressId, long personId) {
+        personRepositoy.updateAddressInfo(addressId, personId);
+    }
 }

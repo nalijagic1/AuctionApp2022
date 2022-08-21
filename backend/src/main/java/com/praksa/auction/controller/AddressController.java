@@ -1,13 +1,11 @@
 package com.praksa.auction.controller;
 
 import com.praksa.auction.dto.AddressInfoDto;
+import com.praksa.auction.model.Address;
 import com.praksa.auction.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/address")
@@ -19,9 +17,14 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @PostMapping("/addAddress")
-    public ResponseEntity<?> addAddressIfNotExist(@RequestBody AddressInfoDto address) {
-        addressService.addAddressIfNotExist(address);
-        return ResponseEntity.ok("");
+    @PostMapping("/addAddress/:{personId}")
+    public ResponseEntity<?> addAddressIfNotExist(@RequestBody AddressInfoDto address, @PathVariable long personId) {
+        addressService.addAddressIfNotExist(address, personId);
+        return ResponseEntity.ok("Successful adding");
+    }
+
+    @GetMapping()
+    public ResponseEntity<Address> getAddressFromUser(@RequestParam long personId) {
+        return ResponseEntity.ok(addressService.getAddressFromUser(personId));
     }
 }

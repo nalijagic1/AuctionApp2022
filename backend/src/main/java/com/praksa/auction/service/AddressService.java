@@ -12,10 +12,13 @@ public class AddressService {
     private AddressRepository addressRepository;
     @Autowired
     private CountryService countryService;
+    @Autowired
+    private final PersonService personService;
 
-    public AddressService(AddressRepository addressRepository, CountryService countryService) {
+    public AddressService(AddressRepository addressRepository, CountryService countryService, PersonService personService) {
         this.addressRepository = addressRepository;
         this.countryService = countryService;
+        this.personService = personService;
     }
 
     private Address createAddressFromRequest(AddressInfoDto addressInfoDto) {
@@ -27,10 +30,17 @@ public class AddressService {
         return address;
     }
 
-    public Address addAddressIfNotExist(AddressInfoDto address) {
+    public Address addAddressIfNotExist(AddressInfoDto address, long personId) {
         Address location = createAddressFromRequest(address);
-        if (!addressRepository.existsByStreetAndCityAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode()))
-            return addressRepository.save(location);
+        if (!addressRepository.existsByStreetAndCityAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode())) {
+            Address newAddress = addressRepository.save(location);
+            personService.updateAddressToUser(newAddress.getId(), personId);
+            return newAddress;
+        }
         return location;
+    }
+
+    public Address getAddressFromUser(long personId) {
+        return personService.getPersonById(personId).getAddress();
     }
 }

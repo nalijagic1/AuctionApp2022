@@ -1,0 +1,26 @@
+.paymentOverview {
+  width: 737px;
+  margin-left: 351px;
+  height: fit-content;
+  margin-top: 40px;
+  border: 2px solid #d8d8d8;
+  margin-bottom: 211px;
+}
+.paymentOverview h5 {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  margin-left: 183px;
+  margin-top: 23px;
+  margin-bottom: 71px;
+}
+.reviewContent {
+  display: grid;
+  margin-left: 94px;
+  margin-right: 94px;
+  row-gap: 24px;
+}
