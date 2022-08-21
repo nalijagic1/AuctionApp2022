@@ -16,7 +16,7 @@
   margin-top: 16px;
   margin-bottom: 32px;
   width: 568px;
-  padding: 18px 0px 18px 24px;
+  padding: 18px 21px 18px 24px;
   font-family: "Lato";
   font-style: normal;
   font-weight: 400;
@@ -26,7 +26,7 @@
 }
 
 .field input:focus-visible {
-  outline: 1px solid #e3e3e3;
+  outline: 1px solid #8367d8;
 }
 
 .field label {

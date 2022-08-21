@@ -107,3 +107,8 @@
   width: 1000px;
   display: flex;
 }
+
+.accountSubmenu{
+  position: absolute;
+  height: fit-content;
+}

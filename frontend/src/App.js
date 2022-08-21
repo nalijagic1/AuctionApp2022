@@ -15,6 +15,7 @@ import LogIn from "./pages/logIn/logIn";
 import Registration from "./pages/registration/registration";
 import Payment from "./pages/payment/payment";
 import SuccesfulPayment from "./pages/succesfulPayment/succesfulPayment";
+import AddNewItem from "./pages/addNewItem/addNewItem";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/paymentComplete" element={<SuccesfulPayment />} />
+          <Route path ="/addItem" element={<AddNewItem/>}/>
         </Routes>
       </div>
       <footer className="foot">

@@ -20,7 +20,6 @@ function ShippingAddress(props) {
     zipCode: "",
     country: "",
   });
-  const defaultCountry = useRef();
   useEffect(() => {
     countryService.getAll().then((response) => {
       if (response.status === 200) setCoutries(response.data);

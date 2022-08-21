@@ -64,6 +64,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="firstName"
             type="text"
+            value={firstName}
             onChange={(e) => {
               setError({
                 firstName: "",
@@ -81,6 +82,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="lastName"
             type="text"
+            value={lastName}
             onChange={(e) => {
               setError({
                 firstName: error.firstName,
@@ -98,6 +100,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
+            value={email}
             onChange={(e) => {
               setError({
                 firstName: error.firstName,
@@ -114,6 +117,7 @@ function Registration() {
             label="Password"
             fieldClass="loginAndRegisterField"
             id="password"
+            value={password}
             type={showPassword ? "text" : "password"}
             onChange={(e) => {
               setError({

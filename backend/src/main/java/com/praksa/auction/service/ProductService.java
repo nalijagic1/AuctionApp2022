@@ -57,8 +57,8 @@ public class ProductService {
 
     public String checkSpelling(String search) {
         Hunspell speller = hunspellConfiguration.speller();
-        List<String> suggestons = speller.suggest(search);
-        for (String suggest : suggestons) {
+        List<String> suggestions = speller.suggest(search);
+        for (String suggest : suggestions) {
             if (suggest.length() < 3) continue;
             List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
             if (searchResult.size() != 0) return suggest;
@@ -69,5 +69,9 @@ public class ProductService {
 
     public void updatePayedStatus(boolean payed, long product) {
         productRepository.updatePayedStatus(payed, product);
+    }
+
+    public boolean existBySeller(long sellerId) {
+        return productRepository.existsProductByPersonId(sellerId);
     }
 }

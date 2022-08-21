@@ -30,6 +30,8 @@ public class PersonService {
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
+    ProductService productService;
+    @Autowired
     JwtUtils jwtUtils;
     @Autowired
     PasswordEncoder encoder;
@@ -66,6 +68,16 @@ public class PersonService {
         return personRepositoy.findByEmail(email).get();
     }
 
+    private BasicUserInfoDto getUserInfo(PersonDetails userDetails){
+        BasicUserInfoDto basicPersonInfo = new BasicUserInfoDto();
+        basicPersonInfo.setEmail(userDetails.getEmail());
+        basicPersonInfo.setFirstName(userDetails.getFirstName());
+        basicPersonInfo.setLastName(userDetails.getLastName());
+        basicPersonInfo.setId(userDetails.getId());
+        basicPersonInfo.setSeller(productService.existBySeller(userDetails.getId()));
+        return basicPersonInfo;
+
+    }
     public JwtResponseDto logIn(LogInDto loginInfo) {
         if (!personRepositoy.existsByEmail(loginInfo.getEmail())) {
             throw new UsernameNotFoundException("Email address not found");
@@ -75,7 +87,7 @@ public class PersonService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        BasicUserInfoDto basicPersonInfo = new BasicUserInfoDto(userDetails.getId(), userDetails.getFirstName(), userDetails.getLastName(), userDetails.getEmail());
+        BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
 

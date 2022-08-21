@@ -17,7 +17,7 @@ function ProductInfo({ product, showNotification }) {
   const [count, setCount] = useState(0);
   const [biddingEnabled, setBiddingEnabled] = useState();
   const [warningText, setWarningText] = useState("");
-  const [bid, setBid] = useState();
+  const [bid, setBid] = useState("");
   const [notSeller, setNotSeller] = useState(true);
   const [ended, setEnded] = useState(false);
   const [winner, setWinner] = useState(false);
@@ -116,7 +116,9 @@ function ProductInfo({ product, showNotification }) {
               fieldClass={`placeBid ${biddingEnabled}`}
               id="placeBid"
               type="number"
+              value={bid}
               onChange={(event) => setBid(event.target.value)}
+              min="1"
             />
             <Button
               lable="Place bid"

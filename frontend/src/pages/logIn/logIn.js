@@ -8,8 +8,8 @@ import validation from "../../utils/validation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 function LogIn() {
   let navigate = useNavigate();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -54,6 +54,7 @@ function LogIn() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
+            value={email}
             onChange={(e) => {
               setError({ email: "", password: error.password });
               setEmail(e.target.value);
@@ -66,7 +67,8 @@ function LogIn() {
             fieldClass="loginAndRegisterField"
             id="password"
             type={showPassword ? "text" : "password"}
-            onChang={(e) => {
+            value={password}
+            onChange={(e) => {
               setError({ email: error.email, password: "" });
               setPassword(e.target.value);
             }}
