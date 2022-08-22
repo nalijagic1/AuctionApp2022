@@ -12,6 +12,26 @@ function NewProductDetails(props) {
   const [subcategory, setSubcategory] = useState(0);
   const [categories, setCategories] = useState();
   const [pictures, setPictures] = useState([]);
+  const [dragActive, setDragActive] = useState(false);
+  function handleDrag(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  }
+  function handleDrop (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setPictures((p) =>
+        p.concat(URL.createObjectURL(e.dataTransfer.files[0]))
+      );
+    }
+  };
   const navigate = useNavigate();
   useEffect(() => {
     categoryService.getCategoriesWithSubcategories().then((response) => {
@@ -65,12 +85,19 @@ function NewProductDetails(props) {
         <textarea maxLength={700} />
         <p className="textAreaLimit">100 words (700 characters)</p>
         {pictures.length === 0 ? (
-          <div className="imageUploader">
+          <div
+            className={`imageUploader ${dragActive ? "dragActive" : ""}`}
+            onDragEnter={handleDrag}
+            onDragOver={handleDrag}
+            onDragLeave={handleDrag}
+            onDrop={handleDrop}
+          >
             <label htmlFor="imageInput" className="imageInputField">
               Upload image
               <input
                 id="imageInput"
                 type="file"
+                accept="image/*"
                 onChange={(event) => {
                   setPictures((p) =>
                     p.concat(URL.createObjectURL(event.target.files[0]))

@@ -5,6 +5,7 @@ import StepWizard from "react-step-wizard";
 import "./addNewItem.css";
 import NewProductDetails from "../../components/newProductDetails/newProductDetails";
 import NewProductPrice from "../../components/newProductPrice/newProductPrice";
+import NewProductLocation from "../../components/newProductLocation/newProductLocation";
 
 function AddNewItem() {
     const[activeStep,setActiveStep] = useState(0);
@@ -21,6 +22,7 @@ function AddNewItem() {
       <StepWizard onStepChange={(e) => setActiveStep(e.activeStep - 1)} className="newProductWizard">
         <NewProductDetails/>
         <NewProductPrice/>
+        <NewProductLocation/>
       </StepWizard>
     </div>
   );

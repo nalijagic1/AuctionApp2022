@@ -74,6 +74,7 @@ public class PersonService {
         basicPersonInfo.setFirstName(userDetails.getFirstName());
         basicPersonInfo.setLastName(userDetails.getLastName());
         basicPersonInfo.setId(userDetails.getId());
+        basicPersonInfo.setPhoneNumber(userDetails.getPhoneNumber());
         basicPersonInfo.setSeller(productService.existBySeller(userDetails.getId()));
         return basicPersonInfo;
 
