@@ -26,10 +26,11 @@
 
 .alert-hidden {
   opacity: 0;
-  display: none;
-  transition: opacity 250ms, display 100ms 1000ms;
+  transition: opacity 250ms;
 }
 
 .alert-shown {
   opacity: 1;
+  transition: opacity 250ms;
 }
+
