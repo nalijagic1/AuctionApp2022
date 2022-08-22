@@ -16,6 +16,7 @@ function CardInfo({ props }) {
   const stripe = useStripe();
   const [validCard, setValidCard] = useState();
   const navigate = useNavigate();
+  const [paymentError, setPaymentError] = useState();
   function payBid() {
     if (!stripe || !elements) {
       return;
@@ -30,7 +31,7 @@ function CardInfo({ props }) {
         },
       })
       .then((result) => {
-        if (result.error) console.log(result.error);
+        if (result.error) setPaymentError(result.error.message);
       });
   }
 
@@ -40,6 +41,7 @@ function CardInfo({ props }) {
         className="payment-element"
         onChange={(event) => setValidCard(event.complete)}
       />
+      {paymentError && <p className="paymentError">{paymentError}</p>}
       <div className="navigationButtons">
         <Button
           lable="CANCEL"
