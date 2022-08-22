@@ -17,12 +17,10 @@ function LogIn() {
     personService
       .logIn(email, password)
       .then((response) => {
-        if (response.status === 200) {
           if (localStorage.getItem("user")) {
             navigate("/");
             window.location.reload();
           }
-        }
       })
       .catch((error) => {
         if (error.response.data === "Bad credentials") {

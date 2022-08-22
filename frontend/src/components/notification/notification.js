@@ -14,7 +14,7 @@ function Notification({
         setShowAlert(false);
       }, 5000);
     }
-  }, [showNotification]);
+  }, [showNotification,notificationType,notificationMessage]);
   return (
     <div>
       <div

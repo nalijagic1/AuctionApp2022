@@ -32,12 +32,10 @@ function ProductInfo({ product, showNotification }) {
       );
     } else {
       bidService.placeBid(user.id, product.id, bid).then((response) => {
-        if (response.status === 200) {
           showNotification(
             NOTIFICATION_TYPES.SUCCESS,
             NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
           );
-        }
       });
     }
   }
