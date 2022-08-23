@@ -17,7 +17,7 @@ function ProductInfo({ product, showNotification }) {
   const [count, setCount] = useState(0);
   const [biddingEnabled, setBiddingEnabled] = useState(false);
   const [warningText, setWarningText] = useState("");
-  const [bid, setBid] = useState();
+  const [bid, setBid] = useState("");
   const [notSeller, setNotSeller] = useState(true);
   const [ended, setEnded] = useState(false);
   let countdown = moment(product.endingDate).fromNow(true);
@@ -25,17 +25,22 @@ function ProductInfo({ product, showNotification }) {
   const showOnce = useRef(1);
 
   function placeBid() {
-    if (highestBid >= bid) {
+    if (bid === "") {
+      showNotification(
+        NOTIFICATION_TYPES.WARNING,
+        NOTIFICATION_MESSAGES.NO_BID
+      );
+    } else if (highestBid >= bid) {
       showNotification(
         NOTIFICATION_TYPES.WARNING,
         NOTIFICATION_MESSAGES.BID_HIGHER_MESSAGE
       );
     } else {
       bidService.placeBid(user.id, product.id, bid).then((response) => {
-          showNotification(
-            NOTIFICATION_TYPES.SUCCESS,
-            NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
-          );
+        showNotification(
+          NOTIFICATION_TYPES.SUCCESS,
+          NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
+        );
       });
     }
   }
