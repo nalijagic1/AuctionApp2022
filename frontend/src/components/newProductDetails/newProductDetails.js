@@ -1,18 +1,25 @@
 import { React, useState, useEffect } from "react";
-import "./newProductDetails.css";
 import Field from "../field/field";
 import categoryService from "../../services/category.service";
 import ImagePreview from "../imagePreview/imagePreview";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import Button from "../button/button";
-
+import validation from "../../utils/validation";
+import "./newProductDetails.css";
 function NewProductDetails(props) {
   const [productName, setProductName] = useState("");
   const [subcategory, setSubcategory] = useState(0);
   const [categories, setCategories] = useState();
   const [pictures, setPictures] = useState([]);
+  const [description, setDescription] = useState();
   const [dragActive, setDragActive] = useState(false);
+  const [error, setError] = useState({
+    productName: "",
+    subcategory: "",
+    description: "",
+    pictures: "",
+  });
   function handleDrag(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -22,7 +29,7 @@ function NewProductDetails(props) {
       setDragActive(false);
     }
   }
-  function handleDrop (e) {
+  function handleDrop(e) {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -31,7 +38,18 @@ function NewProductDetails(props) {
         p.concat(URL.createObjectURL(e.dataTransfer.files[0]))
       );
     }
-  };
+  }
+
+  function dataValidation() {
+    let validationResult = validation.validateProductDetails({
+      productName,
+      subcategory,
+      description,
+      pictures,
+    });
+    setError(validationResult.errorMessages);
+    return validationResult.valid;
+  }
   const navigate = useNavigate();
   useEffect(() => {
     categoryService.getCategoriesWithSubcategories().then((response) => {
@@ -52,9 +70,12 @@ function NewProductDetails(props) {
             setProductName(e.target.value);
           }}
           value={productName}
+          error={error.productName}
         />
         <select
-          className={`categorySelector`}
+          className={`categorySelector ${
+            error.subcategory ? "errorStyle" : ""
+          }`}
           onChange={(e) => {
             setSubcategory(e.target.value);
           }}
@@ -81,12 +102,28 @@ function NewProductDetails(props) {
               );
             })}
         </select>
-        <label className="descriptionLabel">Description</label>
-        <textarea maxLength={700} />
-        <p className="textAreaLimit">100 words (700 characters)</p>
+        {error.subcategory && (
+          <p className="errorMessage">{error.subcategory}</p>
+        )}
+        <label className={`descriptionLabel `}>Description</label>
+        <textarea
+          className={`descriptionTextarea  ${
+            error.description ? "errorStyle" : ""
+          }`}
+          maxLength={700}
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
+        {error.description ? (
+          <p className="errorMessage ">{error.description}</p>
+        ) : (
+          <p className="textAreaLimit">100 words (700 characters)</p>
+        )}
         {pictures.length === 0 ? (
           <div
-            className={`imageUploader ${dragActive ? "dragActive" : ""}`}
+            className={`imageUploader ${dragActive ? "dragActive" : ""}  ${
+              error.pictures ? "errorStyle" : ""
+            }`}
             onDragEnter={handleDrag}
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
@@ -110,7 +147,9 @@ function NewProductDetails(props) {
             <p className="photoLimit">(Add at least 3 photos)</p>
           </div>
         ) : (
-          <div className="imageUploaded">
+          <div
+            className={`imageUploaded  ${error.pictures ? "errorStyle" : ""}`}
+          >
             {pictures.map((picture) => {
               return <ImagePreview image={picture} name={productName} />;
             })}
@@ -120,6 +159,7 @@ function NewProductDetails(props) {
               <input
                 id="imageInput"
                 type="file"
+                accept="image/*"
                 onChange={(event) => {
                   setPictures((p) =>
                     p.concat(URL.createObjectURL(event.target.files[0]))
@@ -129,6 +169,7 @@ function NewProductDetails(props) {
             </label>
           </div>
         )}
+        {error.pictures && <p className="errorMessage ">{error.pictures}</p>}
       </div>
       <div className="stepsButtons">
         <Button
@@ -139,7 +180,9 @@ function NewProductDetails(props) {
         <Button
           lable="NEXT"
           buttonClass="purpleButton"
-          onClick={() => props.nextStep()}
+          onClick={() => {
+            if (dataValidation()) props.nextStep();
+          }}
         />
       </div>
     </div>

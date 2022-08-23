@@ -19,7 +19,7 @@ function ProductInfo({ product, showNotification }) {
   const [warningText, setWarningText] = useState("");
   const [bid, setBid] = useState("");
   const [notSeller, setNotSeller] = useState(true);
-  const [ended, setEnded] = useState(false);
+  const [ended, setEnded] = useState(moment(product.endingDate) <= moment.now());
   const [winner, setWinner] = useState(false);
   let countdown = moment(product.endingDate).fromNow(true);
   const user = personService.getCurrentUser();
@@ -39,7 +39,6 @@ function ProductInfo({ product, showNotification }) {
   }
 
   useEffect(() => {
-    if (moment(product.endingDate) <= moment.now()) setEnded(true);
     if (user) {
       if (user.user.id === product.person.id) {
         setNotSeller(false);
@@ -57,9 +56,14 @@ function ProductInfo({ product, showNotification }) {
         setHighestBid(product.startingPrice);
       } else {
         setHighestBid(response.data.bid);
-        if (user && response.data.person.id === user.user.id) {
+      
+        if (!ended && user && response.data.person.id === user.user.id) {
           setBiddingEnabled("disabled");
           setWarningText("You cannot outbid yourself");
+          if(showOnce.current){
+            showNotification("success", "Congrats! You are the highest bider!");
+            showOnce.current = 0;
+          }
         }
         if (ended && showOnce.current) {
           showOnce.current = 0;

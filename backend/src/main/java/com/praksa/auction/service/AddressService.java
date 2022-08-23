@@ -32,12 +32,14 @@ public class AddressService {
 
     public Address addAddressIfNotExist(AddressInfoDto address, long personId) {
         Address location = createAddressFromRequest(address);
+        Address userAddress;
         if (!addressRepository.existsByStreetAndCityAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode())) {
-            Address newAddress = addressRepository.save(location);
-            personService.updateAddressToUser(newAddress.getId(), personId);
-            return newAddress;
+            userAddress = addressRepository.save(location);
+        } else {
+            userAddress = addressRepository.findFirstByStreetAndCityAndAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode());
         }
-        return location;
+        personService.updateAddressToUser(userAddress.getId(), personId);
+        return userAddress;
     }
 
     public Address getAddressFromUser(long personId) {

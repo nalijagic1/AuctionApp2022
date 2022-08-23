@@ -1,8 +1,9 @@
 import httpCommon from "../utils/http-common";
+import personService from "./person.service";
 
 class AddressDataService {
   saveAddress(location) {
-    return httpCommon.post("/address/addAddress", location);
+    return httpCommon.post("/address/addAddress/"+ personService.getCurrentUser().user.id, location);
   }
 
   getAddressFromUser(personId) {

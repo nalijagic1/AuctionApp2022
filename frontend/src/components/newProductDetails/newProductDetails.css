@@ -36,7 +36,7 @@
   font-size: 18px;
   line-height: 27px;
   margin-top: 16px;
-  margin-bottom: 32px;
+  
 }
 
 
@@ -47,6 +47,7 @@
   font-size: 18px;
   line-height: 27px;
   color: #252525;
+  margin-top: 32px;
 }
 
 .newProductBasicInfo textarea {
@@ -56,12 +57,10 @@
   margin-top: 16px;
 }
 
-.newProductBasicInfo p {
+.newProductBasicInfo .textAreaLimit {
   font-family: "Lato";
   font-style: normal;
   color: #9b9b9b;
-}
-.newProductBasicInfo .textAreaLimit {
   margin-left: 332px;
   width: 260px;
   font-weight: 400;
@@ -109,6 +108,9 @@
 }
 
 .photoLimit {
+  font-family: "Lato";
+  font-style: normal;
+  color: #9b9b9b;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
@@ -146,4 +148,8 @@
 
   .dragActive{
     background-color: #e0d9f579;
+  }
+
+  .errorStyle{
+    border-color: red;
   }

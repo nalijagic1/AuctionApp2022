@@ -17,8 +17,8 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @PostMapping("/addAddress/:{personId}")
-    public ResponseEntity<?> addAddressIfNotExist(@RequestBody AddressInfoDto address, @PathVariable long personId) {
+    @PostMapping("/addAddress/{personId}")
+    public ResponseEntity<?> addAddressIfNotExist(@PathVariable long personId,@RequestBody AddressInfoDto address) {
         addressService.addAddressIfNotExist(address, personId);
         return ResponseEntity.ok("Successful adding");
     }

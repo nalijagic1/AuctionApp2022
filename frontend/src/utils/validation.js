@@ -86,6 +86,56 @@ class Validation {
     return errorMessage;
   }
 
+  validateProductInfo(name) {
+    var errorMessage = "";
+    if (!name) {
+      errorMessage = "This field is required";
+    }
+    return errorMessage;
+  }
+
+  validateCategory(category) {
+    var errorMessage = "";
+    if (category === 0) {
+      errorMessage = "Please choose category.";
+    }
+    return errorMessage;
+  }
+
+  validateImage(images) {
+    console.log(images)
+    var errorMessage = "";
+    const minNumberOfImages = 3;
+    if (images.length < minNumberOfImages) {
+      errorMessage = "Please upload at least 3 photos of your item.";
+    }
+    return errorMessage;
+  }
+  validateProductDetails(data) {
+    let keys = Object.keys(data);
+    let errorMessages = keys.reduce((accumulator, value) => {
+      return { ...accumulator, [value]: "" };
+    }, {});
+    let valid = true;
+    for (var i = 0; i < keys.length; i++) {
+      if (keys[i] === "productName")
+        errorMessages.productName = this.validateProductInfo(data.productName);
+      else if (keys[i] === "subcategory") {
+        errorMessages.subcategory = this.validateCategory(data.subcategory);
+      } else if (keys[i] === "description")
+        errorMessages.description = this.validateProductInfo(data.description);
+      else if (keys[i] === "pictures")
+        errorMessages.pictures = this.validateImage(data.pictures);
+    }
+    if (
+      Object.values(errorMessages).findIndex((object) => {
+        return object !== "";
+      }) !== -1
+    )
+      valid = false;
+    return { errorMessages: errorMessages, valid: valid };
+  }
+
   formValidation(data, option) {
     let keys = Object.keys(data);
     let errorMessages = keys.reduce((accumulator, value) => {
