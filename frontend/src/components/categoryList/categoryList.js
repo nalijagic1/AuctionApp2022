@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useLocation } from "react-router-dom";
 import { TiPlus, TiMinus } from "react-icons/ti";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function CategoryList({ filter }) {
   const [categories, setCategories] = useState();
@@ -19,7 +20,7 @@ function CategoryList({ filter }) {
 
   useEffect(() => {
     categoryService.getCategoriesWithSubcategories().then((response) => {
-      if (response.status === 200) setCategories(response.data);
+      if (response.status === STATUS_CODES.OK) setCategories(response.data);
     });
   }, []);
 

@@ -42,7 +42,7 @@ public class BidService {
         return newBid;
     }
 
-    public void placeBid(BiddingInfoDto biddingInfo) {
+    public Bid placeBid(BiddingInfoDto biddingInfo) {
         Bid newBid = getCreatedBidFromBiddingInfo(biddingInfo);
         Bid highestBid = getHighestBid(biddingInfo.getProductId());
         if (highestBid != null && highestBid.getBid() >= biddingInfo.getBid()) {
@@ -54,6 +54,6 @@ public class BidService {
         if (newBid.getProduct().getEndingDate().before(new Date())) {
             throw new DateTimeException("This auction has ended");
         }
-        bidRepository.save(newBid);
+       return bidRepository.save(newBid);
     }
 }

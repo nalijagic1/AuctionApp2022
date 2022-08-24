@@ -29,7 +29,7 @@ public class BidController {
         return ResponseEntity.ok(bidService.getCount(productId));
     }
 
-    @PostMapping("/registered/placeBid")
+    @PostMapping("/bids/placeBid")
     public ResponseEntity<?> placeBid(@Valid @RequestBody BiddingInfoDto biddingInfo) {
         try {
             bidService.placeBid(biddingInfo);

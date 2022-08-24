@@ -7,14 +7,15 @@ import productService from "../../services/product.service";
 import Button from "../../components/button/button";
 import PathBar from "../../components/pathBar/pathBar";
 import DidYouMean from "../../components/didYouMean/didYouMean";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function ShopPage() {
   const param = useParams();
-  const initCount = 9;
+  const INIT_COUNT = 9;
   const [products, setProducts] = useState([]);
   const query = new URLSearchParams(useLocation().search);
   const word = query.get("search");
-  const [count, setCount] = useState(initCount);
+  const [count, setCount] = useState(INIT_COUNT);
   let hasMore = useRef(true);
   let start = useRef(1);
   let previous = useRef("");
@@ -22,18 +23,18 @@ function ShopPage() {
 
   function showMore() {
     start.current += 1;
-    setCount(initCount * start.current);
+    setCount(INIT_COUNT * start.current);
   }
 
   useEffect(() => {
     const testIfFilterChanged = (change) => {
-      if (previous.current !== change) setCount(initCount);
+      if (previous.current !== change) setCount(INIT_COUNT);
     };
     if (word) {
       testIfFilterChanged(word);
       previous.current = word;
       productService.getSearchResult(word, count).then((response) => {
-        if (response.status === 200) {
+        if (response.status === STATUS_CODES.OK) {
           setProducts(response.data);
           hasMore.current = response.data.length === count;
         }
@@ -44,7 +45,7 @@ function ShopPage() {
       productService
         .getProductsFromCategory(param.category, count)
         .then((response) => {
-          if (response.status === 200) {
+          if (response.status === STATUS_CODES.OK) {
             setProducts(response.data);
             hasMore.current = response.data.length === count;
           }

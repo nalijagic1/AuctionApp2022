@@ -23,14 +23,3 @@
 .notification p {
   margin: 0px 0px 0px 0px;
 }
-
-.alert-hidden {
-  opacity: 0;
-  transition: opacity 250ms;
-}
-
-.alert-shown {
-  opacity: 1;
-  transition: opacity 250ms;
-}
-

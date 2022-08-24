@@ -10,7 +10,8 @@ import TooltipMessage from "../tooltipMessage/tooltipMessage";
 import {
   NOTIFICATION_TYPES,
   NOTIFICATION_MESSAGES,
-} from "../../utils/notificationConstnts";
+} from "../../utils/notificationConstants";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function ProductInfo({ product, showNotification }) {
   const [highestBid, setHighestBid] = useState(0);
@@ -57,10 +58,10 @@ function ProductInfo({ product, showNotification }) {
       setWarningText("Please login or register to place a bid.");
     }
     bidService.getBidCount(product.id).then((response) => {
-      if (response.status === 200) setCount(response.data);
+      if (response.status === STATUS_CODES.OK) setCount(response.data);
     });
     bidService.getHighestBid(product.id).then((response) => {
-      if (response.status === 200) {
+      if (response.status === STATUS_CODES.OK) {
         if (response.data.length === 0) {
           setHighestBid(product.startingPrice);
         } else {

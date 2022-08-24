@@ -5,3 +5,12 @@
   margin-bottom: 128px;
 }
 
+.alert-hidden {
+  opacity: 0;
+  transition: opacity 250ms;
+}
+
+.alert-shown {
+  opacity: 1;
+  transition: opacity 250ms;
+}

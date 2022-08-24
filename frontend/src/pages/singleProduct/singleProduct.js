@@ -6,6 +6,7 @@ import productService from "../../services/product.service";
 import { useParams } from "react-router-dom";
 import "./singleProduct.css";
 import Notification from "../../components/notification/notification";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function SingleProduct() {
   const params = useParams();
@@ -17,7 +18,7 @@ function SingleProduct() {
     productService
       .getSelectedProduct(parseInt(params.productId))
       .then((response) => {
-        if (response.status === 200) setProduct(response.data);
+        if (response.status === STATUS_CODES.OK) setProduct(response.data);
       });
   }, [params]);
 
@@ -25,6 +26,9 @@ function SingleProduct() {
     setNotificationType(type);
     setShowNotification(true);
     setNotificationMessage(message);
+    setTimeout(function () {
+      setShowNotification(false);
+    }, 5000);
   }
 
   return (
@@ -38,11 +42,12 @@ function SingleProduct() {
               endPoint: "Single product",
             }}
           ></PathBar>
-          <Notification
-            showNotification={showNotification}
-            notificationMessage={notificationMessage}
-            notificationType={notificationType}
-          />
+          <div className={showNotification ? "alert-shown" : "alert-hidden"}>
+            <Notification
+              notificationMessage={notificationMessage}
+              notificationType={notificationType}
+            />
+          </div>
           <div className="productView">
             <Gallery productId={params.productId} />
             <ProductInfo

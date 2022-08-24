@@ -10,19 +10,17 @@ function NavigationWhite() {
   const showExitButton = useRef(false);
   const [searchField, setSearchField] = useState("");
   const showSearchAndMenu = useRef(
-    location.pathname.includes("/login") ||
-      location.pathname.includes("/register")
-      ? false
-      : true
+    !location.pathname.includes("/login") &&
+      !location.pathname.includes("/register")
   );
-  const minWordLength = 3;
+  const MIN_WORD_LENGTH = 3;
 
   function search() {
     if (searchField.length === 0) {
       navigate("/shop/all");
       showExitButton.current = false;
     }
-    if (searchField.length >= minWordLength) {
+    if (searchField.length >= MIN_WORD_LENGTH) {
       navigate("/shop?search=" + searchField);
       showExitButton.current = true;
     }
