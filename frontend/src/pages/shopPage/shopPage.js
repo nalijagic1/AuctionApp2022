@@ -11,11 +11,11 @@ import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function ShopPage() {
   const param = useParams();
-  const INIT_COUNT = 9;
+  const INITIAL_COUNT = 9;
   const [products, setProducts] = useState([]);
   const query = new URLSearchParams(useLocation().search);
   const word = query.get("search");
-  const [count, setCount] = useState(INIT_COUNT);
+  const [count, setCount] = useState(INITIAL_COUNT);
   let hasMore = useRef(true);
   let start = useRef(1);
   let previous = useRef("");
@@ -23,12 +23,12 @@ function ShopPage() {
 
   function showMore() {
     start.current += 1;
-    setCount(INIT_COUNT * start.current);
+    setCount(INITIAL_COUNT * start.current);
   }
 
   useEffect(() => {
     const testIfFilterChanged = (change) => {
-      if (previous.current !== change) setCount(INIT_COUNT);
+      if (previous.current !== change) setCount(INITIAL_COUNT);
     };
     if (word) {
       testIfFilterChanged(word);

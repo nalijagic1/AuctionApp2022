@@ -15,6 +15,7 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final HunspellConfiguration hunspellConfiguration;
+    private static final int MIN_WORD_LENGTH = 3;
 
     @Autowired
     public ProductService(ProductRepository procuctRepository, HunspellConfiguration config) {
@@ -52,12 +53,11 @@ public class ProductService {
         return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
-    public String checkSpelling(String search) {
+    public String getSearchSuggestion(String search) {
         Hunspell speller = hunspellConfiguration.speller();
         List<String> suggestons = speller.suggest(search);
-        int minWordLength = 3;
         for (String suggest : suggestons) {
-            if (suggest.length() < minWordLength) continue;
+            if (suggest.length() < MIN_WORD_LENGTH) continue;
             List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
             if (searchResult.size() != 0) return suggest;
         }

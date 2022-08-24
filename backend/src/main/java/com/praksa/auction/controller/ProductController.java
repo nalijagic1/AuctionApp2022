@@ -51,7 +51,7 @@ public class ProductController {
 
     @GetMapping("/check")
     public ResponseEntity<String> checkSpelling(@RequestParam String search) {
-        return ResponseEntity.ok(productService.checkSpelling(search));
+        return ResponseEntity.ok(productService.getSearchSuggestion(search));
     }
 
     @GetMapping("/{id}")
