@@ -26,9 +26,6 @@ function SingleProduct() {
     setNotificationType(type);
     setShowNotification(true);
     setNotificationMessage(message);
-    setTimeout(function () {
-      setShowNotification(false);
-    }, 5000);
   }
 
   return (
@@ -43,10 +40,13 @@ function SingleProduct() {
             }}
           ></PathBar>
           <div className={showNotification ? "alert-shown" : "alert-hidden"}>
-            <Notification
-              notificationMessage={notificationMessage}
-              notificationType={notificationType}
-            />
+            {showNotification && (
+              <Notification
+                notificationMessage={notificationMessage}
+                notificationType={notificationType}
+                setShowNotification={(show) => setShowNotification(show)}
+              />
+            )}
           </div>
           <div className="productView">
             <Gallery productId={params.productId} />

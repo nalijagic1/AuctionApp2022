@@ -50,7 +50,7 @@ public class PersonService {
 
     public JwtResponseDto createAccount(RegistrationDto signUpRequest) {
         if (personRepositoy.existsByEmail(signUpRequest.getEmail())) {
-            logger.error("Email address  {} is already taken.",signUpRequest.getEmail());
+            logger.error("This email_address={} is already in use.", signUpRequest.getEmail());
             throw new IllegalArgumentException("This email address is already taken. Please try another one.");
         }
         personRepositoy.save(getPersonFromRegistrationRequest(signUpRequest));
@@ -63,7 +63,7 @@ public class PersonService {
 
     public JwtResponseDto logIn(LogInDto loginInfo) {
         if (!personRepositoy.existsByEmail(loginInfo.getEmail())) {
-            logger.error("Email address {} not found in database",loginInfo.getEmail());
+            logger.error("email_address ={} not found in database", loginInfo.getEmail());
             throw new UsernameNotFoundException("Email address not found");
         }
         Authentication authentication = authenticationManager.authenticate(
