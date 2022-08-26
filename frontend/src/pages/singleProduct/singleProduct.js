@@ -39,7 +39,6 @@ function SingleProduct() {
               endPoint: "Single product",
             }}
           ></PathBar>
-          <div className={showNotification ? "alert-shown" : "alert-hidden"}>
             {showNotification && (
               <Notification
                 notificationMessage={notificationMessage}
@@ -47,7 +46,6 @@ function SingleProduct() {
                 setShowNotification={(show) => setShowNotification(show)}
               />
             )}
-          </div>
           <div className="productView">
             <Gallery productId={params.productId} />
             <ProductInfo

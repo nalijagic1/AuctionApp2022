@@ -63,7 +63,7 @@ public class PersonService {
 
     public JwtResponseDto logIn(LogInDto loginInfo) {
         if (!personRepositoy.existsByEmail(loginInfo.getEmail())) {
-            logger.error("email_address ={} not found in database", loginInfo.getEmail());
+            logger.error("email_address={} not found in database", loginInfo.getEmail());
             throw new UsernameNotFoundException("Email address not found");
         }
         Authentication authentication = authenticationManager.authenticate(

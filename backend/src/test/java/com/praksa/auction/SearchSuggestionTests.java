@@ -14,15 +14,15 @@ public class SearchSuggestionTests {
 
     @Test
     void getSearchSuggestion() {
-        String inputWord ="clok";
+        String inputWord = "clok";
         String suggestion = productService.getSearchSuggestion(inputWord);
-        assertEquals("clock",suggestion);
+        assertEquals("clock", suggestion);
     }
 
     @Test
-    void getSearchSuggestionNoMatchFound(){
-        String inputWord ="make";
+    void getSearchSuggestionNoMatchFound() {
+        String inputWord = "make";
         String suggestion = productService.getSearchSuggestion(inputWord);
-        assertEquals("",suggestion);
+        assertEquals("", suggestion);
     }
 }
