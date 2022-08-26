@@ -6,8 +6,7 @@ import com.praksa.auction.service.PersonService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
 public class LogInRegistationTests {
@@ -22,6 +21,4 @@ public class LogInRegistationTests {
         personController.createAccount(person);
         assertTrue(personService.existsByEmail(person.getEmail()));
     }
-
-
 }

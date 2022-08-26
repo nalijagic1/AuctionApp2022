@@ -27,9 +27,9 @@ function Registration() {
     personService
       .createAccount(firstName, lastName, email, password)
       .then((response) => {
-        if (localStorage.getItem("user")) {
-          navigate("/");
-          window.location.reload();
+          if (localStorage.getItem("user")) {
+            navigate("/");
+            window.location.reload();
         }
       })
       .catch((error) => {
@@ -152,7 +152,7 @@ function Registration() {
             }
           ></Field>
           <Button
-            lable="Register"
+            label="Register"
             buttonClass="purpleButton userManagment"
             onClick={() => {
               if (validateData()) createAccount();

@@ -5,21 +5,3 @@
   margin-bottom: 128px;
 }
 
-.notification {
-  padding-top: 20px;
-  padding-left: 160px;
-  padding-bottom: 20px;
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
-  width: 100%;
-  border-radius: 0px;
-}
-
-.alert-info {
-  --bs-alert-color: #8367d8;
-  --bs-alert-bg: #f1effa;
-  --bs-alert-border-color: #f1effa;
-}

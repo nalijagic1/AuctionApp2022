@@ -11,6 +11,8 @@ import com.praksa.auction.repository.PersonRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Customer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,6 +28,7 @@ import java.util.Map;
 
 @Service
 public class PersonService {
+    private static final Logger logger = LoggerFactory.getLogger(PersonService.class);
     private final PersonRepository personRepositoy;
     @Autowired
     AuthenticationManager authenticationManager;
@@ -56,6 +59,7 @@ public class PersonService {
 
     public JwtResponseDto createAccount(RegistrationDto signUpRequest) {
         if (personRepositoy.existsByEmail(signUpRequest.getEmail())) {
+            logger.error("This email_address={} is already in use.", signUpRequest.getEmail());
             throw new IllegalArgumentException("This email address is already taken. Please try another one.");
         }
         personRepositoy.save(getPersonFromRegistrationRequest(signUpRequest));
@@ -68,6 +72,7 @@ public class PersonService {
 
     public JwtResponseDto logIn(LogInDto loginInfo) {
         if (!personRepositoy.existsByEmail(loginInfo.getEmail())) {
+            logger.error("email_address={} not found in database", loginInfo.getEmail());
             throw new UsernameNotFoundException("Email address not found");
         }
         Authentication authentication = authenticationManager.authenticate(

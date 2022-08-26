@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import productService from "../../services/product.service";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 import "./didYouMean.css";
 
 function DidYouMean({ search }) {
   const [suggestion, setSuggestion] = useState();
   useEffect(() => {
     productService.getSuggestion(search).then((response) => {
-      setSuggestion(response.data);
+      if (response.status === STATUS_CODES.OK) setSuggestion(response.data);
     });
   }, [search]);
   return (

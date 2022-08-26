@@ -9,6 +9,11 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import TooltipMessage from "../tooltipMessage/tooltipMessage";
 import { Avatar } from "@mui/material";
 import { useNavigate } from "react-router";
+import {
+    NOTIFICATION_TYPES,
+    NOTIFICATION_MESSAGES,
+} from "../../utils/notificationConstants";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function ProductInfo({ product, showNotification }) {
   const navigate = useNavigate();
@@ -23,17 +28,24 @@ function ProductInfo({ product, showNotification }) {
   const [winner, setWinner] = useState(false);
   let countdown = moment(product.endingDate).fromNow(true);
   const user = personService.getCurrentUser();
+
   function placeBid() {
-    if (highestBid >= bid) {
+    if (bid === "") {
       showNotification(
-        "warning",
-        "There are higher bids than yours. You could give a second try!"
+        NOTIFICATION_TYPES.WARNING,
+        NOTIFICATION_MESSAGES.NO_BID
+      );
+    } else if (highestBid >= bid) {
+      showNotification(
+        NOTIFICATION_TYPES.WARNING,
+        NOTIFICATION_MESSAGES.BID_HIGHER_MESSAGE
       );
     } else {
-      bidService.placeBid(user.user.id, product.id, bid).then((response) => {
-        if (response.data.includes("Succesful")) {
-          showNotification("success", "Congrats! You are the highest bider!");
-        }
+      bidService.placeBid(user.id, product.id, bid).then((response) => {
+        showNotification(
+          NOTIFICATION_TYPES.SUCCESS,
+          NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
+        );
       });
     }
   }
@@ -41,46 +53,51 @@ function ProductInfo({ product, showNotification }) {
   useEffect(() => {
     if (moment(product.endingDate) <= moment.now()) setEnded(true);
     if (user) {
-      if (user.user.id === product.person.id) {
+      if (user.id === product.person.id) {
         setNotSeller(false);
       }
-      setBiddingEnabled("");
+      setBiddingEnabled(true);
     } else {
-      setBiddingEnabled("disabled");
+      setBiddingEnabled(false);
       setWarningText("Please login or register to place a bid.");
     }
     bidService.getBidCount(product.id).then((response) => {
-      setCount(response.data);
+      if (response.status === STATUS_CODES.OK) setCount(response.data);
     });
     bidService.getHighestBid(product.id).then((response) => {
+    if (response.status === STATUS_CODES.OK) {
       if (response.data.length === 0) {
         setHighestBid(product.startingPrice);
       } else {
         setHighestBid(response.data.bid);
         if (user && response.data.person.id === user.user.id) {
+            if (!ended && showOnce.current) {
+                showNotification(
+                    NOTIFICATION_TYPES.SUCCESS,
+                    NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
+                );
+            }else if(ended && showOnce.current){
+                if (product.payed) {
+                    showNotification(
+                        "info",
+                        "You have successfully completed payment for this product"
+                    );
+                } else {
+                    setWinner(true);
+                    showNotification(
+                        "info",
+                        "Congratulations! You outbid the competition."
+                    );
+                }
+            }
           setBiddingEnabled("disabled");
           setWarningText("You cannot outbid yourself");
+        }else{
+            if(ended && showOnce.current) showNotification("warning", "This auction has ended");
         }
-        if (ended && showOnce.current) {
-          showOnce.current = 0;
-          if (user && response.data.person.id === user.user.id) {
-            if (product.payed) {
-              showNotification(
-                "info",
-                "You have successfully completed payment for this product"
-              );
-            } else {
-              setWinner(true);
-              showNotification(
-                "info",
-                "Congratulations! You outbid the competition."
-              );
-            }
-          } else {
-            showNotification("warning", "This auction has ended");
-          }
+
         }
-      }
+        }
     });
   }, [product, user, showNotification, ended]);
 
@@ -120,14 +137,16 @@ function ProductInfo({ product, showNotification }) {
               value={bid}
             />
             <Button
-              lable="Place bid"
+              label="Place bid"
               icon={
                 <MdOutlineKeyboardArrowRight
                   className="buttonIcon"
                   viewBox="none"
                 />
               }
-              buttonClass={biddingEnabled + "Button purpleBorder"}
+              buttonClass={
+                biddingEnabled ? "bidding" : "disabledButton bidding"
+              }
               onClick={() => placeBid()}
             />
           </div>
@@ -162,7 +181,6 @@ function ProductInfo({ product, showNotification }) {
           )}
         </div>
       )}
-
       <div className="desc">
         <h3>Details</h3>
       </div>

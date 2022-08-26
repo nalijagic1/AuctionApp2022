@@ -6,11 +6,12 @@ import productService from "../../services/product.service";
 import Card from "../card/card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import "./offers.css";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function Offers() {
   const [tab, setTab] = useState(1);
   const [products, setProducts] = useState();
-  const count = 8;
+  const COUNT = 8;
   const [start, setStart] = useState(0);
   const [more, setMore] = useState(true);
   var lastTab = useRef(0);
@@ -30,19 +31,21 @@ function Offers() {
   useEffect(() => {
     const getData = (option) => {
       productService
-        .getNewestOrLastChance(option, start, count)
+        .getNewestOrLastChance(option, start, COUNT)
         .then((response) => {
-          if (
-            response.data.length === 0 ||
-            response.data.length % count !== 0
-          ) {
-            setMore(false);
-          }
-          if (lastTab.current === option) {
-            setProducts((p) => p.concat(response.data));
-          } else {
-            setProducts(response.data);
-            lastTab.current = option;
+          if (response.status === STATUS_CODES.OK) {
+            if (
+              response.data.length === 0 ||
+              response.data.length % COUNT !== 0
+            ) {
+              setMore(false);
+            }
+            if (lastTab.current === option) {
+              setProducts((p) => p.concat(response.data));
+            } else {
+              setProducts(response.data);
+              lastTab.current = option;
+            }
           }
         });
     };
