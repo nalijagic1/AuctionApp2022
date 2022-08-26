@@ -67,4 +67,9 @@ public class ProductController {
         productService.updatePayedStatus(payed, product);
         return ResponseEntity.ok("Successful update");
     }
+
+    @PostMapping("/newProduct")
+    public ResponseEntity<?> addNewProduct(){
+        return null;
+    }
 }

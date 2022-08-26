@@ -53,10 +53,12 @@ function CardInfo({ props }) {
             onClick={() => props.previousStep()}
           />
           <Button
-            lable={`PAY ${props.amount}$`}
+            lable={props.payment ? `PAY ${props.amount}$` : "DONE"}
             buttonClass="purpleButton"
             onClick={() => {
-              if (validCard) payBid();
+              if (props.payment) {
+                if (validCard) payBid();
+              }
             }}
           ></Button>
         </div>

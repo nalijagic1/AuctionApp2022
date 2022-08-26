@@ -58,6 +58,7 @@ function Payment() {
         />
         {clientSecret && (
           <PaymentInfo
+            payment={true}
             options={options}
             stripe={stripePromise}
             product={product}

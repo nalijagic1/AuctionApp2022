@@ -6,6 +6,8 @@ import Button from "../button/button";
 import { useNavigate } from "react-router";
 import addressService from "../../services/address.service";
 import personService from "../../services/person.service";
+import { Elements } from "@stripe/react-stripe-js";
+import CardInfo from "../cardInfo/cardInfo";
 
 function NewProductLocation(props) {
   const [address, setAddress] = useState("");
@@ -114,6 +116,9 @@ function NewProductLocation(props) {
             value={phoneNumber}
           />
       </form>
+      <Elements options={props.options} stripe={props.stripe}>
+          <CardInfo props={props} />
+        </Elements>
       <div className="buttonLayout">
         <Button
           lable="CANCEL"
