@@ -27,11 +27,9 @@ function Payment() {
   };
   const buyer = personService.getCurrentUser();
   useEffect(() => {
-    paymentService
-      .createIntent(price, product, buyer.user.id)
-      .then((response) => {
-        setClientSecret(response.data.clientSecret);
-      });
+    paymentService.createIntent(price, product, buyer.id).then((response) => {
+      setClientSecret(response.data.clientSecret);
+    });
   }, [price, product, buyer]);
   function rememberLocation(location) {
     setEnteredAddress(location);
@@ -53,7 +51,7 @@ function Payment() {
       />
       <StepWizard onStepChange={(e) => setCurrentStep(e.activeStep - 1)}>
         <ShippingAddress
-          buyer={buyer.user.id}
+          buyer={buyer.id}
           rememberLocation={(location) => rememberLocation(location)}
         />
         {clientSecret && (

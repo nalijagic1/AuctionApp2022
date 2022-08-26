@@ -44,18 +44,18 @@ function CardInfo({ props }) {
       {paymentError && <p className="paymentError">{paymentError}</p>}
       <div className="navigationButtons">
         <Button
-          lable="CANCEL"
+          label="CANCEL"
           buttonClass="cancel"
           onClick={() => navigate(-1)}
         ></Button>
         <div className="optionButtons">
           <Button
-            lable="BACK"
+            label="BACK"
             buttonClass="purpleBorder"
             onClick={() => props.previousStep()}
           />
           <Button
-            lable={`PAY ${props.amount}$`}
+            label={`PAY ${props.amount}$`}
             buttonClass="purpleButton"
             onClick={() => {
               if (validCard) payBid();

@@ -135,14 +135,14 @@ function ShippingAddress(props) {
       <p className="mandatory">Mandatory fields are marked with *</p>
       <div className="menuButtons">
         <Button
-          lable="CANCEL"
+          label="CANCEL"
           buttonClass="cancel"
           onClick={() => navigate(-1)}
         ></Button>
         <div className="nextButton">
           <Button
             className="nextButton"
-            lable="NEXT"
+            label="NEXT"
             buttonClass="purpleButton"
             onClick={() => {
               if (locationValidation()) {

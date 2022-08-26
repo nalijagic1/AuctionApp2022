@@ -20,7 +20,7 @@ public class BiddingTest {
     @Test
     void bidding() {
         Bid highestBidOld =  bidRepository.findFirstByProductIdOrderByBidDesc(5);
-        bidController.bidOnProduct(new BiddingInfoDto(5,2,35.50));
+        bidController.placeBid(new BiddingInfoDto(5,2,35.50));
         Bid highesrBidNew = bidRepository.findFirstByProductIdOrderByBidDesc(5);
         assertTrue(highesrBidNew.getBid() > highestBidOld.getBid());
     }

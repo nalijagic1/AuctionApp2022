@@ -20,16 +20,16 @@ public class PaymentService {
 
     public PaymentResponseDto createPaymentIntent(PaymentInfoDto paymentInfoDto) throws StripeException {
         Person buyer = personService.getPersonById(paymentInfoDto.getCustomerId());
-        String costumerId = "";
+        String custumerId = "";
         if (buyer.getCustomerId() == null) {
-            costumerId = personService.createCustomerId(buyer);
-        } else costumerId = buyer.getCustomerId();
+            custumerId = personService.createCustomerId(buyer);
+        } else custumerId = buyer.getCustomerId();
         Stripe.apiKey = apiKey;
         PaymentIntentCreateParams params =
                 PaymentIntentCreateParams.builder()
                         .setAmount((long) (paymentInfoDto.getAmount() * 100))
                         .setCurrency("USD")
-                        .setCustomer(costumerId)
+                        .setCustomer(custumerId)
                         .addPaymentMethodType("card")
                         .putMetadata("product_id", String.valueOf(paymentInfoDto.getProductId()))
                         .build();

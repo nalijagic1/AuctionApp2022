@@ -12,7 +12,7 @@ class BidDataService {
 
   placeBid(personId, productId, bid) {
     return httpCommon.post(
-      "/registered/placeBid",
+      "/bids/placeBid",
       { productId, personId, bid },
       { headers: authHeader() }
     );

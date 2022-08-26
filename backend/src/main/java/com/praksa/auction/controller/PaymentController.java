@@ -18,7 +18,7 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @PostMapping("/auth/paymentIntent")
+    @PostMapping("/payment/paymentIntent")
     public ResponseEntity<?> createPaymentIntente(@RequestBody PaymentInfoDto paymentInfoDto) throws StripeException {
         return ResponseEntity.ok(paymentService.createPaymentIntent(paymentInfoDto));
     }

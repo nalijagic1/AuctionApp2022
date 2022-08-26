@@ -4,7 +4,7 @@ import authHeader from "../utils/auth-header";
 class PaymentDataService {
   createIntent(amount, productId, customerId) {
     return httpCommon.post(
-      "/auth/paymentIntent",
+      "/payment/paymentIntent",
       { amount, customerId, productId },
       { headers: authHeader() }
     );

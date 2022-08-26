@@ -33,12 +33,12 @@ function SuccesfulPayment() {
         <AuctionItem productId={product} amount={amount} />
         <div className="buttonsMenu">
           <Button
-            lable="BROWSE ITEMS"
+            label="BROWSE ITEMS"
             buttonClass="purpleBorder"
             onClick={() => navigate("/shop/all")}
           />
           <Button
-            lable="VIEW ITEM"
+            label="VIEW ITEM"
             buttonClass="purpleButton"
             onClick={() => navigate("/product/" + product)}
           />

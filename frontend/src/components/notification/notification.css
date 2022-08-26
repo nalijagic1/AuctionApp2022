@@ -15,6 +15,10 @@
   color: #417505;
 }
 
+.notificationinfo {
+  color: #8367d8;
+  background-color: #f1effa;
+}
 .notificationwarning {
   background-color: #f6f2e5;
   color: #ab944e;
