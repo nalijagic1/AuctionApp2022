@@ -5,10 +5,8 @@ import com.praksa.auction.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/products")
@@ -48,12 +46,12 @@ public class ProductController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(@RequestParam int count) {
-        return ResponseEntity.ok(productService.getAllProducts(count));
+        return ResponseEntity.ok(productService.getAllActiveProducts(count));
     }
 
     @GetMapping("/check")
     public ResponseEntity<String> checkSpelling(@RequestParam String search) {
-        return ResponseEntity.ok(productService.checkSpelling(search));
+        return ResponseEntity.ok(productService.getSearchSuggestion(search));
     }
 
     @GetMapping("/{id}")

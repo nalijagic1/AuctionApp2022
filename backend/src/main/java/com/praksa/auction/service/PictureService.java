@@ -4,7 +4,6 @@ import com.praksa.auction.model.Picture;
 import com.praksa.auction.repository.PictureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

@@ -2,12 +2,13 @@ import React from "react";
 import "./card.css";
 import { useEffect, useState } from "react";
 import pictureService from "../../services/picture.service";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function Card({ name, productId, price }) {
   const [image, setImage] = useState();
   useEffect(() => {
     pictureService.getProductCoverPicture(productId).then((response) => {
-      setImage(response.data);
+      if (response.status === STATUS_CODES.OK) setImage(response.data);
     });
   }, [productId]);
   return (

@@ -26,6 +26,12 @@ class PersonDataService {
   logout() {
     localStorage.removeItem("user");
   }
+
+  getCurrentUser() {
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user) return user.user;
+    return null;
+  }
 }
 
 export default new PersonDataService();

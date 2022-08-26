@@ -7,14 +7,15 @@ import productService from "../../services/product.service";
 import Button from "../../components/button/button";
 import PathBar from "../../components/pathBar/pathBar";
 import DidYouMean from "../../components/didYouMean/didYouMean";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function ShopPage() {
   const param = useParams();
-  const initCount = 9;
+  const INITIAL_COUNT = 9;
   const [products, setProducts] = useState([]);
   const query = new URLSearchParams(useLocation().search);
   const word = query.get("search");
-  const [count, setCount] = useState(initCount);
+  const [count, setCount] = useState(INITIAL_COUNT);
   let hasMore = useRef(true);
   let start = useRef(1);
   let previous = useRef("");
@@ -22,19 +23,21 @@ function ShopPage() {
 
   function showMore() {
     start.current += 1;
-    setCount(initCount * start.current);
+    setCount(INITIAL_COUNT * start.current);
   }
 
   useEffect(() => {
     const testIfFilterChanged = (change) => {
-      if (previous.current !== change) setCount(initCount);
+      if (previous.current !== change) setCount(INITIAL_COUNT);
     };
     if (word) {
       testIfFilterChanged(word);
       previous.current = word;
       productService.getSearchResult(word, count).then((response) => {
-        setProducts(response.data);
-        hasMore.current = response.data.length === count;
+        if (response.status === STATUS_CODES.OK) {
+          setProducts(response.data);
+          hasMore.current = response.data.length === count;
+        }
       });
     } else {
       testIfFilterChanged(param.category);
@@ -42,8 +45,10 @@ function ShopPage() {
       productService
         .getProductsFromCategory(param.category, count)
         .then((response) => {
-          setProducts(response.data);
-          hasMore.current = response.data.length === count;
+          if (response.status === STATUS_CODES.OK) {
+            setProducts(response.data);
+            hasMore.current = response.data.length === count;
+          }
         });
     }
   }, [param, word, count]);
@@ -69,7 +74,7 @@ function ShopPage() {
         <div className="explore">
           <Button
             className="exploreButton"
-            lable="Explore More"
+            label="Explore More"
             buttonClass="purpleButton"
             onClick={showMore}
           />

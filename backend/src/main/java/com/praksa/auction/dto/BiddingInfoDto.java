@@ -7,8 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class LogInRegistationFailedDto {
-    private Integer errorCode;
+public class BiddingInfoDto {
+    private long productId;
+    private long personId;
+    private Double bid;
 }

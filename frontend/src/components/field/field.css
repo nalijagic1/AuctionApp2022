@@ -15,7 +15,7 @@
 .loginAndRegisterField {
   margin-top: 16px;
   margin-bottom: 32px;
-  width: 542px;
+  width: 568px;
   padding: 18px 0px 18px 24px;
   font-family: "Lato";
   font-style: normal;
@@ -27,6 +27,12 @@
 
 .field input:focus-visible {
   outline: 1px solid #8367d8;
+}
+
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .field label {
@@ -114,4 +120,10 @@
 
 .progressInfo {
   display: flex;
+}
+
+.disabled {
+  pointer-events: none;
+  background: #ececec;
+  border: 1px solid #d9d9d9;
 }

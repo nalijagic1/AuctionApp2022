@@ -6,7 +6,7 @@ import twitter from "../../images/twitter.png";
 import personService from "../../services/person.service";
 
 function NavigationBlack() {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = personService.getCurrentUser();
 
   function logOut() {
     personService.logout().then(() => {

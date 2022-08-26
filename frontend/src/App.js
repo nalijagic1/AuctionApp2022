@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import NavigationBlack from "./components/navigationBlack/navigationBlack";
 import NavigationWhite from "./components/navigationWhite/navigationWhite";
 import Footer from "./components/footer/footer";

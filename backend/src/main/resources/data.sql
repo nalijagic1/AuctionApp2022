@@ -22,43 +22,48 @@ VALUES (1, 'Iphone', 8),
        (10, 'Scarf', 2),
        (11, 'High heals', 4);
 
+INSERT INTO person (id, first_name, last_name, email, password)
+VALUES (1, 'Nadja', 'Alijagic', 'nadjaalijagic@gmail.com',
+        '$2a$04$gP.gFF26gBHFfzkgneKfPO/jRVdGAFj/JS4grPjGXhOZzyTiw1oEO'),
+       (2, 'Ismet', 'Sabic', 'isabic2@gmail.com', '$2a$04$y4ZwPSVIvBXPwrP.P5e59umL1JspvzdRqthrnavuXFkADzaOKKxFa'),
+       (3, 'Dina', 'Meco', 'dina18@gmail.com', '$2a$04$KDMXAC8k6dWNpIFry7UdIOWfDdcdYZ/JJcDeXamOCG5N4zDUJja12');
 
-INSERT INTO product (id, name, description, starting_date, ending_date, starting_price, subcategory_id)
+INSERT INTO product (id, name, description, starting_date, ending_date, starting_price, subcategory_id, person_id)
 VALUES (1, 'Lead Hook Jigging Lures Bait Feather Jig Fish Head',
         'They create lifelike swimming actions in water. 3D eyes make it a powerful catching tool. Bright colors to attract big fish',
-        '2022-06-15', '2022-08-15', 13, 6),
+        '2022-06-15', '2022-08-25', 13, 6, 1),
        (2, 'Ageless Real Eye Cream for face',
         'Korea cosmetic. Multi function, All in one Cream : Eye treatment, Facial treatment.', '2022-07-03',
-        '2022-08-12', 15, 4),
+        '2022-08-22', 15, 4, 1),
        (3, 'New Balance 997H Mens Running Sport Lifestyle Shoes',
         'Synthetic upper.Lightweight injection-molded EVA foam midsole provides lightweight cushioning. Rubber outsole',
-        '2022-07-04', '2022-07-27', 50, 7),
+        '2022-07-04', '2022-09-27', 50, 7, 2),
        (4, 'Morgan Silver Dollar San Francisco First Strike Label ',
-        'High Grade 1885 Morgan Silver Dollar PCGS 66+, Oh so Close to 67!', '2022-07-06', '2022-08-12', 100, 2),
+        'High Grade 1885 Morgan Silver Dollar PCGS 66+, Oh so Close to 67!', '2022-07-06', '2022-08-26', 100, 2, 2),
        (5, 'Iron Man Avengers Endgame Marvel Action Figure',
         'Size: approx 7 inch.Package: 1x action figure ( Including accessories show in pictures)', '2022-07-05',
-        '2022-08-19', 22.3, 3),
+        '2022-08-19', 22.3, 3, 3),
        (6, 'Rare YAMAHA YP-450 (1975) Turntable In Excellent Condition.',
         'It’s extremely well built and extraordinarily elegant. This is a fully manual, high end belt drive with a nice, thick platter and a lovely S-type tonearm. ',
-        '2022-05-03', '2022-07-30', 75, 5),
+        '2022-05-03', '2022-08-30', 75, 5, 1),
        (7, 'Antique Art Deco Washington Silverplated Bowl With Markings',
         'Size - about 3 inches height - 4 inches diameter, 7cm height - 10cm diameter. Condition - got dents, scratches and damages on the plating, need of cleaning.',
-        '2022-07-05', '2022-07-24', 30.89, 2),
+        '2022-07-05', '2022-08-24', 30.89, 2, 1),
        (8, 'RARE ANTIQUE DUTCH GRANDFATHER CLOCK PORTRE',
         'One of a kind early 1800s burled walnut portre montre shaped like a Dutch grandfather clock. With claw feet and a brass front. In the centre hangs the pocket watch.The clock runs great.',
-        '2022-06-30', '2022-09-19', 79, 2),
+        '2022-06-30', '2022-09-19', 79, 2, 2),
        (9, 'SONY PSP Playstation Portable Console Only+ Battery Various colors Used',
         'condition is good. It is a warehouse storage item. There may be some scratches during storage.', '2022-07-06',
-        '2022-08-18', 30, 8),
+        '2022-08-18', 30, 8, 3),
        (10, 'FOR IPHONE 4 5 6/7/8 XS XR XMAX 11 12 13 FLIP LEATHER BOOK CASE COVER',
         'Protect your phone from every day bumps, scratches, marks and dust. Easy to clip on and off. Easy Access to all your controls available. No more worrying as this case will provide you with the ultimate protection. Cut out slot for camera access.',
-        '2022-07-17', '2022-07-26', 5.50, 1),
+        '2022-07-17', '2022-09-26', 5.50, 1, 1),
        (11, 'V-Neck 1/2 Sleeves Mini Dresses',
         'Length: Mini; Neckline: V-Neck;Sleeve: 1/2 Sleeves;Silhouette: A-line;Back Style: Zipper Up;Fabric: Cotton Blends;Season: Spring, Summer;Straps: Sleeves',
-        '2022-03-15', '2022-08-30', 48, 9),
+        '2022-03-15', '2022-08-30', 48, 9, 2),
        (12, 'Women Men Blanket Oversized Tartan Long Cashmere Feel Scarf Wrap Shawl Pashmina',
         'These pictures i took from the digital camera. The real color of the item might be slightly different from the pictures shown on web site caused by many factors such as brightness of your monitor and light',
-        '2022-07-03', '2022-08-03', 17, 10);
+        '2022-07-03', '2022-10-03', 17, 10, 2);
 INSERT INTO picture
 VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
        (2, 'https://i.ebayimg.com/images/g/yDEAAOSwjwJgPHFr/s-l1600.jpg', 2),
@@ -79,9 +84,10 @@ VALUES (1, 'https://i.ebayimg.com/images/g/nMEAAOSwZ6lixPMT/s-l500.png', 1),
        (15, 'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/4f/31/8763599673d9d29375e340f081634f31.jpg', 11),
        (16, 'https://cdn-4.jjshouse.com/upimg/jjshouse/o600/46/28/c81fd01d8c8106f28215a48a8d1f4628.jpg', 11),
        (17, 'https://i.ebayimg.com/images/g/7IYAAOSwD1FdrhAa/s-l1600.jpg', 12);
-INSERT INTO bid (id, bid, product_id)
-VALUES (1, 30, 5),
-       (2, 25, 5),
-       (3, 80, 8),
-       (4, 88, 8),
-       (5, 100, 8);
+
+INSERT INTO bid (id, bid, bid_date, product_id, person_id)
+VALUES (1, 30, '2022-07-14', 5, 1),
+       (2, 25, '2022-07-13', 5, 2),
+       (3, 80, '2022-07-04', 8, 3),
+       (4, 88, '2022-07-14', 8, 1),
+       (5, 100, '2022-07-30', 8, 3);

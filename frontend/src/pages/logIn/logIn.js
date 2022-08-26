@@ -16,11 +16,11 @@ function LogIn() {
   function logIntoAccount() {
     personService
       .logIn(email, password)
-      .then(() => {
-        if (localStorage.getItem("user")) {
-          navigate("/");
-          window.location.reload();
-        }
+      .then((response) => {
+          if (localStorage.getItem("user")) {
+            navigate("/");
+            window.location.reload();
+          }
       })
       .catch((error) => {
         if (error.response.data === "Bad credentials") {
@@ -86,14 +86,14 @@ function LogIn() {
             }
           ></Field>
           <Button
-            lable="Login"
+            label="Login"
             buttonClass="purpleButton userManagment"
             onClick={() => {
               if (formValidation()) logIntoAccount();
             }}
           />
         </form>
-        <a>Forgot password?</a>
+        <a href="/">Forgot password?</a>
       </div>
     </div>
   );

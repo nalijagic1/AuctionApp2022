@@ -7,7 +7,6 @@ import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,9 +15,10 @@ import java.util.Optional;
 public class ProductService {
     private final ProductRepository productRepository;
     private final HunspellConfiguration hunspellConfiguration;
-    @Autowired
-    public ProductService(ProductRepository procuctRepository,HunspellConfiguration config) {
+    private static final int MIN_WORD_LENGTH = 3;
 
+    @Autowired
+    public ProductService(ProductRepository procuctRepository, HunspellConfiguration config) {
         this.productRepository = procuctRepository;
         this.hunspellConfiguration = config;
     }
@@ -26,6 +26,7 @@ public class ProductService {
     public Optional<Product> getSelectedProduct(long id) {
         return productRepository.findById(id);
     }
+
     public Product getRandomProduct() {
         return productRepository.selectRandom(PageRequest.of(0, 1)).get(0);
     }
@@ -48,20 +49,18 @@ public class ProductService {
         return productRepository.searchProducts(search, PageRequest.of(0, count));
     }
 
-    public List<Product> getAllProducts(int count) {
+    public List<Product> getAllActiveProducts(int count) {
         return productRepository.findProductsByEndingDateAfter(PageRequest.of(0, count));
     }
 
-
-    public String checkSpelling(String search) {
+    public String getSearchSuggestion(String search) {
         Hunspell speller = hunspellConfiguration.speller();
         List<String> suggestons = speller.suggest(search);
-        for(String suggest : suggestons) {
-            if(suggest.length() < 3) continue;
+        for (String suggest : suggestons) {
+            if (suggest.length() < MIN_WORD_LENGTH) continue;
             List<Product> searchResult = productRepository.searchProducts(suggest, PageRequest.of(0, 9));
             if (searchResult.size() != 0) return suggest;
         }
         return "";
-
     }
 }

@@ -6,7 +6,6 @@ import com.praksa.auction.model.Category;
 import com.praksa.auction.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +28,8 @@ public class CategoryService {
         List<CategoryDto> categoryDtos = new ArrayList<>();
         for (Category category : categories) {
             List<SubcategoryDto> subcategories = categoryRepository.findSubcategoriesWithCount(category.getId());
-            categoryDtos.add(new CategoryDto(category,subcategories));
+            categoryDtos.add(new CategoryDto(category, subcategories));
         }
-
         return categoryDtos;
     }
 }
