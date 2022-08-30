@@ -17,7 +17,7 @@ function Notification({
   }, []);
   return (
     <div className={showAlert ? "alert-shown" : "alert-hidden"}>
-      <div className={`notification notification${notificationType}`}>
+      <div className={`notification notification-${notificationType}`}>
         <p>{notificationMessage}</p>
       </div>
     </div>

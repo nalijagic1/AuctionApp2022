@@ -20,7 +20,7 @@ public class PaymentService {
 
     public PaymentResponseDto createPaymentIntent(PaymentInfoDto paymentInfoDto) throws StripeException {
         Person buyer = personService.getPersonById(paymentInfoDto.getCustomerId());
-        String custumerId = "";
+        String custumerId;
         if (buyer.getCustomerId() == null) {
             custumerId = personService.createCustomerId(buyer);
         } else custumerId = buyer.getCustomerId();
@@ -34,7 +34,6 @@ public class PaymentService {
                         .putMetadata("product_id", String.valueOf(paymentInfoDto.getProductId()))
                         .build();
         PaymentIntent paymentIntent = PaymentIntent.create(params);
-        PaymentResponseDto paymentResponse = new PaymentResponseDto(paymentIntent.getClientSecret());
-        return paymentResponse;
+        return new PaymentResponseDto(paymentIntent.getClientSecret());
     }
 }

@@ -21,23 +21,16 @@ public class AddressService {
         this.personService = personService;
     }
 
-    private Address createAddressFromRequest(AddressInfoDto addressInfoDto) {
-        Address address = new Address();
-        address.setStreet(addressInfoDto.getAddress());
-        address.setCity(addressInfoDto.getCity());
-        address.setCountry(countryService.findById(addressInfoDto.getCountryId()));
-        address.setZipCode(addressInfoDto.getZipCode());
-        return address;
-    }
-
     public Address addAddressIfNotExist(AddressInfoDto address, long personId) {
-        Address location = createAddressFromRequest(address);
+        Address location = new Address(address,countryService);
+        Address userAddress;
         if (!addressRepository.existsByStreetAndCityAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode())) {
-            Address newAddress = addressRepository.save(location);
-            personService.updateAddressToUser(newAddress.getId(), personId);
-            return newAddress;
+            userAddress = addressRepository.save(location);
+        } else {
+            userAddress = addressRepository.findFirstByStreetAndCityAndAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode());
         }
-        return location;
+        personService.updateAddressToUser(userAddress.getId(), personId);
+        return userAddress;
     }
 
     public Address getAddressFromUser(long personId) {

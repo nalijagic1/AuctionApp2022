@@ -11,4 +11,6 @@ export const NOTIFICATION_MESSAGES = {
   PAYMENT_FINISHED: "You have successfully completed payment for this product",
   AUCTION_ENDED: "This auction has ended",
   OUTBID: "Congratulations! You outbid the competition.",
+  CANNOT_OUTBID_YOURSELF:"You cannot outbid yourself",
+  LOGIN_TO_BID:"Please login or register to place a bid."
 };

@@ -11,7 +11,6 @@ function PaymentOverview(props) {
     <div className="paymentOverview">
       <h5>REVIEW AND CONFIRM PAYMENT</h5>
       <div className="reviewContent">
-        <Dropdown title="Shipping Address" content={[<p>Uslo</p>]} />
         {props.location && (
           <Dropdown
             title="Shipping Address"

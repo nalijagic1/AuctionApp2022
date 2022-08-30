@@ -60,7 +60,7 @@ function ProductInfo({ product, showNotification }) {
       setBiddingEnabled(true);
     } else {
       setBiddingEnabled(false);
-      setWarningText("Please login or register to place a bid.");
+      setWarningText(NOTIFICATION_MESSAGES.LOGIN_TO_BID);
     }
     bidService.getBidCount(product.id).then((response) => {
       if (response.status === STATUS_CODES.OK) setCount(response.data);
@@ -92,7 +92,7 @@ function ProductInfo({ product, showNotification }) {
               }
             }
             setBiddingEnabled(false);
-            setWarningText("You cannot outbid yourself");
+            setWarningText(NOTIFICATION_MESSAGES.CANNOT_OUTBID_YOURSELF);
           } else {
             if (ended && showOnce.current)
               showNotification(

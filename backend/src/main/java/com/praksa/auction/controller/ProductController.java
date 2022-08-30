@@ -61,7 +61,7 @@ public class ProductController {
     }
 
     @PutMapping("/updatePayedStatus")
-    public ResponseEntity<?> updatePayedStatus(@RequestBody boolean payed, @RequestParam long product) {
+    public ResponseEntity<String> updatePayedStatus(@RequestBody boolean payed, @RequestParam long product) {
         productService.updatePayedStatus(payed, product);
         return ResponseEntity.ok("Successful update");
     }

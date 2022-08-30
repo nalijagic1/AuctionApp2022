@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
     Boolean existsByStreetAndCityAndCountryAndZipCode(String street, String city, Country country, String zipCode);
+
+    Address findFirstByStreetAndCityAndAndCountryAndZipCode(String street, String city, Country country, String zipCode);
 }

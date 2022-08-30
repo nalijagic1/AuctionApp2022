@@ -1,7 +1,5 @@
 .suggestion {
   margin-left: 446px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
@@ -11,8 +9,6 @@
 
 .suggestion a {
   margin-left: 16px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;

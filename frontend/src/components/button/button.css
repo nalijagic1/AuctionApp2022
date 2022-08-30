@@ -2,8 +2,6 @@
   background: #ffffff;
   border: 3px solid #8367d8;
   padding: 10px 36px 10px 44px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
@@ -20,8 +18,6 @@
 
 .purpleButton {
   background: #8367d8;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
@@ -45,8 +41,6 @@
 
 .cancel {
   border: 3px solid #d8d8d8;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;

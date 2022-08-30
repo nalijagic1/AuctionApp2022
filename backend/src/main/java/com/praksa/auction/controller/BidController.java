@@ -30,7 +30,7 @@ public class BidController {
     }
 
     @PostMapping("/bids/placeBid")
-    public ResponseEntity<?> placeBid(@Valid @RequestBody BiddingInfoDto biddingInfo) {
+    public ResponseEntity placeBid(@Valid @RequestBody BiddingInfoDto biddingInfo) {
         try {
             bidService.placeBid(biddingInfo);
             return ResponseEntity.ok("Succesfull bidding");

@@ -34,6 +34,14 @@ function ShippingAddress(props) {
     });
   }, []);
 
+  function updateErrorMessage(errorField){
+    setError(data => {
+      var error = {...data}
+      error[errorField] = "";
+      return error;
+    })
+  }
+
   function locationValidation() {
     let validationResult = validation.locationValidation({
       address,
@@ -53,14 +61,9 @@ function ShippingAddress(props) {
           fieldClass="loginAndRegisterField"
           label="Address*"
           type="text"
-          id="addrss"
+          id="address"
           onChange={(e) => {
-            setError({
-              address: "",
-              city: error.city,
-              zipCode: error.zipCode,
-              country: error.country,
-            });
+            updateErrorMessage("address")
             setAddress(e.target.value);
           }}
           error={error.address}
@@ -74,12 +77,7 @@ function ShippingAddress(props) {
             type="text"
             id="city"
             onChange={(e) => {
-              setError({
-                address: error.address,
-                city: "",
-                zipCode: error.zipCode,
-                country: error.country,
-              });
+              updateErrorMessage("city")
               setCity(e.target.value);
             }}
             error={error.city}
@@ -92,12 +90,7 @@ function ShippingAddress(props) {
             type="text"
             id="zipCode"
             onChange={(e) => {
-              setError({
-                address: error.address,
-                city: error.city,
-                zipCode: "",
-                country: error.country,
-              });
+              updateErrorMessage("zipCode")
               setZipCode(e.target.value);
             }}
             error={error.zipCode}
@@ -108,12 +101,7 @@ function ShippingAddress(props) {
         <select
           className={`countrySelector ${error.country ? "selectError" : ""}`}
           onChange={(e) => {
-            setError({
-              address: error.address,
-              city: error.city,
-              zipCode: error.zipCode,
-              country: "",
-            });
+            updateErrorMessage("country")
             setCountry(e.target.value);
           }}
           value={`${countryId}`}
