@@ -48,7 +48,7 @@ public class PaymentService {
         Stripe.apiKey = apiKey;
         SetupIntentCreateParams params =
                 SetupIntentCreateParams.builder()
-                        .addPaymentMethodType("card_present")
+                        .addPaymentMethodType("card")
                         .setCustomer(customerId)
                         .build();
         SetupIntent setupIntent= SetupIntent.create(params);

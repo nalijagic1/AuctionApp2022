@@ -153,3 +153,8 @@
   .errorStyle{
     border-color: red;
   }
+
+  .errorMessage{
+    margin-bottom: 32px;
+    color: #e10000;
+  }

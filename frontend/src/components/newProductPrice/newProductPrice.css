@@ -19,7 +19,7 @@
   margin-bottom: 71px;
 }
 
-.newProductPrice p{
+.newProductPrice .infoMessages{
     font-family: 'Lato';
 font-style: normal;
 font-weight: 400;

@@ -1,3 +1,4 @@
+
 import {
   EMAIL_REGEX,
   LETTERS_ONLY,
@@ -5,6 +6,7 @@ import {
   PASSWORD_STRONG,
   ZIPCODE_REGEX,
 } from "./constants";
+import moment from "moment";
 
 class Validation {
   validateEmail(email) {
@@ -103,7 +105,6 @@ class Validation {
   }
 
   validateImage(images) {
-    console.log(images)
     var errorMessage = "";
     const minNumberOfImages = 3;
     if (images.length < minNumberOfImages) {
@@ -111,6 +112,32 @@ class Validation {
     }
     return errorMessage;
   }
+
+  validatePrice(price) {
+    var errorMessage = "";
+    if (!price) {
+      errorMessage = "Please enter product price";
+    } else if (price <= 0) {
+      errorMessage = "Please enter number greater then 0";
+    }
+    return errorMessage;
+  }
+
+  validateDates(date) {
+    var errorMessage = "";
+    if (!date.startDate || !date.endDate) {
+      errorMessage = "Please enter both start and end date";
+    } else if (
+      moment(date.startDate) < moment().subtract(1, 'days') ||
+      moment(date.endDate) < moment().subtract(1, 'days')
+    ) {
+      errorMessage = "Please enter both start and end date in the future";
+    } else if (moment(date.startDate) > moment(date.endDate)) {
+      errorMessage = "Please enter end date thats is after stratr date";
+    }
+    return errorMessage;
+  }
+
   validateProductDetails(data) {
     let keys = Object.keys(data);
     let errorMessages = keys.reduce((accumulator, value) => {
@@ -126,6 +153,10 @@ class Validation {
         errorMessages.description = this.validateProductInfo(data.description);
       else if (keys[i] === "pictures")
         errorMessages.pictures = this.validateImage(data.pictures);
+      else if (keys[i] === "price")
+        errorMessages.price = this.validatePrice(data.price);
+      else if (keys[i] === "date")
+        errorMessages.date = this.validateDates(data.date);
     }
     if (
       Object.values(errorMessages).findIndex((object) => {

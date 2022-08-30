@@ -34,6 +34,12 @@ function NewProductDetails(props) {
     e.stopPropagation();
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setError({
+        productName: error.productName,
+        subcategory: error.subcategory,
+        description: error.description,
+        pictures: "",
+      });
       setPictures((p) =>
         p.concat(URL.createObjectURL(e.dataTransfer.files[0]))
       );
@@ -67,6 +73,12 @@ function NewProductDetails(props) {
           type="text"
           id="productName"
           onChange={(e) => {
+            setError({
+              productName: "",
+              subcategory: error.subcategory,
+              description: error.description,
+              pictures: error.pictures,
+            });
             setProductName(e.target.value);
           }}
           value={productName}
@@ -77,6 +89,12 @@ function NewProductDetails(props) {
             error.subcategory ? "errorStyle" : ""
           }`}
           onChange={(e) => {
+            setError({
+              productName: error.productName,
+              subcategory: "",
+              description: error.description,
+              pictures: error.pictures,
+            });
             setSubcategory(e.target.value);
           }}
           value={`${subcategory}`}
@@ -112,7 +130,15 @@ function NewProductDetails(props) {
           }`}
           maxLength={700}
           value={description}
-          onChange={(event) => setDescription(event.target.value)}
+          onChange={(event) => {
+            setError({
+              productName: error.description,
+              subcategory: error.subcategory,
+              description: "",
+              pictures: error.pictures,
+            });
+            setDescription(event.target.value);
+          }}
         />
         {error.description ? (
           <p className="errorMessage ">{error.description}</p>
@@ -136,6 +162,12 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
+                  setError({
+                    productName: error.productName,
+                    subcategory: error.subcategory,
+                    description: error.description,
+                    pictures: "",
+                  });
                   setPictures((p) =>
                     p.concat(URL.createObjectURL(event.target.files[0]))
                   );
@@ -181,7 +213,15 @@ function NewProductDetails(props) {
           lable="NEXT"
           buttonClass="purpleButton"
           onClick={() => {
-            if (dataValidation()) props.nextStep();
+            if (dataValidation()) {
+              props.setProductInfo({
+                productName: productName,
+                subcategoryId: subcategory,
+                description: description,
+                pictures: pictures,
+              });
+              props.nextStep();
+            }
           }}
         />
       </div>

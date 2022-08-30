@@ -1,7 +1,11 @@
 package com.praksa.auction.controller;
 
+import com.praksa.auction.config.security.jwt.AuthEntryPointJwt;
+import com.praksa.auction.dto.NewProductDto;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +19,7 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductService productService;
+    private static final Logger logger = LoggerFactory.getLogger(AuthEntryPointJwt.class);
 
     @Autowired
     public ProductController(ProductService productService) {
@@ -69,7 +74,8 @@ public class ProductController {
     }
 
     @PostMapping("/newProduct")
-    public ResponseEntity<?> addNewProduct(){
+    public ResponseEntity<?> addNewProduct(@RequestBody NewProductDto productDto){
+        logger.info("Adding new product process started");
         return null;
     }
 }

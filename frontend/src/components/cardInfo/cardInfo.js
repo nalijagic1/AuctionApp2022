@@ -10,12 +10,30 @@ import Button from "../button/button";
 import { useNavigate } from "react-router";
 import { FRONTEND_URL } from "../../utils/constants";
 import addressService from "../../services/address.service";
+import validation from "../../utils/validation";
 
-function CardInfo({ props }) {
+function CardInfo({ props, location,setError}) {
   const elements = useElements();
   const stripe = useStripe();
   const [validCard, setValidCard] = useState();
   const navigate = useNavigate();
+
+  function saveCard() {
+    if (!stripe || !elements) {
+      return;
+    }
+
+    stripe
+      .confirmSetup({
+        elements,
+        confirmParams: {
+          return_url: `${FRONTEND_URL}/`,
+        },
+      })
+      .then((result) => {
+        if (result.error) console.log(result.error);
+      });
+  }
   function payBid() {
     if (!stripe || !elements) {
       return;
@@ -32,6 +50,16 @@ function CardInfo({ props }) {
       .then((result) => {
         if (result.error) console.log(result.error);
       });
+  }
+  function locationValidation() {
+    let validationResult = validation.locationValidation({
+      address:location.address,
+      city:location.city,
+      zipCode:location.zipCode,
+      countryId:location.countryId,
+    });
+    setError(validationResult.errorMessages);
+    return validationResult.valid;
   }
 
   return (
@@ -56,8 +84,12 @@ function CardInfo({ props }) {
             lable={props.payment ? `PAY ${props.amount}$` : "DONE"}
             buttonClass="purpleButton"
             onClick={() => {
-              if (props.payment) {
-                if (validCard) payBid();
+              if (validCard) {
+                if (props.payment) {
+                  payBid();
+                } else {
+                  if(locationValidation()) saveCard();
+                }
               }
             }}
           ></Button>

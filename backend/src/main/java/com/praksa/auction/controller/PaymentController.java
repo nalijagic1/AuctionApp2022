@@ -25,7 +25,7 @@ public class PaymentController {
     }
 
     @PostMapping("/auth/setUpIntent")
-    public  ResponseEntity<?> createSetUpIntent(@RequestParam long customer) throws StripeException {
-        return ResponseEntity.ok(paymentService.createSetUpIntent(customer));
+    public  ResponseEntity<?> createSetUpIntent(@RequestBody long customerId) throws StripeException {
+        return ResponseEntity.ok(paymentService.createSetUpIntent(customerId));
     }
 }
