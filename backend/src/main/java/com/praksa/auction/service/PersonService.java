@@ -8,9 +8,13 @@ import com.praksa.auction.dto.LogInDto;
 import com.praksa.auction.dto.RegistrationDto;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.repository.PersonRepository;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.Customer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +22,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class PersonService {
@@ -29,6 +36,8 @@ public class PersonService {
     JwtUtils jwtUtils;
     @Autowired
     PasswordEncoder encoder;
+    @Value("${stripeSecretKey}")
+    private String apiKey;
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
@@ -79,4 +88,18 @@ public class PersonService {
         return personRepositoy.findById(id).get();
     }
 
+    public String createCustomerId(Person person) throws StripeException {
+        Stripe.apiKey = apiKey;
+        Map<String, Object> customerParams = new HashMap<String, Object>();
+        customerParams.put("name", person.getFirstName() + " " + person.getLastName());
+        customerParams.put("email", person.getEmail());
+        Customer customer = Customer.create(customerParams);
+        person.setCustomerId(customer.getId());
+        personRepositoy.updateCustomerInfo(customer.getId(), person.getId());
+        return customer.getId();
+    }
+
+    public void updateAddressToUser(long addressId, long personId) {
+        personRepositoy.updateAddressInfo(addressId, personId);
+    }
 }

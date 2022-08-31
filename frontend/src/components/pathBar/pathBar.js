@@ -16,6 +16,10 @@ function PathBar({ prop }) {
       <div className={classType.current}>
         <Breadcrumb>
           <Breadcrumb.Item href={link}>{prop.startPoint} </Breadcrumb.Item>
+          {prop.paths &&
+            prop.paths.map((path) => {
+              return <Breadcrumb.Item key="0">{path}</Breadcrumb.Item>;
+            })}
           <Breadcrumb.Item active>{prop.endPoint}</Breadcrumb.Item>
         </Breadcrumb>
       </div>

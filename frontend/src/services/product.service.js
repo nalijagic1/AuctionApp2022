@@ -35,6 +35,13 @@ class ProductDataService {
   getSuggestion(search) {
     return httpCommon.get("/products/check?search=" + search);
   }
+
+  updatePayedStatus(payed, product) {
+    return httpCommon.put(
+      "/products/updatePayedStatus?product=" + product,
+      payed
+    );
+  }
 }
 
 export default new ProductDataService();

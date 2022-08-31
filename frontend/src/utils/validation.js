@@ -3,6 +3,7 @@ import {
   LETTERS_ONLY,
   PASSWORD_MEDIUM,
   PASSWORD_STRONG,
+  ZIPCODE_REGEX,
 } from "./constants";
 
 class Validation {
@@ -51,6 +52,40 @@ class Validation {
     return "weak";
   }
 
+  validateAddress(address) {
+    var errorMessage = "";
+    if (!address) {
+      errorMessage = "Please enter your address";
+    }
+    return errorMessage;
+  }
+
+  validateCity(city) {
+    var errorMessage = "";
+    if (!city) {
+      errorMessage = "Please enter your city";
+    }
+    return errorMessage;
+  }
+
+  validateCountry(country) {
+    var errorMessage = "";
+    if (country === 0) {
+      errorMessage = "Please select your country";
+    }
+    return errorMessage;
+  }
+
+  validateZipCode(zipCode) {
+    var errorMessage = "";
+    if (!zipCode) {
+      errorMessage = "Please enter your zip code";
+    } else if (!ZIPCODE_REGEX.test(zipCode)) {
+      errorMessage = "Please enter valid zip code";
+    }
+    return errorMessage;
+  }
+
   formValidation(data, option) {
     let keys = Object.keys(data);
     let errorMessages = keys.reduce((accumulator, value) => {
@@ -68,6 +103,36 @@ class Validation {
         errorMessages.lastName = this.validateNames(data.lastName, "last");
       else if (keys[i] === "firstName")
         errorMessages.firstName = this.validateNames(data.firstName, "first");
+    }
+    if (
+      Object.values(errorMessages).findIndex((object) => {
+        return object !== "";
+      }) !== -1
+    )
+      valid = false;
+    return { errorMessages: errorMessages, valid: valid };
+  }
+
+  locationValidation(location) {
+    let keys = Object.keys(location);
+    let errorMessages = keys.reduce((accumulator, value) => {
+      return { ...accumulator, [value]: "" };
+    }, {});
+    let valid = true;
+    for (var i = 0; i < keys.length; i++) {
+      switch (keys[i]) {
+        case "address":
+          errorMessages.address = this.validateAddress(location.address);
+          break;
+        case "city":
+          errorMessages.city = this.validateCity(location.city);
+          break;
+        case "zipCode":
+          errorMessages.zipCode = this.validateZipCode(location.zipCode);
+          break;
+        default:
+          errorMessages.country = this.validateCountry(location.countryId);
+      }
     }
     if (
       Object.values(errorMessages).findIndex((object) => {

@@ -1,9 +1,18 @@
 package com.praksa.auction.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Table(name = "subcategory")
 public class Subcategory {
     @Id
@@ -13,37 +22,4 @@ public class Subcategory {
     @ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
-
-    public Subcategory() {
-    }
-
-    public Subcategory(String name, Category category) {
-        this.name = name;
-        this.category = category;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
 }

@@ -5,6 +5,8 @@ AuctionApp is an e-commerce web application that provides consumer-to-consumer s
 * **JDBC_DATABASE_PASSWORD** – password needed to access database
 * **JWT_SECRET** - secret key needed to generate JWT token
 * **JWT_EXPIRATION** - duration of JWT token
+* **STRIPE_PUBLIC** - public key from your Stripe account
+* **STRIPE_SECRET** - secret key from your Stripe account
 <!-- -->
 User has to have npm and maven installed on his desktop.  
 To run the backend part of the application, user needs to go to backend directory and do following commands in his terminal:  

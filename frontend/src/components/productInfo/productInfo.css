@@ -4,8 +4,6 @@
 
 .info h2 {
   width: 548px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 32px;
   line-height: 51px;
@@ -16,8 +14,6 @@
 }
 
 .info h3 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 300;
   font-size: 16px;
   line-height: 19px;
@@ -62,10 +58,29 @@
 
 .info p {
   width: 548px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
   color: #9b9b9b;
+}
+
+.paymentOption {
+  display: flex;
+  margin-top: 40px;
+}
+.paymentOption .sellerLabel {
+  font-weight: 400;
+  font-size: 16px;
+  color: #9b9b9b;
+  opacity: 1;
+  padding: 10px 24px 0px 0px;
+}
+
+.paymentOption .sellerName {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #252525;
+  padding: 10px 170px 0px 16px;
+  width: auto;
 }

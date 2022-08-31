@@ -22,6 +22,13 @@ VALUES (1, 'Iphone', 8),
        (10, 'Scarf', 2),
        (11, 'High heals', 4);
 
+INSERT INTO country
+VALUES (1,'Bosnia and Herzegovina'),
+       (2,'Germany'),
+       (3,'Croatia'),
+       (4,'Serbia'),
+       (5,'United Kingdoms');
+
 INSERT INTO person (id, first_name, last_name, email, password)
 VALUES (1, 'Nadja', 'Alijagic', 'nadjaalijagic@gmail.com',
         '$2a$04$gP.gFF26gBHFfzkgneKfPO/jRVdGAFj/JS4grPjGXhOZzyTiw1oEO'),

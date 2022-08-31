@@ -63,4 +63,8 @@ public class ProductService {
         }
         return "";
     }
+
+    public void updatePayedStatus(boolean payed, long product) {
+        productRepository.updatePayedStatus(payed, product);
+    }
 }

@@ -9,11 +9,12 @@ function Field({
   label,
   type,
   id,
-  onKeyUp,
+  onChange,
   error,
   info,
   infoType,
   iconShow,
+  value,
 }) {
   let messageClass = "";
   if (error) {
@@ -32,7 +33,8 @@ function Field({
         id={id}
         name={id}
         placeholder={placeHolder}
-        onKeyUp={onKeyUp}
+        onChange={onChange}
+        value={value}
         min="1"
       ></input>
       {(error || info) && (

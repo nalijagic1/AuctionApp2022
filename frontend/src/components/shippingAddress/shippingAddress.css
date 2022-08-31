@@ -1,0 +1,83 @@
+.shippingAddress {
+  width: 737px;
+  margin-left: 351px;
+  margin-top: 40px;
+  border: 2px solid #d8d8d8;
+  margin-bottom: 211px;
+}
+
+.shippingAddress h5 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  margin-left: 275px;
+  margin-top: 23px;
+  margin-bottom: 71px;
+}
+
+.shippingAddress form {
+  margin-left: 95px;
+  margin-right: 95px;
+}
+
+.cityAndZipCode {
+  display: flex;
+}
+
+.countrySelector {
+  width: 547px;
+  height: 64px;
+  background: #fcfcfc;
+  border: 1px solid #d8d8d8;
+  padding: 18px 0px 18px 24px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #9b9b9b;
+  margin-top: 16px;
+}
+
+.selectError {
+  border: 1px solid #e10000;
+}
+
+.shippingAddress label {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #252525;
+}
+
+.shippingAddress .mandatory {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #9b9b9b;
+  margin-top: 24px;
+  margin-left: 94px;
+}
+
+.menuButtons {
+  display: grid;
+  margin-top: 64px;
+  margin-left: 92px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 547px;
+  margin-bottom: 64px;
+}
+
+.menuButtons button {
+  padding: 12px 32px 12px 32px;
+}
+
+.nextButton button {
+  float: right;
+}
+
+.errorCountry {
+  margin-top: 17px;
+  margin-bottom: 32px;
+  color: #e10000;
+}

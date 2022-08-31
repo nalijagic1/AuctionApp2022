@@ -17,8 +17,6 @@
   margin-bottom: 32px;
   width: 568px;
   padding: 18px 0px 18px 24px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -26,7 +24,7 @@
 }
 
 .field input:focus-visible {
-  outline: 1px solid #8367d8;
+  outline: 1px solid #8367D8;
 }
 
 .field input[type="number"]::-webkit-inner-spin-button,
@@ -36,8 +34,6 @@
 }
 
 .field label {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -76,7 +72,7 @@
 }
 
 .fieldInfo {
-  width: 567px;
+  width: fit-content;
   display: flex;
   margin-top: -15px;
   margin-bottom: 32px;
@@ -126,4 +122,9 @@
   pointer-events: none;
   background: #ececec;
   border: 1px solid #d9d9d9;
+}
+
+.smaller {
+  width: 263px;
+  margin-right: 20px;
 }

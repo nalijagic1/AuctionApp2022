@@ -64,7 +64,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="firstName"
             type="text"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 firstName: "",
                 lastName: error.lastName,
@@ -74,6 +74,7 @@ function Registration() {
               setFirstName(e.target.value);
             }}
             error={error.firstName}
+            value={firstName}
           ></Field>
           <Field
             placeHolder="Enter your last name"
@@ -81,7 +82,7 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="lastName"
             type="text"
-            onKeyUp={(e) => {
+            onChange={(e) => {
               setError({
                 firstName: error.firstName,
                 lastName: "",
@@ -91,6 +92,7 @@ function Registration() {
               setLastName(e.target.value);
             }}
             error={error.lastName}
+            value={lastName}
           ></Field>
           <Field
             placeHolder="Enter your email"
@@ -98,7 +100,8 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="email"
             type="email"
-            onKeyUp={(e) => {
+            value={email}
+            onChange={(e) => {
               setError({
                 firstName: error.firstName,
                 lastName: error.lastName,
@@ -115,7 +118,8 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="password"
             type={showPassword ? "text" : "password"}
-            onKeyUp={(e) => {
+            value={password}
+            onChange={(e) => {
               setError({
                 firstName: error.firstName,
                 lastName: error.lastName,

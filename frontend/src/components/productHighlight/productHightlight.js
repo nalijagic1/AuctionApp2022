@@ -33,7 +33,7 @@ function ProductHighlight() {
           <div className="bidNow">
             <Button
               label="Bid now"
-              buttonClass="bidding"
+              buttonClass="purpleBorder"
               icon={
                 <MdOutlineKeyboardArrowRight
                   className="buttonIcon"

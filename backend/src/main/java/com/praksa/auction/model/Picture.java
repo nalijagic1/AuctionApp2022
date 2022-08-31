@@ -1,9 +1,18 @@
 package com.praksa.auction.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "picture")
 public class Picture {
     @Id
@@ -13,38 +22,4 @@ public class Picture {
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
-
-    public Picture(String imageUrl, Product product) {
-        this.imageUrl = imageUrl;
-        this.product = product;
-    }
-
-    public Picture() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-
 }

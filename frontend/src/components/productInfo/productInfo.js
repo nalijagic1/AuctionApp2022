@@ -7,6 +7,8 @@ import moment from "moment";
 import personService from "../../services/person.service";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import TooltipMessage from "../tooltipMessage/tooltipMessage";
+import { Avatar } from "@mui/material";
+import { useNavigate } from "react-router";
 import {
   NOTIFICATION_TYPES,
   NOTIFICATION_MESSAGES,
@@ -14,16 +16,20 @@ import {
 import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function ProductInfo({ product, showNotification }) {
+  const navigate = useNavigate();
+  const showOnce = useRef(1);
   const [highestBid, setHighestBid] = useState(0);
   const [count, setCount] = useState(0);
-  const [biddingEnabled, setBiddingEnabled] = useState(false);
+  const [biddingEnabled, setBiddingEnabled] = useState(true);
   const [warningText, setWarningText] = useState("");
   const [bid, setBid] = useState("");
   const [notSeller, setNotSeller] = useState(true);
-  const [ended, setEnded] = useState(false);
+  const [ended, setEnded] = useState(
+    moment(product.endingDate) <= moment.now()
+  );
+  const [winner, setWinner] = useState(false);
   let countdown = moment(product.endingDate).fromNow(true);
   const user = personService.getCurrentUser();
-  const showOnce = useRef(1);
 
   function placeBid() {
     if (bid === "") {
@@ -47,7 +53,6 @@ function ProductInfo({ product, showNotification }) {
   }
 
   useEffect(() => {
-    if (moment(product.endingDate) <= moment.now()) setEnded(true);
     if (user) {
       if (user.id === product.person.id) {
         setNotSeller(false);
@@ -55,7 +60,7 @@ function ProductInfo({ product, showNotification }) {
       setBiddingEnabled(true);
     } else {
       setBiddingEnabled(false);
-      setWarningText("Please login or register to place a bid.");
+      setWarningText(NOTIFICATION_MESSAGES.LOGIN_TO_BID);
     }
     bidService.getBidCount(product.id).then((response) => {
       if (response.status === STATUS_CODES.OK) setCount(response.data);
@@ -72,15 +77,34 @@ function ProductInfo({ product, showNotification }) {
                 NOTIFICATION_TYPES.SUCCESS,
                 NOTIFICATION_MESSAGES.SUCCESS_MESSAGE
               );
+            } else if (ended && showOnce.current) {
+              if (product.payed) {
+                showNotification(
+                  NOTIFICATION_TYPES.INFO,
+                  NOTIFICATION_MESSAGES.PAYMENT_FINISHED
+                );
+              } else {
+                setWinner(true);
+                showNotification(
+                  NOTIFICATION_TYPES.INFO,
+                  NOTIFICATION_MESSAGES.OUTBID
+                );
+              }
             }
-            showOnce.current = 0;
             setBiddingEnabled(false);
-            setWarningText("You cannot outbid yourself");
+            setWarningText(NOTIFICATION_MESSAGES.CANNOT_OUTBID_YOURSELF);
+          } else {
+            if (ended && showOnce.current)
+              showNotification(
+                NOTIFICATION_TYPES.WARNING,
+                NOTIFICATION_MESSAGES.AUCTION_ENDED
+              );
           }
+          showOnce.current = 0;
         }
       }
     });
-  }, [product, user]);
+  }, [product, user, showNotification, ended]);
 
   return (
     <div className="info">
@@ -114,7 +138,8 @@ function ProductInfo({ product, showNotification }) {
               fieldClass={biddingEnabled ? `placeBid` : "placeBid disabled"}
               id="placeBid"
               type="number"
-              onKeyUp={(event) => setBid(event.target.value)}
+              onChange={(event) => setBid(event.target.value)}
+              value={bid}
             />
             <Button
               label="Place bid"
@@ -125,14 +150,42 @@ function ProductInfo({ product, showNotification }) {
                 />
               }
               buttonClass={
-                biddingEnabled ? "bidding" : "disabledButton bidding"
+                biddingEnabled ? "purpleBorder" : "disabledButton purpleBorder"
               }
               onClick={() => placeBid()}
             />
           </div>
         </TooltipMessage>
       )}
-
+      {ended && (
+        <div className="paymentOption">
+          <h1 className="sellerLabel">Seller:</h1>
+          <Avatar src={product.person.picture} />
+          <h2 className="sellerName">
+            {product.person.firstName} {product.person.lastName}
+          </h2>
+          {winner && (
+            <Button
+              label="Pay"
+              icon={
+                <MdOutlineKeyboardArrowRight
+                  className="buttonIcon"
+                  viewBox="none"
+                />
+              }
+              onClick={() =>
+                navigate("/payment", {
+                  state: {
+                    price: highestBid,
+                    product: product.id,
+                  },
+                })
+              }
+              buttonClass="purpleBorder"
+            />
+          )}
+        </div>
+      )}
       <div className="desc">
         <h3>Details</h3>
       </div>

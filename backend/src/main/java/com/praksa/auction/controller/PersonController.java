@@ -34,7 +34,7 @@ public class PersonController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> logIn(@Valid @RequestBody LogInDto loginInfo) {
+    public ResponseEntity logIn(@Valid @RequestBody LogInDto loginInfo) {
         try {
             return ResponseEntity.ok(personService.logIn(loginInfo));
         } catch (UsernameNotFoundException e) {
@@ -43,7 +43,7 @@ public class PersonController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> createAccount(@Valid @RequestBody RegistrationDto signUpRequest) {
+    public ResponseEntity createAccount(@Valid @RequestBody RegistrationDto signUpRequest) {
         try {
             return ResponseEntity.ok(personService.createAccount(signUpRequest));
         } catch (IllegalArgumentException e) {
