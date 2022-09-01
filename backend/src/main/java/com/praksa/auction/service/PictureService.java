@@ -22,4 +22,8 @@ public class PictureService {
     public Picture getCoverImage(Long id) {
         return pictureRepository.findFirstByProductId(id);
     }
+
+    public List<Picture> addNewPictures(List<Picture> pictures){
+        return pictureRepository.saveAll(pictures);
+    }
 }

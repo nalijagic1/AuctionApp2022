@@ -22,4 +22,9 @@ public class Picture {
     @ManyToOne
     @JoinColumn(name = "productId")
     private Product product;
+
+    public Picture(String imageUrl, Product product) {
+        this.imageUrl = imageUrl;
+        this.product = product;
+    }
 }

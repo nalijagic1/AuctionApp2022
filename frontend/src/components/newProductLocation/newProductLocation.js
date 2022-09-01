@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Field from "../field/field";
 import "./newProductLocation.css";
 import countryService from "../../services/country.service";
@@ -20,10 +20,20 @@ function NewProductLocation(props) {
   );
   const [error, setError] = useState({
     address: "",
+    email: "",
     city: "",
     zipCode: "",
+    phoneNumber: "",
     country: "",
   });
+  function updateErrorMessage(errorField) {
+    setError((data) => {
+      var error = { ...data };
+      error[errorField] = "";
+      return error;
+    });
+  }
+
   useEffect(() => {
     countryService.getAll().then((response) => {
       if (response.status === 200) setCoutries(response.data);
@@ -49,9 +59,12 @@ function NewProductLocation(props) {
           type="text"
           id="addrss"
           onChange={(e) => {
+            updateErrorMessage("address");
             setAddress(e.target.value);
           }}
           value={address}
+          error={error.address}
+          readOnly={false}
         />
         <Field
           placeHolder="Enter your email"
@@ -60,9 +73,12 @@ function NewProductLocation(props) {
           type="text"
           id="email"
           onChange={(e) => {
+            updateErrorMessage("email");
             setEmail(e.target.value);
           }}
           value={email}
+          error={error.email}
+          readOnly={true}
         />
         <div className="cityAndZipCode">
           <Field
@@ -71,7 +87,9 @@ function NewProductLocation(props) {
             label="City"
             type="text"
             id="city"
+            error={error.city}
             onChange={(e) => {
+              updateErrorMessage("city");
               setCity(e.target.value);
             }}
             value={city}
@@ -82,7 +100,9 @@ function NewProductLocation(props) {
             label="Zip Code"
             type="text"
             id="zipCode"
+            error={error.zipCode}
             onChange={(e) => {
+              updateErrorMessage("zipCode");
               setZipCode(e.target.value);
             }}
             value={zipCode}
@@ -91,8 +111,9 @@ function NewProductLocation(props) {
         <label>Country</label>
         <br></br>
         <select
-          className={`sectorCountry`}
+          className={`sectorCountry ${error.country ? "selectError" : ""}`}
           onChange={(e) => {
+            updateErrorMessage("country");
             setCountry(e.target.value);
           }}
           value={`${countryId}`}
@@ -109,13 +130,16 @@ function NewProductLocation(props) {
               );
             })}
         </select>
+        {error.country && <p className="errorCountry">{error.country}</p>}
         <Field
           placeHolder="Enter your phone number"
           fieldClass="loginAndRegisterField"
           label="Phone number"
           type="text"
           id="phoneNumber"
+          error={error.phoneNumber}
           onChange={(e) => {
+            updateErrorMessage("phoneNumber");
             setPhoneNumber(e.target.value);
           }}
           value={phoneNumber}
@@ -123,7 +147,18 @@ function NewProductLocation(props) {
       </form>
       <div className="sellerCardInfo">
         <Elements options={props.options} stripe={props.stripe}>
-          <CardInfo props={props} location ={{address:address,city:city,zipCode:zipCode,countryId:countryId}} setError={(error) => setError(error)}/>
+          <CardInfo
+            props={props}
+            location={{
+              address: address,
+              email: email,
+              city: city,
+              zipCode: zipCode,
+              countryId: countryId,
+              phoneNumber: phoneNumber,
+            }}
+            setError={(error) => setError(error)}
+          />
         </Elements>
       </div>
     </div>

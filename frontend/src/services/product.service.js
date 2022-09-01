@@ -42,6 +42,32 @@ class ProductDataService {
       payed
     );
   }
+
+  addProduct(
+    productName,
+    description,
+    subcategoryId,
+    personId,
+    startingPrice,
+    startingDate,
+    endingDate,
+    pictures,
+    address,
+    phoneNumber
+  ) {
+    return httpCommon.post("/products/newProduct", {
+      productName,
+      description,
+      subcategoryId,
+      personId,
+      startingPrice,
+      startingDate,
+      endingDate,
+      pictures,
+      address,
+      phoneNumber,
+    });
+  }
 }
 
 export default new ProductDataService();

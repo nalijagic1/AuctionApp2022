@@ -4,6 +4,7 @@ import {
   PASSWORD_MEDIUM,
   PASSWORD_STRONG,
   ZIPCODE_REGEX,
+  PHONE_NUMBER_REGEX,
 } from "./constants";
 import moment from "moment";
 
@@ -127,12 +128,22 @@ class Validation {
     if (!date.startDate || !date.endDate) {
       errorMessage = "Please enter both start and end date";
     } else if (
-      moment(date.startDate) < moment().subtract(1, 'days') ||
-      moment(date.endDate) < moment().subtract(1, 'days')
+      moment(date.startDate) < moment().subtract(1, "days") ||
+      moment(date.endDate) < moment().subtract(1, "days")
     ) {
       errorMessage = "Please enter both start and end date in the future";
     } else if (moment(date.startDate) > moment(date.endDate)) {
       errorMessage = "Please enter end date thats is after stratr date";
+    }
+    return errorMessage;
+  }
+
+  validatePhoneNumber(phoneNumber) {
+    var errorMessage = "";
+    if (!phoneNumber) {
+      errorMessage = "Please enter your phone number";
+    } else if (!PHONE_NUMBER_REGEX.test(phoneNumber)) {
+      errorMessage = "Please enter valida phone number format";
     }
     return errorMessage;
   }
@@ -209,6 +220,14 @@ class Validation {
           break;
         case "zipCode":
           errorMessages.zipCode = this.validateZipCode(location.zipCode);
+          break;
+        case "email":
+          errorMessages.email = this.validateEmail(location.email);
+          break;
+        case "phoneNumber":
+          errorMessages.phoneNumber = this.validatePhoneNumber(
+            location.phoneNumber
+          );
           break;
         default:
           errorMessages.country = this.validateCountry(location.countryId);

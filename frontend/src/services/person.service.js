@@ -32,6 +32,7 @@ class PersonDataService {
     if(user) return user.user;
     return null;
   }
+
 }
 
 export default new PersonDataService();

@@ -8,7 +8,7 @@ import validation from "../../utils/validation";
 
 function NewProductPrice(props) {
   const navigate = useNavigate();
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState("");
   const [startDate, setStartDate] = useState(moment().format("yyyy-MM-DD"));
   const [endDate, setEndDate] = useState("");
   const [error, setError] = useState({
@@ -30,32 +30,40 @@ function NewProductPrice(props) {
         <div>
           <label>Your start price*</label>
           <input
-            className="startPrice"
+            className={`startPrice ${error.price ? "errorField" : ""}`}
             type="number"
             placeholder="Enter your starting price"
             min="1"
             value={price}
-            onChange={(e) => setPrice(e.target.value)}
+            onChange={(e) => {
+              setError({ price: "", date: error.date });
+              setPrice(e.target.value);
+            }}
           />
-          <div className="currency">$</div>
+          <div className={`currency ${error.price ? "errorField" : ""}`}>$</div>
         </div>
         <p className="errorMessage">{error.price}</p>
         <div className="auctionDates">
           <Field
             type="date"
-            fieldClass="loginAndRegisterField smaller"
+            fieldClass={`loginAndRegisterField smaller  ${error.date ? "errorField" : ""}`}
             label="Start date*"
             value={startDate}
             onChange={(e) => {
+              setError({ price: error.price, date: "" });
               setStartDate(e.target.value);
             }}
+            
           />
           <Field
             type="date"
-            fieldClass="loginAndRegisterField smaller"
+            fieldClass={`loginAndRegisterField smaller  ${error.date ? "errorField" : ""}`}
             label="End date"
             value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
+            onChange={(e) => {
+              setError({ price: error.price, date: "" });
+              setEndDate(e.target.value);
+            }}
           />
         </div>
         <p className="errorMessage">{error.date}</p>

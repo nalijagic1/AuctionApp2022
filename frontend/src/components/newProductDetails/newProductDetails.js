@@ -20,6 +20,13 @@ function NewProductDetails(props) {
     description: "",
     pictures: "",
   });
+
+  function deleteImage(imageIndex) {
+    setPictures((p) => {
+      p.splice(imageIndex, 1);
+      return p;
+    });
+  }
   function handleDrag(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -40,9 +47,7 @@ function NewProductDetails(props) {
         description: error.description,
         pictures: "",
       });
-      setPictures((p) =>
-        p.concat(URL.createObjectURL(e.dataTransfer.files[0]))
-      );
+      setPictures((p) => p.concat(e.dataTransfer.files[0]));
     }
   }
 
@@ -111,7 +116,10 @@ function NewProductDetails(props) {
                 >
                   {category.subcategories.map((subcategory) => {
                     return (
-                      <option key={subcategory.id} value={subcategory.id}>
+                      <option
+                        key={subcategory.subcategoryId}
+                        value={subcategory.subcategoryId}
+                      >
                         {subcategory.name}
                       </option>
                     );
@@ -168,9 +176,7 @@ function NewProductDetails(props) {
                     description: error.description,
                     pictures: "",
                   });
-                  setPictures((p) =>
-                    p.concat(URL.createObjectURL(event.target.files[0]))
-                  );
+                  setPictures((p) => p.concat(event.target.files[0]));
                 }}
               />
             </label>
@@ -183,7 +189,14 @@ function NewProductDetails(props) {
             className={`imageUploaded  ${error.pictures ? "errorStyle" : ""}`}
           >
             {pictures.map((picture) => {
-              return <ImagePreview image={picture} name={productName} />;
+              return (
+                <ImagePreview
+                  image={URL.createObjectURL(picture)}
+                  index={pictures.indexOf(picture, 0)}
+                  name={productName}
+                  deleteImage={(index) => deleteImage(index)}
+                />
+              );
             })}
             <label htmlFor="imageInput" className="imageMoreInput">
               <AiOutlinePlusCircle className="addIcon" />
@@ -193,9 +206,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
-                  setPictures((p) =>
-                    p.concat(URL.createObjectURL(event.target.files[0]))
-                  );
+                  setPictures((p) => p.concat(event.target.files[0]));
                 }}
               />
             </label>

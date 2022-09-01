@@ -1,6 +1,9 @@
 package com.praksa.auction.model;
 
 
+import com.praksa.auction.dto.NewProductDto;
+import com.praksa.auction.service.PersonService;
+import com.praksa.auction.service.SubcategoryService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +37,19 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "addressId")
     private Address address;
-    private Boolean shippingOption;
     private Boolean payed;
     private String phoneNumber;
+
+    public Product(NewProductDto productDto, SubcategoryService subcategoryService, PersonService personService) {
+        this.name = productDto.getProductName();
+        this.description = productDto.getDescription();
+        this.subcategory = subcategoryService.getSubcategoryById(productDto.getSubcategoryId());
+        this.person = personService.getPersonById(productDto.getPersonId());
+        this.startingPrice = productDto.getStartingPrice();
+        this.startingDate = productDto.getStartingDate();
+        this.endingDate = productDto.getEndingDate();
+        this.address = productDto.getAddress();
+        this.payed = false;
+        this.phoneNumber = productDto.getPhoneNumber();
+    }
 }

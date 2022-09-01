@@ -9,22 +9,19 @@ import NewProductLocation from "../../components/newProductLocation/newProductLo
 import { loadStripe } from "@stripe/stripe-js";
 import paymentService from "../../services/payment.service";
 import personService from "../../services/person.service";
+import { STRIPE_PUBLIC } from "../../utils/constants";
 
 function AddNewItem() {
   const [activeStep, setActiveStep] = useState(0);
   const [basicDetails, setBasicDetails] = useState();
   const [priceDetails, setPriceDetails] = useState();
-  const stripePromise = loadStripe(
-    "pk_test_51LVB8xBj1vinbdx6NyD5IYpzSgWonLR41HNAETguKGEXelw3DcPqP0l3JQ69NAsJOjrfPue0tK2rjJ423fr5PgJS00fSun4phx"
-  );
+  const stripePromise = loadStripe(STRIPE_PUBLIC);
   const buyer = personService.getCurrentUser();
   const [clientSecret, setClientSecret] = useState();
-  const appearance = {
-    theme: "stripe",
-  };
+
   const options = {
     clientSecret,
-    appearance,
+    theme: "stripe",
   };
   useEffect(() => {
     paymentService.createSetUpIntent(buyer.id).then((response) => {
@@ -52,9 +49,16 @@ function AddNewItem() {
         <NewProductDetails
           setProductInfo={(productInfo) => setBasicDetails(productInfo)}
         />
-        <NewProductPrice setPriceInfo={(priceInfo) => setPriceDetails(priceInfo)}/>
+        <NewProductPrice
+          setPriceInfo={(priceInfo) => setPriceDetails(priceInfo)}
+        />
         {clientSecret && (
-          <NewProductLocation options={options} stripe={stripePromise} price={priceDetails} productInfo={basicDetails}/>
+          <NewProductLocation
+            options={options}
+            stripe={stripePromise}
+            priceDetails={priceDetails}
+            productInfo={basicDetails}
+          />
         )}
       </StepWizard>
     </div>

@@ -1,5 +1,6 @@
 package com.praksa.auction.dto;
 
+import com.praksa.auction.model.Address;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class NewProductDto {
     private Double startingPrice;
     private Date startingDate;
     private Date endingDate;
-    private List pictures;
-    private long addressId;
+    private List<String> pictures;
+    private Address address;
     private String phoneNumber;
+
 }

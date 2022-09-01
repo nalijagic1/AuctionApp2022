@@ -11,7 +11,7 @@ class PaymentDataService {
   }
   createSetUpIntent(customerId) {
     return httpCommon.post(
-      "/auth/setUpIntent",
+      "/payment/setUpIntent",
       customerId,
       { headers: authHeader() }
     );

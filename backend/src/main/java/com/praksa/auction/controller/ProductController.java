@@ -68,7 +68,7 @@ public class ProductController {
     @PostMapping("/newProduct")
     public ResponseEntity<?> addNewProduct(@RequestBody NewProductDto productDto){
         logger.info("Adding new product process started");
-        return null;
+        return ResponseEntity.ok(productService.addNewProduct(productDto));
     }
 
     @PutMapping("/updatePayedStatus")

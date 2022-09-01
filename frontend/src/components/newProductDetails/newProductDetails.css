@@ -50,11 +50,16 @@
   margin-top: 32px;
 }
 
-.newProductBasicInfo textarea {
+.descriptionTextarea {
   width: 560px;
   height: 200px;
   resize: none;
   margin-top: 16px;
+  border:1px solid #d8d8d8;
+}
+
+.descriptionTextarea:focus{
+  outline: 1px solid #8367D8;
 }
 
 .newProductBasicInfo .textAreaLimit {

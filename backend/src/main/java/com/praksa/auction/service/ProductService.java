@@ -2,11 +2,16 @@ package com.praksa.auction.service;
 
 import com.atlascopco.hunspell.Hunspell;
 import com.praksa.auction.config.HunspellConfiguration;
+import com.praksa.auction.dto.NewProductDto;
+import com.praksa.auction.model.Picture;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +21,13 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final HunspellConfiguration hunspellConfiguration;
     private static final int MIN_WORD_LENGTH = 3;
+    @Autowired
+    private SubcategoryService subcategoryService;
+    @Lazy
+    @Autowired
+    private PersonService personService;
+    @Autowired
+    private PictureService pictureService;
 
     @Autowired
     public ProductService(ProductRepository procuctRepository, HunspellConfiguration config) {
@@ -70,5 +82,15 @@ public class ProductService {
 
     public boolean existBySeller(long sellerId) {
         return productRepository.existsProductByPersonId(sellerId);
+    }
+
+    public Product addNewProduct(NewProductDto productDto){
+        Product newProduct = productRepository.save(new Product(productDto,subcategoryService,personService));
+        List<Picture> pictures = new ArrayList<>();
+        for(String picture : productDto.getPictures()){
+            pictures.add(new Picture(picture,newProduct));
+        }
+        pictureService.addNewPictures(pictures);
+        return newProduct;
     }
 }

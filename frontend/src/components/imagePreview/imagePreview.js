@@ -9,7 +9,7 @@ function ImagePreview(props) {
         <MdReorder className="reorderIcon"/>
         <img src={props.image} alt="ImagePreview"/>
         <h4>{props.name}</h4>
-        <AiOutlineMinusCircle className="deleteIcon"/>
+        <AiOutlineMinusCircle onClick={()=> props.deleteImage(props.index)} className="deleteIcon"/>
     </div>
   );
 }
