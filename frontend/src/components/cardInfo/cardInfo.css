@@ -26,3 +26,13 @@
 .optionButtons button {
   float: right;
 }
+
+.paymentError {
+  margin-top: 15px;
+  margin-left: 95px;
+  margin-right: 95px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 27px;
+  color: #e10000;
+}

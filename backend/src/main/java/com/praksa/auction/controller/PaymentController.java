@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/payment")
 public class PaymentController {
     @Autowired
     private final PaymentService paymentService;
@@ -19,13 +22,13 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @PostMapping("/auth/paymentIntent")
-    public ResponseEntity<?> createPaymentIntente(@RequestBody PaymentInfoDto paymentInfoDto) throws StripeException {
-        return ResponseEntity.ok(paymentService.createPaymentIntent(paymentInfoDto));
-    }
-
-    @PostMapping("/auth/setUpIntent")
+    @PostMapping("/setUpIntent")
     public  ResponseEntity<?> createSetUpIntent(@RequestBody long customerId) throws StripeException {
         return ResponseEntity.ok(paymentService.createSetUpIntent(customerId));
+    }
+
+    @PostMapping("/paymentIntent")
+    public ResponseEntity createPaymentIntente(@RequestBody PaymentInfoDto paymentInfoDto) throws StripeException {
+        return ResponseEntity.ok(paymentService.createPaymentIntent(paymentInfoDto));
     }
 }

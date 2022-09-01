@@ -1,8 +1,17 @@
 package com.praksa.auction.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "wishlist")
 public class Wishlist {
     @Id
@@ -14,37 +23,4 @@ public class Wishlist {
     @ManyToOne
     @JoinColumn(name = "personId")
     private Person person;
-
-    public Wishlist(Product product, Person person) {
-        this.product = product;
-        this.person = person;
-    }
-
-    public Wishlist() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
 }

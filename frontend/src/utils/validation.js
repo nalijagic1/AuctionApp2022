@@ -1,4 +1,3 @@
-
 import {
   EMAIL_REGEX,
   LETTERS_ONLY,
@@ -211,11 +210,8 @@ class Validation {
         case "zipCode":
           errorMessages.zipCode = this.validateZipCode(location.zipCode);
           break;
-        case "countryId":
-          errorMessages.country = this.validateCountry(location.countryId);
-          break;
         default:
-          break;
+          errorMessages.country = this.validateCountry(location.countryId);
       }
     }
     if (

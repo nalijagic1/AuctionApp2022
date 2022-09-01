@@ -16,9 +16,7 @@
   margin-top: 16px;
   margin-bottom: 32px;
   width: 568px;
-  padding: 18px 21px 18px 24px;
-  font-family: "Lato";
-  font-style: normal;
+  padding: 18px 0px 18px 24px;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -26,12 +24,16 @@
 }
 
 .field input:focus-visible {
-  outline: 1px solid #8367d8;
+  outline: 1px solid #8367D8;
+}
+
+.field input[type="number"]::-webkit-inner-spin-button,
+.field input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .field label {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -120,12 +122,6 @@
   pointer-events: none;
   background: #ececec;
   border: 1px solid #d9d9d9;
-}
-
-.field input[type="number"]::-webkit-inner-spin-button,
-.field input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .smaller {

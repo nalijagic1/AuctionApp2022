@@ -28,7 +28,9 @@ class PersonDataService {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem("user"));
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user) return user.user;
+    return null;
   }
 }
 

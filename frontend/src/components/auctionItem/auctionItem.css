@@ -4,21 +4,13 @@
 }
 
 .auctionHeaders h2 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
   color: #252525;
 }
 
-.auctionPrice {
-  float: right;
-}
 
-.auctionItem {
-  display: flex;
-}
 .auctionItem img {
   width: 80px;
   height: 80px;
@@ -30,8 +22,6 @@
   margin-right: 57px;
 }
 .auctionItemInfo h1 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;
@@ -44,8 +34,6 @@
 }
 
 .auctionItemInfo h3 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -53,8 +41,6 @@
 }
 
 .auctionItem h2 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 27px;

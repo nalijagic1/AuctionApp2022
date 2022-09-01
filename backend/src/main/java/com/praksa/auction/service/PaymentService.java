@@ -6,9 +6,7 @@ import com.praksa.auction.model.Person;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
-import com.stripe.model.SetupIntent;
 import com.stripe.param.PaymentIntentCreateParams;
-import com.stripe.param.SetupIntentCreateParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,6 +25,7 @@ public class PaymentService {
         }
         return buyer.getCustomerId();
     }
+
     public PaymentResponseDto createPaymentIntent(PaymentInfoDto paymentInfoDto) throws StripeException {
         String customerId = checkIfCustomerExists(paymentInfoDto.getCustomerId());
         Stripe.apiKey = apiKey;
@@ -39,8 +38,7 @@ public class PaymentService {
                         .putMetadata("product_id", String.valueOf(paymentInfoDto.getProductId()))
                         .build();
         PaymentIntent paymentIntent = PaymentIntent.create(params);
-        PaymentResponseDto paymentResponse = new PaymentResponseDto(paymentIntent.getClientSecret());
-        return paymentResponse;
+        return new PaymentResponseDto(paymentIntent.getClientSecret());
     }
 
     public PaymentResponseDto createSetUpIntent(long customer) throws StripeException {

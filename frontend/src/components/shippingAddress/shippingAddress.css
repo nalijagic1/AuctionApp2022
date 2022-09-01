@@ -1,13 +1,12 @@
 .shippingAddress {
   width: 737px;
   margin-left: 351px;
+  margin-top: 40px;
   border: 2px solid #d8d8d8;
   margin-bottom: 211px;
 }
 
 .shippingAddress h5 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -33,8 +32,6 @@
   background: #fcfcfc;
   border: 1px solid #d8d8d8;
   padding: 18px 0px 18px 24px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -47,8 +44,6 @@
 }
 
 .shippingAddress label {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -56,8 +51,6 @@
 }
 
 .shippingAddress .mandatory {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;

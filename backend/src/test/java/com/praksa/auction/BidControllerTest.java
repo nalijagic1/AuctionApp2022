@@ -12,16 +12,19 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @SpringBootTest
-public class BiddingTest {
+public class BidControllerTest {
     @Autowired
     BidController bidController;
     @Autowired
     BidRepository bidRepository;
+
     @Test
     void bidding() {
-        Bid highestBidOld =  bidRepository.findFirstByProductIdOrderByBidDesc(5);
-        bidController.bidOnProduct(new BiddingInfoDto(5,2,35.50));
-        Bid highesrBidNew = bidRepository.findFirstByProductIdOrderByBidDesc(5);
-        assertTrue(highesrBidNew.getBid() > highestBidOld.getBid());
+        Bid highestBidOld = bidRepository.findFirstByProductIdOrderByBidDesc(5);
+        bidController.placeBid(new BiddingInfoDto(5, 2, 35.50));
+        Bid highestBidNew = bidRepository.findFirstByProductIdOrderByBidDesc(5);
+        assertEquals(highestBidNew.getProduct(),highestBidOld.getProduct());
+        assertTrue(highestBidNew.getBidDate().after(highestBidOld.getBidDate()));
+        assertTrue(highestBidNew.getBid() > highestBidOld.getBid());
     }
 }

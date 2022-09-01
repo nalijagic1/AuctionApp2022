@@ -1,13 +1,12 @@
 .paymentInformation {
   width: 737px;
   margin-left: 351px;
+  margin-top: 40px;
   border: 2px solid #d8d8d8;
   margin-bottom: 211px;
 }
 
 .paymentInformation h5 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;

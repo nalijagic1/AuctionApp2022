@@ -10,11 +10,10 @@
   padding: 24px;
   margin-bottom: 24px;
   height: fit-content;
+  width: 262px;
 }
 
 .list p {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
@@ -55,8 +54,6 @@
 
 .list a {
   text-decoration: none;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   color: #252525;
@@ -71,8 +68,6 @@
 
 .listSubcategory {
   list-style-image: url("../../images/squar.png");
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 17px;

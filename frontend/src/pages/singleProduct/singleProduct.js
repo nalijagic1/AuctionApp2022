@@ -4,20 +4,21 @@ import Gallery from "../../components/gallery/gallery";
 import ProductInfo from "../../components/productInfo/productInfo";
 import productService from "../../services/product.service";
 import { useParams } from "react-router-dom";
-import Alert from "react-bootstrap/Alert";
 import "./singleProduct.css";
+import Notification from "../../components/notification/notification";
+import { STATUS_CODES } from "../../utils/httpStatusCode";
 
 function SingleProduct() {
   const params = useParams();
   const [product, setProduct] = useState();
   const [showNotification, setShowNotification] = useState(false);
-  const [notificationType, setNotificationType] = useState();
-  const [notificationMessage, setNotificationMessage] = useState();
+  const [notificationType, setNotificationType] = useState("");
+  const [notificationMessage, setNotificationMessage] = useState("");
   useEffect(() => {
     productService
       .getSelectedProduct(parseInt(params.productId))
       .then((response) => {
-        setProduct(response.data);
+        if (response.status === STATUS_CODES.OK) setProduct(response.data);
       });
   }, [params]);
 
@@ -25,9 +26,6 @@ function SingleProduct() {
     setNotificationType(type);
     setShowNotification(true);
     setNotificationMessage(message);
-    setTimeout(function () {
-      setShowNotification(false);
-    }, 5000);
   }
 
   return (
@@ -41,15 +39,13 @@ function SingleProduct() {
               endPoint: "Single product",
             }}
           ></PathBar>
-          <Alert
-            show={showNotification}
-            variant={notificationType}
-            className="notification"
-          >
-            {" "}
-            {notificationMessage}
-          </Alert>
-
+            {showNotification && (
+              <Notification
+                notificationMessage={notificationMessage}
+                notificationType={notificationType}
+                setShowNotification={(show) => setShowNotification(show)}
+              />
+            )}
           <div className="productView">
             <Gallery productId={params.productId} />
             <ProductInfo

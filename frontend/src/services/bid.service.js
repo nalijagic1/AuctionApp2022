@@ -10,10 +10,10 @@ class BidDataService {
     return httpCommon.get("/highestBid/" + productId);
   }
 
-  placeBid(person, product, bid) {
+  placeBid(personId, productId, bid) {
     return httpCommon.post(
-      "/auth/bid",
-      { product, person, bid },
+      "/bids/placeBid",
+      { productId, personId, bid },
       { headers: authHeader() }
     );
   }

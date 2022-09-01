@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.validation.Valid;
 
 @RestController
@@ -35,7 +34,7 @@ public class PersonController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<?> logIn(@Valid @RequestBody LogInDto loginInfo) {
+    public ResponseEntity logIn(@Valid @RequestBody LogInDto loginInfo) {
         try {
             return ResponseEntity.ok(personService.logIn(loginInfo));
         } catch (UsernameNotFoundException e) {
@@ -44,12 +43,11 @@ public class PersonController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> createAccount(@Valid @RequestBody RegistrationDto signUpRequest) {
+    public ResponseEntity createAccount(@Valid @RequestBody RegistrationDto signUpRequest) {
         try {
             return ResponseEntity.ok(personService.createAccount(signUpRequest));
         } catch (IllegalArgumentException e) {
             return new ResponseEntity(new LogInRegistationFailedDto(ErrorCodeEnum.DUPLICATE_EMAIL.getErrorCode()), HttpStatus.BAD_REQUEST);
         }
-
     }
 }

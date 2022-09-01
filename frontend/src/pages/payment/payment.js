@@ -7,6 +7,7 @@ import ShippingAddress from "../../components/shippingAddress/shippingAddress";
 import PaymentInfo from "../../components/paymentInfo/paymentInfo";
 import { loadStripe } from "@stripe/stripe-js";
 import paymentService from "../../services/payment.service";
+import { STRIPE_PUBLIC } from "../../utils/constants";
 import personService from "../../services/person.service";
 
 function Payment() {
@@ -14,24 +15,17 @@ function Payment() {
   const { price, product } = state;
   const [currentStep, setCurrentStep] = useState(0);
   const [enteredAddress, setEnteredAddress] = useState();
-  const stripePromise = loadStripe(
-    "pk_test_51LVB8xBj1vinbdx6NyD5IYpzSgWonLR41HNAETguKGEXelw3DcPqP0l3JQ69NAsJOjrfPue0tK2rjJ423fr5PgJS00fSun4phx"
-  );
+  const stripePromise = loadStripe(STRIPE_PUBLIC);
   const [clientSecret, setClientSecret] = useState();
-  const appearance = {
-    theme: "stripe",
-  };
   const options = {
     clientSecret,
-    appearance,
+    theme: "stripe",
   };
   const buyer = personService.getCurrentUser();
   useEffect(() => {
-    paymentService
-      .createIntent(price, product, buyer.user.id)
-      .then((response) => {
-        setClientSecret(response.data.clientSecret);
-      });
+    paymentService.createIntent(price, product, buyer.id).then((response) => {
+      setClientSecret(response.data.clientSecret);
+    });
   }, [price, product, buyer]);
   function rememberLocation(location) {
     setEnteredAddress(location);
@@ -53,12 +47,11 @@ function Payment() {
       />
       <StepWizard onStepChange={(e) => setCurrentStep(e.activeStep - 1)}>
         <ShippingAddress
-          buyer={buyer.user.id}
+          buyer={buyer.id}
           rememberLocation={(location) => rememberLocation(location)}
         />
         {clientSecret && (
           <PaymentInfo
-            payment={true}
             options={options}
             stripe={stripePromise}
             product={product}

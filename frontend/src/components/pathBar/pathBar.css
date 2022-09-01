@@ -7,6 +7,7 @@
 .path li.active {
   margin: 2px 16px 2px 0px;
   color: #8367d8;
+  margin: 2px 16px 2px 0px;
 }
 
 .path {
@@ -22,8 +23,6 @@
 .locationName {
   float: left;
   margin-left: 160px;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -50,7 +49,6 @@
 
 .path li {
   font-family: "Lato", sans-serif;
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
@@ -61,7 +59,6 @@
 
 .path li a {
   font-family: "Lato", sans-serif;
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;

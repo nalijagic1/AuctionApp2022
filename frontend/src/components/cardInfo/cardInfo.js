@@ -17,6 +17,7 @@ function CardInfo({ props, location,setError}) {
   const stripe = useStripe();
   const [validCard, setValidCard] = useState();
   const navigate = useNavigate();
+  const [paymentError, setPaymentError] = useState();
 
   function saveCard() {
     if (!stripe || !elements) {
@@ -34,6 +35,7 @@ function CardInfo({ props, location,setError}) {
         if (result.error) console.log(result.error);
       });
   }
+
   function payBid() {
     if (!stripe || !elements) {
       return;
@@ -48,7 +50,7 @@ function CardInfo({ props, location,setError}) {
         },
       })
       .then((result) => {
-        if (result.error) console.log(result.error);
+        if (result.error) setPaymentError(result.error.message);
       });
   }
   function locationValidation() {
@@ -68,15 +70,16 @@ function CardInfo({ props, location,setError}) {
         className="payment-element"
         onChange={(event) => setValidCard(event.complete)}
       />
+      {paymentError && <p className="paymentError">{paymentError}</p>}
       <div className="navigationButtons">
         <Button
-          lable="CANCEL"
+          label="CANCEL"
           buttonClass="cancel"
           onClick={() => navigate(-1)}
         ></Button>
         <div className="optionButtons">
           <Button
-            lable="BACK"
+            label="BACK"
             buttonClass="purpleBorder"
             onClick={() => props.previousStep()}
           />

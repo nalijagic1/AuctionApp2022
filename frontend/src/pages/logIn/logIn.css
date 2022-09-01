@@ -7,8 +7,6 @@
 }
 
 .logIn h5 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -32,13 +30,12 @@
 
 .logIn a {
   text-decoration: none;
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
   color: #8367d8;
   margin-left: 306px;
+  pointer-events: none;
 }
 
 .passwordIcon {

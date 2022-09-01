@@ -27,9 +27,9 @@ function Registration() {
     personService
       .createAccount(firstName, lastName, email, password)
       .then((response) => {
-        if (localStorage.getItem("user")) {
-          navigate("/");
-          window.location.reload();
+          if (localStorage.getItem("user")) {
+            navigate("/");
+            window.location.reload();
         }
       })
       .catch((error) => {
@@ -64,7 +64,10 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="firstName"
             type="text"
+<<<<<<< HEAD
             value={firstName}
+=======
+>>>>>>> main
             onChange={(e) => {
               setError({
                 firstName: "",
@@ -75,6 +78,7 @@ function Registration() {
               setFirstName(e.target.value);
             }}
             error={error.firstName}
+            value={firstName}
           ></Field>
           <Field
             placeHolder="Enter your last name"
@@ -82,7 +86,10 @@ function Registration() {
             fieldClass="loginAndRegisterField"
             id="lastName"
             type="text"
+<<<<<<< HEAD
             value={lastName}
+=======
+>>>>>>> main
             onChange={(e) => {
               setError({
                 firstName: error.firstName,
@@ -93,6 +100,7 @@ function Registration() {
               setLastName(e.target.value);
             }}
             error={error.lastName}
+            value={lastName}
           ></Field>
           <Field
             placeHolder="Enter your email"
@@ -119,6 +127,10 @@ function Registration() {
             id="password"
             value={password}
             type={showPassword ? "text" : "password"}
+<<<<<<< HEAD
+=======
+            value={password}
+>>>>>>> main
             onChange={(e) => {
               setError({
                 firstName: error.firstName,
@@ -152,7 +164,7 @@ function Registration() {
             }
           ></Field>
           <Button
-            lable="Register"
+            label="Register"
             buttonClass="purpleButton userManagment"
             onClick={() => {
               if (validateData()) createAccount();

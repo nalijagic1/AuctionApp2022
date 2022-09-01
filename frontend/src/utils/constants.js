@@ -7,5 +7,6 @@ export const LETTERS_ONLY = /^[a-zA-Z]+$/;
 export const ZIPCODE_REGEX = /^[0-9]{5}(?:-[0-9]{4})?$/;
 export const FRONTEND_URL =
   process.env.NODE_ENV === "production"
-    ? "https://auctionapp2022.herokuapp.com/"
+    ? "https://auctionapp2022.herokuapp.com"
     : "http://localhost:3000";
+export const STRIPE_PUBLIC = "pk_test_51LVB8xBj1vinbdx6NyD5IYpzSgWonLR41HNAETguKGEXelw3DcPqP0l3JQ69NAsJOjrfPue0tK2rjJ423fr5PgJS00fSun4phx"
