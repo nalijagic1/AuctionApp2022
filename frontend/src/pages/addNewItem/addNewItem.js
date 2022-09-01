@@ -27,7 +27,7 @@ function AddNewItem() {
     appearance,
   };
   useEffect(() => {
-    paymentService.createSetUpIntent(buyer.user.id).then((response) => {
+    paymentService.createSetUpIntent(buyer.id).then((response) => {
       setClientSecret(response.data.clientSecret);
     });
   }, [buyer]);

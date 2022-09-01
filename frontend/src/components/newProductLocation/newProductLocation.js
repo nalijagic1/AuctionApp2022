@@ -13,7 +13,7 @@ function NewProductLocation(props) {
   const [zipCode, setZipCode] = useState("");
   const [countries, setCoutries] = useState();
   const [countryId, setCountry] = useState(0);
-  const seller = personService.getCurrentUser().user;
+  const seller = personService.getCurrentUser();
   const [email, setEmail] = useState(seller.email);
   const [phoneNumber, setPhoneNumber] = useState(
     seller.phoneNumber ? seller.phoneNumber : ""

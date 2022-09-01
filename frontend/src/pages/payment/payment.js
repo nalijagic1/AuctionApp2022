@@ -57,6 +57,7 @@ function Payment() {
             product={product}
             amount={price}
             location={enteredAddress}
+            payment={true}
           />
         )}
       </StepWizard>

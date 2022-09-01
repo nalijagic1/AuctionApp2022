@@ -67,18 +67,18 @@ function NewProductPrice(props) {
       </div>
       <div className="buttonLayout">
         <Button
-          lable="CANCEL"
+          label="CANCEL"
           buttonClass="cancel"
           onClick={() => navigate("/")}
         ></Button>
         <div className="movementButtons">
           <Button
-            lable="BACK"
+            label="BACK"
             buttonClass="purpleBorder"
             onClick={() => props.previousStep()}
           />
           <Button
-            lable={`NEXT`}
+            label={`NEXT`}
             buttonClass="purpleButton"
             onClick={() => {
               if (dataValidation()) {

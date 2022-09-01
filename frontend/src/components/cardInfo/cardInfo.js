@@ -84,7 +84,7 @@ function CardInfo({ props, location,setError}) {
             onClick={() => props.previousStep()}
           />
           <Button
-            lable={props.payment ? `PAY ${props.amount}$` : "DONE"}
+            label={props.payment ? `PAY ${props.amount}$` : "DONE"}
             buttonClass="purpleButton"
             onClick={() => {
               if (validCard) {

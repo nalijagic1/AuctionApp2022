@@ -205,12 +205,12 @@ function NewProductDetails(props) {
       </div>
       <div className="stepsButtons">
         <Button
-          lable="CANCEL"
+          label="CANCEL"
           buttonClass="cancel"
           onClick={() => navigate("/")}
         />
         <Button
-          lable="NEXT"
+          label="NEXT"
           buttonClass="purpleButton"
           onClick={() => {
             if (dataValidation()) {
