@@ -33,7 +33,7 @@ class ProductDataService {
   }
 
   getSuggestion(search) {
-    return httpCommon.get("/products/check?search=" + search);
+    return httpCommon.get("/products/checkSpelling?search=" + search);
   }
 
   updatePayedStatus(payed, product) {
