@@ -104,6 +104,10 @@
 }
 
 .accountSubmenu{
+  margin-top: 10px;
   position: absolute;
   height: fit-content;
+  padding:10px;
+  border: 1px solid #e3e3e3;
+  border-top: none;
 }
