@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./newProductPrice.css";
 import moment from "moment";
 import validation from "../../utils/validation";
+import { updateErrorMessage } from "../../utils/handleEvent";
 
 function NewProductPrice(props) {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function NewProductPrice(props) {
             min="1"
             value={price}
             onChange={(e) => {
-              setError({ price: "", date: error.date });
+              setError(updateErrorMessage(error, "price"));
               setPrice(e.target.value);
             }}
           />
@@ -46,22 +47,25 @@ function NewProductPrice(props) {
         <div className="auctionDates">
           <Field
             type="date"
-            fieldClass={`loginAndRegisterField smaller  ${error.date ? "errorField" : ""}`}
+            fieldClass={`loginAndRegisterField smaller  ${
+              error.date ? "errorField" : ""
+            }`}
             label="Start date*"
             value={startDate}
             onChange={(e) => {
-              setError({ price: error.price, date: "" });
+              setError(updateErrorMessage(error, "date"));
               setStartDate(e.target.value);
             }}
-            
           />
           <Field
             type="date"
-            fieldClass={`loginAndRegisterField smaller  ${error.date ? "errorField" : ""}`}
+            fieldClass={`loginAndRegisterField smaller  ${
+              error.date ? "errorField" : ""
+            }`}
             label="End date"
             value={endDate}
             onChange={(e) => {
-              setError({ price: error.price, date: "" });
+              setError(updateErrorMessage(error, "date"));
               setEndDate(e.target.value);
             }}
           />

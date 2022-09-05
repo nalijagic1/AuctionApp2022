@@ -6,6 +6,7 @@ import Button from "../button/button";
 import { useNavigate } from "react-router";
 import validation from "../../utils/validation";
 import addressService from "../../services/address.service";
+import { updateErrorMessage } from "../../utils/handleEvent";
 
 function ShippingAddress(props) {
   const [address, setAddress] = useState("");
@@ -34,14 +35,6 @@ function ShippingAddress(props) {
     });
   }, []);
 
-  function updateErrorMessage(errorField){
-    setError(data => {
-      var error = {...data}
-      error[errorField] = "";
-      return error;
-    })
-  }
-
   function locationValidation() {
     let validationResult = validation.locationValidation({
       address,
@@ -63,7 +56,7 @@ function ShippingAddress(props) {
           type="text"
           id="address"
           onChange={(e) => {
-            updateErrorMessage("address")
+            setError(updateErrorMessage(error, "address"));
             setAddress(e.target.value);
           }}
           error={error.address}
@@ -77,7 +70,7 @@ function ShippingAddress(props) {
             type="text"
             id="city"
             onChange={(e) => {
-              updateErrorMessage("city")
+              setError(updateErrorMessage(error, "city"));
               setCity(e.target.value);
             }}
             error={error.city}
@@ -90,7 +83,7 @@ function ShippingAddress(props) {
             type="text"
             id="zipCode"
             onChange={(e) => {
-              updateErrorMessage("zipCode")
+              setError(updateErrorMessage(error, "zipCode"));
               setZipCode(e.target.value);
             }}
             error={error.zipCode}
@@ -101,7 +94,7 @@ function ShippingAddress(props) {
         <select
           className={`countrySelector ${error.country ? "selectError" : ""}`}
           onChange={(e) => {
-            updateErrorMessage("country")
+            setError(updateErrorMessage(error, "country"));
             setCountry(e.target.value);
           }}
           value={`${countryId}`}

@@ -5,7 +5,7 @@ import StepWizard from "react-step-wizard";
 import "./addNewItem.css";
 import NewProductDetails from "../../components/newProductDetails/newProductDetails";
 import NewProductPrice from "../../components/newProductPrice/newProductPrice";
-import NewProductLocation from "../../components/newProductLocation/newProductLocation";
+import ProductLocation from "../../components/productLocation/productLocation";
 import { loadStripe } from "@stripe/stripe-js";
 import paymentService from "../../services/payment.service";
 import personService from "../../services/person.service";
@@ -53,7 +53,7 @@ function AddNewItem() {
           setPriceInfo={(priceInfo) => setPriceDetails(priceInfo)}
         />
         {clientSecret && (
-          <NewProductLocation
+          <ProductLocation
             options={options}
             stripe={stripePromise}
             priceDetails={priceDetails}

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Field from "../field/field";
-import "./newProductLocation.css";
+import "./productLocation.css";
 import countryService from "../../services/country.service";
 import addressService from "../../services/address.service";
 import personService from "../../services/person.service";
 import { Elements } from "@stripe/react-stripe-js";
 import CardInfo from "../cardInfo/cardInfo";
+import { updateErrorMessage } from "../../utils/handleEvent";
 
-function NewProductLocation(props) {
+function ProductLocation(props) {
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [zipCode, setZipCode] = useState("");
@@ -26,13 +27,6 @@ function NewProductLocation(props) {
     phoneNumber: "",
     country: "",
   });
-  function updateErrorMessage(errorField) {
-    setError((data) => {
-      var error = { ...data };
-      error[errorField] = "";
-      return error;
-    });
-  }
 
   useEffect(() => {
     countryService.getAll().then((response) => {
@@ -57,9 +51,9 @@ function NewProductLocation(props) {
           fieldClass="loginAndRegisterField"
           label="Address"
           type="text"
-          id="addrss"
+          id="address"
           onChange={(e) => {
-            updateErrorMessage("address");
+            setError(updateErrorMessage(error,"address"));
             setAddress(e.target.value);
           }}
           value={address}
@@ -73,7 +67,7 @@ function NewProductLocation(props) {
           type="text"
           id="email"
           onChange={(e) => {
-            updateErrorMessage("email");
+            setError(updateErrorMessage(error,"email"));
             setEmail(e.target.value);
           }}
           value={email}
@@ -89,7 +83,7 @@ function NewProductLocation(props) {
             id="city"
             error={error.city}
             onChange={(e) => {
-              updateErrorMessage("city");
+              setError(updateErrorMessage(error,"city"));
               setCity(e.target.value);
             }}
             value={city}
@@ -102,7 +96,7 @@ function NewProductLocation(props) {
             id="zipCode"
             error={error.zipCode}
             onChange={(e) => {
-              updateErrorMessage("zipCode");
+              setError(updateErrorMessage(error,"zipCode"));
               setZipCode(e.target.value);
             }}
             value={zipCode}
@@ -113,7 +107,7 @@ function NewProductLocation(props) {
         <select
           className={`sectorCountry ${error.country ? "selectError" : ""}`}
           onChange={(e) => {
-            updateErrorMessage("country");
+            setError(updateErrorMessage(error,"country"));
             setCountry(e.target.value);
           }}
           value={`${countryId}`}
@@ -139,7 +133,7 @@ function NewProductLocation(props) {
           id="phoneNumber"
           error={error.phoneNumber}
           onChange={(e) => {
-            updateErrorMessage("phoneNumber");
+            setError(updateErrorMessage(error,"phoneNumber"));
             setPhoneNumber(e.target.value);
           }}
           value={phoneNumber}
@@ -165,4 +159,4 @@ function NewProductLocation(props) {
   );
 }
 
-export default NewProductLocation;
+export default ProductLocation;

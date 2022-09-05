@@ -85,7 +85,7 @@ public class ProductService {
     }
 
     public Product addNewProduct(NewProductDto productDto){
-        Product newProduct = productRepository.save(new Product(productDto,subcategoryService,personService));
+        Product newProduct = productRepository.save(new Product(productDto,subcategoryService.getSubcategoryById(productDto.getSubcategoryId()),personService.getPersonById(productDto.getPersonId())));
         List<Picture> pictures = new ArrayList<>();
         for(String picture : productDto.getPictures()){
             pictures.add(new Picture(picture,newProduct));

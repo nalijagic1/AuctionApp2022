@@ -5,8 +5,10 @@ import ImagePreview from "../imagePreview/imagePreview";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import Button from "../button/button";
+import { handleDrag, handleDrop } from "../../utils/handleEvent";
 import validation from "../../utils/validation";
 import "./newProductDetails.css";
+import { updateErrorMessage } from "../../utils/handleEvent";
 function NewProductDetails(props) {
   const [productName, setProductName] = useState("");
   const [subcategory, setSubcategory] = useState(0);
@@ -26,29 +28,6 @@ function NewProductDetails(props) {
       p.splice(imageIndex, 1);
       return p;
     });
-  }
-  function handleDrag(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  }
-  function handleDrop(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setError({
-        productName: error.productName,
-        subcategory: error.subcategory,
-        description: error.description,
-        pictures: "",
-      });
-      setPictures((p) => p.concat(e.dataTransfer.files[0]));
-    }
   }
 
   function dataValidation() {
@@ -78,12 +57,7 @@ function NewProductDetails(props) {
           type="text"
           id="productName"
           onChange={(e) => {
-            setError({
-              productName: "",
-              subcategory: error.subcategory,
-              description: error.description,
-              pictures: error.pictures,
-            });
+            setError(updateErrorMessage(error, "productName"));
             setProductName(e.target.value);
           }}
           value={productName}
@@ -94,12 +68,7 @@ function NewProductDetails(props) {
             error.subcategory ? "errorStyle" : ""
           }`}
           onChange={(e) => {
-            setError({
-              productName: error.productName,
-              subcategory: "",
-              description: error.description,
-              pictures: error.pictures,
-            });
+            setError(updateErrorMessage(error, "subcategory"));
             setSubcategory(e.target.value);
           }}
           value={`${subcategory}`}
@@ -139,12 +108,7 @@ function NewProductDetails(props) {
           maxLength={700}
           value={description}
           onChange={(event) => {
-            setError({
-              productName: error.description,
-              subcategory: error.subcategory,
-              description: "",
-              pictures: error.pictures,
-            });
+            setError(updateErrorMessage(error, "description"));
             setDescription(event.target.value);
           }}
         />
@@ -158,10 +122,14 @@ function NewProductDetails(props) {
             className={`imageUploader ${dragActive ? "dragActive" : ""}  ${
               error.pictures ? "errorStyle" : ""
             }`}
-            onDragEnter={handleDrag}
-            onDragOver={handleDrag}
-            onDragLeave={handleDrag}
-            onDrop={handleDrop}
+            onDragEnter={(event) => setDragActive(handleDrag(event))}
+            onDragOver={(event) => setDragActive(handleDrag(event))}
+            onDragLeave={(event) => setDragActive(handleDrag(event))}
+            onDrop={(event) => {
+              setPictures(handleDrop(event, pictures));
+              setDragActive(false);
+              setError(updateErrorMessage(error, "pictures"));
+            }}
           >
             <label htmlFor="imageInput" className="imageInputField">
               Upload image
@@ -170,12 +138,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
-                  setError({
-                    productName: error.productName,
-                    subcategory: error.subcategory,
-                    description: error.description,
-                    pictures: "",
-                  });
+                  setError(updateErrorMessage(error, "pictures"));
                   setPictures((p) => p.concat(event.target.files[0]));
                 }}
               />
@@ -206,6 +169,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
+                  setError(updateErrorMessage(error, "pictures"));
                   setPictures((p) => p.concat(event.target.files[0]));
                 }}
               />

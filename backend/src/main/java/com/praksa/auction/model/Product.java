@@ -2,8 +2,6 @@ package com.praksa.auction.model;
 
 
 import com.praksa.auction.dto.NewProductDto;
-import com.praksa.auction.service.PersonService;
-import com.praksa.auction.service.SubcategoryService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,11 +38,11 @@ public class Product {
     private Boolean payed;
     private String phoneNumber;
 
-    public Product(NewProductDto productDto, SubcategoryService subcategoryService, PersonService personService) {
+    public Product(NewProductDto productDto, Subcategory subcategory, Person person) {
         this.name = productDto.getProductName();
         this.description = productDto.getDescription();
-        this.subcategory = subcategoryService.getSubcategoryById(productDto.getSubcategoryId());
-        this.person = personService.getPersonById(productDto.getPersonId());
+        this.subcategory = subcategory;
+        this.person = person;
         this.startingPrice = productDto.getStartingPrice();
         this.startingDate = productDto.getStartingDate();
         this.endingDate = productDto.getEndingDate();
