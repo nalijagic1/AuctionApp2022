@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./navigationWhite.css";
 import logo from "../../images/auction-app-logo 1.png";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -13,6 +13,7 @@ function NavigationWhite() {
     !location.pathname.includes("/login") &&
       !location.pathname.includes("/register")
   );
+  const [displayAccountMenu, setDisplayAccountMenu] = useState();
   const MIN_WORD_LENGTH = 3;
 
   function search() {
@@ -59,7 +60,24 @@ function NavigationWhite() {
             <input id="searchButton" type="submit" value="" onClick={search} />
           </div>
           <div className="menu" align="right">
-            {user && <a href="/">MY ACCOUNT</a>}
+            {user && (
+              <div
+                className="myAccountMenu"
+                onMouseOver={() => setDisplayAccountMenu(true)}
+                onMouseOut={() => setDisplayAccountMenu(false)}
+              >
+                <a href="/">MY ACCOUNT</a>
+                {displayAccountMenu && (
+                  <div className="accountSubmenu">
+                    <a href="/addItem">
+                      {user.user.seller
+                        ? "Add additional item"
+                        : "Become seller"}
+                    </a>
+                  </div>
+                )}
+              </div>
+            )}
             <a href="/shop/all">SHOP</a>
             <a href="/">HOME</a>
           </div>

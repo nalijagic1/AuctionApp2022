@@ -17,10 +17,10 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @PostMapping("/addAddress/:{personId}")
-    public ResponseEntity addAddressIfNotExist(@RequestBody AddressInfoDto address, @PathVariable long personId) {
-        addressService.addAddressIfNotExist(address, personId);
-        return ResponseEntity.ok("Successful adding");
+    @PostMapping("/addAddress/{personId}")
+    public ResponseEntity<?> addAddressIfNotExist(@PathVariable long personId,@RequestBody AddressInfoDto address) {
+        Address newAddress = addressService.addAddressIfNotExist(address, personId);
+        return ResponseEntity.ok(newAddress);
     }
 
     @GetMapping()

@@ -5,4 +5,10 @@
 .stepperContainer {
   width: 100%;
   align-content: center;
+  margin-bottom:  40px;
+}
+
+.stepperThreeSteps{
+  width: 400px;
+  margin-left: 550px;
 }

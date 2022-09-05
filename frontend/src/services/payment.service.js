@@ -9,6 +9,13 @@ class PaymentDataService {
       { headers: authHeader() }
     );
   }
+  createSetUpIntent(customerId) {
+    return httpCommon.post(
+      "/payment/setUpIntent",
+      customerId,
+      { headers: authHeader() }
+    );
+  }
 }
 
 export default new PaymentDataService();

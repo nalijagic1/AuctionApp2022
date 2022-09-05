@@ -1,0 +1,117 @@
+.newProductPrice {
+  margin-left: 351px;
+  margin-right: 351px;
+  margin-bottom: 80px;
+  padding-bottom: 64px;
+  border: 1px solid #e6e6e6;
+}
+
+.newProductPrice h5 {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  color: #000000;
+  margin-left: 307.5px;
+  margin-top: 23px;
+  margin-bottom: 71px;
+}
+
+.newProductPrice .infoMessages{
+    font-family: 'Lato';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 24px;
+color: #9B9B9B;
+width: 568px;
+}
+
+.priceInfo{
+    margin-left: 95px;
+    margin-right: 95px;
+}
+
+
+.priceInfo label{
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #252525;
+}
+
+.currency{
+    border: 1px solid #e6e6e6;
+    height: 65px;
+    width: 64px;
+    position:absolute;
+    margin-top: -97px;
+    padding: 18px 0px 18px 24px;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+
+}
+
+.startPrice{
+    margin-top: 16px;
+    margin-bottom: 32px;
+    width: 568px;
+    padding: 18px 0px 18px 90px;
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    border: 1px solid #e3e3e3;
+}
+
+.errorField{
+  border: 1px solid #e10000;
+}
+
+.startPrice:focus-visible {
+    outline: 1px solid #8367d8;
+  }
+
+ .startPrice::-webkit-inner-spin-button,
+.startPrice::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.auctionDates{
+    display: flex;
+    width: 580px;
+}
+
+.buttonLayout {
+    display: grid;
+    margin-top: 64px;
+    margin-left: 92px;
+    grid-template-columns: repeat(2, auto);
+    width: 547px;
+  }
+  
+  .buttonLayout .cancel {
+    margin-right: 50px;
+  }
+  .buttonLayout button {
+    padding: 12px 32px 12px 32px;
+  }
+  
+  .movementButtons {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+  }
+  
+  .movementButtons button {
+    float: right;
+  }
+

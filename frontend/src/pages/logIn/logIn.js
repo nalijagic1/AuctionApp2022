@@ -6,6 +6,7 @@ import personService from "../../services/person.service";
 import { useNavigate } from "react-router-dom";
 import validation from "../../utils/validation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { updateErrorMessage } from "../../utils/handleEvent";
 function LogIn() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -56,7 +57,7 @@ function LogIn() {
             type="email"
             value={email}
             onChange={(e) => {
-              setError({ email: "", password: error.password });
+              setError(updateErrorMessage(error,"email"));
               setEmail(e.target.value);
             }}
             error={error.email}
@@ -69,7 +70,7 @@ function LogIn() {
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => {
-              setError({ email: error.email, password: "" });
+              setError(updateErrorMessage(error,"password"));
               setPassword(e.target.value);
             }}
             error={error.password}

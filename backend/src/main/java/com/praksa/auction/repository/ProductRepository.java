@@ -30,4 +30,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Product SET payed=:payed WHERE id=:id", nativeQuery = true)
     void updatePayedStatus(boolean payed, long id);
+
+    boolean existsProductByPersonId(long sellerId);
 }

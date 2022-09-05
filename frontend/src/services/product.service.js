@@ -33,7 +33,7 @@ class ProductDataService {
   }
 
   getSuggestion(search) {
-    return httpCommon.get("/products/check?search=" + search);
+    return httpCommon.get("/products/checkSpelling?search=" + search);
   }
 
   updatePayedStatus(payed, product) {
@@ -41,6 +41,32 @@ class ProductDataService {
       "/products/updatePayedStatus?product=" + product,
       payed
     );
+  }
+
+  addProduct(
+    productName,
+    description,
+    subcategoryId,
+    personId,
+    startingPrice,
+    startingDate,
+    endingDate,
+    pictures,
+    address,
+    phoneNumber
+  ) {
+    return httpCommon.post("/products/newProduct", {
+      productName,
+      description,
+      subcategoryId,
+      personId,
+      startingPrice,
+      startingDate,
+      endingDate,
+      pictures,
+      address,
+      phoneNumber,
+    });
   }
 }
 

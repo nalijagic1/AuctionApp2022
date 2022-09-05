@@ -4,7 +4,9 @@ import {
   PASSWORD_MEDIUM,
   PASSWORD_STRONG,
   ZIPCODE_REGEX,
+  PHONE_NUMBER_REGEX,
 } from "./constants";
+import moment from "moment";
 
 class Validation {
   validateEmail(email) {
@@ -86,6 +88,95 @@ class Validation {
     return errorMessage;
   }
 
+  validateProductInfo(name) {
+    var errorMessage = "";
+    if (!name) {
+      errorMessage = "This field is required";
+    }
+    return errorMessage;
+  }
+
+  validateCategory(category) {
+    var errorMessage = "";
+    if (category === 0) {
+      errorMessage = "Please choose category.";
+    }
+    return errorMessage;
+  }
+
+  validateImage(images) {
+    var errorMessage = "";
+    const minNumberOfImages = 3;
+    if (images.length < minNumberOfImages) {
+      errorMessage = "Please upload at least 3 photos of your item.";
+    }
+    return errorMessage;
+  }
+
+  validatePrice(price) {
+    var errorMessage = "";
+    if (!price) {
+      errorMessage = "Please enter product price";
+    } else if (price <= 0) {
+      errorMessage = "Please enter number greater then 0";
+    }
+    return errorMessage;
+  }
+
+  validateDates(date) {
+    var errorMessage = "";
+    if (!date.startDate || !date.endDate) {
+      errorMessage = "Please enter both start and end date";
+    } else if (
+      moment(date.startDate) < moment().subtract(1, "days") ||
+      moment(date.endDate) < moment().subtract(1, "days")
+    ) {
+      errorMessage = "Please enter both start and end date in the future";
+    } else if (moment(date.startDate) > moment(date.endDate)) {
+      errorMessage = "Please enter end date thats is after stratr date";
+    }
+    return errorMessage;
+  }
+
+  validatePhoneNumber(phoneNumber) {
+    var errorMessage = "";
+    if (!phoneNumber) {
+      errorMessage = "Please enter your phone number";
+    } else if (!PHONE_NUMBER_REGEX.test(phoneNumber)) {
+      errorMessage = "Please enter valida phone number format";
+    }
+    return errorMessage;
+  }
+
+  validateProductDetails(data) {
+    let keys = Object.keys(data);
+    let errorMessages = keys.reduce((accumulator, value) => {
+      return { ...accumulator, [value]: "" };
+    }, {});
+    let valid = true;
+    for (var i = 0; i < keys.length; i++) {
+      if (keys[i] === "productName")
+        errorMessages.productName = this.validateProductInfo(data.productName);
+      else if (keys[i] === "subcategory") {
+        errorMessages.subcategory = this.validateCategory(data.subcategory);
+      } else if (keys[i] === "description")
+        errorMessages.description = this.validateProductInfo(data.description);
+      else if (keys[i] === "pictures")
+        errorMessages.pictures = this.validateImage(data.pictures);
+      else if (keys[i] === "price")
+        errorMessages.price = this.validatePrice(data.price);
+      else if (keys[i] === "date")
+        errorMessages.date = this.validateDates(data.date);
+    }
+    if (
+      Object.values(errorMessages).findIndex((object) => {
+        return object !== "";
+      }) !== -1
+    )
+      valid = false;
+    return { errorMessages: errorMessages, valid: valid };
+  }
+
   formValidation(data, option) {
     let keys = Object.keys(data);
     let errorMessages = keys.reduce((accumulator, value) => {
@@ -129,6 +220,14 @@ class Validation {
           break;
         case "zipCode":
           errorMessages.zipCode = this.validateZipCode(location.zipCode);
+          break;
+        case "email":
+          errorMessages.email = this.validateEmail(location.email);
+          break;
+        case "phoneNumber":
+          errorMessages.phoneNumber = this.validatePhoneNumber(
+            location.phoneNumber
+          );
           break;
         default:
           errorMessages.country = this.validateCountry(location.countryId);

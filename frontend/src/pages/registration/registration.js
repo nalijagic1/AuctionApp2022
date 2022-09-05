@@ -6,6 +6,7 @@ import personService from "../../services/person.service";
 import { useNavigate } from "react-router-dom";
 import validation from "../../utils/validation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { updateErrorMessage } from "../../utils/handleEvent";
 
 function Registration() {
   const [email, setEmail] = useState();
@@ -65,12 +66,7 @@ function Registration() {
             id="firstName"
             type="text"
             onChange={(e) => {
-              setError({
-                firstName: "",
-                lastName: error.lastName,
-                email: error.email,
-                password: error.password,
-              });
+              setError(updateErrorMessage(error,"firstName"));
               setFirstName(e.target.value);
             }}
             error={error.firstName}
@@ -83,12 +79,7 @@ function Registration() {
             id="lastName"
             type="text"
             onChange={(e) => {
-              setError({
-                firstName: error.firstName,
-                lastName: "",
-                email: error.email,
-                password: error.password,
-              });
+              setError(updateErrorMessage(error,"lastName"));
               setLastName(e.target.value);
             }}
             error={error.lastName}
@@ -102,12 +93,7 @@ function Registration() {
             type="email"
             value={email}
             onChange={(e) => {
-              setError({
-                firstName: error.firstName,
-                lastName: error.lastName,
-                email: "",
-                password: error.password,
-              });
+              setError(updateErrorMessage(error,"email"));
               setEmail(e.target.value);
             }}
             error={error.email}
@@ -117,15 +103,10 @@ function Registration() {
             label="Password"
             fieldClass="loginAndRegisterField"
             id="password"
-            type={showPassword ? "text" : "password"}
             value={password}
+            type={showPassword ? "text" : "password"}
             onChange={(e) => {
-              setError({
-                firstName: error.firstName,
-                lastName: error.lastName,
-                email: error.email,
-                password: "",
-              });
+              setError(updateErrorMessage(error,"password"));
               setPassword(e.target.value);
               setPasswordStrengthMessage(
                 validation.validatePassword(e.target.value)

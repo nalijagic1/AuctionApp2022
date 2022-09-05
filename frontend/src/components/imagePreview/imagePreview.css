@@ -1,0 +1,33 @@
+.imagePreview {
+  display: flex;
+  margin-bottom: 23px;
+}
+
+.reorderIcon {
+  margin-top: 15px;
+  margin-right: 8px;
+}
+
+.imagePreview img {
+  width: 94px;
+  height: 52px;
+}
+
+.imagePreview h4 {
+  margin-left: 16px;
+  margin-top: 15px;
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 27px;
+  color: #252525;
+  width: 300px;
+  margin-right: 40px;
+}
+
+.deleteIcon {
+  font-size: 16px;
+  color: #e10000;
+  margin-top: 15px;
+}

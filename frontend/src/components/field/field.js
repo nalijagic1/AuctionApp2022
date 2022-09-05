@@ -15,6 +15,8 @@ function Field({
   infoType,
   iconShow,
   value,
+  min,
+  readOnly,
 }) {
   let messageClass = "";
   if (error) {
@@ -35,7 +37,8 @@ function Field({
         placeholder={placeHolder}
         onChange={onChange}
         value={value}
-        min="1"
+        min={min}
+        readOnly={readOnly}
       ></input>
       {(error || info) && (
         <div className="fieldInfo">

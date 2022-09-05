@@ -18,4 +18,8 @@ public class SubcategoryService {
     public List<Subcategory> getSubcategoriesFromCategory(long categoryId) {
         return subcategoryRepository.findAllByCategoryId(categoryId);
     }
+
+    public Subcategory getSubcategoryById(long subcategoryId){
+        return subcategoryRepository.findById(subcategoryId).get();
+    }
 }
