@@ -3,6 +3,7 @@ package com.praksa.auction.config.security.services;
 import com.praksa.auction.model.Address;
 import com.praksa.auction.model.Gender;
 import com.praksa.auction.model.Person;
+import com.praksa.auction.model.UserStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,10 @@ public class PersonDetails implements UserDetails {
     private String picture;
     private Address address;
     private String customerId;
+    private UserStatusEnum status;
+    private Date statusUpade;
+    private Date lastLogIn;
+    private Date firstLogIn;
 
     public static PersonDetails build(Person user) {
         return new PersonDetails(user.getId(),
@@ -40,7 +45,11 @@ public class PersonDetails implements UserDetails {
                 user.getPassword(),
                 user.getPicture(),
                 user.getAddress(),
-                user.getCustomerId());
+                user.getCustomerId(),
+                user.getStatus(),
+                user.getStatusUpade(),
+                user.getLastLogIn(),
+                user.getFirstLogIn());
     }
 
     @Override

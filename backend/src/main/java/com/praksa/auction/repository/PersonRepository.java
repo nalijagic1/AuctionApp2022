@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.Optional;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
@@ -22,4 +23,9 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Person SET address_id = :addressId WHERE id = :userId", nativeQuery = true)
     void updateAddressInfo(long addressId, long userId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Person SET last_log_in = CURRENT_DATE WHERE id = :userId", nativeQuery = true)
+    void updateLastLogIn(long userId);
 }

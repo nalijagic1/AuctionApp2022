@@ -1,5 +1,6 @@
 package com.praksa.auction.dto;
 
+import com.praksa.auction.model.UserStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,5 @@ public class BasicUserInfoDto {
     private String email;
     private String phoneNumber;
     private boolean isSeller;
+    private UserStatusEnum role;
 }

@@ -31,4 +31,8 @@ public class Person {
     @JoinColumn(name = "addressId")
     private Address address;
     private String customerId;
+    private UserStatusEnum status;
+    private Date statusUpade;
+    private Date lastLogIn;
+    private Date firstLogIn;
 }
