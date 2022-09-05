@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import validation from "../../utils/validation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { updateErrorMessage } from "../../utils/handleEvent";
+import { ROLES } from "../../utils/roles";
 
 function Registration() {
   const [email, setEmail] = useState();
@@ -29,7 +30,7 @@ function Registration() {
       .createAccount(firstName, lastName, email, password)
       .then((response) => {
           if (localStorage.getItem("user")) {
-            navigate("/");
+            navigate(personService.getCurrentUser().role === ROLES.USER ? "/":"/userMenagment");
             window.location.reload();
         }
       })

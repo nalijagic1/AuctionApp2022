@@ -3,9 +3,15 @@
   display: flex;
 }
 
+
 #logo {
   margin-top: 17px;
   margin-right: 120px;
+}
+
+.compress{
+  margin-left: 110px;
+  width: 90%;
 }
 
 .navLogIn {

@@ -16,8 +16,14 @@ import Registration from "./pages/registration/registration";
 import Payment from "./pages/payment/payment";
 import SuccesfulPayment from "./pages/succesfulPayment/succesfulPayment";
 import AddNewItem from "./pages/addNewItem/addNewItem";
+import personService from "./services/person.service";
+import { ROLES } from "./utils/roles";
+import SideBar from "./components/sideBar/sideBar";
+import { useState } from "react";
 
 function App() {
+  const user = personService.getCurrentUser();
+  const [expanded,setExpanded] = useState(false)
   return (
     <div className="App">
       <Helmet>
@@ -29,8 +35,10 @@ function App() {
       </Helmet>
       <div className="content">
         <NavigationBlack />
-        <NavigationWhite />
-        <Routes>
+        {user && user.role === ROLES.ADMIN && <SideBar expanded = {(expand) => setExpanded(expand)}/>}
+        <NavigationWhite expanded = {expanded} />
+        <div className={expanded ? "compressContent":""}>
+          <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/privacy" element={<PrivacyAndPolicy />} />
           <Route path="/terms" element={<TermsAndConditions />} />
@@ -44,6 +52,8 @@ function App() {
           <Route path="/paymentComplete" element={<SuccesfulPayment />} />
           <Route path ="/addItem" element={<AddNewItem/>}/>
         </Routes>
+        </div>
+        
       </div>
       <footer className="foot">
         <Footer />
