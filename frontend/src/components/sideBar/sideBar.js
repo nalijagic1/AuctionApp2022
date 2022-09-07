@@ -31,32 +31,32 @@ function SideBar({ expanded }) {
             }}
           />
         )}
-        <div className="sideBarOption">
+        <a className="sideBarOption">
           <Dashboard className="icons" />
           {expand && <h2>Dashboard</h2>}
-        </div>
-        <div className="sideBarOption">
+        </a>
+        <a  href="/userManagment"className="sideBarOption">
           <User className="icons" />
           {expand && <h2>Users Managment</h2>}
-        </div>
+        </a>
 
-        <div className="sideBarOption">
+        <a className="sideBarOption">
           <Item className="icons" />
           {expand && <h2>Items Managment</h2>}
-        </div>
+        </a>
 
-        <div className="sideBarOption">
+        <a className="sideBarOption">
           <Transaction className="icons" />
           {expand && <h2>Transactions Management</h2>}
-        </div>
-        <div className="sideBarOption">
+        </a>
+        <a className="sideBarOption">
           <Messages className="icons" />
           {expand && <h2>Messages</h2>}
-        </div>
-        <div className="sideBarOption">
+        </a>
+        <a className="sideBarOption">
           <Settings className="icons" />
           {expand && <h2>Settings</h2>}
-        </div>
+        </a>
       </div>
     </div>
   );

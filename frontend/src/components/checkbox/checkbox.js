@@ -7,7 +7,7 @@ function Checkbox({ label }) {
       <label className="container">
         {label}
         <input type="checkbox"></input>
-        <span class="checkmark"></span>
+        <span className="checkmark"></span>
       </label>
     </div>
   );

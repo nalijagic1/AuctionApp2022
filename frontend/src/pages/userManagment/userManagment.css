@@ -1,0 +1,48 @@
+.userManagmentView {
+  margin-left: 150px;
+  margin-bottom: 32px;
+}
+
+.userManagmentView h5 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  letter-spacing: 0.84px;
+  margin-bottom: 25px;
+}
+
+.userManagmentOptions {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.userSearch {
+  margin-left: 25px;
+  padding-left: 35px;
+  border: 1px solid #c1b3eb;
+  color: #9b9b9b;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  width: 300px;
+}
+
+.pagination{
+  display: flex;
+  margin-top: 32px;
+}
+
+.searchIcon{
+    color: #8367D8;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    margin-left: 135px;
+    margin-top: 7px;
+}
+
+.userTable{
+    margin-top: 14px;
+}
+

@@ -5,6 +5,6 @@ public enum UserStatusEnum {
     User,
     Golden,
     Restricted,
-    Blocked,
+    Black,
     Archived
 }

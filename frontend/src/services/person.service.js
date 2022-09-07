@@ -33,6 +33,10 @@ class PersonDataService {
     return null;
   }
 
+  getAllUsers(){
+    return httpCommon.get("/people")
+  }
+
 }
 
 export default new PersonDataService();

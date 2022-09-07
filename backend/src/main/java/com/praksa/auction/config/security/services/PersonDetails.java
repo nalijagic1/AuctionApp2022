@@ -47,7 +47,7 @@ public class PersonDetails implements UserDetails {
                 user.getAddress(),
                 user.getCustomerId(),
                 user.getStatus(),
-                user.getStatusUpade(),
+                user.getStatusUpdate(),
                 user.getLastLogIn(),
                 user.getFirstLogIn());
     }

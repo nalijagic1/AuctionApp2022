@@ -20,6 +20,7 @@ import personService from "./services/person.service";
 import { ROLES } from "./utils/roles";
 import SideBar from "./components/sideBar/sideBar";
 import { useState } from "react";
+import UserManagment from "./pages/userManagment/userManagment";
 
 function App() {
   const user = personService.getCurrentUser();
@@ -51,6 +52,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/paymentComplete" element={<SuccesfulPayment />} />
           <Route path ="/addItem" element={<AddNewItem/>}/>
+          <Route path="/userManagment" element={<UserManagment/>}/>
         </Routes>
         </div>
         

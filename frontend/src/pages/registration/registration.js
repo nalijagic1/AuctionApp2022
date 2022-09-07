@@ -30,7 +30,7 @@ function Registration() {
       .createAccount(firstName, lastName, email, password)
       .then((response) => {
           if (localStorage.getItem("user")) {
-            navigate(personService.getCurrentUser().role === ROLES.USER ? "/":"/userMenagment");
+            navigate(personService.getCurrentUser().role === ROLES.USER ? "/":"/userManagment");
             window.location.reload();
         }
       })

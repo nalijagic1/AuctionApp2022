@@ -25,6 +25,7 @@
 
 .sideBarOption {
     display: flex;  
+    text-decoration: none;
 }
 
 .sideBarOption h2{
@@ -32,4 +33,6 @@
     font-size: 14px;
     line-height: 27px; 
     margin-bottom: 0px;
+    color: #252525;
+    margin-top: -3px;
 }
