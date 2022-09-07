@@ -5,14 +5,32 @@
   padding-right: 15px;
 }
 
-.sortFilter h2{
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 24px;
-    margin-right: 36px;
-    margin-bottom: 0px;
+.sortFilter h2 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+}
+.sort h2 {
+  margin-right: 36px;
+  margin-bottom: 0px;
 }
 
-.sortIcon{
+.rowSelecting {
+  margin-left: 14px;
+  padding-left: 8px;
+  margin-right: 52px;
+}
+.rowSelecting h2 {
+  margin-top: 4px;
+  margin-bottom: 0px;
+  margin-right: 12px;
+}
+
+.sortIcon {
   margin-top: 3px;
 }
+
+.rowSelecting .sortIcon {
+  margin-top: 8px;
+}
+

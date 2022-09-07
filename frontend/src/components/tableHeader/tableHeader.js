@@ -9,13 +9,13 @@ function TableHeader() {
   return (
     <div className="tableHeader">
         <Checkbox/>
-        <SortFilter label="Full name" width="150px"/>
-        <SortFilter label="Date of creation" width="180px"/>
-        <SortFilter label="Email" width="150px"/>
+        <SortFilter label="Full name" width="150px" type="alphabet"/>
+        <SortFilter label="Date of creation" width="180px" type="date"/>
+        <SortFilter label="Email" width="150px" type="alphabet"/>
         <SortFilter label="Mobile Number" enableSort={false}/>
         <SortFilter label ="Location" enableSort={false} width="190px"/>
         <SortFilter label="Status"  width="100px" enableSort={false}/>
-        <SortFilter label ="Status update"/>
+        <SortFilter label ="Status update" type="date"/>
         <TbDotsVertical className="moreIcon"/>
     </div>
   );

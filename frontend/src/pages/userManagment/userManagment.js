@@ -39,10 +39,11 @@ function UserManagment() {
           })}
       </div>
       <div className="pagination">
-        Show: 
-        <SortFilter label="10 rows"/>
+        <h3>Show:</h3>
+        <SortFilter label="10 rows" className="rowSelecting" type="rows"/>
         <Pagination
         count={10}
+        shape="rounded"
         showFirstButton
         showLastButton
         renderItem={(item) => (
@@ -52,6 +53,8 @@ function UserManagment() {
           />
         )}
       />
+      <h3>Go to page:</h3>
+      <input type="number" className="inputPage"></input>
       </div>
       
     </div>

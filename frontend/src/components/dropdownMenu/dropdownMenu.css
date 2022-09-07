@@ -1,0 +1,28 @@
+.sortMenu {
+    position: absolute;
+    width: max-content;
+    background: #fcfcfc;
+    border: 1px solid #d8d8d8;
+    z-index: 1;
+  }
+  
+  .sortMenuOption {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    color: #252525;
+    padding-left: 15px;
+    padding-right: 11px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-bottom: 0px;
+    width: 147px;
+  }
+
+  .dropdownicon{
+    margin-right: 5px;
+  }
+  
+  .sortMenuOption:hover{
+    background: #DAD1F3
+  }

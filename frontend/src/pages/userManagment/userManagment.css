@@ -31,6 +31,7 @@
 .pagination{
   display: flex;
   margin-top: 32px;
+  margin-left: 50px;
 }
 
 .searchIcon{
@@ -44,5 +45,30 @@
 
 .userTable{
     margin-top: 14px;
+}
+
+.inputPage::-webkit-inner-spin-button,
+.inputPage::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inputPage{
+  background-color: #8367D8;
+  color:#ffffff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  margin-left: 14px;
+}
+
+.pagination h3{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #000000;
+  margin-bottom: 0px;
+  margin-left: 52px;
+  margin-top: 3px;
 }
 
