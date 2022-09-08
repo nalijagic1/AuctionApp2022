@@ -18,4 +18,5 @@ export const ROLES_ICON = {
   Black: <BlackUser></BlackUser>,
   Restricted: <RestrictedUser></RestrictedUser>,
   User:""
+
 };

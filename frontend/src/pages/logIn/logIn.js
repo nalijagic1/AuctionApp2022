@@ -8,6 +8,7 @@ import validation from "../../utils/validation";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { updateErrorMessage } from "../../utils/handleEvent";
 import { ROLES } from "../../utils/roles";
+
 function LogIn() {
   let navigate = useNavigate();
   const [email, setEmail] = useState("");

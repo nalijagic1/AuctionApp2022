@@ -99,7 +99,6 @@ public class PersonService {
                 new UsernamePasswordAuthenticationToken(loginInfo.getEmail(), loginInfo.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
-
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
         personRepositoy.updateLastLogIn(userDetails.getId());
