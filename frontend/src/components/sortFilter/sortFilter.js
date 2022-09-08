@@ -12,13 +12,19 @@ function SortFilter({
   enableSort = true,
   width = "fit-content",
   className = "sort",
+  onSelect,
   type,
 }) {
   const [clicked, setClicked] = useState(false);
+  const [selected, setSelected] = useState(label);
+  function getNumberFromLabel(heading) {
+    var number = heading.split(" ")[0];
+    return Number(number);
+  }
   return (
     <div style={{ width: width }}>
       <div className={`sortFilter ${className}`}>
-        <h2>{label}</h2>
+        <h2>{selected}</h2>
         {enableSort && (
           <TiArrowUnsorted
             onClick={() => setClicked(!clicked)}
@@ -27,8 +33,16 @@ function SortFilter({
         )}
       </div>
       {enableSort && clicked && (
-          <DropdownMenu type={type} width={width}/>
-          )}
+        <DropdownMenu
+          type={type}
+          width={width}
+          onClick={(heading = label) => {
+            setClicked(false);
+            setSelected(heading);
+            onSelect(getNumberFromLabel(heading));
+          }}
+        />
+      )}
     </div>
   );
 }

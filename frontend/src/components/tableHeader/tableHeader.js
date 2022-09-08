@@ -4,11 +4,10 @@ import SortFilter from "../sortFilter/sortFilter";
 import {TbDotsVertical} from "react-icons/tb"
 import "./tableHeader.css";
 
-function TableHeader() {
-
+function TableHeader({setChecked,checked}) {
   return (
     <div className="tableHeader">
-        <Checkbox/>
+        <Checkbox checked ={checked} onChange={(checked)=>setChecked(checked)}/>
         <SortFilter label="Full name" width="150px" type="alphabet"/>
         <SortFilter label="Date of creation" width="180px" type="date"/>
         <SortFilter label="Email" width="150px" type="alphabet"/>

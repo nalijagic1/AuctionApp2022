@@ -28,6 +28,12 @@
   width: 300px;
 }
 
+.userActiveFilters{
+  height: 24px;
+  margin-bottom: 14px;
+  display: flex;
+}
+
 .pagination{
   display: flex;
   margin-top: 32px;
@@ -43,24 +49,6 @@
     margin-top: 7px;
 }
 
-.userTable{
-    margin-top: 14px;
-}
-
-.inputPage::-webkit-inner-spin-button,
-.inputPage::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.inputPage{
-  background-color: #8367D8;
-  color:#ffffff;
-  border: none;
-  width: 32px;
-  height: 32px;
-  margin-left: 14px;
-}
 
 .pagination h3{
   font-weight: 400;

@@ -33,8 +33,8 @@ class PersonDataService {
     return null;
   }
 
-  getAllUsers(){
-    return httpCommon.get("/people")
+  getAllUsers(page,count){
+    return httpCommon.get("/people?page="+page+"&count="+count)
   }
 
 }

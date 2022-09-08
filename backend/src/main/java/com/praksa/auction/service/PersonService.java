@@ -2,10 +2,7 @@ package com.praksa.auction.service;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.config.security.services.PersonDetails;
-import com.praksa.auction.dto.BasicUserInfoDto;
-import com.praksa.auction.dto.JwtResponseDto;
-import com.praksa.auction.dto.LogInDto;
-import com.praksa.auction.dto.RegistrationDto;
+import com.praksa.auction.dto.*;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.model.UserStatusEnum;
 import com.praksa.auction.repository.PersonRepository;
@@ -16,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -124,7 +122,9 @@ public class PersonService {
         personRepositoy.updateAddressInfo(addressId, personId);
     }
 
-    public List<Person> getAllUsers() {
-        return personRepositoy.findAllUsers();
+    public UserTableDto getAllUsers(int page, int count) {
+        Page<Person> users = personRepositoy.findAllUsers(PageRequest.of(page, count));
+        return new UserTableDto(users.getContent(), users.getTotalPages());
     }
+
 }

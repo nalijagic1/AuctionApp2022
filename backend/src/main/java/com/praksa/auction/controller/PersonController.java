@@ -4,6 +4,7 @@ import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.dto.LogInDto;
 import com.praksa.auction.dto.LogInRegistationFailedDto;
 import com.praksa.auction.dto.RegistrationDto;
+import com.praksa.auction.dto.UserTableDto;
 import com.praksa.auction.model.ErrorCodeEnum;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.service.PersonService;
@@ -53,7 +54,7 @@ public class PersonController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Person>> getAllUsers(){
-        return ResponseEntity.ok(personService.getAllUsers());
+    public ResponseEntity<UserTableDto> getAllUsers(@RequestParam int page, @RequestParam int count){
+        return ResponseEntity.ok(personService.getAllUsers(page,count));
     }
 }

@@ -33,5 +33,5 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     void updateLastLogIn(long userId);
 
     @Query(value = "SELECT * FROM PERSON WHERE status != 0",nativeQuery = true)
-    List<Person> findAllUsers();
+    Page<Person> findAllUsers(Pageable pageable);
 }
