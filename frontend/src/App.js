@@ -21,6 +21,7 @@ import { ROLES } from "./utils/roles";
 import SideBar from "./components/sideBar/sideBar";
 import { useState } from "react";
 import UserManagment from "./pages/userManagment/userManagment";
+import AuthVerify from "./utils/auth-verify";
 
 function App() {
   const user = personService.getCurrentUser();
@@ -55,7 +56,7 @@ function App() {
           <Route path="/userManagment" element={<UserManagment/>}/>
         </Routes>
         </div>
-        
+        <AuthVerify/>
       </div>
       <footer className="foot">
         <Footer />
