@@ -14,11 +14,11 @@ function DropdownMenu(props) {
     <div className="sortMenu">
       {props.type === "alphabet" && (
         <div>
-          <h2 className="sortMenuOption" onClick={()=>{props.onClick()}}>
+          <h2 className="sortMenuOption" onClick={()=>{props.onSortSelect({field:props.field,direction:"ASC"})}}>
             <AiOutlineSortAscending className="dropdownicon"/>
             Alphabetically (A-Z)
           </h2>
-          <h2 className="sortMenuOption"  onClick={()=>{props.onClick()}}>
+          <h2 className="sortMenuOption"  onClick={()=>{props.onSortSelect({field:props.field,direction:"DESC"})}}>
             <AiOutlineSortDescending className="dropdownicon" />
             Alphabetically (Z-A)
           </h2>
@@ -26,16 +26,16 @@ function DropdownMenu(props) {
       )}
       {props.type === "date" && (
         <div>
-          <h2 className="sortMenuOption" onClick={()=>{props.onClick()}}>Oldest date</h2>
-          <h2 className="sortMenuOption" onClick={()=>{props.onClick()}}>Newest date</h2>
+          <h2 className="sortMenuOption" onClick={()=>{props.onSortSelect({field:props.field,direction:"DESC"})}}>Oldest date</h2>
+          <h2 className="sortMenuOption" onClick={()=>{props.onSortSelect({field:props.field,direction:"ASC"})}}>Newest date</h2>
         </div>
       )}
       {props.type === "rows" && (
         <div>
-          <h2 className="sortMenuOption" onClick={(event)=>{props.onClick(event.target.innerHTML)}}>10 rows</h2>
-          <h2 className="sortMenuOption" onClick={(event)=>{props.onClick(event.target.innerHTML)}}>20 rows</h2>
-          <h2 className="sortMenuOption" onClick={(event)=>{props.onClick(event.target.innerHTML)}}>30 rows</h2>
-          <h2 className="sortMenuOption" onClick={(event)=>{props.onClick(event.target.innerHTML)}}>40 rows</h2>
+          <h2 className="sortMenuOption" onClick={(event)=>{props.onRowSelect(event.target.innerHTML)}}>10 rows</h2>
+          <h2 className="sortMenuOption" onClick={(event)=>{props.onRowSelect(event.target.innerHTML)}}>20 rows</h2>
+          <h2 className="sortMenuOption" onClick={(event)=>{props.onRowSelect(event.target.innerHTML)}}>30 rows</h2>
+          <h2 className="sortMenuOption" onClick={(event)=>{props.onRowSelect(event.target.innerHTML)}}>40 rows</h2>
         </div>
       )}
       {props.type === "user" && (

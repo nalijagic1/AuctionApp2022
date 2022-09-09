@@ -15,6 +15,7 @@ function UserManagment() {
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
   const [numberOfPages, setNumberOfPages] = useState();
+  const [sort,setSort] = useState({field:"id",direction:"ASC"})
   const [checked, setChecked] = useState(false);
   const [filterCodes, setFilterCodes] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
@@ -35,11 +36,11 @@ function UserManagment() {
     setSelectedFilter(activeFilter);
   }
   useEffect(() => {
-    personService.getAllUsers(page - 1, count,filterCodes).then((response) => {
+    personService.getAllUsers(page - 1, count,filterCodes,sort).then((response) => {
       setUsers(response.data.listOfUsers);
       setNumberOfPages(response.data.numberOfPages);
     });
-  }, [page, count, selectedFilter]);
+  }, [page, count, selectedFilter,sort]);
   return (
     <div className="userManagmentView">
       <h5>User Managment</h5>
@@ -85,6 +86,7 @@ function UserManagment() {
           setChecked={(checked) => {
             setChecked(checked);
           }}
+          setSort={(sortType)=> setSort(sortType)} 
         />
         {users &&
           users.map((user) => {

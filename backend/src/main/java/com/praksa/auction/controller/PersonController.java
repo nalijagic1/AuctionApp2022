@@ -1,15 +1,13 @@
 package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
-import com.praksa.auction.dto.LogInDto;
-import com.praksa.auction.dto.LogInRegistationFailedDto;
-import com.praksa.auction.dto.RegistrationDto;
-import com.praksa.auction.dto.UserTableDto;
+import com.praksa.auction.dto.*;
 import com.praksa.auction.model.ErrorCodeEnum;
 import com.praksa.auction.model.Person;
 import com.praksa.auction.service.PersonService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/people")
@@ -54,13 +53,13 @@ public class PersonController {
         }
     }
 
-    @GetMapping()
-    public ResponseEntity<UserTableDto> getAllUsers(@RequestParam int page, @RequestParam int count){
-        return ResponseEntity.ok(personService.getAllUsers(page,count));
+    @PostMapping()
+    public ResponseEntity<UserTableDto> getAllUsers(@RequestBody UserListRequest userListRequest){
+        return ResponseEntity.ok(personService.getAllUsers(userListRequest.getPage(),userListRequest.getCount(), userListRequest.getSort()));
     }
 
-    @GetMapping("/filtered")
-    public ResponseEntity<UserTableDto> getFilteredUser(@RequestParam int page, @RequestParam int count,@RequestParam List<Integer> filters){
-        return ResponseEntity.ok(personService.getFilteredUsers(page,count,filters));
+    @PostMapping("/filtered")
+    public ResponseEntity<UserTableDto> getFilteredUser(@RequestBody UserListRequest userListRequest){
+        return ResponseEntity.ok(personService.getFilteredUsers(userListRequest.getPage(),userListRequest.getCount(),userListRequest.getFilters(), userListRequest.getSort()));
     }
 }

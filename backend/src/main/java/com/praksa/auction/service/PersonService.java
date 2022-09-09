@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,10 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class PersonService {
@@ -122,13 +120,15 @@ public class PersonService {
         personRepositoy.updateAddressInfo(addressId, personId);
     }
 
-    public UserTableDto getAllUsers(int page, int count) {
-        Page<Person> users = personRepositoy.findAllUsers(PageRequest.of(page, count));
+    public UserTableDto getAllUsers(int page, int count, SortDto sort) {
+        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(sort.getDirection().toString()),sort.getField());
+        Page<Person> users = personRepositoy.findAllUsers(PageRequest.of(page,count,Sort.by(order)));
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
-    public UserTableDto getFilteredUsers(int page,int count, List<Integer> status){
-        Page<Person> users = personRepositoy.findAllFilteredUsers(PageRequest.of(page, count),status);
+    public UserTableDto getFilteredUsers(int page,int count, List<Integer> status,SortDto sort){
+        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(sort.getDirection().toString()),sort.getField());
+        Page<Person> users = personRepositoy.findAllFilteredUsers(PageRequest.of(page, count,Sort.by(order)),status);
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 

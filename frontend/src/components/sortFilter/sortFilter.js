@@ -9,6 +9,7 @@ function SortFilter({
   width = "fit-content",
   className = "sort",
   onSelect,
+  field,
   type,
 }) {
   const [clicked, setClicked] = useState(false);
@@ -30,12 +31,17 @@ function SortFilter({
       </div>
       {enableSort && clicked && (
         <DropdownMenu
+          field={field}
           type={type}
           width={width}
-          onClick={(heading = label) => {
+          onRowSelect={(heading = label) => {
             setClicked(false);
             setSelected(heading);
             onSelect(getNumberFromLabel(heading));
+          }}
+          onSortSelect={(sort) =>{
+            setClicked(false);
+            onSelect(sort);
           }}
         />
       )}

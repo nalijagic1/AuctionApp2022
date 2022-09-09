@@ -29,14 +29,15 @@ class PersonDataService {
 
   getCurrentUser() {
     var user = JSON.parse(localStorage.getItem("user"));
-    if(user) return user.user;
+    if (user) return user.user;
     return null;
   }
 
-  getAllUsers(page,count,filterCodes){
-    return filterCodes.length === 0 ? httpCommon.get("/people?page="+page+"&count="+count): httpCommon.get("/people/filtered?page="+page+"&count="+count + "&filters="+filterCodes)
+  getAllUsers(page, count, filters, sort) {
+    return filters.length === 0
+      ? httpCommon.post("/people", { page, count,filters, sort })
+      : httpCommon.post("/people/filtered", { page, count, filters, sort });
   }
-
 }
 
 export default new PersonDataService();
