@@ -26,3 +26,11 @@
   .sortMenuOption:hover{
     background: #DAD1F3
   }
+
+  .sortMenu h3{
+    font-size: 14px;
+  }
+
+  .sortMenu hr{
+    border: 1px solid #C1B3EB;
+  }

@@ -127,4 +127,11 @@ public class PersonService {
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
+    public UserTableDto getFilteredUsers(int page,int count, List<Integer> status){
+        Page<Person> users = personRepositoy.findAllFilteredUsers(PageRequest.of(page, count),status);
+        return new UserTableDto(users.getContent(), users.getTotalPages());
+    }
+
+
+
 }

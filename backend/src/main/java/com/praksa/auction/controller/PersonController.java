@@ -19,6 +19,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -56,5 +57,10 @@ public class PersonController {
     @GetMapping()
     public ResponseEntity<UserTableDto> getAllUsers(@RequestParam int page, @RequestParam int count){
         return ResponseEntity.ok(personService.getAllUsers(page,count));
+    }
+
+    @GetMapping("/filtered")
+    public ResponseEntity<UserTableDto> getFilteredUser(@RequestParam int page, @RequestParam int count,@RequestParam List<Integer> filters){
+        return ResponseEntity.ok(personService.getFilteredUsers(page,count,filters));
     }
 }

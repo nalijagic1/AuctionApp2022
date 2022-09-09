@@ -34,4 +34,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query(value = "SELECT * FROM PERSON WHERE status != 0",nativeQuery = true)
     Page<Person> findAllUsers(Pageable pageable);
+
+    @Query(value = "SELECT * FROM PERSON WHERE status in :status",nativeQuery = true)
+    Page<Person> findAllFilteredUsers(Pageable pageable,List<Integer> status);
 }

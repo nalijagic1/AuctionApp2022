@@ -8,6 +8,7 @@ import AuctionPagination from "../../components/auctionPagination/auctionPaginat
 import personService from "../../services/person.service";
 import SortFilter from "../../components/sortFilter/sortFilter";
 import FilterBadges from "../../components/filterBadges/filterBadges";
+import { ROLES_CODE } from "../../utils/roles";
 
 function UserManagment() {
   const [users, setUsers] = useState([]);
@@ -15,6 +16,7 @@ function UserManagment() {
   const [count, setCount] = useState(10);
   const [numberOfPages, setNumberOfPages] = useState();
   const [checked, setChecked] = useState(false);
+  const [filterCodes, setFilterCodes] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
     golden: false,
     user: false,
@@ -22,22 +24,39 @@ function UserManagment() {
     restricted: false,
     archived: false,
   });
-  function unselectFilter(filter){
-    var activeFilter = {...selectedFilter};
+  function unselectFilter(filter) {
+    var activeFilter = { ...selectedFilter };
     activeFilter[filter] = false;
+    setFilterCodes(
+      filterCodes.filter(function (value, index, arr) {
+        return value !== ROLES_CODE[filter.toUpperCase()];
+      })
+    );
     setSelectedFilter(activeFilter);
   }
   useEffect(() => {
-    personService.getAllUsers(page - 1, count).then((response) => {
+    personService.getAllUsers(page - 1, count,filterCodes).then((response) => {
       setUsers(response.data.listOfUsers);
       setNumberOfPages(response.data.numberOfPages);
     });
-  }, [page, count]);
+  }, [page, count, selectedFilter]);
   return (
     <div className="userManagmentView">
       <h5>User Managment</h5>
       <div className="userManagmentOptions">
-        <Filter selectedFilter={selectedFilter} changeFilter = {(filter) => {setSelectedFilter(filter)}}/>
+        <Filter
+          selectedFilter={selectedFilter}
+          changeFilter={(filter, filterIndex,selected) => {
+            setSelectedFilter(filter);
+            setFilterCodes(
+              selected
+                ? filterCodes.concat(filterIndex)
+                : filterCodes.filter(function (value, index, arr) {
+                    return value !== filterIndex;
+                  })
+            );
+          }}
+        />
         <BiSearchAlt2 className="searchIcon" />
         <input
           id="userSearch"
@@ -47,10 +66,17 @@ function UserManagment() {
         />
       </div>
       <div className="userActiveFilters">
-        {Object.keys(selectedFilter).map((filter)=>{
-          return <div>
-            {selectedFilter[filter] && <FilterBadges label = {filter} unselect={()=> unselectFilter(filter)}></FilterBadges>}
-            </div> 
+        {Object.keys(selectedFilter).map((filter) => {
+          return (
+            <div>
+              {selectedFilter[filter] && (
+                <FilterBadges
+                  label={filter}
+                  unselect={() => unselectFilter(filter)}
+                ></FilterBadges>
+              )}
+            </div>
+          );
         })}
       </div>
       <div className="userTable">
@@ -58,7 +84,6 @@ function UserManagment() {
           checked={checked}
           setChecked={(checked) => {
             setChecked(checked);
-            console.log(checked);
           }}
         />
         {users &&

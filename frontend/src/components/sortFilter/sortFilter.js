@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import "./sortFilter.css";
 import { TiArrowUnsorted } from "react-icons/ti";
-import {
-  AiOutlineSortAscending,
-  AiOutlineSortDescending,
-} from "react-icons/ai";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
 function SortFilter({

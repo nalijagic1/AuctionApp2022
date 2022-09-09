@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Checkbox from "../checkbox/checkbox";
 import { MdOutlineTune } from "react-icons/md";
+import { ROLES_CODE } from "../../utils/roles";
 import "./filter.css";
 
 function Filter({selectedFilter,changeFilter}) {
@@ -18,11 +19,11 @@ function Filter({selectedFilter,changeFilter}) {
       </div>
       {clicked && (
         <div className="filterMenu">
-          <Checkbox label="Regular users" checked={selectedFilter.user} onChange={(selection) => changeFilter(changeSelectedFilter("user",selection))}/>
-          <Checkbox label="Golden users" checked={selectedFilter.golden} onChange={(selection) => changeFilter(changeSelectedFilter("golden",selection))}/>
-          <Checkbox label="Restricted users" checked={selectedFilter.restricted} onChange={(selection) => changeFilter(changeSelectedFilter("restricted",selection))}/>
-          <Checkbox label="Black list users" checked={selectedFilter.black} onChange={(selection) => changeFilter(changeSelectedFilter("black",selection))} />
-          <Checkbox label="Archived users" checked={selectedFilter.archived} onChange={(selection) => changeFilter(changeSelectedFilter("archived",selection))}/>
+          <Checkbox label="Regular users" checked={selectedFilter.user} onChange={(selection) => changeFilter(changeSelectedFilter("user",selection),ROLES_CODE.USER,selection)}/>
+          <Checkbox label="Golden users" checked={selectedFilter.golden} onChange={(selection) => changeFilter(changeSelectedFilter("golden",selection),ROLES_CODE.GOLDEN,selection)}/>
+          <Checkbox label="Restricted users" checked={selectedFilter.restricted} onChange={(selection) => changeFilter(changeSelectedFilter("restricted",selection),ROLES_CODE.RESTRICTED,selection)}/>
+          <Checkbox label="Black list users" checked={selectedFilter.black} onChange={(selection) => changeFilter(changeSelectedFilter("black",selection),ROLES_CODE.BLACK,selection)} />
+          <Checkbox label="Archived users" checked={selectedFilter.archived} onChange={(selection) => changeFilter(changeSelectedFilter("archived",selection),ROLES_CODE.ARCHIVED,selection)}/>
         </div>
       )}
     </div>

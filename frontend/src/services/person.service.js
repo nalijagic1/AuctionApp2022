@@ -33,8 +33,8 @@ class PersonDataService {
     return null;
   }
 
-  getAllUsers(page,count){
-    return httpCommon.get("/people?page="+page+"&count="+count)
+  getAllUsers(page,count,filterCodes){
+    return filterCodes.length === 0 ? httpCommon.get("/people?page="+page+"&count="+count): httpCommon.get("/people/filtered?page="+page+"&count="+count + "&filters="+filterCodes)
   }
 
 }

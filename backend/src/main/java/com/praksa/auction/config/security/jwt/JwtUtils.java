@@ -18,7 +18,6 @@ public class JwtUtils {
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
-        System.out.println(jwtExpirationMs);
         PersonDetails userPrincipal = (PersonDetails) authentication.getPrincipal();
         final Date createdDate = new Date();
         final Date expirationDate = new Date(createdDate.getTime() + jwtExpirationMs);

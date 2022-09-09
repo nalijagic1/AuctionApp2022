@@ -84,3 +84,8 @@
   width: 20px;
   height: 20px;
 }
+.dropdownUserOptions{
+  position:absolute;
+  margin-left: 1025px;
+  margin-top: 20px;
+}
