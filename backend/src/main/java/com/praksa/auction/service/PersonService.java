@@ -120,15 +120,23 @@ public class PersonService {
         personRepositoy.updateAddressInfo(addressId, personId);
     }
 
-    public UserTableDto getAllUsers(int page, int count, SortDto sort) {
-        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(sort.getDirection().toString()),sort.getField());
-        Page<Person> users = personRepositoy.findAllUsers(PageRequest.of(page,count,Sort.by(order)));
+    public UserTableDto getAllUsers(UserListRequest userListRequest) {
+        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()),userListRequest.getSort().getField());
+        Page<Person> users;
+        if(userListRequest.getSearch()!=""){
+            users = personRepositoy.searchAllUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch());
+        }
+        else users = personRepositoy.findAllUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)));
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
-    public UserTableDto getFilteredUsers(int page,int count, List<Integer> status,SortDto sort){
-        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(sort.getDirection().toString()),sort.getField());
-        Page<Person> users = personRepositoy.findAllFilteredUsers(PageRequest.of(page, count,Sort.by(order)),status);
+    public UserTableDto getFilteredUsers(UserListRequest userListRequest){
+        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()),userListRequest.getSort().getField());
+        Page<Person> users;
+        if(userListRequest.getSearch()!=""){
+            users = personRepositoy.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch(),userListRequest.getFilters());
+        }
+        else users = personRepositoy.findAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getFilters());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 

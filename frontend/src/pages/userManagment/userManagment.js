@@ -11,6 +11,7 @@ import FilterBadges from "../../components/filterBadges/filterBadges";
 import { ROLES_CODE } from "../../utils/roles";
 
 function UserManagment() {
+  const [searchUser,setSearchUser] = useState("");
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
@@ -34,13 +35,14 @@ function UserManagment() {
       })
     );
     setSelectedFilter(activeFilter);
+    setPage(1);
   }
   useEffect(() => {
-    personService.getAllUsers(page - 1, count,filterCodes,sort).then((response) => {
+    personService.getAllUsers(page - 1, count,filterCodes,sort,searchUser).then((response) => {
       setUsers(response.data.listOfUsers);
       setNumberOfPages(response.data.numberOfPages);
     });
-  }, [page, count, selectedFilter,sort]);
+  }, [page, count, selectedFilter,sort,searchUser]);
   return (
     <div className="userManagmentView">
       <h5>User Managment</h5>
@@ -56,6 +58,7 @@ function UserManagment() {
                     return value !== filterIndex;
                   })
             );
+            setPage(1)
           }}
         />
         <BiSearchAlt2 className="searchIcon" />
@@ -64,6 +67,8 @@ function UserManagment() {
           className="userSearch"
           type="text"
           placeholder="Search: Users"
+          value = {searchUser}
+          onChange={(event)=>{setSearchUser(event.target.value);setPage(1)}}
         />
       </div>
       <div className="userActiveFilters">

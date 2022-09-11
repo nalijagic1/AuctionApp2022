@@ -33,10 +33,10 @@ class PersonDataService {
     return null;
   }
 
-  getAllUsers(page, count, filters, sort) {
+  getAllUsers(page, count, filters, sort,search) {
     return filters.length === 0
-      ? httpCommon.post("/people", { page, count,filters, sort })
-      : httpCommon.post("/people/filtered", { page, count, filters, sort });
+      ? httpCommon.post("/people", { page, count,filters, sort,search })
+      : httpCommon.post("/people/filtered", { page, count, filters, sort,search });
   }
 }
 

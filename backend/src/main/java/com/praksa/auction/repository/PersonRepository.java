@@ -35,6 +35,11 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query(value = "SELECT * FROM PERSON WHERE status != 0",nativeQuery = true)
     Page<Person> findAllUsers(Pageable pageable);
 
+    @Query(value = "SELECT * FROM PERSON p WHERE status != 0 AND p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%'",nativeQuery = true)
+    Page<Person> searchAllUsers(Pageable pageable,String search);
     @Query(value = "SELECT * FROM PERSON WHERE status in :status",nativeQuery = true)
     Page<Person> findAllFilteredUsers(Pageable pageable,List<Integer> status);
+
+    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%'",nativeQuery = true)
+    Page<Person> searchAllFilteredUsers(Pageable pageable,String search,List<Integer> status);
 }

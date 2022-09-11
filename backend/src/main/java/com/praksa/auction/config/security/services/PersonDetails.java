@@ -30,7 +30,7 @@ public class PersonDetails implements UserDetails {
     private Address address;
     private String customerId;
     private UserStatusEnum status;
-    private Date statusUpade;
+    private Date statusUpdate;
     private Date lastLogIn;
     private Date firstLogIn;
 

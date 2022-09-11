@@ -55,11 +55,11 @@ public class PersonController {
 
     @PostMapping()
     public ResponseEntity<UserTableDto> getAllUsers(@RequestBody UserListRequest userListRequest){
-        return ResponseEntity.ok(personService.getAllUsers(userListRequest.getPage(),userListRequest.getCount(), userListRequest.getSort()));
+        return ResponseEntity.ok(personService.getAllUsers(userListRequest));
     }
 
     @PostMapping("/filtered")
     public ResponseEntity<UserTableDto> getFilteredUser(@RequestBody UserListRequest userListRequest){
-        return ResponseEntity.ok(personService.getFilteredUsers(userListRequest.getPage(),userListRequest.getCount(),userListRequest.getFilters(), userListRequest.getSort()));
+        return ResponseEntity.ok(personService.getFilteredUsers(userListRequest));
     }
 }

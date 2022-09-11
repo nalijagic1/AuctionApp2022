@@ -16,4 +16,5 @@ public class UserListRequest {
     private int count;
     private List<Integer> filters;
     private SortDto sort;
+    private String search;
 }
