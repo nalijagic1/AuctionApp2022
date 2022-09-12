@@ -38,6 +38,10 @@ class PersonDataService {
       ? httpCommon.post("/people", { page, count,filters, sort,search })
       : httpCommon.post("/people/filtered", { page, count, filters, sort,search });
   }
+
+  updateStatus(personId,status){
+    return httpCommon.put("/people/updateUserStatus/"+personId+"?status="+status);
+  }
 }
 
 export default new PersonDataService();

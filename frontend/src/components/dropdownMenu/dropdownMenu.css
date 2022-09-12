@@ -1,6 +1,6 @@
 .sortMenu {
     position: absolute;
-    width: max-content;
+    width: fit-content;
     background: #fcfcfc;
     border: 1px solid #d8d8d8;
     z-index: 1;
@@ -29,8 +29,12 @@
 
   .sortMenu h3{
     font-size: 14px;
+    width: 195px;
   }
 
   .sortMenu hr{
-    border: 1px solid #C1B3EB;
+    border: 1px solid #bcaee5;
+    background-color: #bcaee5;
+    margin-right: 25.5px;
+    margin-left: 25.5px;
   }

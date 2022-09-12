@@ -9,16 +9,18 @@ import personService from "../../services/person.service";
 import SortFilter from "../../components/sortFilter/sortFilter";
 import FilterBadges from "../../components/filterBadges/filterBadges";
 import { ROLES_CODE } from "../../utils/roles";
+import NoUsersFound from "../../components/noUsersFound/noUsersFound";
 
 function UserManagment() {
-  const [searchUser,setSearchUser] = useState("");
+  const [searchUser, setSearchUser] = useState("");
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
   const [numberOfPages, setNumberOfPages] = useState();
-  const [sort,setSort] = useState({field:"id",direction:"ASC"})
+  const [sort, setSort] = useState({ field: "id", direction: "ASC" });
   const [checked, setChecked] = useState(false);
   const [filterCodes, setFilterCodes] = useState([]);
+  const [statusChange,setStatusChange] = useState(0)
   const [selectedFilter, setSelectedFilter] = useState({
     golden: false,
     user: false,
@@ -38,18 +40,20 @@ function UserManagment() {
     setPage(1);
   }
   useEffect(() => {
-    personService.getAllUsers(page - 1, count,filterCodes,sort,searchUser).then((response) => {
-      setUsers(response.data.listOfUsers);
-      setNumberOfPages(response.data.numberOfPages);
-    });
-  }, [page, count, selectedFilter,sort,searchUser]);
+    personService
+      .getAllUsers(page - 1, count, filterCodes, sort, searchUser)
+      .then((response) => {
+        setUsers(response.data.listOfUsers);
+        setNumberOfPages(response.data.numberOfPages);
+      });
+  }, [page, count, selectedFilter, sort, searchUser,statusChange]);
   return (
     <div className="userManagmentView">
       <h5>User Managment</h5>
       <div className="userManagmentOptions">
         <Filter
           selectedFilter={selectedFilter}
-          changeFilter={(filter, filterIndex,selected) => {
+          changeFilter={(filter, filterIndex, selected) => {
             setSelectedFilter(filter);
             setFilterCodes(
               selected
@@ -58,7 +62,7 @@ function UserManagment() {
                     return value !== filterIndex;
                   })
             );
-            setPage(1)
+            setPage(1);
           }}
         />
         <BiSearchAlt2 className="searchIcon" />
@@ -67,8 +71,11 @@ function UserManagment() {
           className="userSearch"
           type="text"
           placeholder="Search: Users"
-          value = {searchUser}
-          onChange={(event)=>{setSearchUser(event.target.value);setPage(1)}}
+          value={searchUser}
+          onChange={(event) => {
+            setSearchUser(event.target.value);
+            setPage(1);
+          }}
         />
       </div>
       <div className="userActiveFilters">
@@ -91,29 +98,45 @@ function UserManagment() {
           setChecked={(checked) => {
             setChecked(checked);
           }}
-          setSort={(sortType)=> setSort(sortType)} 
+          setSort={(sortType) => setSort(sortType)}
         />
-        {users &&
+        {users && users.length !== 0 ? (
           users.map((user) => {
-            return <UserTableRow user={user}></UserTableRow>;
-          })}
+            return <UserTableRow user={user} checked={checked} changeStatusInTable={()=>setStatusChange(statusChange+1)}></UserTableRow>;
+          })
+        ) : (
+          <NoUsersFound
+            onClick={() => {
+              setSelectedFilter({
+                golden: false,
+                user: false,
+                black: false,
+                restricted: false,
+                archived: false,
+              });
+              setFilterCodes([]);
+            }}
+          />
+        )}
       </div>
-      <div className="pagination">
-        <h3>Show:</h3>
-        <SortFilter
-          label="10 rows"
-          className="rowSelecting"
-          type="rows"
-          onSelect={(count) => setCount(count)}
-        />
-        <AuctionPagination
-          count={numberOfPages}
-          page={page}
-          onPageChange={(event, value) => {
-            setPage(value);
-          }}
-        />
-      </div>
+      {users.length !== 0 && (
+        <div className="pagination">
+          <h3>Show:</h3>
+          <SortFilter
+            label="10 rows"
+            className="rowSelecting"
+            type="rows"
+            onSelect={(count) => setCount(count)}
+          />
+          <AuctionPagination
+            count={numberOfPages}
+            page={page}
+            onPageChange={(event, value) => {
+              setPage(value);
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

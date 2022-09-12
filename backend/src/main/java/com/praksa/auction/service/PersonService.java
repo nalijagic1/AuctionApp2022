@@ -141,5 +141,7 @@ public class PersonService {
     }
 
 
-
+    public void updateUserStatus(int status, long personId) {
+        personRepositoy.updateStatus(status,personId);
+    }
 }

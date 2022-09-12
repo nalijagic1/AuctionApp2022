@@ -4,6 +4,7 @@ import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.dto.*;
 import com.praksa.auction.model.ErrorCodeEnum;
 import com.praksa.auction.model.Person;
+import com.praksa.auction.model.UserStatusEnum;
 import com.praksa.auction.service.PersonService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,5 +62,11 @@ public class PersonController {
     @PostMapping("/filtered")
     public ResponseEntity<UserTableDto> getFilteredUser(@RequestBody UserListRequest userListRequest){
         return ResponseEntity.ok(personService.getFilteredUsers(userListRequest));
+    }
+
+    @PutMapping("/updateUserStatus/{personId}")
+    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @PathVariable long personId){
+        personService.updateUserStatus(status,personId);
+        return ResponseEntity.ok("Succesful update");
     }
 }

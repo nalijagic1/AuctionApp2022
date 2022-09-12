@@ -8,12 +8,12 @@ import "./userTableRows.css";
 import { ROLES, ROLES_ICON } from "../../utils/roles";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
-function UserTableRow({ user }) {
+function UserTableRow({ user,checked,changeStatusInTable }) {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <div className={`tableRow row${user.status}`}>
       <div className="selectUser">
-        <Checkbox />
+        <Checkbox checked={checked}/>
       </div>
 
       <div className="userAvatar">
@@ -45,7 +45,7 @@ function UserTableRow({ user }) {
         className="actionMenuIcon"
       ></TbDotsVertical>
       {showMenu && <div className="dropdownUserOptions">
-        <DropdownMenu type="user"></DropdownMenu>
+        <DropdownMenu type={user.status.toLowerCase()} user={user.id} onRowSelect={()=>{setShowMenu(false);changeStatusInTable()}}></DropdownMenu>
         </div>}
     </div>
   );

@@ -63,7 +63,7 @@ function NavigationWhite({expanded}) {
           </div>
           <div className="menu" align="right">
             {user &&
-              (user.role === ROLES.USER ? (
+              (user.role !== ROLES.ADMIN ? (
                 <div
                   className="myAccountMenu"
                   onMouseOver={() => setDisplayAccountMenu(true)}

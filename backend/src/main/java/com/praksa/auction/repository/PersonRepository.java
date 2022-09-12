@@ -1,6 +1,7 @@
 package com.praksa.auction.repository;
 
 import com.praksa.auction.model.Person;
+import com.praksa.auction.model.UserStatusEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,6 +32,11 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Person SET last_log_in = CURRENT_DATE WHERE id = :userId", nativeQuery = true)
     void updateLastLogIn(long userId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status WHERE id = :userId", nativeQuery = true)
+    void updateStatus(int status, long userId);
 
     @Query(value = "SELECT * FROM PERSON WHERE status != 0",nativeQuery = true)
     Page<Person> findAllUsers(Pageable pageable);
