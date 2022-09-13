@@ -14,7 +14,7 @@ import RestrictedUser from "../icons/restrictedUser";
 import personService from "../services/person.service";
 import { ROLES_CODE } from "./roles";
 class MenuItems {
-  findMenu(field, type, onRowSelect, onSortSelect,user) {
+  findMenu(field, type, onRowSelect, onSortSelect, user) {
     switch (type) {
       case "date":
         return this.getDateSortMenu(field, onSortSelect);
@@ -23,14 +23,15 @@ class MenuItems {
       case "alphabet":
         return this.getAlphabeticalSortMenu(field, onSortSelect);
       default:
-        return this.getUserMenu(type,user,onRowSelect);
+        return this.getUserMenu(type, user, onRowSelect);
     }
   }
 
-  updateStatus(status,person,onRowSelect){
-    personService.updateStatus([].push(person),status);
-    onRowSelect();
-}
+  updateStatus(status, person, onRowSelect) {
+    personService.updateStatus(person, status).then(() => {
+      onRowSelect();
+    });
+  }
 
   getAlphabeticalSortMenu(field, onSortSelect) {
     return (
@@ -118,7 +119,7 @@ class MenuItems {
       </div>
     );
   }
-  getUserMenu(type,user,onRowSelect) {
+  getUserMenu(type, user, onRowSelect) {
     var userMenu = (
       <>
         <h3 className="sortMenuOption">
@@ -137,7 +138,12 @@ class MenuItems {
       case "black":
         statusOptions = (
           <>
-            <h3 className="sortMenuOption" onClick={()=>this.updateStatus(ROLES_CODE.USER,user,onRowSelect)}>
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+              }
+            >
               <BlackUser color="#252525" className="dropdownicon" />
               Remove from black list
             </h3>
@@ -147,8 +153,13 @@ class MenuItems {
       case "archived":
         statusOptions = (
           <>
-            <h3 className="sortMenuOption" onClick={()=>this.updateStatus(ROLES_CODE.USER,user,onRowSelect)}>
-              <ActivateUser color="#252525" className="dropdownicon"  />
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+              }
+            >
+              <ActivateUser color="#252525" className="dropdownicon" />
               Activate user
             </h3>
           </>
@@ -157,8 +168,13 @@ class MenuItems {
       case "golden":
         statusOptions = (
           <>
-            <h3 className="sortMenuOption" onClick={()=>this.updateStatus(ROLES_CODE.USER,user,onRowSelect)}>
-              <GoldenUser color="#252525" className="dropdownicon"  />
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+              }
+            >
+              <GoldenUser color="#252525" className="dropdownicon" />
               Remove golden status
             </h3>
           </>
@@ -167,12 +183,22 @@ class MenuItems {
       case "restricted":
         statusOptions = (
           <>
-            <h3 className="sortMenuOption" onClick={()=>this.updateStatus(ROLES_CODE.USER,user,onRowSelect)}>
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+              }
+            >
               <BlackUser color="#252525" className="dropdownicon" />
               Remove restriction
             </h3>
-            <h3 className="sortMenuOption"  onClick={()=>this.updateStatus(ROLES_CODE.BLACK,user,onRowSelect)}>
-              <RestrictedUser color="#252525" className="dropdownicon"/>
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect)
+              }
+            >
+              <RestrictedUser color="#252525" className="dropdownicon" />
               Add to black list
             </h3>
           </>
@@ -181,16 +207,31 @@ class MenuItems {
       default:
         statusOptions = (
           <>
-            <h3 className="sortMenuOption" onClick={()=>this.updateStatus(ROLES_CODE.GOLDEN,user,onRowSelect)}>
-              <GoldenUser color="#252525" className="dropdownicon"/>
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.GOLDEN, user, onRowSelect)
+              }
+            >
+              <GoldenUser color="#252525" className="dropdownicon" />
               Add golden status
             </h3>
-            <h3 className="sortMenuOption" onClick={()=>this.updateStatus(ROLES_CODE.BLACK,user,onRowSelect)}>
-              <BlackUser color="#252525" className="dropdownicon"/>
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect)
+              }
+            >
+              <BlackUser color="#252525" className="dropdownicon" />
               Add to black list
             </h3>
-            <h3 className="sortMenuOption"  onClick={()=>this.updateStatus(ROLES_CODE.ARCHIVED,user,onRowSelect)}>
-              <ArchivedUser color="#252525" className="dropdownicon"/>
+            <h3
+              className="sortMenuOption"
+              onClick={() =>
+                this.updateStatus(ROLES_CODE.ARCHIVED, user, onRowSelect)
+              }
+            >
+              <ArchivedUser color="#252525" className="dropdownicon" />
               Add to archived list
             </h3>
           </>

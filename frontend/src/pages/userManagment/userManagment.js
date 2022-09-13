@@ -8,9 +8,10 @@ import AuctionPagination from "../../components/auctionPagination/auctionPaginat
 import personService from "../../services/person.service";
 import SortFilter from "../../components/sortFilter/sortFilter";
 import FilterBadges from "../../components/filterBadges/filterBadges";
-import { ROLES_CODE } from "../../utils/roles";
+import { REMOVE_STATUS_MESSAGE,REMOVE_STATUS_BUTTON,ROLES_CODE } from "../../utils/roles";
 import NoUsersFound from "../../components/noUsersFound/noUsersFound";
 import Button from "../../components/button/button";
+import ConfirmDialog from "../../components/confirmDialog/confirmDialog";
 
 function UserManagment() {
   const [searchUser, setSearchUser] = useState("");
@@ -23,6 +24,7 @@ function UserManagment() {
   const [filterCodes, setFilterCodes] = useState([]);
   const [statusChange, setStatusChange] = useState(0);
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [openConfirm, setOpenConfirm] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState({
     golden: false,
     user: false,
@@ -40,6 +42,15 @@ function UserManagment() {
     );
     setSelectedFilter(activeFilter);
     setPage(1);
+  }
+
+  function onRemoveApproved() {
+    personService.updateStatus(selectedUsers, ROLES_CODE.USER).then(() => {
+      setSelectedUsers([]);
+      setChecked(false);
+      setStatusChange(statusChange + 1);
+      setOpenConfirm(false);
+    });
   }
   useEffect(() => {
     personService
@@ -82,26 +93,43 @@ function UserManagment() {
         />
       </div>
       <div className="filterAndBulkAction">
-      <div className="userActiveFilters">
-        {Object.keys(selectedFilter).map((filter) => {
-          return (
-            <div>
-              {selectedFilter[filter] && (
-                <FilterBadges
-                  label={filter}
-                  unselect={() => unselectFilter(filter)}
-                ></FilterBadges>
-              )}
-            </div>
-          );
-        })}</div>
-        {selectedUsers.length!==0 && filterCodes.length===1 && <div className="removeStatus"><Button label="Remove"  onClick={()=> {personService.updateStatus(selectedUsers,ROLES_CODE.USER);setStatusChange(statusChange+1);setChecked(false)}}buttonClass="purpleButton removeButton"></Button></div>}
+        <div className="userActiveFilters">
+          {Object.keys(selectedFilter).map((filter) => {
+            return (
+              <div>
+                {selectedFilter[filter] && (
+                  <FilterBadges
+                    label={filter}
+                    unselect={() => unselectFilter(filter)}
+                  ></FilterBadges>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        {selectedUsers.length !== 0 && filterCodes.length === 1 && (
+          <div className="removeStatus">
+            <Button
+              label={REMOVE_STATUS_BUTTON[filterCodes[0]]}
+              onClick={() => {
+                setOpenConfirm(true);
+              }}
+              buttonClass="purpleButton removeButton"
+            ></Button>
+          </div>
+        )}
       </div>
       <div className="userTable">
         <TableHeader
           checked={checked}
           setChecked={(checked) => {
-            setSelectedUsers(checked ? users.map((user)=>{return user.id}) : []);
+            setSelectedUsers(
+              checked
+                ? users.map((user) => {
+                    return user.id;
+                  })
+                : []
+            );
             setChecked(checked);
           }}
           setSort={(sortType) => setSort(sortType)}
@@ -112,18 +140,16 @@ function UserManagment() {
               <UserTableRow
                 user={user}
                 checked={checked}
-                updateSelection={(select) =>{
+                updateSelection={(select) => {
                   setSelectedUsers(
                     select
                       ? selectedUsers.concat(user.id)
                       : selectedUsers.filter(function (value, index, arr) {
                           return value !== user.id;
                         })
-                  )
-                }
-                
-                }
-                changeStatusInTable={() => setStatusChange(statusChange + 1)}
+                  );
+                }}
+                changeStatusInTable={() => {setStatusChange(statusChange + 1)}}
               ></UserTableRow>
             );
           })
@@ -159,6 +185,14 @@ function UserManagment() {
             }}
           />
         </div>
+      )}
+      {selectedUsers.length > 0 && (
+        <ConfirmDialog
+          open={openConfirm}
+          message={REMOVE_STATUS_MESSAGE[users[0].status.toUpperCase()]}
+          onClose={() => setOpenConfirm(false)}
+          onApproved={onRemoveApproved}
+        ></ConfirmDialog>
       )}
     </div>
   );

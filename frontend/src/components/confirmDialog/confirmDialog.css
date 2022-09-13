@@ -1,0 +1,28 @@
+.css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
+  text-align: center;
+}
+
+.dialog .css-qfso29-MuiTypography-root-MuiDialogContentText-root {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  text-align: center;
+  letter-spacing: 0.84px;
+  color: #252525;
+  margin-top: 80px;
+}
+
+.answerButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 95px 41.5px 35px 41.5px;
+}
+.answerButtons button {
+  width: 148px;
+  height: 51px;
+  padding: 12px 57px 12px 57px;
+}
+
+.answerButtons .purpleButton {
+  margin-left: 75px;
+}
