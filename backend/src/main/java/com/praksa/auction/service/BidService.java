@@ -64,4 +64,9 @@ public class BidService {
         logger.info("User with user_id={} is attempting to place bid for product, product_id={}", newBid.getPerson().getId(), newBid.getProduct().getId());
         return bidRepository.save(newBid);
     }
+
+    public void removeHighestBid(long productId) {
+        Bid highest = getHighestBid(productId);
+        bidRepository.delete(highest);
+    }
 }

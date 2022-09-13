@@ -49,3 +49,11 @@
   color: #252525;
   background-color: #ffffff;
 }
+
+.removeButton{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: -14px;
+  padding: 6px 15px 6px 15px;
+}

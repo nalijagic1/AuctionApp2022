@@ -32,4 +32,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     void updatePayedStatus(boolean payed, long id);
 
     boolean existsProductByPersonId(long sellerId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Product SET ending_date=:date WHERE id=:productId", nativeQuery = true)
+    void updateEndDate(Date date, long productId);
 }

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.relational.core.sql.In;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -35,8 +36,8 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status WHERE id = :userId", nativeQuery = true)
-    void updateStatus(int status, long userId);
+    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status WHERE id IN :userId", nativeQuery = true)
+    void updateStatus(int status, List<Integer> userId);
 
     @Query(value = "SELECT * FROM PERSON WHERE status != 0",nativeQuery = true)
     Page<Person> findAllUsers(Pageable pageable);

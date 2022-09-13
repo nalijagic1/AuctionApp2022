@@ -10,6 +10,7 @@ import SortFilter from "../../components/sortFilter/sortFilter";
 import FilterBadges from "../../components/filterBadges/filterBadges";
 import { ROLES_CODE } from "../../utils/roles";
 import NoUsersFound from "../../components/noUsersFound/noUsersFound";
+import Button from "../../components/button/button";
 
 function UserManagment() {
   const [searchUser, setSearchUser] = useState("");
@@ -20,7 +21,8 @@ function UserManagment() {
   const [sort, setSort] = useState({ field: "id", direction: "ASC" });
   const [checked, setChecked] = useState(false);
   const [filterCodes, setFilterCodes] = useState([]);
-  const [statusChange,setStatusChange] = useState(0)
+  const [statusChange, setStatusChange] = useState(0);
+  const [selectedUsers, setSelectedUsers] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
     golden: false,
     user: false,
@@ -46,7 +48,8 @@ function UserManagment() {
         setUsers(response.data.listOfUsers);
         setNumberOfPages(response.data.numberOfPages);
       });
-  }, [page, count, selectedFilter, sort, searchUser,statusChange]);
+  }, [page, count, selectedFilter, sort, searchUser, statusChange]);
+
   return (
     <div className="userManagmentView">
       <h5>User Managment</h5>
@@ -78,6 +81,7 @@ function UserManagment() {
           }}
         />
       </div>
+      <div className="filterAndBulkAction">
       <div className="userActiveFilters">
         {Object.keys(selectedFilter).map((filter) => {
           return (
@@ -90,19 +94,38 @@ function UserManagment() {
               )}
             </div>
           );
-        })}
+        })}</div>
+        {selectedUsers.length!==0 && filterCodes.length===1 && <div className="removeStatus"><Button label="Remove"  onClick={()=> {personService.updateStatus(selectedUsers,ROLES_CODE.USER);setStatusChange(statusChange+1);setChecked(false)}}buttonClass="purpleButton removeButton"></Button></div>}
       </div>
       <div className="userTable">
         <TableHeader
           checked={checked}
           setChecked={(checked) => {
+            setSelectedUsers(checked ? users.map((user)=>{return user.id}) : []);
             setChecked(checked);
           }}
           setSort={(sortType) => setSort(sortType)}
         />
         {users && users.length !== 0 ? (
           users.map((user) => {
-            return <UserTableRow user={user} checked={checked} changeStatusInTable={()=>setStatusChange(statusChange+1)}></UserTableRow>;
+            return (
+              <UserTableRow
+                user={user}
+                checked={checked}
+                updateSelection={(select) =>{
+                  setSelectedUsers(
+                    select
+                      ? selectedUsers.concat(user.id)
+                      : selectedUsers.filter(function (value, index, arr) {
+                          return value !== user.id;
+                        })
+                  )
+                }
+                
+                }
+                changeStatusInTable={() => setStatusChange(statusChange + 1)}
+              ></UserTableRow>
+            );
           })
         ) : (
           <NoUsersFound

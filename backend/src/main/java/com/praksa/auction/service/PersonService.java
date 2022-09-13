@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -141,7 +142,7 @@ public class PersonService {
     }
 
 
-    public void updateUserStatus(int status, long personId) {
+    public void updateUserStatus(int status, List<Integer> personId) {
         personRepositoy.updateStatus(status,personId);
     }
 }

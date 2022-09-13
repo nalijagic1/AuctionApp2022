@@ -40,7 +40,7 @@ class PersonDataService {
   }
 
   updateStatus(personId,status){
-    return httpCommon.put("/people/updateUserStatus/"+personId+"?status="+status);
+    return httpCommon.put("/people/updateUserStatus?status="+status+"&personId="+personId);
   }
 }
 

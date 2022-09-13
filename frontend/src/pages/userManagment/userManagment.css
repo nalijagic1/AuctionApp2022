@@ -34,6 +34,13 @@
   display: flex;
 }
 
+.filterAndBulkAction{
+  width: 1230px;
+  display: grid;
+  grid-template-columns: repeat(2,auto);
+  grid-template-rows: repeat(1,1fr);
+}
+
 .pagination{
   display: flex;
   margin-top: 32px;
@@ -58,5 +65,10 @@
   margin-bottom: 0px;
   margin-left: 52px;
   margin-top: 3px;
+}
+
+.removeStatus{
+  margin-left: auto; 
+  margin-right: 0;
 }
 

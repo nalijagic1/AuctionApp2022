@@ -64,8 +64,8 @@ public class PersonController {
         return ResponseEntity.ok(personService.getFilteredUsers(userListRequest));
     }
 
-    @PutMapping("/updateUserStatus/{personId}")
-    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @PathVariable long personId){
+    @PutMapping("/updateUserStatus")
+    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Integer> personId){
         personService.updateUserStatus(status,personId);
         return ResponseEntity.ok("Succesful update");
     }

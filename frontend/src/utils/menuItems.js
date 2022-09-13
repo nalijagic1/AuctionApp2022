@@ -28,7 +28,7 @@ class MenuItems {
   }
 
   updateStatus(status,person,onRowSelect){
-    personService.updateStatus(person,status);
+    personService.updateStatus([].push(person),status);
     onRowSelect();
 }
 

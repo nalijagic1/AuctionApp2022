@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "../checkbox/checkbox";
 import { Avatar } from "@mui/material";
 import TooltipMessage from "../tooltipMessage/tooltipMessage";
@@ -8,12 +8,16 @@ import "./userTableRows.css";
 import { ROLES, ROLES_ICON } from "../../utils/roles";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
-function UserTableRow({ user,checked,changeStatusInTable }) {
+function UserTableRow({ user,checked,changeStatusInTable, updateSelection}) {
   const [showMenu, setShowMenu] = useState(false);
+  const [selectUser,setSelectUser] = useState(checked)
+  useEffect(()=>{
+    setSelectUser(checked);
+  },[checked])
   return (
     <div className={`tableRow row${user.status}`}>
       <div className="selectUser">
-        <Checkbox checked={checked}/>
+        <Checkbox checked={selectUser} onChange={(select)=>{setSelectUser(select);updateSelection(select)}}/>
       </div>
 
       <div className="userAvatar">

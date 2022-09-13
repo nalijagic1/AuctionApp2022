@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,5 +77,11 @@ public class ProductController {
     public ResponseEntity<String> updatePayedStatus(@RequestBody boolean payed, @RequestParam long product) {
         productService.updatePayedStatus(payed, product);
         return ResponseEntity.ok("Successful update");
+    }
+
+    @PutMapping("/updateEndDate/{productId}")
+    public ResponseEntity<String> updateEndDate(@RequestParam long date,@PathVariable long productId){
+        productService.updateEndDate(new Date(date),productId);
+        return ResponseEntity.ok("Succesful date update");
     }
 }

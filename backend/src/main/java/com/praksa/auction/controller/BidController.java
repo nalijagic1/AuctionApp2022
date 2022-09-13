@@ -38,4 +38,10 @@ public class BidController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @DeleteMapping("/removeHighestBid/{productId}")
+    public ResponseEntity<String> removeHighestBid(@PathVariable long productId) {
+        bidService.removeHighestBid(productId);
+        return ResponseEntity.ok("Succesfully deleated highest bid");
+    }
 }

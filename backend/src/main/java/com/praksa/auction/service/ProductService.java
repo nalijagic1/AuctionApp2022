@@ -93,4 +93,8 @@ public class ProductService {
         pictureService.addNewPictures(pictures);
         return newProduct;
     }
+
+    public void updateEndDate(Date date, long productId) {
+        productRepository.updateEndDate(date,productId);
+    }
 }
