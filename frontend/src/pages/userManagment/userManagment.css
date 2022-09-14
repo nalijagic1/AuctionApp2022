@@ -1,5 +1,5 @@
 .userManagmentView {
-  margin-left: 150px;
+  margin-left: 100px;
   margin-bottom: 32px;
 }
 
@@ -9,6 +9,7 @@
   line-height: 29px;
   letter-spacing: 0.84px;
   margin-bottom: 25px;
+  margin-left: 50px;
 }
 
 .userManagmentOptions {
@@ -70,5 +71,8 @@
 .removeStatus{
   margin-left: auto; 
   margin-right: 0;
+}
+.userManagmentContent{
+  margin-left: 50px;
 }
 

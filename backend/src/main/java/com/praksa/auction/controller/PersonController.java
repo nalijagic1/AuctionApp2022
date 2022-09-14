@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -68,5 +69,10 @@ public class PersonController {
     public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Integer> personId){
         personService.updateUserStatus(status,personId);
         return ResponseEntity.ok("Succesful update");
+    }
+
+    @GetMapping("/updatedStatusCount/{statusId}")
+    public ResponseEntity<Integer> getUpdatedStatusCount(@PathVariable Integer statusId, @RequestParam long lastLogin){
+        return ResponseEntity.ok(personService.getNewStatusCount(statusId,new Date(lastLogin)));
     }
 }

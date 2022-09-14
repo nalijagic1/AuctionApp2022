@@ -49,4 +49,7 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%'",nativeQuery = true)
     Page<Person> searchAllFilteredUsers(Pageable pageable,String search,List<Integer> status);
+
+    @Query(value = "SELECT COUNT(p.id) FROM person p WHERE p.status_update > :lastLogin AND p.status = :status ",nativeQuery = true)
+    Integer countUpdatedUsersByStatus(Date lastLogin,Integer status);
 }

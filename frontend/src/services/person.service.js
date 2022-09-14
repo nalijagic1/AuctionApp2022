@@ -1,3 +1,4 @@
+import moment from "moment";
 import httpCommon from "../utils/http-common";
 
 class PersonDataService {
@@ -41,6 +42,10 @@ class PersonDataService {
 
   updateStatus(personId,status){
     return httpCommon.put("/people/updateUserStatus?status="+status+"&personId="+personId);
+  }
+
+  getUpdatedStatusCount(status,lastLogin){
+    return httpCommon.get("/people/updatedStatusCount/"+status+"?lastLogin="+moment(lastLogin).milliseconds())
   }
 }
 

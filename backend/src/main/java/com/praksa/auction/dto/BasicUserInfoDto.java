@@ -1,10 +1,9 @@
 package com.praksa.auction.dto;
 
 import com.praksa.auction.model.UserStatusEnum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,4 +17,5 @@ public class BasicUserInfoDto {
     private String phoneNumber;
     private boolean isSeller;
     private UserStatusEnum role;
+    private Date lastLogIn;
 }

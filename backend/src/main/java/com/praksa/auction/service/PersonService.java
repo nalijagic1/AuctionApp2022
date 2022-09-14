@@ -85,6 +85,7 @@ public class PersonService {
         basicPersonInfo.setPhoneNumber(userDetails.getPhoneNumber());
         basicPersonInfo.setSeller(productService.existBySeller(userDetails.getId()));
         basicPersonInfo.setRole(userDetails.getStatus());
+        basicPersonInfo.setLastLogIn(userDetails.getLastLogIn());
         return basicPersonInfo;
     }
     public JwtResponseDto logIn(LogInDto loginInfo) {
@@ -99,6 +100,10 @@ public class PersonService {
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
         personRepositoy.updateLastLogIn(userDetails.getId());
+        if(userDetails.getStatus().equals(UserStatusEnum.Archived)) {
+            List idList = new ArrayList<>();
+            idList.add(userDetails.getId());
+            personRepositoy.updateStatus(1,idList);};
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
 
@@ -145,4 +150,11 @@ public class PersonService {
     public void updateUserStatus(int status, List<Integer> personId) {
         personRepositoy.updateStatus(status,personId);
     }
+
+    public Integer getNewStatusCount(int status,Date lastAdminLogin){
+        return personRepositoy.countUpdatedUsersByStatus(lastAdminLogin,status);
+    }
+
+
+
 }

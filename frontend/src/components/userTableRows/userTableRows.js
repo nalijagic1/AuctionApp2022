@@ -9,28 +9,43 @@ import { ROLES, ROLES_ICON } from "../../utils/roles";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
 import { useOutsideClick } from "@chakra-ui/react";
 
-function UserTableRow({ user,checked,changeStatusInTable, updateSelection,rowId}) {
+function UserTableRow({
+  user,
+  checked,
+  changeStatusInTable,
+  updateSelection,
+  rowId,
+}) {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectUser,setSelectUser] = useState(checked)
+  const [selectUser, setSelectUser] = useState(checked);
   const ref = React.useRef();
   useOutsideClick({
     ref: ref,
-    handler: (event) =>  {
+    handler: (event) => {
       if (
-      event
-        .composedPath()
-        .indexOf(document.getElementsByClassName("actionMenuIcon")[rowId]) >=0
-    ) {
-      return;
-    }setShowMenu(false)
-}})
-  useEffect(()=>{
+        event
+          .composedPath()
+          .indexOf(document.getElementsByClassName("actionMenuIcon")[rowId]) >=
+        0
+      ) {
+        return;
+      }
+      setShowMenu(false);
+    },
+  });
+  useEffect(() => {
     setSelectUser(checked);
-  },[checked])
+  }, [checked]);
   return (
     <div className={`tableRow row${user.status}`}>
       <div className="selectUser">
-        <Checkbox checked={selectUser} onChange={(select)=>{setSelectUser(select);updateSelection(select)}}/>
+        <Checkbox
+          checked={selectUser}
+          onChange={(select) => {
+            setSelectUser(select);
+            updateSelection(select);
+          }}
+        />
       </div>
 
       <div className="userAvatar">
@@ -58,12 +73,24 @@ function UserTableRow({ user,checked,changeStatusInTable, updateSelection,rowId}
         {moment(user.statusUpdate).format("DD MMMM YYYY")}
       </h2>
       <TbDotsVertical
-        onClick={() => { console.log(true);setShowMenu(showMenu ? false : true)}}
+        onClick={() => {
+          setShowMenu(showMenu ? false : true);
+        }}
         className="actionMenuIcon"
       ></TbDotsVertical>
-      {showMenu && <div className="dropdownUserOptions">
-        <DropdownMenu  ref ={ref} type={user.status.toLowerCase()} user={user.id} onRowSelect={()=>{setShowMenu(false);changeStatusInTable()}}></DropdownMenu>
-        </div>}
+      {showMenu && (
+        <div className="dropdownUserOptions">
+          <DropdownMenu
+            reference={ref}
+            type={user.status.toLowerCase()}
+            user={user.id}
+            onRowSelect={() => {
+              setShowMenu(false);
+              changeStatusInTable();
+            }}
+          ></DropdownMenu>
+        </div>
+      )}
     </div>
   );
 }

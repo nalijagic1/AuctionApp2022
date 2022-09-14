@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Checkbox from "../checkbox/checkbox";
 import { AiOutlineClose } from "react-icons/ai";
 import { ROLES } from "../../utils/roles";
 import "./filterBadges.css";
