@@ -51,7 +51,7 @@ function ShippingAddress(props) {
       <form>
         <Field
           placeHolder="Enter your address"
-          fieldClass="loginAndRegisterField"
+          fieldClass="loginAndRegisterField shorter"
           label="Address*"
           type="text"
           id="address"

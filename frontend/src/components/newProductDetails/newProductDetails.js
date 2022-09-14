@@ -29,7 +29,12 @@ function NewProductDetails(props) {
       return p;
     });
   }
-
+  function addImage(event){
+    if(event.target.value.length){
+      setError(updateErrorMessage(error, "pictures"));
+      setPictures((p) => p.concat(event.target.files[0]));
+    }
+  }
   function dataValidation() {
     let validationResult = validation.validateProductDetails({
       productName,
@@ -138,8 +143,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
-                  setError(updateErrorMessage(error, "pictures"));
-                  setPictures((p) => p.concat(event.target.files[0]));
+                  addImage(event)
                 }}
               />
             </label>
@@ -169,8 +173,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
-                  setError(updateErrorMessage(error, "pictures"));
-                  setPictures((p) => p.concat(event.target.files[0]));
+                 addImage(event)
                 }}
               />
             </label>
