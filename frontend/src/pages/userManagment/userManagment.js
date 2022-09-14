@@ -32,6 +32,7 @@ function UserManagment() {
     restricted: false,
     archived: false,
   });
+  const ref = React.useRef();
   function unselectFilter(filter) {
     var activeFilter = { ...selectedFilter };
     activeFilter[filter] = false;
@@ -139,6 +140,7 @@ function UserManagment() {
             return (
               <UserTableRow
                 user={user}
+                rowId = {users.indexOf(user)}
                 checked={checked}
                 updateSelection={(select) => {
                   setSelectedUsers(

@@ -7,10 +7,23 @@ import moment from "moment";
 import "./userTableRows.css";
 import { ROLES, ROLES_ICON } from "../../utils/roles";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
+import { useOutsideClick } from "@chakra-ui/react";
 
-function UserTableRow({ user,checked,changeStatusInTable, updateSelection}) {
+function UserTableRow({ user,checked,changeStatusInTable, updateSelection,rowId}) {
   const [showMenu, setShowMenu] = useState(false);
   const [selectUser,setSelectUser] = useState(checked)
+  const ref = React.useRef();
+  useOutsideClick({
+    ref: ref,
+    handler: (event) =>  {
+      if (
+      event
+        .composedPath()
+        .indexOf(document.getElementsByClassName("actionMenuIcon")[rowId]) >=0
+    ) {
+      return;
+    }setShowMenu(false)
+}})
   useEffect(()=>{
     setSelectUser(checked);
   },[checked])
@@ -45,11 +58,11 @@ function UserTableRow({ user,checked,changeStatusInTable, updateSelection}) {
         {moment(user.statusUpdate).format("DD MMMM YYYY")}
       </h2>
       <TbDotsVertical
-        onClick={() => setShowMenu(!showMenu)}
+        onClick={() => { console.log(true);setShowMenu(showMenu ? false : true)}}
         className="actionMenuIcon"
       ></TbDotsVertical>
       {showMenu && <div className="dropdownUserOptions">
-        <DropdownMenu type={user.status.toLowerCase()} user={user.id} onRowSelect={()=>{setShowMenu(false);changeStatusInTable()}}></DropdownMenu>
+        <DropdownMenu  ref ={ref} type={user.status.toLowerCase()} user={user.id} onRowSelect={()=>{setShowMenu(false);changeStatusInTable()}}></DropdownMenu>
         </div>}
     </div>
   );

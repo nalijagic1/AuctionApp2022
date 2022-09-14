@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./sortFilter.css";
 import { TiArrowUnsorted } from "react-icons/ti";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
+import { useOutsideClick } from '@chakra-ui/react'
 
 function SortFilter({
   label,
@@ -12,8 +13,17 @@ function SortFilter({
   field,
   type,
 }) {
+  const ref = React.useRef();
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(label);
+  useOutsideClick({
+    ref: ref,
+    handler: (event) => {
+      if(event
+        .composedPath()
+        .indexOf(document.getElementsByClassName("sortFilter")[0]>=0)){return}
+        setClicked(false)}
+  })
   function getNumberFromLabel(heading) {
     var number = heading.split(" ")[0];
     return Number(number);
@@ -31,6 +41,7 @@ function SortFilter({
       </div>
       {enableSort && clicked && (
         <DropdownMenu
+          ref={ref}
           field={field}
           type={type}
           width={width}

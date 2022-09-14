@@ -8,8 +8,6 @@
 }
 
 .newProductAddress h5 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -26,8 +24,6 @@
 }
 
 .productLocationInfo label {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
