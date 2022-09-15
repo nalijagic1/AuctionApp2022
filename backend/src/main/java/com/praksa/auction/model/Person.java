@@ -1,5 +1,7 @@
 package com.praksa.auction.model;
 
+import com.praksa.auction.enums.GenderEnum;
+import com.praksa.auction.enums.UserStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +23,7 @@ public class Person {
     private long id;
     private String firstName;
     private String lastName;
-    private Gender gender;
+    private GenderEnum genderEnum;
     private Date dateOfBirth;
     private String phoneNumber;
     private String email;
@@ -35,4 +37,27 @@ public class Person {
     private Date statusUpdate;
     private Date lastLogIn;
     private Date firstLogIn;
+    private String statusReason;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", genderEnum=" + genderEnum +
+                ", dateOfBirth=" + dateOfBirth +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", picture='" + picture + '\'' +
+                ", address=" + address +
+                ", customerId='" + customerId + '\'' +
+                ", status=" + status +
+                ", statusUpdate=" + statusUpdate +
+                ", lastLogIn=" + lastLogIn +
+                ", firstLogIn=" + firstLogIn +
+                ", statusReason='" + statusReason + '\'' +
+                '}';
+    }
 }

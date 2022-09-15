@@ -12,6 +12,7 @@ import {
   REMOVE_STATUS_MESSAGE,
   REMOVE_STATUS_BUTTON,
   ROLES_CODE,
+  STATUS_REASONS,
 } from "../../utils/roles";
 import NoUsersFound from "../../components/noUsersFound/noUsersFound";
 import Button from "../../components/button/button";
@@ -45,7 +46,6 @@ function UserManagment() {
     restricted: false,
     archived: false,
   });
-  const ref = React.useRef();
   function unselectFilter(filter) {
     var activeFilter = { ...selectedFilter };
     activeFilter[filter] = false;
@@ -59,7 +59,7 @@ function UserManagment() {
   }
 
   function onRemoveApproved() {
-    personService.updateStatus(selectedUsers, ROLES_CODE.USER).then(() => {
+    personService.updateStatus(selectedUsers, ROLES_CODE.USER,STATUS_REASONS.REGULAR).then(() => {
       setSelectedUsers([]);
       setChecked(false);
       setStatusChange(statusChange + 1);
@@ -73,7 +73,7 @@ function UserManagment() {
         setUsers(response.data.listOfUsers);
         setNumberOfPages(response.data.numberOfPages);
       });
-  }, [page, count, selectedFilter, sort, searchUser, statusChange]);
+  }, [page, count, filterCodes, sort, searchUser, statusChange]);
 
   useEffect(()=>{
     personService.getUpdatedStatusCount(ROLES_CODE.GOLDEN,personService.getCurrentUser.lastLogIn).then((response)=>{

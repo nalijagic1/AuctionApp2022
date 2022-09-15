@@ -1,13 +1,12 @@
 package com.praksa.auction.repository;
 
+import com.praksa.auction.enums.UserStatusEnum;
 import com.praksa.auction.model.Person;
-import com.praksa.auction.model.UserStatusEnum;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.relational.core.sql.In;
 
 import javax.transaction.Transactional;
 import java.util.Date;
@@ -36,20 +35,18 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status WHERE id IN :userId", nativeQuery = true)
-    void updateStatus(int status, List<Integer> userId);
+    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status,status_reason = :statusMessage WHERE id IN :userId", nativeQuery = true)
+    void updateStatus(int status, List<Long> userId,String statusMessage);
 
-    @Query(value = "SELECT * FROM PERSON WHERE status != 0",nativeQuery = true)
-    Page<Person> findAllUsers(Pageable pageable);
-
-    @Query(value = "SELECT * FROM PERSON p WHERE status != 0 AND p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%'",nativeQuery = true)
+    @Query(value = "SELECT * FROM PERSON p WHERE p.status != 0 AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')",nativeQuery = true)
     Page<Person> searchAllUsers(Pageable pageable,String search);
-    @Query(value = "SELECT * FROM PERSON WHERE status in :status",nativeQuery = true)
-    Page<Person> findAllFilteredUsers(Pageable pageable,List<Integer> status);
 
-    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%'",nativeQuery = true)
+
+    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')",nativeQuery = true)
     Page<Person> searchAllFilteredUsers(Pageable pageable,String search,List<Integer> status);
 
     @Query(value = "SELECT COUNT(p.id) FROM person p WHERE p.status_update > :lastLogin AND p.status = :status ",nativeQuery = true)
     Integer countUpdatedUsersByStatus(Date lastLogin,Integer status);
+
+    List<Person> findPersonByStatus(UserStatusEnum status);
 }

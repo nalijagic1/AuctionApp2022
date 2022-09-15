@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "./dropdownMenu.css";
 import menuItems from "../../utils/menuItems";
 function DropdownMenu(props) {

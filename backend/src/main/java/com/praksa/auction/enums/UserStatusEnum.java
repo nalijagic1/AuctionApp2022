@@ -1,4 +1,4 @@
-package com.praksa.auction.model;
+package com.praksa.auction.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -12,7 +12,7 @@ import { BiEnvelope } from "react-icons/bi";
 import ActivateUser from "../icons/activateUser";
 import RestrictedUser from "../icons/restrictedUser";
 import personService from "../services/person.service";
-import { ROLES_CODE } from "./roles";
+import { ROLES_CODE, STATUS_REASONS } from "./roles";
 class MenuItems {
   findMenu(field, type, onRowSelect, onSortSelect, user) {
     switch (type) {
@@ -27,8 +27,8 @@ class MenuItems {
     }
   }
 
-  updateStatus(status, person, onRowSelect) {
-    personService.updateStatus(person, status).then(() => {
+  updateStatus(status, person, onRowSelect,reason) {
+    personService.updateStatus(person, status,reason).then(() => {
       onRowSelect();
     });
   }
@@ -141,10 +141,10 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect,STATUS_REASONS.REGULAR)
               }
             >
-              <BlackUser className="dropdownicon" />
+              <BlackUser className="dropdownicon"/>
               Remove from black list
             </h3>
           </>
@@ -156,7 +156,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect,STATUS_REASONS.REGULAR)
               }
             >
               <ActivateUser  className="dropdownicon" />
@@ -171,7 +171,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect,STATUS_REASONS.REGULAR)
               }
             >
               <GoldenUser className="dropdownicon" />
@@ -186,7 +186,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.USER, user, onRowSelect, STATUS_REASONS.REGULAR)
               }
             >
               <BlackUser  className="dropdownicon" />
@@ -195,7 +195,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
               }
             >
               <RestrictedUser  className="dropdownicon" />
@@ -210,7 +210,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.GOLDEN, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.GOLDEN, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
               }
             >
               <GoldenUser  className="dropdownicon" />
@@ -219,7 +219,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
               }
             >
               <BlackUser  className="dropdownicon" />
@@ -228,7 +228,7 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.ARCHIVED, user, onRowSelect)
+                this.updateStatus(ROLES_CODE.ARCHIVED, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
               }
             >
               <ArchivedUser  className="dropdownicon" />

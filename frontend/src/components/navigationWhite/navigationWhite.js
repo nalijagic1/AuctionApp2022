@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./navigationWhite.css";
 import logo from "../../images/auction-app-logo 1.png";
 import { useNavigate, useLocation } from "react-router-dom";

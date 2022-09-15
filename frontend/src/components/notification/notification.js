@@ -19,7 +19,7 @@ function Notification({
         }, 250);
       }, 5000);
     }
-  }, []);
+  }, [exitable,setShowNotification]);
   return (
     <div className={showAlert ? "alert-shown" : "alert-hidden"}>
       <div className={`notification notification-${notificationType}`}>

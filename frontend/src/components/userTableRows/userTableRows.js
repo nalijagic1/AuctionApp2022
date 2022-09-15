@@ -5,9 +5,11 @@ import TooltipMessage from "../tooltipMessage/tooltipMessage";
 import { TbDotsVertical } from "react-icons/tb";
 import moment from "moment";
 import "./userTableRows.css";
-import { ROLES, ROLES_ICON } from "../../utils/roles";
+import {ROLES_ICON, ROLES_TITLES } from "../../utils/roles";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
+import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useOutsideClick } from "@chakra-ui/react";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 function UserTableRow({
   user,
@@ -61,13 +63,26 @@ function UserTableRow({
       <h2 className="userPhoneNumber">{user.phoneNumber}</h2>
       <h2 className="userAddress">{user.address && user.address.street}</h2>
       <div className="userStatusIcon">
-        <TooltipMessage
-          title={ROLES[user.status.toUpperCase()]}
-          arrow
-          placement="top"
-        >
-          <div>{ROLES_ICON[user.status]}</div>
-        </TooltipMessage>
+        <h2 className={`userStatus${user.status}`}>
+          {ROLES_TITLES[user.status.toUpperCase()]}
+        </h2>
+        <StyledEngineProvider injectFirst>
+          <TooltipMessage
+            className="statusTooltip"
+            title={
+              <div className="statusTooltipContent">
+                <h2>{ROLES_ICON[user.status]}{ROLES_TITLES[user.status.toUpperCase()]} user</h2>
+              <p>{user.statusReason}</p>
+              </div>
+            }
+            arrow
+            placement="top"
+          >
+            <i>
+              <AiOutlineInfoCircle />
+            </i>
+          </TooltipMessage>
+        </StyledEngineProvider>
       </div>
       <h2 className="userStatusUpdate">
         {moment(user.statusUpdate).format("DD MMMM YYYY")}

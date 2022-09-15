@@ -1,6 +1,6 @@
 package com.praksa.auction.dto;
 
-import com.praksa.auction.model.UserStatusEnum;
+import com.praksa.auction.enums.UserStatusEnum;
 import lombok.*;
 
 import java.util.Date;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Checkbox from "../checkbox/checkbox";
 import SortFilter from "../sortFilter/sortFilter";
 import {TbDotsVertical} from "react-icons/tb"

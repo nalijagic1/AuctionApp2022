@@ -46,6 +46,7 @@ function Field({
             {error || info}{" "}
             {info && (
               <TooltipMessage
+              className="primaryTooltip"
                 title={
                   <ul>
                     <li>

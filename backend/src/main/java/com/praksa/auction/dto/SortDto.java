@@ -1,6 +1,6 @@
 package com.praksa.auction.dto;
 
-import com.praksa.auction.model.SortDirectionEnum;
+import com.praksa.auction.enums.SortDirectionEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

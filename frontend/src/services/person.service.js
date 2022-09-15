@@ -40,8 +40,8 @@ class PersonDataService {
       : httpCommon.post("/people/filtered", { page, count, filters, sort,search });
   }
 
-  updateStatus(personId,status){
-    return httpCommon.put("/people/updateUserStatus?status="+status+"&personId="+personId);
+  updateStatus(personId,status,statusReason){
+    return httpCommon.put("/people/updateUserStatus?status="+status+"&personId="+personId+"&statusReason="+statusReason);
   }
 
   getUpdatedStatusCount(status,lastLogin){

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import Field from "../field/field";
 import "./shippingAddress.css";
 import countryService from "../../services/country.service";
@@ -33,7 +33,7 @@ function ShippingAddress(props) {
         setCountry(response.data.country.id);
       }
     });
-  }, []);
+  }, [props.buyer]);
 
   function locationValidation() {
     let validationResult = validation.locationValidation({

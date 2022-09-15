@@ -2,13 +2,10 @@ package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.dto.*;
-import com.praksa.auction.model.ErrorCodeEnum;
-import com.praksa.auction.model.Person;
-import com.praksa.auction.model.UserStatusEnum;
+import com.praksa.auction.enums.ErrorCodeEnum;
+import com.praksa.auction.enums.StatusReasonsEnum;
 import com.praksa.auction.service.PersonService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,10 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/people")
@@ -66,8 +61,8 @@ public class PersonController {
     }
 
     @PutMapping("/updateUserStatus")
-    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Integer> personId){
-        personService.updateUserStatus(status,personId);
+    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Long> personId, @RequestParam String statusReason){
+        personService.updateUserStatus(status,personId,StatusReasonsEnum.valueOf(statusReason).getStatusMessage());
         return ResponseEntity.ok("Succesful update");
     }
 

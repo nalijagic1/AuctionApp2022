@@ -1,9 +1,9 @@
 package com.praksa.auction.config.security.services;
 
 import com.praksa.auction.model.Address;
-import com.praksa.auction.model.Gender;
+import com.praksa.auction.enums.GenderEnum;
 import com.praksa.auction.model.Person;
-import com.praksa.auction.model.UserStatusEnum;
+import com.praksa.auction.enums.UserStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class PersonDetails implements UserDetails {
     private long id;
     private String firstName;
     private String lastName;
-    private Gender gender;
+    private GenderEnum genderEnum;
     private Date dateOfBirth;
     private String phoneNumber;
     private String email;
@@ -38,7 +38,7 @@ public class PersonDetails implements UserDetails {
         return new PersonDetails(user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
-                user.getGender(),
+                user.getGenderEnum(),
                 user.getDateOfBirth(),
                 user.getPhoneNumber(),
                 user.getEmail(),

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Checkbox from "../checkbox/checkbox";
 import { MdOutlineTune } from "react-icons/md";
 import { ROLES_CODE } from "../../utils/roles";
