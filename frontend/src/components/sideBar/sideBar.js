@@ -16,7 +16,7 @@ function SideBar({ expanded }) {
       <div className="sideBar">
         {expand ? (
           <IoIosArrowBack
-            className="icons"
+            className="icons expandArrow"
             onClick={() => {
               setExpand(false);
               expanded(false);
@@ -24,7 +24,7 @@ function SideBar({ expanded }) {
           />
         ) : (
           <IoIosArrowForward
-            className="icons"
+            className="icons expandArrow"
             onClick={() => {
               setExpand(true);
               expanded(true);

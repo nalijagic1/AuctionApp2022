@@ -22,6 +22,10 @@
 }
 
 .filterMenu{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(5,1fr);
+    row-gap: 16px;
     position:absolute;
     z-index: 1;
     border: 1px solid #c1b3eb;

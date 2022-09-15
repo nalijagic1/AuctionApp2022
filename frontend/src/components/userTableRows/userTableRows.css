@@ -1,7 +1,7 @@
 .tableRow {
   display: flex;
   width: 1230px;
-  padding: 22.5px 0px 22.5px 20px;
+  padding: 15px 0px 15px 20px;
   margin-top: 6px;
 }
 
@@ -88,4 +88,8 @@
   position:absolute;
   margin-left: 975px;
   margin-top: 20px;
+}
+
+.tableRow:hover{
+  border: 2px solid #8367D8;
 }

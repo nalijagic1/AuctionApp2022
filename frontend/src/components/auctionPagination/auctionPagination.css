@@ -1,17 +1,23 @@
 .paging .css-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
   background: #8367d8;
   color: #ffffff;
+  border-radius: 0;
 }
 
 .paging
   .css-10w330c-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
   background: #8367d8;
   color: #ffffff;
+  border-radius: 0;
 }
 
 .paging .Mui-disabled,
 .paging .css-g2z002-MuiSvgIcon-root-MuiPaginationItem-icon {
   color: #8367d8;
+}
+
+.paging .css-10w330c-MuiButtonBase-root-MuiPaginationItem-root:hover{
+  background-color: transparent;
 }
 
 .pagePicker {

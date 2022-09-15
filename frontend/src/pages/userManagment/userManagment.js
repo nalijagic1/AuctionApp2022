@@ -195,6 +195,7 @@ function UserManagment() {
             })
           ) : (
             <NoUsersFound
+              filter = {filterCodes}
               onClick={() => {
                 setSelectedFilter({
                   golden: false,

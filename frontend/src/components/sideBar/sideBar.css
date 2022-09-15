@@ -23,6 +23,10 @@
     fill: #252525;
 }
 
+.sideBar .expandArrow path{
+    fill: #8367D8;
+}
+
 .sideBarOption {
     display: flex;  
     text-decoration: none;
@@ -35,4 +39,20 @@
     margin-bottom: 0px;
     color: #252525;
     margin-top: -3px;
+}
+
+.expandArrow{
+    margin-left: auto;
+    margin-right: 0px;
+    margin-bottom: 54.1px;
+}
+
+
+
+.sideBarOption:visited h2{
+    color: #8367D8;
+}
+
+.sideBarOption:visited path{
+    fill:#8367D8;
 }

@@ -20,11 +20,19 @@
   }
 
   .dropdownicon{
+    margin-right: 12px;
+    width:24px;
+    height: 24px;
+    color: #8367D8;
+  }
+
+  .dropdownSorticon{
     margin-right: 5px;
   }
   
+  
   .sortMenuOption:hover{
-    background: #DAD1F3
+    background: #DAD1F3;
   }
 
   .sortMenu h3{

@@ -42,7 +42,7 @@ class MenuItems {
             onSortSelect({ field: field, direction: "ASC" });
           }}
         >
-          <AiOutlineSortAscending className="dropdownicon" />
+          <AiOutlineSortAscending className="dropdownSorticon" />
           Alphabetically (A-Z)
         </h2>
         <h2
@@ -51,7 +51,7 @@ class MenuItems {
             onSortSelect({ field: field, direction: "DESC" });
           }}
         >
-          <AiOutlineSortDescending className="dropdownicon" />
+          <AiOutlineSortDescending className="dropdownSorticon" />
           Alphabetically (Z-A)
         </h2>
       </div>
@@ -144,7 +144,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
               }
             >
-              <BlackUser color="#252525" className="dropdownicon" />
+              <BlackUser className="dropdownicon" />
               Remove from black list
             </h3>
           </>
@@ -159,7 +159,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
               }
             >
-              <ActivateUser color="#252525" className="dropdownicon" />
+              <ActivateUser  className="dropdownicon" />
               Activate user
             </h3>
           </>
@@ -174,7 +174,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
               }
             >
-              <GoldenUser color="#252525" className="dropdownicon" />
+              <GoldenUser className="dropdownicon" />
               Remove golden status
             </h3>
           </>
@@ -189,7 +189,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.USER, user, onRowSelect)
               }
             >
-              <BlackUser color="#252525" className="dropdownicon" />
+              <BlackUser  className="dropdownicon" />
               Remove restriction
             </h3>
             <h3
@@ -198,7 +198,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect)
               }
             >
-              <RestrictedUser color="#252525" className="dropdownicon" />
+              <RestrictedUser  className="dropdownicon" />
               Add to black list
             </h3>
           </>
@@ -213,7 +213,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.GOLDEN, user, onRowSelect)
               }
             >
-              <GoldenUser color="#252525" className="dropdownicon" />
+              <GoldenUser  className="dropdownicon" />
               Add golden status
             </h3>
             <h3
@@ -222,7 +222,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect)
               }
             >
-              <BlackUser color="#252525" className="dropdownicon" />
+              <BlackUser  className="dropdownicon" />
               Add to black list
             </h3>
             <h3
@@ -231,7 +231,7 @@ class MenuItems {
                 this.updateStatus(ROLES_CODE.ARCHIVED, user, onRowSelect)
               }
             >
-              <ArchivedUser color="#252525" className="dropdownicon" />
+              <ArchivedUser  className="dropdownicon" />
               Add to archived list
             </h3>
           </>
