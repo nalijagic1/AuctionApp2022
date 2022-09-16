@@ -17,6 +17,7 @@ function UserTableRow({
   changeStatusInTable,
   updateSelection,
   rowId,
+  columns
 }) {
   const [showMenu, setShowMenu] = useState(false);
   const [selectUser, setSelectUser] = useState(checked);
@@ -49,20 +50,20 @@ function UserTableRow({
           }}
         />
       </div>
-
+      { columns[0].show &&<div className="userName">
       <div className="userAvatar">
         <Avatar src={user.picture} />
       </div>
-      <h2 className="userName">
+      <h2 className="userFullName">
         {user.lastName} {user.firstName}
-      </h2>
-      <h2 className="creationDate">
+      </h2></div>}
+      { columns[1].show && <h2 className="creationDate">
         {moment(user.firstLogIn).format("DD MMMM YYYY")}
-      </h2>
-      <h2 className="userEmail">{user.email}</h2>
-      <h2 className="userPhoneNumber">{user.phoneNumber}</h2>
-      <h2 className="userAddress">{user.address && user.address.street}</h2>
-      <div className="userStatusIcon">
+      </h2>}
+      { columns[3].show && <h2 className="userEmail">{user.email}</h2>}
+      { columns[2].show &&<h2 className="userPhoneNumber">{user.phoneNumber}</h2>}
+      { columns[4].show &&<h2 className="userAddress">{user.address && user.address.street}</h2>}
+      { columns[5].show && <div className="userStatusIcon">
         <h2 className={`userStatus${user.status}`}>
           {ROLES_TITLES[user.status.toUpperCase()]}
         </h2>
@@ -83,10 +84,10 @@ function UserTableRow({
             </i>
           </TooltipMessage>
         </StyledEngineProvider>
-      </div>
-      <h2 className="userStatusUpdate">
+      </div>}
+      { columns[6].show && <h2 className="userStatusUpdate">
         {moment(user.statusUpdate).format("DD MMMM YYYY")}
-      </h2>
+      </h2>}
       <TbDotsVertical
         onClick={() => {
           setShowMenu(showMenu ? false : true);

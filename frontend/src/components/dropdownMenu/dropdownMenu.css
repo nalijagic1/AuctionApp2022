@@ -1,48 +1,65 @@
 .sortMenu {
-    position: absolute;
-    width: fit-content;
-    background: #fcfcfc;
-    border: 1px solid #d8d8d8;
-    z-index: 1;
-  }
-  
-  .sortMenuOption {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 24px;
-    color: #252525;
-    padding-left: 15px;
-    padding-right: 11px;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    margin-bottom: 0px;
-    width: 147px;
-  }
+  position: absolute;
+  width: fit-content;
+  background: #fcfcfc;
+  border: 1px solid #d8d8d8;
+  z-index: 1;
+}
 
-  .dropdownicon{
-    margin-right: 12px;
-    width:24px;
-    height: 24px;
-    color: #8367D8;
-  }
+.sortMenuOption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
+  color: #252525;
+  padding-left: 15px;
+  padding-right: 11px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 0px;
+  width: 147px;
+}
 
-  .dropdownSorticon{
-    margin-right: 5px;
-  }
-  
-  
-  .sortMenuOption:hover{
-    background: #DAD1F3;
-  }
+.dropdownicon {
+  margin-right: 12px;
+  width: 24px;
+  height: 24px;
+  color: #8367d8;
+}
 
-  .sortMenu h3{
-    font-size: 14px;
-    width: 195px;
-  }
+.dropdownSorticon {
+  margin-right: 5px;
+}
 
-  .sortMenu hr{
-    border: 1px solid #bcaee5;
-    background-color: #bcaee5;
-    margin-right: 25.5px;
-    margin-left: 25.5px;
-  }
+.sortMenuOption:hover {
+  background: #dad1f3;
+}
+
+.sortMenu h3 {
+  font-size: 14px;
+  width: 195px;
+}
+
+.sortMenu hr {
+  border: 1px solid #8367d8;
+  background-color: #8367d8;
+  margin-right: 25.5px;
+  margin-left: 25.5px;
+}
+
+.headerMenu h3 {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  color: #252525;
+  width: 155px;
+  margin-left: 10px;
+}
+
+.headerMenu .sortMenuOption{
+  width: 165px;
+}
+
+.headerMenu .dropdownicon{
+  float: right;
+}

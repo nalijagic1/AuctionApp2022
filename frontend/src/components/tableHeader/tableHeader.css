@@ -8,7 +8,14 @@
 .moreIcon{
     color:#FFFFFF;
     font-weight: 800;
-    margin-left: 15px;
+    margin-left: auto;
+    margin-right: 25px;
     width: 20px;
     height: 20px;
+}
+
+.headerOptionsMenu{
+    position: absolute;
+    margin-left: 1037px;
+    margin-top: 32px;
 }

@@ -2,9 +2,11 @@ import React from "react";
 import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
+  AiOutlineEye,
+  AiOutlineEyeInvisible,
+  AiOutlinePlus,
 } from "react-icons/ai";
 import { HiOutlineUser } from "react-icons/hi";
-
 import GoldenUser from "../icons/goldenUser";
 import ArchivedUser from "../icons/archivedUser";
 import BlackUser from "../icons/blackUser";
@@ -22,13 +24,15 @@ class MenuItems {
         return this.getRowChangeMenu(onRowSelect);
       case "alphabet":
         return this.getAlphabeticalSortMenu(field, onSortSelect);
+      case "header":
+        return this.createHeaderMenu(field, onRowSelect);
       default:
         return this.getUserMenu(type, user, onRowSelect);
     }
   }
 
-  updateStatus(status, person, onRowSelect,reason) {
-    personService.updateStatus(person, status,reason).then(() => {
+  updateStatus(status, person, onRowSelect, reason) {
+    personService.updateStatus(person, status, reason).then(() => {
       onRowSelect();
     });
   }
@@ -141,10 +145,15 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect,STATUS_REASONS.REGULAR)
+                this.updateStatus(
+                  ROLES_CODE.USER,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.REGULAR
+                )
               }
             >
-              <BlackUser className="dropdownicon"/>
+              <BlackUser className="dropdownicon" />
               Remove from black list
             </h3>
           </>
@@ -156,10 +165,15 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect,STATUS_REASONS.REGULAR)
+                this.updateStatus(
+                  ROLES_CODE.USER,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.REGULAR
+                )
               }
             >
-              <ActivateUser  className="dropdownicon" />
+              <ActivateUser className="dropdownicon" />
               Activate user
             </h3>
           </>
@@ -171,7 +185,12 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect,STATUS_REASONS.REGULAR)
+                this.updateStatus(
+                  ROLES_CODE.USER,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.REGULAR
+                )
               }
             >
               <GoldenUser className="dropdownicon" />
@@ -186,19 +205,29 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.USER, user, onRowSelect, STATUS_REASONS.REGULAR)
+                this.updateStatus(
+                  ROLES_CODE.USER,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.REGULAR
+                )
               }
             >
-              <BlackUser  className="dropdownicon" />
+              <BlackUser className="dropdownicon" />
               Remove restriction
             </h3>
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
+                this.updateStatus(
+                  ROLES_CODE.BLACK,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.ADMIN_GRANTED
+                )
               }
             >
-              <RestrictedUser  className="dropdownicon" />
+              <RestrictedUser className="dropdownicon" />
               Add to black list
             </h3>
           </>
@@ -210,28 +239,43 @@ class MenuItems {
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.GOLDEN, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
+                this.updateStatus(
+                  ROLES_CODE.GOLDEN,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.ADMIN_GRANTED
+                )
               }
             >
-              <GoldenUser  className="dropdownicon" />
+              <GoldenUser className="dropdownicon" />
               Add golden status
             </h3>
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.BLACK, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
+                this.updateStatus(
+                  ROLES_CODE.BLACK,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.ADMIN_GRANTED
+                )
               }
             >
-              <BlackUser  className="dropdownicon" />
+              <BlackUser className="dropdownicon" />
               Add to black list
             </h3>
             <h3
               className="sortMenuOption"
               onClick={() =>
-                this.updateStatus(ROLES_CODE.ARCHIVED, user, onRowSelect,STATUS_REASONS.ADMIN_GRANTED)
+                this.updateStatus(
+                  ROLES_CODE.ARCHIVED,
+                  user,
+                  onRowSelect,
+                  STATUS_REASONS.ADMIN_GRANTED
+                )
               }
             >
-              <ArchivedUser  className="dropdownicon" />
+              <ArchivedUser className="dropdownicon" />
               Add to archived list
             </h3>
           </>
@@ -239,6 +283,55 @@ class MenuItems {
         break;
     }
     return React.createElement("div", {}, [userMenu, statusOptions]);
+  }
+
+  changeColumns(columns, field) {
+    var newColumns = [ ...columns ];
+    var fieldIndex = newColumns.findIndex((column) => column.name === field);
+    newColumns[fieldIndex].show = !newColumns[fieldIndex].show;
+    return newColumns;
+  }
+
+  createHeaderMenu(columns, onRowSelect) {
+    return (
+      <div className="headerMenu">
+        <h3>View options</h3>
+        <h3>Show columns</h3>
+        {columns.map((column) => { return <div>
+          {
+            column.show && (
+              <h2 className="sortMenuOption"
+                onClick={() =>
+                  onRowSelect(this.changeColumns(columns, column.name))
+                }
+              >
+                {column.name} <AiOutlineEye className="dropdownicon"/>
+              </h2>
+            )
+          }</div>
+        })}
+        <h3>Hide columns</h3>
+        {columns.map((column) => {
+          return (
+            <div>
+              {!column.show && (
+                <h2 className="sortMenuOption"
+                  onClick={() =>
+                    onRowSelect(this.changeColumns(columns, column.name))
+                  }
+                >
+                  {column.name} <AiOutlineEyeInvisible  className="dropdownicon"/>
+                </h2>
+              )}
+            </div>
+          );
+        })}
+        <hr></hr>
+        <h3>
+          Add new columns <AiOutlinePlus className="dropdownicon"></AiOutlinePlus>
+        </h3>
+      </div>
+    );
   }
 }
 

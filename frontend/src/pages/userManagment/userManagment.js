@@ -46,6 +46,7 @@ function UserManagment() {
     restricted: false,
     archived: false,
   });
+  const [columns,setColumns] = useState([{name:"Name",show:true},{name:"Date of creation",show:true},{name:"Mobile number",show:true},{name:"Email",show:true},{name:"Location",show:true},{name:"Status",show:true},{name:"Status update",show:true}])
   function unselectFilter(filter) {
     var activeFilter = { ...selectedFilter };
     activeFilter[filter] = false;
@@ -144,7 +145,7 @@ function UserManagment() {
               );
             })}
           </div>
-          {selectedUsers.length !== 0 && filterCodes.length === 1 && (
+          {selectedUsers.length !== 0 && filterCodes.length === 1 && filterCodes[0]!==1 && filterCodes[0]!==5 &&(
             <div className="removeStatus">
               <Button
                 label={REMOVE_STATUS_BUTTON[filterCodes[0]]}
@@ -158,6 +159,8 @@ function UserManagment() {
         </div>
         <div className="userTable">
           <TableHeader
+          columns={columns}
+          changeHeaderView={(column)=>{setColumns(column)}}
             checked={checked}
             setChecked={(checked) => {
               setSelectedUsers(
@@ -174,7 +177,8 @@ function UserManagment() {
           {users && users.length !== 0 ? (
             users.map((user) => {
               return (
-                <UserTableRow
+                <UserTableRow 
+                  columns={columns}
                   user={user}
                   rowId={users.indexOf(user)}
                   checked={checked}
