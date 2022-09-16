@@ -1,8 +1,8 @@
-.css-bdhsul-MuiTypography-root-MuiDialogTitle-root {
+.dialog .MuiDialogTitle-root{
   text-align: center;
 }
 
-.dialog .css-qfso29-MuiTypography-root-MuiDialogContentText-root {
+.dialog .MuiDialogContentText-root {
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
