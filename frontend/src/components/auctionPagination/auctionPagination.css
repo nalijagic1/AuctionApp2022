@@ -16,7 +16,7 @@
   color: #8367d8;
 }
 
-.paging .css-10w330c-MuiButtonBase-root-MuiPaginationItem-root:hover{
+.paging .Mui-selected:hover{
   background-color: transparent;
 }
 
