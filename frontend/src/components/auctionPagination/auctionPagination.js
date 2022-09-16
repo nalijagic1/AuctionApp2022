@@ -3,11 +3,13 @@ import Pagination from "@mui/material/Pagination";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import PaginationItem from "@mui/material/PaginationItem";
+import { StyledEngineProvider } from "@mui/material/styles";
 import "./auctionPagination.css";
 
 function AuctionPagination({count,page = 1,onPageChange}) {
   return (
     <div className="pagePicker">
+      <StyledEngineProvider injectFirst>
         <Pagination count={count}
         className="paging"
         page={page}
@@ -21,6 +23,7 @@ function AuctionPagination({count,page = 1,onPageChange}) {
             {...item}
           />
         )}/> 
+      </StyledEngineProvider>
    </div>
   );
 }
