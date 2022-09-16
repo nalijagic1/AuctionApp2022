@@ -39,25 +39,4 @@ public class Person {
     private Date firstLogIn;
     private String statusReason;
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", genderEnum=" + genderEnum +
-                ", dateOfBirth=" + dateOfBirth +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", picture='" + picture + '\'' +
-                ", address=" + address +
-                ", customerId='" + customerId + '\'' +
-                ", status=" + status +
-                ", statusUpdate=" + statusUpdate +
-                ", lastLogIn=" + lastLogIn +
-                ", firstLogIn=" + firstLogIn +
-                ", statusReason='" + statusReason + '\'' +
-                '}';
-    }
 }

@@ -30,7 +30,7 @@ import java.util.*;
 @Service
 public class PersonService {
     private static final Logger logger = LoggerFactory.getLogger(PersonService.class);
-    private final PersonRepository personRepositoy;
+    private final PersonRepository personRepository;
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
@@ -44,11 +44,11 @@ public class PersonService {
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
-        this.personRepositoy = personRepository;
+        this.personRepository = personRepository;
     }
 
     public Boolean existsByEmail(String email) {
-        return personRepositoy.existsByEmail(email);
+        return personRepository.existsByEmail(email);
     }
 
     private Person getPersonFromRegistrationRequest(RegistrationDto registrationDto) {
@@ -64,16 +64,16 @@ public class PersonService {
     }
 
     public JwtResponseDto createAccount(RegistrationDto signUpRequest) {
-        if (personRepositoy.existsByEmail(signUpRequest.getEmail())) {
+        if (personRepository.existsByEmail(signUpRequest.getEmail())) {
             logger.error("This email_address={} is already in use.", signUpRequest.getEmail());
             throw new IllegalArgumentException("This email address is already taken. Please try another one.");
         }
-        personRepositoy.save(getPersonFromRegistrationRequest(signUpRequest));
+        personRepository.save(getPersonFromRegistrationRequest(signUpRequest));
         return logIn(new LogInDto(signUpRequest.getEmail(), signUpRequest.getPassword()));
     }
 
     public Person getByEmail(String email) {
-        return personRepositoy.findByEmail(email).get();
+        return personRepository.findByEmail(email).get();
     }
 
     private BasicUserInfoDto getUserInfo(PersonDetails userDetails){
@@ -89,7 +89,7 @@ public class PersonService {
         return basicPersonInfo;
     }
     public JwtResponseDto logIn(LogInDto loginInfo) {
-        if (!personRepositoy.existsByEmail(loginInfo.getEmail())) {
+        if (!personRepository.existsByEmail(loginInfo.getEmail())) {
             logger.error("email_address={} not found in database", loginInfo.getEmail());
             throw new UsernameNotFoundException("Email address not found");
         }
@@ -99,14 +99,14 @@ public class PersonService {
         String jwt = jwtUtils.generateJwtToken(authentication);
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
-        personRepositoy.updateLastLogIn(userDetails.getId());
+        personRepository.updateLastLogIn(userDetails.getId());
         if(userDetails.getStatus().equals(UserStatusEnum.Archived)) {
-            personRepositoy.updateStatus(1,Arrays.asList(userDetails.getId()),StatusReasonsEnum.REGULAR.getStatusMessage());};
+            personRepository.updateStatus(1,Arrays.asList(userDetails.getId()),StatusReasonsEnum.REGULAR.getStatusMessage());};
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
 
     public Person getPersonById(long id) {
-        return personRepositoy.findById(id).get();
+        return personRepository.findById(id).get();
     }
 
     public String createCustomerId(Person person) throws StripeException {
@@ -116,37 +116,37 @@ public class PersonService {
         customerParams.put("email", person.getEmail());
         Customer customer = Customer.create(customerParams);
         person.setCustomerId(customer.getId());
-        personRepositoy.updateCustomerInfo(customer.getId(), person.getId());
+        personRepository.updateCustomerInfo(customer.getId(), person.getId());
         return customer.getId();
     }
 
     public void updateAddressToUser(long addressId, long personId) {
-        personRepositoy.updateAddressInfo(addressId, personId);
+        personRepository.updateAddressInfo(addressId, personId);
     }
 
     public UserTableDto getAllUsers(UserListRequest userListRequest) {
         Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()),userListRequest.getSort().getField());
-        Page<Person> users = personRepositoy.searchAllUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch());
+        Page<Person> users = personRepository.searchAllUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
     public UserTableDto getFilteredUsers(UserListRequest userListRequest){
         Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()),userListRequest.getSort().getField());
-        Page<Person> users = personRepositoy.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch(),userListRequest.getFilters());
+        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch(),userListRequest.getFilters());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
 
     public void updateUserStatus(int status, List<Long> personId,String statusMessage) {
-        personRepositoy.updateStatus(status,personId,statusMessage);
+        personRepository.updateStatus(status,personId,statusMessage);
     }
 
     public Integer getNewStatusCount(int status,Date lastAdminLogin){
-        return personRepositoy.countUpdatedUsersByStatus(lastAdminLogin,status);
+        return personRepository.countUpdatedUsersByStatus(lastAdminLogin,status);
     }
 
     public List<Person> getAllUsersWithStatus(UserStatusEnum status){
-        return personRepositoy.findPersonByStatus(status);
+        return personRepository.findPersonByStatus(status);
     }
 
 

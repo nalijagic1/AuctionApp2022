@@ -1,7 +1,11 @@
 package com.praksa.auction.dto;
 
 import com.praksa.auction.enums.UserStatusEnum;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 import java.util.Date;
 
