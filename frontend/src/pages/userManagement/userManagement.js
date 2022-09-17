@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Filter from "../../components/filter/filter";
-import "./userManagment.css";
+import "./userManagement.css";
 import { BiSearchAlt2 } from "react-icons/bi";
 import TableHeader from "../../components/tableHeader/tableHeader";
 import UserTableRow from "../../components/userTableRows/userTableRows";
@@ -23,7 +23,7 @@ import {
   NOTIFICATION_TYPES,
 } from "../../utils/notificationConstants";
 
-function UserManagment() {
+function UserManagement() {
   const [searchUser, setSearchUser] = useState("");
   const [newGoldenUsers, setNewGoldenUsers] = useState(0);
   const [newRestrictedUsers, setNewRestrictedUsers] = useState(0);
@@ -86,7 +86,7 @@ function UserManagment() {
   })
   return (
     <div className="userManagmentView">
-      <h5>User Managment</h5>
+      <h5>User Management</h5>
       {showGoldenNotification && <Notification
         notificationMessage={`${newGoldenUsers}${NOTIFICATION_MESSAGES.NEW_GOLDEN_USERS} `}
         notificationType={NOTIFICATION_TYPES.GOLDEN}
@@ -245,4 +245,4 @@ function UserManagment() {
   );
 }
 
-export default UserManagment;
+export default UserManagement;

@@ -23,7 +23,6 @@ function CardInfo({ props, location, setError }) {
   const navigate = useNavigate();
   const [paymentError, setPaymentError] = useState();
   const seller = personService.getCurrentUser();
-  const [address, setAddress] = useState();
 
   function saveCard(newProductId) {
     if (!stripe || !elements) {
@@ -61,7 +60,6 @@ function CardInfo({ props, location, setError }) {
       })
       .then((response) => {
         if (response.status === STATUS_CODES.OK) {
-          setAddress(response.data);
           savePhotos(props.productInfo.pictures).then((imageUrl) => {
             productService
               .addProduct(
@@ -73,7 +71,7 @@ function CardInfo({ props, location, setError }) {
                 props.priceDetails.startingDate,
                 props.priceDetails.endingDate,
                 imageUrl,
-                address,
+                response.data,
                 location.phoneNumber
               )
               .then((addResponse) => {

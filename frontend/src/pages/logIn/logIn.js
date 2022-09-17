@@ -21,7 +21,7 @@ function LogIn() {
       .logIn(email, password)
       .then((response) => {
           if (localStorage.getItem("user")) {
-            navigate(personService.getCurrentUser().role === ROLES.ADMIN ? "/userManagment":"/");
+            navigate(personService.getCurrentUser().role === ROLES.ADMIN ? "/userManagement":"/");
             window.location.reload();
           }
       })

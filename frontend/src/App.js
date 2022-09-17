@@ -20,7 +20,7 @@ import personService from "./services/person.service";
 import { ROLES } from "./utils/roles";
 import SideBar from "./components/sideBar/sideBar";
 import { useState } from "react";
-import UserManagment from "./pages/userManagment/userManagment";
+import UserManagement from "./pages/userManagement/userManagement";
 import AuthVerify from "./utils/auth-verify";
 
 function App() {
@@ -53,7 +53,7 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/paymentComplete" element={<SuccesfulPayment />} />
           <Route path ="/addItem" element={<AddNewItem/>}/>
-          <Route path="/userManagment" element={<UserManagment/>}/>
+          <Route path="/userManagement" element={<UserManagement/>}/>
         </Routes>
         </div>
         <AuthVerify/>

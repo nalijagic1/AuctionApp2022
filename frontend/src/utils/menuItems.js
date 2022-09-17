@@ -68,7 +68,7 @@ class MenuItems {
         <h2
           className="sortMenuOption"
           onClick={() => {
-            onSortSelect({ field: field, direction: "DESC" });
+            onSortSelect({ field: field, direction: "ASC"});
           }}
         >
           Oldest date
@@ -76,7 +76,7 @@ class MenuItems {
         <h2
           className="sortMenuOption"
           onClick={() => {
-            onSortSelect({ field: field, direction: "ASC" });
+            onSortSelect({ field: field, direction: "DESC" });
           }}
         >
           Newest date
