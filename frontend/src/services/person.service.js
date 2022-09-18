@@ -35,9 +35,7 @@ class PersonDataService {
   }
 
   getAllUsers(page, count, filters, sort,search) {
-    return filters.length === 0
-      ? httpCommon.post("/people", { page, count,filters, sort,search })
-      : httpCommon.post("/people/filtered", { page, count, filters, sort,search });
+    return httpCommon.post(filters.length === 0 ? "/people":"/people/filtered", { page, count,filters, sort,search })
   }
 
   updateStatus(personId,status,statusReason){

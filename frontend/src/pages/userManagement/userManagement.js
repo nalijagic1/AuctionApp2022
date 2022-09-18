@@ -99,7 +99,7 @@ function UserManagement() {
         notificationType={NOTIFICATION_TYPES.RESTRICTED}
         exitable={true}
         setShowNotification ={(show)=>setShowRestrictedNotification(show)}
-        link={newRestrictedUsers > 0 ? "More them to black list!" : ""}
+        link={newRestrictedUsers > 0 ? "Move them to black list!" : ""}
       ></Notification>}
       <div className="userManagmentContent">
         <div className="userManagmentOptions">
