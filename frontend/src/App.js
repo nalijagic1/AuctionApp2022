@@ -1,11 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { Suspense } from 'react';
 import NavigationBlack from "./components/navigationBlack/navigationBlack";
 import NavigationWhite from "./components/navigationWhite/navigationWhite";
 import Footer from "./components/footer/footer";
 import PrivacyAndPolicy from "./pages/privacyAndPolicy/privacyAndPolicy";
 import TermsAndConditions from "./pages/termsAndConditions/termsAndConditions";
 import AboutUs from "./pages/aboutUs/aboutUs";
-import LandingPage from "./pages/landingPage/landingPage";
+
 import SingleProduct from "./pages/singleProduct/singleProduct";
 import { Helmet } from "react-helmet";
 import ShopPage from "./pages/shopPage/shopPage";
@@ -22,11 +23,11 @@ import SideBar from "./components/sideBar/sideBar";
 import { useState } from "react";
 import UserManagement from "./pages/userManagement/userManagement";
 import AuthVerify from "./utils/auth-verify";
-import { Suspense } from "react";
 
 function App() {
   const user = personService.getCurrentUser();
   const [expanded, setExpanded] = useState(false);
+  const LandingPage = React.lazy(()=> import("./pages/landingPage/landingPage")) ;
   return (
     <div className="App">
       <Helmet>
