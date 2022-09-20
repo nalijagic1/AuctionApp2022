@@ -24,5 +24,5 @@ function AuthVerify() {
   }, [navigator,navigate]);
   return <div></div>;
 }
-
+//86400000
 export default AuthVerify;

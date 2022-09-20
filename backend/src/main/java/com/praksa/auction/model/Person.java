@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -35,7 +36,7 @@ public class Person {
     private String customerId;
     private UserStatusEnum status;
     private Date statusUpdate;
-    private Date lastLogIn;
+    private LocalDate lastLogIn;
     private Date firstLogIn;
     private String statusReason;
 

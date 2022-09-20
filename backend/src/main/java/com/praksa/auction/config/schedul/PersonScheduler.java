@@ -29,10 +29,7 @@ public class PersonScheduler {
         List<Person> regularUsers = personService.getAllUsersWithStatus(UserStatusEnum.User);
         LocalDate now = LocalDate.now();
         for (Person person:regularUsers) {
-            LocalDate lastLogin = person.getLastLogIn().toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-            Period difference = Period.between(lastLogin,now);
+            Period difference = Period.between(person.getLastLogIn(),now);
             if(Math.abs(difference.getMonths()) >= 6){
                 personService.updateUserStatus(UserStatusEnum.Archived.getStatusCode(), Arrays.asList(person.getId()), StatusReasonsEnum.NON_ACTIVE.getStatusMessage());
             }

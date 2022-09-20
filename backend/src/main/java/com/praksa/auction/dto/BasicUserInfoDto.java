@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -21,5 +22,5 @@ public class BasicUserInfoDto {
     private String phoneNumber;
     private boolean isSeller;
     private UserStatusEnum role;
-    private Date lastLogIn;
+    private LocalDate lastLogIn;
 }

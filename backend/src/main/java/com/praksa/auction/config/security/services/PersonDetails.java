@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Date;
 
@@ -31,7 +33,7 @@ public class PersonDetails implements UserDetails {
     private String customerId;
     private UserStatusEnum status;
     private Date statusUpdate;
-    private Date lastLogIn;
+    private LocalDate lastLogIn;
     private Date firstLogIn;
 
     public static PersonDetails build(Person user) {

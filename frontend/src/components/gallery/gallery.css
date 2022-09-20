@@ -11,10 +11,10 @@
 }
 
 .mainPicture {
+  object-fit: contain;
   width: 453px;
   height: 622px;
 }
-
 .pictureGrid img {
   width: 71px;
   height: 97.5px;
