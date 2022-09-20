@@ -1,12 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React, { Suspense } from 'react';
 import NavigationBlack from "./components/navigationBlack/navigationBlack";
 import NavigationWhite from "./components/navigationWhite/navigationWhite";
 import Footer from "./components/footer/footer";
 import PrivacyAndPolicy from "./pages/privacyAndPolicy/privacyAndPolicy";
 import TermsAndConditions from "./pages/termsAndConditions/termsAndConditions";
 import AboutUs from "./pages/aboutUs/aboutUs";
-
+import LandingPage from "./pages/landingPage/landingPage";
 import SingleProduct from "./pages/singleProduct/singleProduct";
 import { Helmet } from "react-helmet";
 import ShopPage from "./pages/shopPage/shopPage";
@@ -26,8 +25,7 @@ import AuthVerify from "./utils/auth-verify";
 
 function App() {
   const user = personService.getCurrentUser();
-  const [expanded, setExpanded] = useState(false);
-  const LandingPage = React.lazy(()=> import("./pages/landingPage/landingPage")) ;
+  const [expanded,setExpanded] = useState(false)
   return (
     <div className="App">
       <Helmet>
@@ -37,33 +35,28 @@ function App() {
           type="text/css"
         />
       </Helmet>
-
       <div className="content">
         <NavigationBlack />
-        {user && user.role === ROLES.ADMIN && (
-          <SideBar expanded={(expand) => setExpanded(expand)} />
-        )}
-        <NavigationWhite expanded={expanded} />
-        <Suspense fallback={<h1>Loading profile...</h1>}>
-          <div className={expanded ? "compressContent" : ""}>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/privacy" element={<PrivacyAndPolicy />} />
-              <Route path="/terms" element={<TermsAndConditions />} />
-              <Route path="/aboutUs" element={<AboutUs />} />
-              <Route path="/product/:productId" element={<SingleProduct />} />
-              <Route path="/shop/:category" element={<ShopPage />} />
-              <Route path="/shop" element={<ShopPage />} />
-              <Route path="/login" element={<LogIn />} />
-              <Route path="/register" element={<Registration />} />
-              <Route path="/payment" element={<Payment />} />
-              <Route path="/paymentComplete" element={<SuccesfulPayment />} />
-              <Route path="/addItem" element={<AddNewItem />} />
-              <Route path="/userManagement" element={<UserManagement />} />
-            </Routes>
-          </div>
-        </Suspense>
-        <AuthVerify />
+        {user && user.role === ROLES.ADMIN && <SideBar expanded = {(expand) => setExpanded(expand)}/>}
+        <NavigationWhite expanded = {expanded} />
+        <div className={expanded ? "compressContent":""}>
+          <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/privacy" element={<PrivacyAndPolicy />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="/product/:productId" element={<SingleProduct />} />
+          <Route path="/shop/:category" element={<ShopPage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/paymentComplete" element={<SuccesfulPayment />} />
+          <Route path ="/addItem" element={<AddNewItem/>}/>
+          <Route path="/userManagement" element={<UserManagement/>}/>
+        </Routes>
+        </div>
+        <AuthVerify/>
       </div>
       <footer className="foot">
         <Footer />
