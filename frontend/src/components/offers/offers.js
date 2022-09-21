@@ -8,13 +8,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "./offers.css";
 import { STATUS_CODES } from "../../utils/httpStatusCode";
 
-function Offers() {
+function Offers({isLoading}) {
   const [tab, setTab] = useState(1);
   const [products, setProducts] = useState();
   const COUNT = 8;
   const [start, setStart] = useState(0);
   const [more, setMore] = useState(true);
   var lastTab = useRef(0);
+
 
   function changeTab(event) {
     setTab(event.target.id);
@@ -29,6 +30,7 @@ function Offers() {
   }
 
   useEffect(() => {
+    isLoading(true)
     const getData = (option) => {
       productService
         .getNewestOrLastChance(option, start, COUNT)
@@ -46,6 +48,7 @@ function Offers() {
               setProducts(response.data);
               lastTab.current = option;
             }
+            isLoading(false);
           }
         });
     };

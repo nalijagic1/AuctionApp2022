@@ -1,19 +1,23 @@
-import React,{Suspense}from "react";
+import React, { useState } from "react";
 import "./landingPage.css";
+import CategoryList from "../../components/categoryList/categoryList";
+import Offers from "../../components/offers/offers";
+import ProductHighlight from "../../components/productHighlight/productHightlight";
+import CircularProgress from '@mui/material/CircularProgress';
 
 function LandingPage() {
-  const CategoryList = React.lazy(() => import("../../components/categoryList/categoryList"));
-  const ProductHighlight = React.lazy(() => import("../../components/productHighlight/productHightlight"));
-  const Offers = React.lazy(() => import("../../components/offers/offers"));
+  const [loading,isLoading] = useState(false);
   return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
     <div>
+      {loading ? <CircularProgress/> :
+      <div>
       <div className="home">
-        <CategoryList />
-        <ProductHighlight />
+        <CategoryList isLoading ={(loading)=> isLoading(loading)}/>
+        <ProductHighlight isLoading ={(loading)=> isLoading(loading)}/>
       </div>
-      <Offers />
-    </div></Suspense>
+      <Offers isLoading ={(loading)=> isLoading(loading)}/>
+      </div>}
+    </div>
   );
 }
 

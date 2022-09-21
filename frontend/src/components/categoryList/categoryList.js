@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { TiPlus, TiMinus } from "react-icons/ti";
 import { STATUS_CODES } from "../../utils/httpStatusCode";
 
-function CategoryList({ filter }) {
+function CategoryList({ filter, isLoading }) {
   const [categories, setCategories] = useState();
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,8 +19,12 @@ function CategoryList({ filter }) {
   }
 
   useEffect(() => {
+    isLoading(true);
     categoryService.getCategoriesWithSubcategories().then((response) => {
-      if (response.status === STATUS_CODES.OK) setCategories(response.data);
+      if (response.status === STATUS_CODES.OK) {
+        setCategories(response.data);
+        isLoading(false);
+      }
     });
   }, []);
 
