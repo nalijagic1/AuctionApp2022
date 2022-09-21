@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import "./singleProduct.css";
 import Notification from "../../components/notification/notification";
 import { STATUS_CODES } from "../../utils/httpStatusCode";
+import Loader from "../../components/loader/loader";
 
 function SingleProduct() {
   const params = useParams();
@@ -14,11 +15,13 @@ function SingleProduct() {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationType, setNotificationType] = useState("");
   const [notificationMessage, setNotificationMessage] = useState("");
+  const [loader,setLoader] = useState(false)
   useEffect(() => {
+    setLoader(true)
     productService
       .getSelectedProduct(parseInt(params.productId))
       .then((response) => {
-        if (response.status === STATUS_CODES.OK) setProduct(response.data);
+        if (response.status === STATUS_CODES.OK) {setProduct(response.data);setLoader(false)};
       });
   }, [params]);
 
@@ -30,7 +33,8 @@ function SingleProduct() {
 
   return (
     <div className="singleProduct">
-      {product && (
+
+      {loader ? <Loader></Loader>: (product &&
         <div>
           <PathBar
             prop={{
