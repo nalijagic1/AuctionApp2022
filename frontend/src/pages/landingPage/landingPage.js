@@ -3,13 +3,13 @@ import "./landingPage.css";
 import CategoryList from "../../components/categoryList/categoryList";
 import Offers from "../../components/offers/offers";
 import ProductHighlight from "../../components/productHighlight/productHightlight";
-import CircularProgress from '@mui/material/CircularProgress';
+import Loader from "../../components/loader/loader";
 
 function LandingPage() {
   const [loading,isLoading] = useState(false);
   return (
     <div>
-      {loading ? <CircularProgress/> :
+      {loading ? <Loader/>:
       <div>
       <div className="home">
         <CategoryList isLoading ={(loading)=> isLoading(loading)}/>
