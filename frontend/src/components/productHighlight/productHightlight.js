@@ -12,14 +12,16 @@ function ProductHighlight({isLoading}) {
   const [product, setProduct] = useState([]);
   const [image, setImage] = useState();
   useEffect(() => {
-    isLoading(true)
+    //isLoading(true)
     productService.getHighlighted().then((response) => {
       if (response.status === STATUS_CODES.OK) {
         setProduct(response.data);
         pictureService
           .getProductCoverPicture(response.data.id)
           .then((response) => {
-            if (response.status === STATUS_CODES.OK) {setImage(response.data); isLoading(false)};
+            if (response.status === STATUS_CODES.OK) {setImage(response.data); 
+              //isLoading(false)
+            };
           });
       }
     });

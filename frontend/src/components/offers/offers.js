@@ -30,8 +30,8 @@ function Offers({ isLoading }) {
   }
 
   useEffect(() => {
-    console.log(firstRender)
-    if (firstRender) isLoading(true);
+    //console.log(firstRender)
+   // if (firstRender) isLoading(true);
     const getData = (option) => {
       productService
         .getNewestOrLastChance(option, start, COUNT)
@@ -49,10 +49,10 @@ function Offers({ isLoading }) {
               setProducts(response.data);
               lastTab.current = option;
             }
-            if (firstRender) {
+            /*if (firstRender) {
               isLoading(false);
               setFirstRender(false);
-            }
+            }*/
           }
         });
     };

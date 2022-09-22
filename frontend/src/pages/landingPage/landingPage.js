@@ -6,19 +6,15 @@ import ProductHighlight from "../../components/productHighlight/productHightligh
 import Loader from "../../components/loader/loader";
 
 function LandingPage() {
-  const [loading,isLoading] = useState(false);
-  return (
-    <div>
-      {loading ? <Loader/>:
-      <div>
-      <div className="home">
-        <CategoryList isLoading ={(loading)=> isLoading(loading)}/>
-        <ProductHighlight isLoading ={(loading)=> isLoading(loading)}/>
-      </div>
-      <Offers isLoading ={(loading)=> isLoading(loading)}/>
-      </div>}
-    </div>
-  );
+  const [loading, isLoading] = useState(false);
+  console.log(loading);
+  return <div>{loading ? <Loader /> :<div>
+  <div className="home">
+    <CategoryList isLoading={(loading) => isLoading(loading)} />
+    <ProductHighlight />
+  </div>
+  <Offers />
+</div>}</div>;
 }
 
 export default LandingPage;
