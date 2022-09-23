@@ -7,7 +7,6 @@ import Loader from "../../components/loader/loader";
 
 function LandingPage() {
   const [loading, isLoading] = useState(false);
-  console.log(loading);
   return (
     <div>
       {loading ? (
