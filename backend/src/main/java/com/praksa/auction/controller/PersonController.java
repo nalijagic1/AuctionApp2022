@@ -51,23 +51,23 @@ public class PersonController {
     }
 
     @PostMapping()
-    public ResponseEntity<UserTableDto> getAllUsers(@RequestBody UserListRequest userListRequest){
+    public ResponseEntity<UserTableDto> getAllUsers(@RequestBody UserListRequest userListRequest) {
         return ResponseEntity.ok(personService.getAllUsers(userListRequest));
     }
 
     @PostMapping("/filtered")
-    public ResponseEntity<UserTableDto> getFilteredUser(@RequestBody UserListRequest userListRequest){
+    public ResponseEntity<UserTableDto> getFilteredUser(@RequestBody UserListRequest userListRequest) {
         return ResponseEntity.ok(personService.getFilteredUsers(userListRequest));
     }
 
     @PutMapping("/updateUserStatus")
-    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Long> personId, @RequestParam String statusReason){
-        personService.updateUserStatus(status,personId,StatusReasonsEnum.valueOf(statusReason).getStatusMessage());
+    public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Long> personId, @RequestParam String statusReason) {
+        personService.updateUserStatus(status, personId, StatusReasonsEnum.valueOf(statusReason).getStatusMessage());
         return ResponseEntity.ok("Succesful update");
     }
 
     @GetMapping("/updatedStatusCount/{statusId}")
-    public ResponseEntity<Integer> getUpdatedStatusCount(@PathVariable Integer statusId, @RequestParam long lastLogin){
-        return ResponseEntity.ok(personService.getNewStatusCount(statusId,new Date(lastLogin)));
+    public ResponseEntity<Integer> getUpdatedStatusCount(@PathVariable Integer statusId, @RequestParam long lastLogin) {
+        return ResponseEntity.ok(personService.getNewStatusCount(statusId, new Date(lastLogin)));
     }
 }

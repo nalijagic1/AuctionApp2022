@@ -1,6 +1,8 @@
-import React, { useContext, useEffect } from "react";
-import { UNSAFE_NavigationContext, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import PopUpDialog from "../components/popUpDialog/popUpDialog";
 import personService from "../services/person.service";
+import { DIALOG_CONTENT, DIALOG_TYPE } from "./dialog";
 const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
@@ -9,7 +11,8 @@ const parseJwt = (token) => {
   }
 };
 function AuthVerify() {
-  const { navigator } = useContext(UNSAFE_NavigationContext);
+  const [openDialog, setOpenDialog] = useState(false);
+  const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -17,12 +20,23 @@ function AuthVerify() {
       const decodedJwt = parseJwt(user.token);
       if (decodedJwt.exp * 1000 < Date.now()) {
         personService.logout();
-        navigate("/");
-        window.location.reload();
+        setOpenDialog(true);
       }
     }
-  }, [navigator,navigate]);
-  return <div></div>;
+  }, [navigator, location]);
+  return (
+    <div>
+      <PopUpDialog
+        type={DIALOG_TYPE.INFO}
+        open={openDialog}
+        message={DIALOG_CONTENT.TOKEN_EXPIRED}
+        onClose={() => {
+          setOpenDialog(false);
+          navigate("/");
+          window.location.reload();
+        }}
+      ></PopUpDialog>
+    </div>
+  );
 }
-//86400000
 export default AuthVerify;

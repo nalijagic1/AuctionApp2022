@@ -1,5 +1,5 @@
 package com.praksa.auction.config.schedul;
-import com.praksa.auction.config.security.services.UserDetailsServiceImpl;
+
 import com.praksa.auction.enums.StatusReasonsEnum;
 import com.praksa.auction.enums.UserStatusEnum;
 import com.praksa.auction.model.Person;
@@ -11,12 +11,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 @Configuration
 @EnableScheduling
@@ -25,12 +21,12 @@ public class PersonScheduler {
     private PersonService personService;
 
     @Scheduled(cron = "0 0 0 * * *")
-    public void lookForArchived(){
+    public void lookForArchived() {
         List<Person> regularUsers = personService.getAllUsersWithStatus(UserStatusEnum.User);
         LocalDate now = LocalDate.now();
-        for (Person person:regularUsers) {
-            Period difference = Period.between(person.getLastLogIn(),now);
-            if(Math.abs(difference.getMonths()) >= 6){
+        for (Person person : regularUsers) {
+            Period difference = Period.between(person.getLastLogIn(), now);
+            if (Math.abs(difference.getMonths()) >= 6) {
                 personService.updateUserStatus(UserStatusEnum.Archived.getStatusCode(), Arrays.asList(person.getId()), StatusReasonsEnum.NON_ACTIVE.getStatusMessage());
             }
         }

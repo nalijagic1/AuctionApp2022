@@ -1,4 +1,4 @@
-.dialog .MuiDialogTitle-root{
+.dialog .MuiDialogTitle-root {
   text-align: center;
 }
 
@@ -14,9 +14,11 @@
 
 .answerButtons {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit,minmax(min-content, 0));
+  justify-content: center;
   padding: 95px 41.5px 35px 41.5px;
 }
+
 .answerButtons button {
   width: 148px;
   height: 51px;

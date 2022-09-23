@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ROLES } from "../../utils/roles";
 import personService from "../../services/person.service";
 
-function NavigationWhite({expanded}) {
+function NavigationWhite({ expanded }) {
   const user = personService.getCurrentUser();
   let navigate = useNavigate();
   const location = useLocation();
@@ -35,7 +35,7 @@ function NavigationWhite({expanded}) {
   }
 
   return (
-    <div className={`whitenav ${expanded ? `compress`: ``}`}>
+    <div className={`whitenav ${expanded ? `compress` : ``}`}>
       <div
         id="logo"
         className={showSearchAndMenu.current ? "navHome" : "navLogIn"}
@@ -73,9 +73,7 @@ function NavigationWhite({expanded}) {
                   {displayAccountMenu && (
                     <div className="accountSubmenu">
                       <a href="/addItem">
-                        {user.seller
-                          ? "Add additional item"
-                          : "Become seller"}
+                        {user.seller ? "Add additional item" : "Become seller"}
                       </a>
                     </div>
                   )}

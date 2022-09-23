@@ -10,14 +10,14 @@
   row-gap: 10px;
 }
 
-.mainPicture{
+.mainPicture {
   width: 453px;
   height: 622px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.mainPicture img{
+.mainPicture img {
   object-fit: contain;
   max-width: 453px;
   max-height: 622px;

@@ -29,8 +29,8 @@ function NewProductDetails(props) {
       return p;
     });
   }
-  function addImage(event){
-    if(event.target.value.length){
+  function addImage(event) {
+    if (event.target.value.length) {
       setError(updateErrorMessage(error, "pictures"));
       setPictures((p) => p.concat(event.target.files[0]));
     }
@@ -143,7 +143,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
-                  addImage(event)
+                  addImage(event);
                 }}
               />
             </label>
@@ -173,7 +173,7 @@ function NewProductDetails(props) {
                 type="file"
                 accept="image/*"
                 onChange={(event) => {
-                 addImage(event)
+                  addImage(event);
                 }}
               />
             </label>

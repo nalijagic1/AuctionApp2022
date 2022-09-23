@@ -1,4 +1,4 @@
-.paging .MuiPaginationItem-page:hover{
+.paging .MuiPaginationItem-page:hover {
   background-color: transparent;
 }
 
@@ -19,8 +19,6 @@
 .paging .MuiPaginationItem-previousNext {
   color: #8367d8;
 }
-
-
 
 .pagePicker {
   width: 550px;

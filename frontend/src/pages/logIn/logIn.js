@@ -20,10 +20,14 @@ function LogIn() {
     personService
       .logIn(email, password)
       .then((response) => {
-          if (localStorage.getItem("user")) {
-            navigate(personService.getCurrentUser().role === ROLES.ADMIN ? "/userManagement":"/");
-            window.location.reload();
-          }
+        if (localStorage.getItem("user")) {
+          navigate(
+            personService.getCurrentUser().role === ROLES.ADMIN
+              ? "/userManagement"
+              : "/"
+          );
+          window.location.reload();
+        }
       })
       .catch((error) => {
         if (error.response.data === "Bad credentials") {
@@ -59,7 +63,7 @@ function LogIn() {
             type="email"
             value={email}
             onChange={(e) => {
-              setError(updateErrorMessage(error,"email"));
+              setError(updateErrorMessage(error, "email"));
               setEmail(e.target.value);
             }}
             error={error.email}
@@ -72,7 +76,7 @@ function LogIn() {
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => {
-              setError(updateErrorMessage(error,"password"));
+              setError(updateErrorMessage(error, "password"));
               setPassword(e.target.value);
             }}
             error={error.password}

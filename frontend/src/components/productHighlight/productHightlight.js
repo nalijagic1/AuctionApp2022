@@ -8,7 +8,7 @@ import Button from "../button/button";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { STATUS_CODES } from "../../utils/httpStatusCode";
 
-function ProductHighlight({isLoading}) {
+function ProductHighlight({ isLoading }) {
   const [product, setProduct] = useState([]);
   const [image, setImage] = useState();
   useEffect(() => {
@@ -19,9 +19,10 @@ function ProductHighlight({isLoading}) {
         pictureService
           .getProductCoverPicture(response.data.id)
           .then((response) => {
-            if (response.status === STATUS_CODES.OK) {setImage(response.data); 
+            if (response.status === STATUS_CODES.OK) {
+              setImage(response.data);
               //isLoading(false)
-            };
+            }
           });
       }
     });

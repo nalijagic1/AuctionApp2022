@@ -35,7 +35,7 @@ function SideBar({ expanded }) {
           <Dashboard className="icons" />
           {expand && <h2>Dashboard</h2>}
         </a>
-        <a  href="/userManagement"className="sideBarOption">
+        <a href="/userManagement" className="sideBarOption">
           <User className="icons" />
           {expand && <h2>Users Managment</h2>}
         </a>

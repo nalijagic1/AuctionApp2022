@@ -34,16 +34,31 @@ class PersonDataService {
     return null;
   }
 
-  getAllUsers(page, count, filters, sort,search) {
-    return httpCommon.post(filters.length === 0 ? "/people":"/people/filtered", { page, count,filters, sort,search })
+  getAllUsers(page, count, filters, sort, search) {
+    return httpCommon.post(
+      filters.length === 0 ? "/people" : "/people/filtered",
+      { page, count, filters, sort, search }
+    );
   }
 
-  updateStatus(personId,status,statusReason){
-    return httpCommon.put("/people/updateUserStatus?status="+status+"&personId="+personId+"&statusReason="+statusReason);
+  updateStatus(personId, status, statusReason) {
+    return httpCommon.put(
+      "/people/updateUserStatus?status=" +
+        status +
+        "&personId=" +
+        personId +
+        "&statusReason=" +
+        statusReason
+    );
   }
 
-  getUpdatedStatusCount(status,lastLogin){
-    return httpCommon.get("/people/updatedStatusCount/"+status+"?lastLogin="+moment(lastLogin).milliseconds())
+  getUpdatedStatusCount(status, lastLogin) {
+    return httpCommon.get(
+      "/people/updatedStatusCount/" +
+        status +
+        "?lastLogin=" +
+        moment(lastLogin).milliseconds()
+    );
   }
 }
 

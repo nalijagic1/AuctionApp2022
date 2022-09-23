@@ -31,7 +31,7 @@ function TableHeader({
   return (
     <div className="tableHeader">
       <Checkbox checked={checked} onChange={(checked) => setChecked(checked)} />
-      {columns[0].show && (
+      {columns["Name"] && (
         <SortFilter
           label="Full name"
           width="150px"
@@ -41,7 +41,7 @@ function TableHeader({
           onSelect={(sort) => setSort(sort)}
         />
       )}
-      {columns[1].show && (
+      {columns["Date of creation"] && (
         <SortFilter
           label="Date of creation"
           width="180px"
@@ -51,7 +51,7 @@ function TableHeader({
           onSelect={(sort) => setSort(sort)}
         />
       )}
-      {columns[3].show && (
+      {columns["Email"] && (
         <SortFilter
           label="Email"
           width="150px"
@@ -61,16 +61,16 @@ function TableHeader({
           onSelect={(sort) => setSort(sort)}
         />
       )}
-      {columns[2].show && (
+      {columns["Mobile number"] && (
         <SortFilter label="Mobile Number" enableSort={false} />
       )}
-      {columns[4].show && (
+      {columns["Location"] && (
         <SortFilter label="Location" enableSort={false} width="190px" />
       )}
-      {columns[5].show && (
+      {columns["Status"] && (
         <SortFilter label="Status" width="100px" enableSort={false} />
       )}
-      {columns[6].show && (
+      {columns["Status update"] && (
         <SortFilter
           label="Status update"
           type="date"

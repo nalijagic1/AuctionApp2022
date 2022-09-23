@@ -38,11 +38,6 @@ export const ROLES_CODE = {
   BLACK: 4,
 };
 
-export const REMOVE_STATUS_MESSAGE = {
-  GOLDEN: "Are you sure you want to remove golden status to these users?",
-  RESTRICTED: "Are you sure you want remove restriction to these users?",
-  BLACK: "Are you sure you want remove these users from black list?",
-};
 
 export const REMOVE_STATUS_BUTTON = {
   2: "Remove Golden Status",
@@ -51,10 +46,10 @@ export const REMOVE_STATUS_BUTTON = {
 };
 
 export const STATUS_REASONS = {
-  ADMIN_GRANTED:"ADMIN_GRANTED",
-  BLACK_LISTED_CARD:"BLACK_LISTED_CARD",
-  NO_FUND_CARD:"NO_FUND_CARD",
-  SUCCESSFUL_MONTH:"SUCCESSFUL_MONTH",
-  REGULAR:"REGULAR",
-  NON_ACTIVE:"NON_ACTIVE"
-}
+  ADMIN_GRANTED: "ADMIN_GRANTED",
+  BLACK_LISTED_CARD: "BLACK_LISTED_CARD",
+  NO_FUND_CARD: "NO_FUND_CARD",
+  SUCCESSFUL_MONTH: "SUCCESSFUL_MONTH",
+  REGULAR: "REGULAR",
+  NON_ACTIVE: "NON_ACTIVE",
+};

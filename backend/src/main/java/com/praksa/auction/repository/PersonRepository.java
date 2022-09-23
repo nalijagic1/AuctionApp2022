@@ -36,17 +36,17 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status,status_reason = :statusMessage WHERE id IN :userId", nativeQuery = true)
-    void updateStatus(int status, List<Long> userId,String statusMessage);
+    void updateStatus(int status, List<Long> userId, String statusMessage);
 
-    @Query(value = "SELECT * FROM PERSON p WHERE p.status != 0 AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')",nativeQuery = true)
-    Page<Person> searchAllUsers(Pageable pageable,String search);
+    @Query(value = "SELECT * FROM PERSON p WHERE p.status != 0 AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')", nativeQuery = true)
+    Page<Person> searchAllUsers(Pageable pageable, String search);
 
 
-    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')",nativeQuery = true)
-    Page<Person> searchAllFilteredUsers(Pageable pageable,String search,List<Integer> status);
+    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')", nativeQuery = true)
+    Page<Person> searchAllFilteredUsers(Pageable pageable, String search, List<Integer> status);
 
-    @Query(value = "SELECT COUNT(p.id) FROM person p WHERE p.status_update > :lastLogin AND p.status = :status ",nativeQuery = true)
-    Integer countUpdatedUsersByStatus(Date lastLogin,Integer status);
+    @Query(value = "SELECT COUNT(p.id) FROM person p WHERE p.status_update > :lastLogin AND p.status = :status ", nativeQuery = true)
+    Integer countUpdatedUsersByStatus(Date lastLogin, Integer status);
 
     List<Person> findPersonByStatus(UserStatusEnum status);
 }

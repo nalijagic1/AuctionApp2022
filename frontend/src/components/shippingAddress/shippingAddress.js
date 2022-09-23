@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Field from "../field/field";
 import "./shippingAddress.css";
 import countryService from "../../services/country.service";

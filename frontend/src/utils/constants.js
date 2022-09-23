@@ -12,6 +12,6 @@ export const FRONTEND_URL =
     : "http://localhost:3000";
 export const STRIPE_PUBLIC =
   "pk_test_51LVB8xBj1vinbdx6NyD5IYpzSgWonLR41HNAETguKGEXelw3DcPqP0l3JQ69NAsJOjrfPue0tK2rjJ423fr5PgJS00fSun4phx";
-export const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dttoyjaor/image/upload';
-export const CLOUDINARY_UPLOAD_PRESET = 'auction';
-  
+export const CLOUDINARY_URL =
+  "https://api.cloudinary.com/v1_1/dttoyjaor/image/upload";
+export const CLOUDINARY_UPLOAD_PRESET = "auction";

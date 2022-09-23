@@ -50,20 +50,20 @@ function UserTableRow({
           }}
         />
       </div>
-      { columns[0].show &&<div className="userName">
+      { columns["Name"] &&<div className="userName">
       <div className="userAvatar">
         <Avatar src={user.picture} />
       </div>
       <h2 className="userFullName">
         {user.lastName} {user.firstName}
       </h2></div>}
-      { columns[1].show && <h2 className="creationDate">
+      { columns["Date of creation"] && <h2 className="creationDate">
         {moment(user.firstLogIn).format("DD MMMM YYYY")}
       </h2>}
-      { columns[3].show && <h2 className="userEmail">{user.email}</h2>}
-      { columns[2].show &&<h2 className="userPhoneNumber">{user.phoneNumber}</h2>}
-      { columns[4].show &&<h2 className="userAddress">{user.address && user.address.street}</h2>}
-      { columns[5].show && <div className="userStatusIcon">
+      { columns["Email"] && <h2 className="userEmail">{user.email}</h2>}
+      { columns["Mobile number"]&&<h2 className="userPhoneNumber">{user.phoneNumber}</h2>}
+      { columns["Location"] &&<h2 className="userAddress">{user.address && user.address.street}</h2>}
+      { columns["Status"] && <div className="userStatusIcon">
         <h2 className={`userStatus${user.status}`}>
           {ROLES_TITLES[user.status.toUpperCase()]}
         </h2>
@@ -85,7 +85,7 @@ function UserTableRow({
           </TooltipMessage>
         </StyledEngineProvider>
       </div>}
-      { columns[6].show && <h2 className="userStatusUpdate">
+      { columns["Status update"]&& <h2 className="userStatusUpdate">
         {moment(user.statusUpdate).format("DD MMMM YYYY")}
       </h2>}
       <TbDotsVertical

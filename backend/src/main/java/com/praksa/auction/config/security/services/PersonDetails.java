@@ -1,9 +1,9 @@
 package com.praksa.auction.config.security.services;
 
-import com.praksa.auction.model.Address;
 import com.praksa.auction.enums.GenderEnum;
-import com.praksa.auction.model.Person;
 import com.praksa.auction.enums.UserStatusEnum;
+import com.praksa.auction.model.Address;
+import com.praksa.auction.model.Person;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

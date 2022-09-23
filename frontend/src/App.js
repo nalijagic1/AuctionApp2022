@@ -25,7 +25,7 @@ import AuthVerify from "./utils/auth-verify";
 
 function App() {
   const user = personService.getCurrentUser();
-  const [expanded,setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(false);
   return (
     <div className="App">
       <Helmet>
@@ -37,26 +37,28 @@ function App() {
       </Helmet>
       <div className="content">
         <NavigationBlack />
-        {user && user.role === ROLES.ADMIN && <SideBar expanded = {(expand) => setExpanded(expand)}/>}
-        <NavigationWhite expanded = {expanded} />
-        <div className={expanded ? "compressContent":""}>
+        {user && user.role === ROLES.ADMIN && (
+          <SideBar expanded={(expand) => setExpanded(expand)} />
+        )}
+        <NavigationWhite expanded={expanded} />
+        <div className={expanded ? "compressContent" : ""}>
           <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/privacy" element={<PrivacyAndPolicy />} />
-          <Route path="/terms" element={<TermsAndConditions />} />
-          <Route path="/aboutUs" element={<AboutUs />} />
-          <Route path="/product/:productId" element={<SingleProduct />} />
-          <Route path="/shop/:category" element={<ShopPage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/paymentComplete" element={<SuccesfulPayment />} />
-          <Route path ="/addItem" element={<AddNewItem/>}/>
-          <Route path="/userManagement" element={<UserManagement/>}/>
-        </Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/privacy" element={<PrivacyAndPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+            <Route path="/aboutUs" element={<AboutUs />} />
+            <Route path="/product/:productId" element={<SingleProduct />} />
+            <Route path="/shop/:category" element={<ShopPage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/paymentComplete" element={<SuccesfulPayment />} />
+            <Route path="/addItem" element={<AddNewItem />} />
+            <Route path="/userManagement" element={<UserManagement />} />
+          </Routes>
         </div>
-        <AuthVerify/>
+        <AuthVerify />
       </div>
       <footer className="foot">
         <Footer />

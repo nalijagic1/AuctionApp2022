@@ -1,21 +1,21 @@
-.tableHeader{
-    display:flex;
-    background-color: #8367d8;
-    width: 1230px;
-    padding:8px 0px 8px 25px;
+.tableHeader {
+  display: flex;
+  background-color: #8367d8;
+  width: 1230px;
+  padding: 8px 0px 8px 25px;
 }
 
-.moreIcon{
-    color:#FFFFFF;
-    font-weight: 800;
-    margin-left: auto;
-    margin-right: 25px;
-    width: 20px;
-    height: 20px;
+.moreIcon {
+  color: #ffffff;
+  font-weight: 800;
+  margin-left: auto;
+  margin-right: 25px;
+  width: 20px;
+  height: 20px;
 }
 
-.headerOptionsMenu{
-    position: absolute;
-    margin-left: 1037px;
-    margin-top: 32px;
+.headerOptionsMenu {
+  position: absolute;
+  margin-left: 1037px;
+  margin-top: 32px;
 }

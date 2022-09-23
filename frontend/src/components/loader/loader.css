@@ -1,5 +1,6 @@
 .loader {
   margin-top: 100px;
+  margin-bottom: 100px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -7,12 +8,6 @@
   justify-content: center;
 }
 
-
-.loader h1{
-  color:#8367D8;
-  opacity: 1;
-}
-
-.loading .MuiCircularProgress-circle{
-    color: #8367D8;
+.loading .MuiCircularProgress-circle {
+  color: #8367d8;
 }

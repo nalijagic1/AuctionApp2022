@@ -42,7 +42,7 @@
   margin-right: 16px;
 }
 
-.userName{
+.userName {
   display: flex;
 }
 .userFullName {
@@ -142,7 +142,7 @@
   margin-right: 8px;
 }
 
-.statusTooltipContent{
+.statusTooltipContent {
   margin-top: 8px;
 }
 .statusTooltipContent h2 {

@@ -29,9 +29,13 @@ function Registration() {
     personService
       .createAccount(firstName, lastName, email, password)
       .then((response) => {
-          if (localStorage.getItem("user")) {
-            navigate(personService.getCurrentUser().role === ROLES.ADMIN ? "/userManagement":"/");
-            window.location.reload();
+        if (localStorage.getItem("user")) {
+          navigate(
+            personService.getCurrentUser().role === ROLES.ADMIN
+              ? "/userManagement"
+              : "/"
+          );
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -67,7 +71,7 @@ function Registration() {
             id="firstName"
             type="text"
             onChange={(e) => {
-              setError(updateErrorMessage(error,"firstName"));
+              setError(updateErrorMessage(error, "firstName"));
               setFirstName(e.target.value);
             }}
             error={error.firstName}
@@ -80,7 +84,7 @@ function Registration() {
             id="lastName"
             type="text"
             onChange={(e) => {
-              setError(updateErrorMessage(error,"lastName"));
+              setError(updateErrorMessage(error, "lastName"));
               setLastName(e.target.value);
             }}
             error={error.lastName}
@@ -94,7 +98,7 @@ function Registration() {
             type="email"
             value={email}
             onChange={(e) => {
-              setError(updateErrorMessage(error,"email"));
+              setError(updateErrorMessage(error, "email"));
               setEmail(e.target.value);
             }}
             error={error.email}
@@ -107,7 +111,7 @@ function Registration() {
             value={password}
             type={showPassword ? "text" : "password"}
             onChange={(e) => {
-              setError(updateErrorMessage(error,"password"));
+              setError(updateErrorMessage(error, "password"));
               setPassword(e.target.value);
               setPasswordStrengthMessage(
                 validation.validatePassword(e.target.value)

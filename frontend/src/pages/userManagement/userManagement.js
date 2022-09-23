@@ -9,14 +9,15 @@ import personService from "../../services/person.service";
 import SortFilter from "../../components/sortFilter/sortFilter";
 import FilterBadges from "../../components/filterBadges/filterBadges";
 import {
-  REMOVE_STATUS_MESSAGE,
   REMOVE_STATUS_BUTTON,
   ROLES_CODE,
   STATUS_REASONS,
 } from "../../utils/roles";
+
+import { DIALOG_TYPE, DIALOG_CONTENT } from "../../utils/dialog";
 import NoUsersFound from "../../components/noUsersFound/noUsersFound";
 import Button from "../../components/button/button";
-import ConfirmDialog from "../../components/confirmDialog/confirmDialog";
+import PopUpDialog from "../../components/popUpDialog/popUpDialog";
 import Notification from "../../components/notification/notification";
 import {
   NOTIFICATION_MESSAGES,
@@ -27,8 +28,9 @@ function UserManagement() {
   const [searchUser, setSearchUser] = useState("");
   const [newGoldenUsers, setNewGoldenUsers] = useState(0);
   const [newRestrictedUsers, setNewRestrictedUsers] = useState(0);
-  const [showGoldenNotification,setShowGoldenNotification] = useState(true)
-  const [showRestrictedNotification,setShowRestrictedNotification] = useState(true)
+  const [showGoldenNotification, setShowGoldenNotification] = useState(true);
+  const [showRestrictedNotification, setShowRestrictedNotification] =
+    useState(true);
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [count, setCount] = useState(10);
@@ -46,7 +48,15 @@ function UserManagement() {
     restricted: false,
     archived: false,
   });
-  const [columns,setColumns] = useState([{name:"Name",show:true},{name:"Date of creation",show:true},{name:"Mobile number",show:true},{name:"Email",show:true},{name:"Location",show:true},{name:"Status",show:true},{name:"Status update",show:true}])
+  const [columns, setColumns] = useState({
+    Name: true,
+    "Date of creation": true,
+    "Mobile number": true,
+    Email: true,
+    Location: true,
+    Status: true,
+    "Status update": true,
+  });
   function unselectFilter(filter) {
     var activeFilter = { ...selectedFilter };
     activeFilter[filter] = false;
@@ -60,12 +70,14 @@ function UserManagement() {
   }
 
   function onRemoveApproved() {
-    personService.updateStatus(selectedUsers, ROLES_CODE.USER,STATUS_REASONS.REGULAR).then(() => {
-      setSelectedUsers([]);
-      setChecked(false);
-      setStatusChange(statusChange + 1);
-      setOpenConfirm(false);
-    });
+    personService
+      .updateStatus(selectedUsers, ROLES_CODE.USER, STATUS_REASONS.REGULAR)
+      .then(() => {
+        setSelectedUsers([]);
+        setChecked(false);
+        setStatusChange(statusChange + 1);
+        setOpenConfirm(false);
+      });
   }
   useEffect(() => {
     personService
@@ -76,31 +88,45 @@ function UserManagement() {
       });
   }, [page, count, filterCodes, sort, searchUser, statusChange]);
 
-  useEffect(()=>{
-    personService.getUpdatedStatusCount(ROLES_CODE.GOLDEN,personService.getCurrentUser.lastLogIn).then((response)=>{
-      setNewGoldenUsers(response.data)
-    })
-    personService.getUpdatedStatusCount(ROLES_CODE.RESTRICTED,personService.getCurrentUser.lastLogIn).then((response)=>{
-      setNewRestrictedUsers(response.data)
-    })
-  })
+  useEffect(() => {
+    personService
+      .getUpdatedStatusCount(
+        ROLES_CODE.GOLDEN,
+        personService.getCurrentUser.lastLogIn
+      )
+      .then((response) => {
+        setNewGoldenUsers(response.data);
+      });
+    personService
+      .getUpdatedStatusCount(
+        ROLES_CODE.RESTRICTED,
+        personService.getCurrentUser.lastLogIn
+      )
+      .then((response) => {
+        setNewRestrictedUsers(response.data);
+      });
+  });
   return (
     <div className="userManagmentView">
       <h5>User Management</h5>
-      {showGoldenNotification && <Notification
-        notificationMessage={`${newGoldenUsers}${NOTIFICATION_MESSAGES.NEW_GOLDEN_USERS} `}
-        notificationType={NOTIFICATION_TYPES.GOLDEN}
-        exitable={true}
-        setShowNotification ={(show)=>setShowGoldenNotification(show)}
-        link={newGoldenUsers > 0 ? "Take a look at them!" : ""}
-      />}
-      {showRestrictedNotification && <Notification
-        notificationMessage={`${newRestrictedUsers}${NOTIFICATION_MESSAGES.NEW_RESTRICTED_USERS} `}
-        notificationType={NOTIFICATION_TYPES.RESTRICTED}
-        exitable={true}
-        setShowNotification ={(show)=>setShowRestrictedNotification(show)}
-        link={newRestrictedUsers > 0 ? "Move them to black list!" : ""}
-      ></Notification>}
+      {showGoldenNotification && (
+        <Notification
+          notificationMessage={`${newGoldenUsers}${NOTIFICATION_MESSAGES.NEW_GOLDEN_USERS} `}
+          notificationType={NOTIFICATION_TYPES.GOLDEN}
+          exitable={true}
+          setShowNotification={(show) => setShowGoldenNotification(show)}
+          link={newGoldenUsers > 0 ? "Take a look at them!" : ""}
+        />
+      )}
+      {showRestrictedNotification && (
+        <Notification
+          notificationMessage={`${newRestrictedUsers}${NOTIFICATION_MESSAGES.NEW_RESTRICTED_USERS} `}
+          notificationType={NOTIFICATION_TYPES.RESTRICTED}
+          exitable={true}
+          setShowNotification={(show) => setShowRestrictedNotification(show)}
+          link={newRestrictedUsers > 0 ? "Move them to black list!" : ""}
+        ></Notification>
+      )}
       <div className="userManagmentContent">
         <div className="userManagmentOptions">
           <Filter
@@ -145,22 +171,27 @@ function UserManagement() {
               );
             })}
           </div>
-          {selectedUsers.length !== 0 && filterCodes.length === 1 && filterCodes[0]!==1 && filterCodes[0]!==5 &&(
-            <div className="removeStatus">
-              <Button
-                label={REMOVE_STATUS_BUTTON[filterCodes[0]]}
-                onClick={() => {
-                  setOpenConfirm(true);
-                }}
-                buttonClass="purpleButton removeButton"
-              ></Button>
-            </div>
-          )}
+          {selectedUsers.length !== 0 &&
+            filterCodes.length === 1 &&
+            filterCodes[0] !== 1 &&
+            filterCodes[0] !== 5 && (
+              <div className="removeStatus">
+                <Button
+                  label={REMOVE_STATUS_BUTTON[filterCodes[0]]}
+                  onClick={() => {
+                    setOpenConfirm(true);
+                  }}
+                  buttonClass="purpleButton removeButton"
+                ></Button>
+              </div>
+            )}
         </div>
         <div className="userTable">
           <TableHeader
-          columns={columns}
-          changeHeaderView={(column)=>{setColumns(column)}}
+            columns={columns}
+            changeHeaderView={(column) => {
+              setColumns(column);
+            }}
             checked={checked}
             setChecked={(checked) => {
               setSelectedUsers(
@@ -177,7 +208,7 @@ function UserManagement() {
           {users && users.length !== 0 ? (
             users.map((user) => {
               return (
-                <UserTableRow 
+                <UserTableRow
                   columns={columns}
                   user={user}
                   rowId={users.indexOf(user)}
@@ -199,7 +230,7 @@ function UserManagement() {
             })
           ) : (
             <NoUsersFound
-              filter = {filterCodes}
+              filter={filterCodes}
               onClick={() => {
                 setSelectedFilter({
                   golden: false,
@@ -233,12 +264,13 @@ function UserManagement() {
           </div>
         )}
         {selectedUsers.length > 0 && (
-          <ConfirmDialog
+          <PopUpDialog
+            type ={DIALOG_TYPE.CONFIRM}
             open={openConfirm}
-            message={REMOVE_STATUS_MESSAGE[users[0].status.toUpperCase()]}
+            message={DIALOG_CONTENT[users[0].status.toUpperCase()]}
             onClose={() => setOpenConfirm(false)}
             onApproved={onRemoveApproved}
-          ></ConfirmDialog>
+          ></PopUpDialog>
         )}
       </div>
     </div>

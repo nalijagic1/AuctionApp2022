@@ -8,7 +8,7 @@
   margin-right: 120px;
 }
 
-.compress{
+.compress {
   margin-left: 110px;
   width: 90%;
 }
@@ -108,11 +108,11 @@
   display: flex;
 }
 
-.accountSubmenu{
+.accountSubmenu {
   margin-top: 10px;
   position: absolute;
   height: fit-content;
-  padding:10px;
+  padding: 10px;
   border: 1px solid #e3e3e3;
   border-top: none;
 }

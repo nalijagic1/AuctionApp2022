@@ -17,8 +17,8 @@ function Gallery({ productId }) {
   return (
     <div className="gallery">
       <div>
-        <div className="mainPicture" >
-           <img src={shown} alt="Main"></img>
+        <div className="mainPicture">
+          <img src={shown} alt="Main"></img>
         </div>
         <div className="pictureGrid">
           {pictures.map((picture) => (

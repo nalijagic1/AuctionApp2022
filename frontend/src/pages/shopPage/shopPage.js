@@ -20,7 +20,7 @@ function ShopPage() {
   let start = useRef(1);
   let previous = useRef("");
   const filter = word ? word : param.category;
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   function showMore() {
     start.current += 1;
@@ -68,7 +68,7 @@ function ShopPage() {
         </div>
       )}
       <div className="shop">
-        <CategoryList filter={filter} isLoading={(load)=>setLoading(load)}/>
+        <CategoryList filter={filter} isLoading={(load) => setLoading(load)} />
         <SearchResult results={products} />
       </div>
       {hasMore.current && (

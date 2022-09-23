@@ -68,7 +68,7 @@ public class ProductController {
     }
 
     @PostMapping("/newProduct")
-    public ResponseEntity<?> addNewProduct(@RequestBody NewProductDto productDto){
+    public ResponseEntity<?> addNewProduct(@RequestBody NewProductDto productDto) {
         logger.info("Adding new product process started");
         return ResponseEntity.ok(productService.addNewProduct(productDto));
     }
@@ -80,8 +80,8 @@ public class ProductController {
     }
 
     @PutMapping("/updateEndDate/{productId}")
-    public ResponseEntity<String> updateEndDate(@RequestParam long date,@PathVariable long productId){
-        productService.updateEndDate(new Date(date),productId);
+    public ResponseEntity<String> updateEndDate(@RequestParam long date, @PathVariable long productId) {
+        productService.updateEndDate(new Date(date), productId);
         return ResponseEntity.ok("Succesful date update");
     }
 }

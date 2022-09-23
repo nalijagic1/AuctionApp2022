@@ -18,7 +18,7 @@ public class AddressController {
     }
 
     @PostMapping("/addAddress/{personId}")
-    public ResponseEntity<?> addAddressIfNotExist(@PathVariable long personId,@RequestBody AddressInfoDto address) {
+    public ResponseEntity<?> addAddressIfNotExist(@PathVariable long personId, @RequestBody AddressInfoDto address) {
         Address newAddress = addressService.addAddressIfNotExist(address, personId);
         return ResponseEntity.ok(newAddress);
     }

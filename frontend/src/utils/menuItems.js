@@ -68,7 +68,7 @@ class MenuItems {
         <h2
           className="sortMenuOption"
           onClick={() => {
-            onSortSelect({ field: field, direction: "ASC"});
+            onSortSelect({ field: field, direction: "ASC" });
           }}
         >
           Oldest date
@@ -286,9 +286,8 @@ class MenuItems {
   }
 
   changeColumns(columns, field) {
-    var newColumns = [ ...columns ];
-    var fieldIndex = newColumns.findIndex((column) => column.name === field);
-    newColumns[fieldIndex].show = !newColumns[fieldIndex].show;
+    var newColumns = { ...columns };
+    newColumns[field] = !newColumns[field];
     return newColumns;
   }
 
@@ -297,30 +296,34 @@ class MenuItems {
       <div className="headerMenu">
         <h3>View options</h3>
         <h3>Show columns</h3>
-        {columns.map((column) => { return <div>
-          {
-            column.show && (
-              <h2 className="sortMenuOption"
-                onClick={() =>
-                  onRowSelect(this.changeColumns(columns, column.name))
-                }
-              >
-                {column.name} <AiOutlineEye className="dropdownicon"/>
-              </h2>
-            )
-          }</div>
-        })}
-        <h3>Hide columns</h3>
-        {columns.map((column) => {
+        {Object.keys(columns).map((column) => {
           return (
             <div>
-              {!column.show && (
-                <h2 className="sortMenuOption"
+              {columns[column] && (
+                <h2
+                  className="sortMenuOption"
                   onClick={() =>
-                    onRowSelect(this.changeColumns(columns, column.name))
+                    onRowSelect(this.changeColumns(columns, column))
                   }
                 >
-                  {column.name} <AiOutlineEyeInvisible  className="dropdownicon"/>
+                  {column} <AiOutlineEye className="dropdownicon" />
+                </h2>
+              )}
+            </div>
+          );
+        })}
+        <h3>Hide columns</h3>
+        {Object.keys(columns).map((column) => {
+          return (
+            <div>
+              {!columns[column] && (
+                <h2
+                  className="sortMenuOption"
+                  onClick={() =>
+                    onRowSelect(this.changeColumns(columns, column))
+                  }
+                >
+                  {column} <AiOutlineEyeInvisible className="dropdownicon" />
                 </h2>
               )}
             </div>
@@ -328,7 +331,8 @@ class MenuItems {
         })}
         <hr></hr>
         <h3>
-          Add new columns <AiOutlinePlus className="dropdownicon"></AiOutlinePlus>
+          Add new columns{" "}
+          <AiOutlinePlus className="dropdownicon"></AiOutlinePlus>
         </h3>
       </div>
     );

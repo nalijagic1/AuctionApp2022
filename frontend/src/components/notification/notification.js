@@ -19,13 +19,18 @@ function Notification({
         }, 250);
       }, 5000);
     }
-  }, [exitable,setShowNotification]);
+  }, [exitable, setShowNotification]);
   return (
     <div className={showAlert ? "alert-shown" : "alert-hidden"}>
       <div className={`notification notification-${notificationType}`}>
         <p>{notificationMessage}</p>
         {link && <a href="/">{link}</a>}
-        {exitable && <AiOutlineClose className="closeNotification" onClick={()=>setShowNotification(false)}></AiOutlineClose>}
+        {exitable && (
+          <AiOutlineClose
+            className="closeNotification"
+            onClick={() => setShowNotification(false)}
+          ></AiOutlineClose>
+        )}
       </div>
     </div>
   );

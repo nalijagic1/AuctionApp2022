@@ -52,7 +52,7 @@ public class WebSecurityConfiguration {
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/bids/**","/payment/**").authenticated()
+                .authorizeRequests().antMatchers("/bids/**", "/payment/**").authenticated()
                 .anyRequest().permitAll().and().authenticationManager(authenticationManager);
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();

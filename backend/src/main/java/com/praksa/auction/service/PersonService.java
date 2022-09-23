@@ -4,8 +4,8 @@ import com.praksa.auction.config.security.jwt.JwtUtils;
 import com.praksa.auction.config.security.services.PersonDetails;
 import com.praksa.auction.dto.*;
 import com.praksa.auction.enums.StatusReasonsEnum;
-import com.praksa.auction.model.Person;
 import com.praksa.auction.enums.UserStatusEnum;
+import com.praksa.auction.model.Person;
 import com.praksa.auction.repository.PersonRepository;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -76,7 +76,7 @@ public class PersonService {
         return personRepository.findByEmail(email).get();
     }
 
-    private BasicUserInfoDto getUserInfo(PersonDetails userDetails){
+    private BasicUserInfoDto getUserInfo(PersonDetails userDetails) {
         BasicUserInfoDto basicPersonInfo = new BasicUserInfoDto();
         basicPersonInfo.setEmail(userDetails.getEmail());
         basicPersonInfo.setFirstName(userDetails.getFirstName());
@@ -88,6 +88,7 @@ public class PersonService {
         basicPersonInfo.setLastLogIn(userDetails.getLastLogIn());
         return basicPersonInfo;
     }
+
     public JwtResponseDto logIn(LogInDto loginInfo) {
         if (!personRepository.existsByEmail(loginInfo.getEmail())) {
             logger.error("email_address={} not found in database", loginInfo.getEmail());
@@ -100,8 +101,10 @@ public class PersonService {
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
         personRepository.updateLastLogIn(userDetails.getId());
-        if(userDetails.getStatus().equals(UserStatusEnum.Archived)) {
-            personRepository.updateStatus(1,Arrays.asList(userDetails.getId()),StatusReasonsEnum.REGULAR.getStatusMessage());};
+        if (userDetails.getStatus().equals(UserStatusEnum.Archived)) {
+            personRepository.updateStatus(1, Arrays.asList(userDetails.getId()), StatusReasonsEnum.REGULAR.getStatusMessage());
+        }
+        ;
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
 
@@ -125,30 +128,29 @@ public class PersonService {
     }
 
     public UserTableDto getAllUsers(UserListRequest userListRequest) {
-        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()),userListRequest.getSort().getField());
-        Page<Person> users = personRepository.searchAllUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch());
+        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()), userListRequest.getSort().getField());
+        Page<Person> users = personRepository.searchAllUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(), Sort.by(order)), userListRequest.getSearch());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
-    public UserTableDto getFilteredUsers(UserListRequest userListRequest){
-        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()),userListRequest.getSort().getField());
-        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(),Sort.by(order)),userListRequest.getSearch(),userListRequest.getFilters());
+    public UserTableDto getFilteredUsers(UserListRequest userListRequest) {
+        Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()), userListRequest.getSort().getField());
+        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(), Sort.by(order)), userListRequest.getSearch(), userListRequest.getFilters());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
 
-    public void updateUserStatus(int status, List<Long> personId,String statusMessage) {
-        personRepository.updateStatus(status,personId,statusMessage);
+    public void updateUserStatus(int status, List<Long> personId, String statusMessage) {
+        personRepository.updateStatus(status, personId, statusMessage);
     }
 
-    public Integer getNewStatusCount(int status,Date lastAdminLogin){
-        return personRepository.countUpdatedUsersByStatus(lastAdminLogin,status);
+    public Integer getNewStatusCount(int status, Date lastAdminLogin) {
+        return personRepository.countUpdatedUsersByStatus(lastAdminLogin, status);
     }
 
-    public List<Person> getAllUsersWithStatus(UserStatusEnum status){
+    public List<Person> getAllUsersWithStatus(UserStatusEnum status) {
         return personRepository.findPersonByStatus(status);
     }
-
 
 
 }
