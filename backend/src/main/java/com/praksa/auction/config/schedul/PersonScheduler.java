@@ -37,7 +37,7 @@ public class PersonScheduler {
                 archivedId.add(person.getId());
             }
         }
-        personService.updateUserStatus(UserStatusEnum.Archived.getStatusCode(), archivedId, StatusReasonsEnum.NON_ACTIVE.getStatusMessage());
+        personService.updateUserStatus(UserStatusEnum.Archived.getStatusCode(), archivedId, StatusReasonsEnum.NON_ACTIVE.getStatusMessage(),false);
     }
 
     private Double calculateSuccessPercentage(long userId) {
@@ -62,7 +62,7 @@ public class PersonScheduler {
             if (calculateSuccessPercentage(person.getId()) >= 5) {
                 goldenId.add(person.getId());
             }
-            personService.updateUserStatus(UserStatusEnum.Golden.getStatusCode(), goldenId, StatusReasonsEnum.SUCCESSFUL_MONTH.getStatusMessage());
+            personService.updateUserStatus(UserStatusEnum.Golden.getStatusCode(), goldenId, StatusReasonsEnum.SUCCESSFUL_MONTH.getStatusMessage(),false);
         }
     }
 

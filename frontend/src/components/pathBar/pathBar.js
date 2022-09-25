@@ -8,6 +8,9 @@ function PathBar({ prop }) {
   useEffect(() => {
     if (prop.startPoint === "Home") setLink("/");
     else if (prop.startPoint === "Shop") setLink("/shop/all");
+    else if(prop.startPoint === "User Management") {setLink("/userManagement"); classType.current += " adminPath";
+  
+  }
     if (prop.endPoint.includes("Search")) classType.current += " searchPath";
   }, [prop]);
   return (
@@ -15,7 +18,7 @@ function PathBar({ prop }) {
       {prop.name !== "" && <div className="locationName">{prop.name}</div>}
       <div className={classType.current}>
         <Breadcrumb>
-          <Breadcrumb.Item href={link}>{prop.startPoint} </Breadcrumb.Item>
+          <Breadcrumb.Item href={link} onClick={prop.onClick ? ()=>prop.onClick() : undefined}>{prop.startPoint} </Breadcrumb.Item>
           {prop.paths &&
             prop.paths.map((path) => {
               return <Breadcrumb.Item key="0">{path}</Breadcrumb.Item>;

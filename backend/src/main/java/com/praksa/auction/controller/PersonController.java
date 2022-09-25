@@ -62,7 +62,7 @@ public class PersonController {
 
     @PutMapping("/updateUserStatus")
     public ResponseEntity<String> updateUserStatus(@RequestParam int status, @RequestParam List<Long> personId, @RequestParam String statusReason) {
-        personService.updateUserStatus(status, personId, StatusReasonsEnum.valueOf(statusReason).getStatusMessage());
+        personService.updateUserStatus(status, personId, StatusReasonsEnum.valueOf(statusReason).getStatusMessage(),true);
         return ResponseEntity.ok("Succesful update");
     }
 
@@ -70,4 +70,11 @@ public class PersonController {
     public ResponseEntity<Integer> getUpdatedStatusCount(@PathVariable Integer statusId) {
         return ResponseEntity.ok(personService.getNewStatusCount(statusId));
     }
+
+    @PutMapping("/updateViewedStatus")
+    public ResponseEntity<String> updateViewedStatus(@RequestParam Integer status, @RequestParam Boolean viewedStatus){
+        personService.updateViewedStatus(status,viewedStatus);
+        return ResponseEntity.ok("Succesful update");
+    }
+
 }

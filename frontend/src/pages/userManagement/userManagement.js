@@ -23,12 +23,16 @@ import {
   NOTIFICATION_MESSAGES,
   NOTIFICATION_TYPES,
 } from "../../utils/notificationConstants";
-import { useNavigate,useLocation } from "react-router-dom";
+import PathBar from "../../components/pathBar/pathBar";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function UserManagement() {
   const query = new URLSearchParams(useLocation().search);
+  const locations = useLocation()
   const userFilter = query.get("user");
   const navigate = useNavigate();
+  var viewedUsers;
+  if (userFilter) viewedUsers = false;
   const [searchUser, setSearchUser] = useState("");
   const [newGoldenUsers, setNewGoldenUsers] = useState(0);
   const [newRestrictedUsers, setNewRestrictedUsers] = useState(0);
@@ -41,7 +45,9 @@ function UserManagement() {
   const [numberOfPages, setNumberOfPages] = useState();
   const [sort, setSort] = useState({ field: "id", direction: "ASC" });
   const [checked, setChecked] = useState(false);
-  const [filterCodes, setFilterCodes] = useState([]);
+  const [filterCodes, setFilterCodes] = useState(
+    userFilter ? [ROLES_CODE[userFilter.toUpperCase()]] : []
+  );
   const [statusChange, setStatusChange] = useState(0);
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -52,6 +58,7 @@ function UserManagement() {
     restricted: false,
     archived: false,
   });
+  
   const [columns, setColumns] = useState({
     Name: true,
     "Date of creation": true,
@@ -72,7 +79,13 @@ function UserManagement() {
     setSelectedFilter(activeFilter);
     setPage(1);
   }
-
+  function markAsViewed() {
+    personService.updateViewedStatus(
+      true,
+      ROLES_CODE[userFilter.toUpperCase()]
+    );
+    navigate("/userManagement");
+  }
   function onRemoveApproved() {
     personService
       .updateStatus(selectedUsers, ROLES_CODE.USER, STATUS_REASONS.REGULAR)
@@ -84,63 +97,70 @@ function UserManagement() {
       });
   }
   useEffect(() => {
-    if (!userFilter) {
-      personService
-        .getAllUsers(page - 1, count, filterCodes, sort, searchUser)
-        .then((response) => {
-          setUsers(response.data.listOfUsers);
-          setNumberOfPages(response.data.numberOfPages);
-        });
-    } else {
-    }
+    personService
+      .getAllUsers(page - 1, count, filterCodes, sort, searchUser, viewedUsers)
+      .then((response) => {
+        setUsers(response.data.listOfUsers);
+        setNumberOfPages(response.data.numberOfPages);
+      });
   }, [page, count, filterCodes, sort, searchUser, statusChange]);
 
   useEffect(() => {
+    personService.getUpdatedStatusCount(ROLES_CODE.GOLDEN).then((response) => {
+      setNewGoldenUsers(response.data);
+    });
     personService
-      .getUpdatedStatusCount(
-        ROLES_CODE.GOLDEN,
-        personService.getCurrentUser.lastLogIn
-      )
-      .then((response) => {
-        setNewGoldenUsers(response.data);
-      });
-    personService
-      .getUpdatedStatusCount(
-        ROLES_CODE.RESTRICTED,
-        personService.getCurrentUser.lastLogIn
-      )
+      .getUpdatedStatusCount(ROLES_CODE.RESTRICTED)
       .then((response) => {
         setNewRestrictedUsers(response.data);
       });
   });
   return (
     <div className="userManagmentView">
-      <h5>{userFilter === "golden" ? "Golden Users" : "User Management"}</h5>
-      {showGoldenNotification && (
-        <Notification
-          notificationMessage={`${newGoldenUsers}${NOTIFICATION_MESSAGES.NEW_GOLDEN_USERS} `}
-          notificationType={NOTIFICATION_TYPES.GOLDEN}
-          exitable={true}
-          setShowNotification={(show) => setShowGoldenNotification(show)}
-          linkText={newGoldenUsers > 0 ? "Take a look at them!" : ""}
-          link="/userManagement?user=golden"
-        />
+      {userFilter && (
+        <PathBar
+          prop={{
+            name: "",
+            startPoint: "User Management",
+            endPoint: `Golden list`,
+            onClick: () => markAsViewed(),
+          }}
+        ></PathBar>
       )}
-      {showRestrictedNotification && (
-        <Notification
-          notificationMessage={`${newRestrictedUsers}${NOTIFICATION_MESSAGES.NEW_RESTRICTED_USERS} `}
-          notificationType={NOTIFICATION_TYPES.RESTRICTED}
-          exitable={true}
-          setShowNotification={(show) => setShowRestrictedNotification(show)}
-          link={newRestrictedUsers > 0 ? "Move them to black list!" : ""}
-        ></Notification>
+      <h5 className={userFilter && "goldenTitle"}>
+        {userFilter === "golden" ? "Golden Users" : "User Management"}
+      </h5>
+      {!userFilter && (
+        <div>
+          {showGoldenNotification && (
+            <Notification
+              notificationMessage={`${newGoldenUsers}${NOTIFICATION_MESSAGES.NEW_GOLDEN_USERS} `}
+              notificationType={NOTIFICATION_TYPES.GOLDEN}
+              exitable={true}
+              setShowNotification={(show) => setShowGoldenNotification(show)}
+              linkText={newGoldenUsers > 0 ? "Take a look at them!" : ""}
+              link="/userManagement?user=golden"
+            />
+          )}
+          {showRestrictedNotification && (
+            <Notification
+              notificationMessage={`${newRestrictedUsers}${NOTIFICATION_MESSAGES.NEW_RESTRICTED_USERS} `}
+              notificationType={NOTIFICATION_TYPES.RESTRICTED}
+              exitable={true}
+              setShowNotification={(show) =>
+                setShowRestrictedNotification(show)
+              }
+              link={newRestrictedUsers > 0 ? "Move them to black list!" : ""}
+            ></Notification>
+          )}
+        </div>
       )}
       <div className="userManagmentContent">
         <div className="userManagmentOptions">
           <Filter
             selectedFilter={selectedFilter}
             changeFilter={(filter, filterIndex, selected) => {
-              if(userFilter)navigate("/userManagement")
+              if (userFilter) navigate("/userManagement");
               setSelectedFilter(filter);
               setFilterCodes(
                 selected
@@ -241,14 +261,18 @@ function UserManagement() {
             <NoUsersFound
               filter={filterCodes}
               onClick={() => {
-                setSelectedFilter({
-                  golden: false,
-                  user: false,
-                  black: false,
-                  restricted: false,
-                  archived: false,
-                });
-                setFilterCodes([]);
+                if (userFilter) {
+                  markAsViewed();
+                } else {
+                  setSelectedFilter({
+                    golden: false,
+                    user: false,
+                    black: false,
+                    restricted: false,
+                    archived: false,
+                  });
+                  setFilterCodes([]);
+                }
               }}
             />
           )}

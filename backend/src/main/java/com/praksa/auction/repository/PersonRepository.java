@@ -3,6 +3,7 @@ package com.praksa.auction.repository;
 import com.praksa.auction.enums.UserStatusEnum;
 import com.praksa.auction.model.Person;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -35,18 +36,23 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Transactional
     @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status,status_reason = :statusMessage WHERE id IN :userId", nativeQuery = true)
-    void updateStatus(int status, List<Long> userId, String statusMessage);
+    @Query(value = "UPDATE Person SET status_update = CURRENT_DATE,status=:status,status_reason = :statusMessage,viewed_status = :viewedStatus WHERE id IN :userId", nativeQuery = true)
+    void updateStatus(int status, List<Long> userId, String statusMessage,boolean viewedStatus);
 
     @Query(value = "SELECT * FROM PERSON p WHERE p.status != 0 AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')", nativeQuery = true)
     Page<Person> searchAllUsers(Pageable pageable, String search);
 
 
-    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%')", nativeQuery = true)
-    Page<Person> searchAllFilteredUsers(Pageable pageable, String search, List<Integer> status);
+    @Query(value = "SELECT * FROM PERSON p WHERE p.status in :status AND (p.first_name ILIKE '%' || :search  || '%' OR p.last_name ILIKE '%' || :search  || '%' OR p.email ILIKE '%' || :search  || '%') AND (:viewed is null or p.viewed_status = :viewed)", nativeQuery = true)
+    Page<Person> searchAllFilteredUsers(Pageable pageable, String search, List<Integer> status,Boolean viewed);
 
     @Query(value = "SELECT COUNT(p.id) FROM person p WHERE  NOT p.viewed_status AND p.status =:status", nativeQuery = true)
     Integer countUpdatedUsersByStatus(Integer status);
 
     List<Person> findPersonByStatus(UserStatusEnum status);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Person SET viewed_status = :viewedStatus WHERE status=:status",nativeQuery = true)
+    void updateViewedStatus(Integer status, Boolean viewedStatus);
 }

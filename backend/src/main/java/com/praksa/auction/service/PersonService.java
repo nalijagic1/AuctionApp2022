@@ -21,6 +21,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -102,9 +103,8 @@ public class PersonService {
         BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
         personRepository.updateLastLogIn(userDetails.getId());
         if (userDetails.getStatus().equals(UserStatusEnum.Archived)) {
-            personRepository.updateStatus(1, Arrays.asList(userDetails.getId()), StatusReasonsEnum.REGULAR.getStatusMessage());
+            personRepository.updateStatus(1, Arrays.asList(userDetails.getId()), StatusReasonsEnum.REGULAR.getStatusMessage(),false);
         }
-        ;
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
 
@@ -135,13 +135,13 @@ public class PersonService {
 
     public UserTableDto getFilteredUsers(UserListRequest userListRequest) {
         Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()), userListRequest.getSort().getField());
-        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(), Sort.by(order)), userListRequest.getSearch(), userListRequest.getFilters());
+        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(), Sort.by(order)), userListRequest.getSearch(), userListRequest.getFilters(),userListRequest.getViewed());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
 
-    public void updateUserStatus(int status, List<Long> personId, String statusMessage) {
-        personRepository.updateStatus(status, personId, statusMessage);
+    public void updateUserStatus(int status, List<Long> personId, String statusMessage,boolean viewedStatus) {
+        personRepository.updateStatus(status, personId, statusMessage,viewedStatus);
     }
 
     public Integer getNewStatusCount(int status) {
@@ -152,5 +152,7 @@ public class PersonService {
         return personRepository.findPersonByStatus(status);
     }
 
-
+    public void updateViewedStatus(Integer status, Boolean viewedStatus) {
+        personRepository.updateViewedStatus(status, viewedStatus);
+    }
 }

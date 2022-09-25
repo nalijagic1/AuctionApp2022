@@ -34,10 +34,10 @@ class PersonDataService {
     return null;
   }
 
-  getAllUsers(page, count, filters, sort, search) {
+  getAllUsers(page, count, filters, sort, search, viewed) {
     return httpCommon.post(
       filters.length === 0 ? "/people" : "/people/filtered",
-      { page, count, filters, sort, search }
+      { page, count, filters, sort, search, viewed }
     );
   }
 
@@ -52,13 +52,16 @@ class PersonDataService {
     );
   }
 
-  getUpdatedStatusCount(status, lastLogin) {
+  getUpdatedStatusCount(status) {
     return httpCommon.get(
       "/people/updatedStatusCount/" +
-        status +
-        "?lastLogin=" +
-        moment(lastLogin).milliseconds()
+        status
     );
+  }
+
+  updateViewedStatus(viewed,status){
+    httpCommon.put("/people/updateViewedStatus?viewedStatus="+viewed+"&status="+status)
+
   }
 }
 
