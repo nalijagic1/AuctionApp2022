@@ -177,6 +177,11 @@ class Validation {
     return { errorMessages: errorMessages, valid: valid };
   }
 
+  comparePasswords(password,comparePasswords){
+    if(!comparePasswords) return "Please enter your password again";
+    else if(password!==comparePasswords) return "Passwords do not match"
+    return ""
+  }
   formValidation(data, option) {
     let keys = Object.keys(data);
     let errorMessages = keys.reduce((accumulator, value) => {
@@ -194,6 +199,8 @@ class Validation {
         errorMessages.lastName = this.validateNames(data.lastName, "last");
       else if (keys[i] === "firstName")
         errorMessages.firstName = this.validateNames(data.firstName, "first");
+        else if(keys[i]==="confirmPassword")
+          errorMessages.confirmPassword = this.comparePasswords(data.password,data.confirmPassword);
     }
     if (
       Object.values(errorMessages).findIndex((object) => {

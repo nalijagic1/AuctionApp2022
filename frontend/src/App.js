@@ -24,6 +24,7 @@ import UserManagement from "./pages/userManagement/userManagement";
 import AuthVerify from "./utils/auth-verify";
 import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 import ResetEmailSent from "./pages/resetEmailSent/resetEmailSent";
+import ResetPassword from "./pages/resetPassword/resetPassword";
 
 function App() {
   const user = personService.getCurrentUser();
@@ -60,6 +61,7 @@ function App() {
             <Route path="/userManagement" element={<UserManagement />} />
             <Route path="/forgotPassword" element={<ForgotPassword/>}></Route>
             <Route path="/emailSent" element={<ResetEmailSent/>}></Route>
+            <Route path="/resetPassword" element={<ResetPassword/>}></Route>
           </Routes>
         </div>
         <AuthVerify />

@@ -29,6 +29,16 @@ public class JwtUtils {
                 .compact();
     }
 
+    public String genenareResetPaswoordToken(String email){
+        final Date createdDate = new Date();
+        final Date expirationDate = new Date(createdDate.getTime() + 3600000);
+        return Jwts.builder().
+                setSubject(email).
+                setIssuedAt(createdDate)
+                .setExpiration(expirationDate).signWith(SignatureAlgorithm.HS512, jwtSecret)
+                .compact();
+    }
+
     public String getEmailFromJwtToken(String token) {
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }

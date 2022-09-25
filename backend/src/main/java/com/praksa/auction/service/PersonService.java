@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -44,12 +43,14 @@ public class PersonService {
     JwtUtils jwtUtils;
     @Autowired
     PasswordEncoder encoder;
-    //@Autowired
-    //private JavaMailSender emailSender;
+
     @Value("${stripeSecretKey}")
     private String apiKey;
     @Value("${mailPassword}")
     private String mailPassword;
+    @Value("${applicationLink}")
+    private String appLink;
+
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
@@ -164,7 +165,6 @@ public class PersonService {
     }
 
     public String sendResetEmail(String email) throws MessagingException {
-        System.out.println(email);
         if (!personRepository.existsByEmail(email)) {
             throw new UsernameNotFoundException("Email address not found");
         }
@@ -180,24 +180,18 @@ public class PersonService {
                 return new PasswordAuthentication("nadjaalijagic@gmail.com", mailPassword);
             }
         });
-        session.setDebug(true);
-try{
-        MimeMessage message = new MimeMessage(session);
-        
-        message.setFrom(new InternetAddress("auction.app@gmail.com"));
+        try {
+            MimeMessage message = new MimeMessage(session);
 
-        // Set To: header field of the header.
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-
-        // Set Subject: header field
-        message.setSubject("This is the Subject Line!");
-
-        // Now set the actual message
-        message.setText("This is actual message");
-
-        System.out.println("sending...");
-        // Send message
-        Transport.send(message);
-        return "";}catch (MessagingException mex){System.out.println(mex.getMessage()); throw mex;}
+            message.setFrom(new InternetAddress("auction.app@gmail.com"));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            message.setSubject("Reset password");
+            String token = jwtUtils.genenareResetPaswoordToken(email);
+            message.setText("Reset password using the following link: "+appLink+"/resetPassword?token="+token);
+            Transport.send(message);
+            return "";
+        } catch (MessagingException mex) {
+            throw mex;
+        }
     }
 }
