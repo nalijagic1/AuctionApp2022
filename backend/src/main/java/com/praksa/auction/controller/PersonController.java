@@ -67,7 +67,7 @@ public class PersonController {
     }
 
     @GetMapping("/updatedStatusCount/{statusId}")
-    public ResponseEntity<Integer> getUpdatedStatusCount(@PathVariable Integer statusId, @RequestParam long lastLogin) {
-        return ResponseEntity.ok(personService.getNewStatusCount(statusId, new Date(lastLogin)));
+    public ResponseEntity<Integer> getUpdatedStatusCount(@PathVariable Integer statusId) {
+        return ResponseEntity.ok(personService.getNewStatusCount(statusId));
     }
 }

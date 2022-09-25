@@ -8,6 +8,7 @@ function Notification({
   setShowNotification,
   exitable,
   link,
+  linkText
 }) {
   const [showAlert, setShowAlert] = useState(true);
   useEffect(() => {
@@ -24,7 +25,7 @@ function Notification({
     <div className={showAlert ? "alert-shown" : "alert-hidden"}>
       <div className={`notification notification-${notificationType}`}>
         <p>{notificationMessage}</p>
-        {link && <a href="/">{link}</a>}
+        {link && <a href={link}>{linkText}</a>}
         {exitable && (
           <AiOutlineClose
             className="closeNotification"

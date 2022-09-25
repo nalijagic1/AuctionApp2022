@@ -23,8 +23,12 @@ import {
   NOTIFICATION_MESSAGES,
   NOTIFICATION_TYPES,
 } from "../../utils/notificationConstants";
+import { useNavigate,useLocation } from "react-router-dom";
 
 function UserManagement() {
+  const query = new URLSearchParams(useLocation().search);
+  const userFilter = query.get("user");
+  const navigate = useNavigate();
   const [searchUser, setSearchUser] = useState("");
   const [newGoldenUsers, setNewGoldenUsers] = useState(0);
   const [newRestrictedUsers, setNewRestrictedUsers] = useState(0);
@@ -80,12 +84,15 @@ function UserManagement() {
       });
   }
   useEffect(() => {
-    personService
-      .getAllUsers(page - 1, count, filterCodes, sort, searchUser)
-      .then((response) => {
-        setUsers(response.data.listOfUsers);
-        setNumberOfPages(response.data.numberOfPages);
-      });
+    if (!userFilter) {
+      personService
+        .getAllUsers(page - 1, count, filterCodes, sort, searchUser)
+        .then((response) => {
+          setUsers(response.data.listOfUsers);
+          setNumberOfPages(response.data.numberOfPages);
+        });
+    } else {
+    }
   }, [page, count, filterCodes, sort, searchUser, statusChange]);
 
   useEffect(() => {
@@ -108,14 +115,15 @@ function UserManagement() {
   });
   return (
     <div className="userManagmentView">
-      <h5>User Management</h5>
+      <h5>{userFilter === "golden" ? "Golden Users" : "User Management"}</h5>
       {showGoldenNotification && (
         <Notification
           notificationMessage={`${newGoldenUsers}${NOTIFICATION_MESSAGES.NEW_GOLDEN_USERS} `}
           notificationType={NOTIFICATION_TYPES.GOLDEN}
           exitable={true}
           setShowNotification={(show) => setShowGoldenNotification(show)}
-          link={newGoldenUsers > 0 ? "Take a look at them!" : ""}
+          linkText={newGoldenUsers > 0 ? "Take a look at them!" : ""}
+          link="/userManagement?user=golden"
         />
       )}
       {showRestrictedNotification && (
@@ -132,6 +140,7 @@ function UserManagement() {
           <Filter
             selectedFilter={selectedFilter}
             changeFilter={(filter, filterIndex, selected) => {
+              if(userFilter)navigate("/userManagement")
               setSelectedFilter(filter);
               setFilterCodes(
                 selected
@@ -265,7 +274,7 @@ function UserManagement() {
         )}
         {selectedUsers.length > 0 && (
           <PopUpDialog
-            type ={DIALOG_TYPE.CONFIRM}
+            type={DIALOG_TYPE.CONFIRM}
             open={openConfirm}
             message={DIALOG_CONTENT[users[0].status.toUpperCase()]}
             onClose={() => setOpenConfirm(false)}

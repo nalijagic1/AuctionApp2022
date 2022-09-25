@@ -25,6 +25,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -59,7 +60,7 @@ public class PersonService {
         p.setPassword(encoder.encode(registrationDto.getPassword()));
         p.setFirstLogIn(new Date());
         p.setStatus(UserStatusEnum.User);
-        p.setStatusUpdate(new Date());
+        p.setStatusUpdate(LocalDate.now());
         return p;
     }
 
@@ -85,7 +86,6 @@ public class PersonService {
         basicPersonInfo.setPhoneNumber(userDetails.getPhoneNumber());
         basicPersonInfo.setSeller(productService.existBySeller(userDetails.getId()));
         basicPersonInfo.setRole(userDetails.getStatus());
-        basicPersonInfo.setLastLogIn(userDetails.getLastLogIn());
         return basicPersonInfo;
     }
 
@@ -144,8 +144,8 @@ public class PersonService {
         personRepository.updateStatus(status, personId, statusMessage);
     }
 
-    public Integer getNewStatusCount(int status, Date lastAdminLogin) {
-        return personRepository.countUpdatedUsersByStatus(lastAdminLogin, status);
+    public Integer getNewStatusCount(int status) {
+        return personRepository.countUpdatedUsersByStatus(status);
     }
 
     public List<Person> getAllUsersWithStatus(UserStatusEnum status) {

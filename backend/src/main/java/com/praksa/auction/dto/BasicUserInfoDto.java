@@ -20,5 +20,4 @@ public class BasicUserInfoDto {
     private String phoneNumber;
     private boolean isSeller;
     private UserStatusEnum role;
-    private LocalDate lastLogIn;
 }

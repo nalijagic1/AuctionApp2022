@@ -27,6 +27,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM Product p WHERE p.ending_date > CURRENT_DATE", nativeQuery = true)
     List<Product> findProductsByEndingDateAfter(Pageable pageable);
 
+    Integer countProductByPersonId(long personId);
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Product SET payed=:payed WHERE id=:id", nativeQuery = true)
@@ -38,4 +40,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Product SET ending_date=:date WHERE id=:productId", nativeQuery = true)
     void updateEndDate(Date date, long productId);
+
+    @Query(value = "SELECT COUNT(p.id) FROM product p WHERE p.person_id = :userId AND p.payed",nativeQuery = true)
+    Integer countSuccesfullySold(long userId);
 }
