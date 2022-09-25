@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -75,6 +76,15 @@ public class PersonController {
     public ResponseEntity<String> updateViewedStatus(@RequestParam Integer status, @RequestParam Boolean viewedStatus){
         personService.updateViewedStatus(status,viewedStatus);
         return ResponseEntity.ok("Succesful update");
+    }
+
+    @PostMapping("/sendResetEmail")
+    public ResponseEntity sendResetEmail(@RequestParam String email ){
+        try {
+            return ResponseEntity.ok(personService.sendResetEmail(email));
+        } catch (UsernameNotFoundException | MessagingException e) {
+            return new ResponseEntity(new LogInRegistationFailedDto(ErrorCodeEnum.EMAIL_NOT_FOUND.getErrorCode()), HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

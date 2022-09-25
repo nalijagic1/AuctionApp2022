@@ -17,15 +17,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -41,8 +44,12 @@ public class PersonService {
     JwtUtils jwtUtils;
     @Autowired
     PasswordEncoder encoder;
+    //@Autowired
+    //private JavaMailSender emailSender;
     @Value("${stripeSecretKey}")
     private String apiKey;
+    @Value("${mailPassword}")
+    private String mailPassword;
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
@@ -103,7 +110,7 @@ public class PersonService {
         BasicUserInfoDto basicPersonInfo = getUserInfo(userDetails);
         personRepository.updateLastLogIn(userDetails.getId());
         if (userDetails.getStatus().equals(UserStatusEnum.Archived)) {
-            personRepository.updateStatus(1, Arrays.asList(userDetails.getId()), StatusReasonsEnum.REGULAR.getStatusMessage(),false);
+            personRepository.updateStatus(1, Arrays.asList(userDetails.getId()), StatusReasonsEnum.REGULAR.getStatusMessage(), false);
         }
         return new JwtResponseDto(jwt, basicPersonInfo);
     }
@@ -135,13 +142,13 @@ public class PersonService {
 
     public UserTableDto getFilteredUsers(UserListRequest userListRequest) {
         Sort.Order order = new Sort.Order(Sort.Direction.valueOf(userListRequest.getSort().getDirection().toString()), userListRequest.getSort().getField());
-        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(), Sort.by(order)), userListRequest.getSearch(), userListRequest.getFilters(),userListRequest.getViewed());
+        Page<Person> users = personRepository.searchAllFilteredUsers(PageRequest.of(userListRequest.getPage(), userListRequest.getCount(), Sort.by(order)), userListRequest.getSearch(), userListRequest.getFilters(), userListRequest.getViewed());
         return new UserTableDto(users.getContent(), users.getTotalPages());
     }
 
 
-    public void updateUserStatus(int status, List<Long> personId, String statusMessage,boolean viewedStatus) {
-        personRepository.updateStatus(status, personId, statusMessage,viewedStatus);
+    public void updateUserStatus(int status, List<Long> personId, String statusMessage, boolean viewedStatus) {
+        personRepository.updateStatus(status, personId, statusMessage, viewedStatus);
     }
 
     public Integer getNewStatusCount(int status) {
@@ -154,5 +161,43 @@ public class PersonService {
 
     public void updateViewedStatus(Integer status, Boolean viewedStatus) {
         personRepository.updateViewedStatus(status, viewedStatus);
+    }
+
+    public String sendResetEmail(String email) throws MessagingException {
+        System.out.println(email);
+        if (!personRepository.existsByEmail(email)) {
+            throw new UsernameNotFoundException("Email address not found");
+        }
+        Properties properties = System.getProperties();
+        properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", 587);
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("nadjaalijagic@gmail.com", mailPassword);
+            }
+        });
+        session.setDebug(true);
+try{
+        MimeMessage message = new MimeMessage(session);
+        
+        message.setFrom(new InternetAddress("auction.app@gmail.com"));
+
+        // Set To: header field of the header.
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+
+        // Set Subject: header field
+        message.setSubject("This is the Subject Line!");
+
+        // Now set the actual message
+        message.setText("This is actual message");
+
+        System.out.println("sending...");
+        // Send message
+        Transport.send(message);
+        return "";}catch (MessagingException mex){System.out.println(mex.getMessage()); throw mex;}
     }
 }
