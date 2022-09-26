@@ -53,7 +53,7 @@ function ShopPage() {
           }
         });
     }
-  }, [param, word, count]);
+  }, [param, word, count,sort]);
   return (
     <div className="shopPage">
       {loading ? (
@@ -77,7 +77,7 @@ function ShopPage() {
               filter={filter}
               isLoading={(load) => setLoading(load)}
             />
-            <SearchResult results={products}/>
+            <SearchResult results={products} onSelect={(sort)=> setSort(sort)}/>
           </div>
           {hasMore.current && (
             <div className="explore">

@@ -26,6 +26,8 @@ class MenuItems {
         return this.getAlphabeticalSortMenu(field, onSortSelect);
       case "header":
         return this.createHeaderMenu(field, onRowSelect);
+      case "productSort":
+        return this.getProductSortMenu(onSortSelect);
       default:
         return this.getUserMenu(type, user, onRowSelect);
     }
@@ -334,6 +336,65 @@ class MenuItems {
           Add new columns{" "}
           <AiOutlinePlus className="dropdownicon"></AiOutlinePlus>
         </h3>
+      </div>
+    );
+  }
+
+  getProductSortMenu(onSortSelect) {
+    return (
+      <div>
+        <h2
+          className="sortMenuOption"
+          onClick={() => {
+            onSortSelect({ field: "name", direction: "ASC" }, "Defalut sort");
+          }}
+        >
+          Default sort
+        </h2>
+        <h2
+          className="sortMenuOption"
+          onClick={() => {
+            onSortSelect(
+              { field: "starting_date", direction: "DESC" },
+              "New arrivals"
+            );
+          }}
+        >
+          New arrivals
+        </h2>
+        <h2
+          className="sortMenuOption"
+          onClick={() => {
+            onSortSelect(
+              { field: "ending_date", direction: "ASC" },
+              "Last chance"
+            );
+          }}
+        >
+          Last chance
+        </h2>
+        <h2
+          className="sortMenuOption"
+          onClick={() => {
+            onSortSelect(
+              { field: "starting_price", direction: "ASC" },
+              "Lowest price"
+            );
+          }}
+        >
+          Lowest price
+        </h2>{" "}
+        <h2
+          className="sortMenuOption"
+          onClick={() => {
+            onSortSelect(
+              { field: "starting_price", direction: "DESC" },
+              "Highest price"
+            );
+          }}
+        >
+          Highest price
+        </h2>
       </div>
     );
   }

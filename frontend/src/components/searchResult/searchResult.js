@@ -1,20 +1,54 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import "./searchResult.css";
 import { Link } from "react-router-dom";
 import Card from "../card/card";
 import { BsGrid3X3, BsList } from "react-icons/bs";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import ListItem from "../listItem/listItem";
-import { Dropdown } from "bootstrap";
+import { useOutsideClick } from "@chakra-ui/react";
+import DropdownMenu from "../dropdownMenu/dropdownMenu";
 
-function SearchResult({ results }) {
+function SearchResult({ results,onSelect }) {
   const [view, setView] = useState("Grid");
-  const [sortOption,setSortOption] = useState("Default sorting")
-  const [showSortOptions,setShowOptions] = useState(false)
+  const [sortOption, setSortOption] = useState("Default sorting");
+  const [showSortOptions, setShowSortOptions] = useState(false);
+  const ref = useRef();
+  useOutsideClick({
+    ref: ref,
+    handler: (event) => {
+      if (
+        event
+          .composedPath()
+          .indexOf(document.getElementsByClassName("sortingProducts")[0]) >= 0
+      ) {
+        return;
+      }
+      setShowSortOptions(false);
+    },
+  });
   return (
     <div className="result">
       <div className="shopViewOptions">
-        <div><h5 className="sortingProducts" onClick={()=>setShowOptions(!showSortOptions)}>{sortOption} {showSortOptions ? <IoIosArrowUp className="sortIcon"/>:<IoIosArrowDown className="sortIcon"/>}</h5>{showSortOptions && <Dropdown></Dropdown>} </div>
+        <div>
+          <h5
+            className="sortingProducts"
+            onClick={() => setShowSortOptions(!showSortOptions)}
+          >
+            {sortOption}{" "}
+            {showSortOptions ? (
+              <IoIosArrowUp className="sortIcon" />
+            ) : (
+              <IoIosArrowDown className="sortIcon" />
+            )}
+          </h5>
+          {showSortOptions && <DropdownMenu reference={ref}
+          type="productSort"
+          onSortSelect={(sort,option) => {
+            setShowSortOptions(false);
+            setSortOption(option)
+            onSelect(sort);
+          }}></DropdownMenu>}{" "}
+        </div>
         <div className="chooseViewOptions">
           <h3
             className={`viewOption ${view === "Grid" ? "selected" : ""}`}
