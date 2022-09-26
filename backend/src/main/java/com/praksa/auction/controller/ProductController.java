@@ -2,6 +2,8 @@ package com.praksa.auction.controller;
 
 import com.praksa.auction.config.security.jwt.AuthEntryPointJwt;
 import com.praksa.auction.dto.NewProductDto;
+import com.praksa.auction.dto.SortDto;
+import com.praksa.auction.enums.SortDirectionEnum;
 import com.praksa.auction.model.Product;
 import com.praksa.auction.service.ProductService;
 import org.slf4j.Logger;
@@ -42,18 +44,18 @@ public class ProductController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category, @RequestParam int count) {
-        return ResponseEntity.ok(productService.getProductsFromCategory(category, count));
+    public ResponseEntity<List<Product>> getProductsFromCategory(@RequestParam String category, @RequestParam int count, @RequestParam String sortField,@RequestParam String sortDirection) {
+        return ResponseEntity.ok(productService.getProductsFromCategory(category, count,new SortDto(sortField,SortDirectionEnum.valueOf(sortDirection))));
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam String search, @RequestParam int count) {
-        return ResponseEntity.ok(productService.searchProducts(search, count));
+    public ResponseEntity<List<Product>> searchProducts(@RequestParam String search, @RequestParam int count,@RequestParam String sortField,@RequestParam String sortDirection) {
+        return ResponseEntity.ok(productService.searchProducts(search, count,new SortDto(sortField,SortDirectionEnum.valueOf(sortDirection))));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts(@RequestParam int count) {
-        return ResponseEntity.ok(productService.getAllActiveProducts(count));
+    public ResponseEntity<List<Product>> getAllProducts(@RequestParam int count,@RequestParam String sortField,@RequestParam String sortDirection) {
+        return ResponseEntity.ok(productService.getAllActiveProducts(count,new SortDto(sortField,SortDirectionEnum.valueOf(sortDirection))));
     }
 
     @GetMapping("/checkSpelling")

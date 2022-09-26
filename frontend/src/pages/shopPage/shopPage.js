@@ -22,7 +22,7 @@ function ShopPage() {
   let previous = useRef("");
   const filter = word ? word : param.category;
   const [loading, setLoading] = useState(false);
-
+  const [sort, setSort] = useState({ field: "name", direction: "ASC" });
   function showMore() {
     start.current += 1;
     setCount(INITIAL_COUNT * start.current);
@@ -35,7 +35,7 @@ function ShopPage() {
     if (word) {
       testIfFilterChanged(word);
       previous.current = word;
-      productService.getSearchResult(word, count).then((response) => {
+      productService.getSearchResult(word, count,sort).then((response) => {
         if (response.status === STATUS_CODES.OK) {
           setProducts(response.data);
           hasMore.current = response.data.length === count;
@@ -45,7 +45,7 @@ function ShopPage() {
       testIfFilterChanged(param.category);
       previous.current = param.category;
       productService
-        .getProductsFromCategory(param.category, count)
+        .getProductsFromCategory(param.category, count,sort)
         .then((response) => {
           if (response.status === STATUS_CODES.OK) {
             setProducts(response.data);

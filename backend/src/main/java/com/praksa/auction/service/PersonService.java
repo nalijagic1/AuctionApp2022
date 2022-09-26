@@ -182,7 +182,6 @@ public class PersonService {
         });
         try {
             MimeMessage message = new MimeMessage(session);
-
             message.setFrom(new InternetAddress("auction.app@gmail.com"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             message.setSubject("Reset password");
