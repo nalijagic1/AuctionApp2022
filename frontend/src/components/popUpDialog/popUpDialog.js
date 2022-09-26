@@ -28,7 +28,7 @@ function PopUpDialog(props) {
           <Button
             label={type === DIALOG_TYPE.INFO ? "OK" : "No"}
             onClick={onClose}
-            buttonClass="cancel"
+            buttonClass="grayBorder"
           ></Button>
           {type === DIALOG_TYPE.CONFIRM && (
             <Button
