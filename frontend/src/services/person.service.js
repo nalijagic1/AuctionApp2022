@@ -62,7 +62,11 @@ class PersonDataService {
   }
 
   sendResetEmail(email) {
-    return httpCommon.post("/people/sendResetEmail?email="+email);
+    return httpCommon.post("/people/sendResetEmail?email=" + email);
+  }
+
+  changePassword(email, password) {
+    return httpCommon.put("/people/changePassword", { email, password });
   }
 }
 

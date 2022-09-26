@@ -55,4 +55,9 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Person SET viewed_status = :viewedStatus WHERE status=:status",nativeQuery = true)
     void updateViewedStatus(Integer status, Boolean viewedStatus);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Person SET password = :encodedPassword WHERE email=:email",nativeQuery = true)
+    void changePassword(String email, String encodedPassword);
 }

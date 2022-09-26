@@ -87,4 +87,10 @@ public class PersonController {
         }
     }
 
+    @PutMapping("/changePassword")
+    public  ResponseEntity changePassword(@RequestBody LogInDto accountInfo){
+        personService.changePassword(accountInfo);
+        return ResponseEntity.ok("Succesfuly changed pssword");
+    }
+
 }

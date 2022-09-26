@@ -194,4 +194,8 @@ public class PersonService {
             throw mex;
         }
     }
+
+    public void changePassword(LogInDto accountInfo) {
+        personRepository.changePassword(accountInfo.getEmail(),encoder.encode(accountInfo.getPassword()));
+    }
 }
