@@ -23,6 +23,7 @@ function ShopPage() {
   const filter = word ? word : param.category;
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState({ field: "name", direction: "ASC" });
+  const [resultLoading,setResultLoading] = useState(false);
 
   function showMore() {
     start.current += 1;
@@ -30,31 +31,34 @@ function ShopPage() {
   }
 
   useEffect(() => {
+    setResultLoading(true);
     const testIfFilterChanged = (change) => {
       if (previous.current !== change) setCount(INITIAL_COUNT);
     };
     if (word) {
       testIfFilterChanged(word);
       previous.current = word;
-      productService.getSearchResult(word, count,sort).then((response) => {
+      productService.getSearchResult(word, count, sort).then((response) => {
         if (response.status === STATUS_CODES.OK) {
           setProducts(response.data);
           hasMore.current = response.data.length === count;
+          setResultLoading(false);
         }
       });
     } else {
       testIfFilterChanged(param.category);
       previous.current = param.category;
       productService
-        .getProductsFromCategory(param.category, count,sort)
+        .getProductsFromCategory(param.category, count, sort)
         .then((response) => {
           if (response.status === STATUS_CODES.OK) {
             setProducts(response.data);
             hasMore.current = response.data.length === count;
+            setResultLoading(false);
           }
         });
     }
-  }, [param, word, count,sort]);
+  }, [param, word, count, sort]);
   return (
     <div className="shopPage">
       {loading ? (
@@ -78,7 +82,11 @@ function ShopPage() {
               filter={filter}
               isLoading={(load) => setLoading(load)}
             />
-            <SearchResult results={products} onSelect={(sort)=> setSort(sort)}/>
+            <SearchResult
+              results={products}
+              onSelect={(sort) => setSort(sort)}
+              resultLoading ={resultLoading}
+            />
           </div>
           {hasMore.current && (
             <div className="explore">

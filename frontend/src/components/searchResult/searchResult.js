@@ -1,5 +1,4 @@
-
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import "./searchResult.css";
 import { Link } from "react-router-dom";
 import Card from "../card/card";
@@ -8,8 +7,9 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import ListItem from "../listItem/listItem";
 import { useOutsideClick } from "@chakra-ui/react";
 import DropdownMenu from "../dropdownMenu/dropdownMenu";
+import Loader from "../loader/loader";
 
-function SearchResult({ results,onSelect }) {
+function SearchResult({ results, onSelect, resultLoading }) {
   const [view, setView] = useState("Grid");
   const [sortOption, setSortOption] = useState("Default sorting");
   const [showSortOptions, setShowSortOptions] = useState(false);
@@ -42,13 +42,17 @@ function SearchResult({ results,onSelect }) {
               <IoIosArrowDown className="sortIcon" />
             )}
           </h5>
-          {showSortOptions && <DropdownMenu reference={ref}
-          type="productSort"
-          onSortSelect={(sort,option) => {
-            setShowSortOptions(false);
-            setSortOption(option)
-            onSelect(sort);
-          }}></DropdownMenu>}{" "}
+          {showSortOptions && (
+            <DropdownMenu
+              reference={ref}
+              type="productSort"
+              onSortSelect={(sort, option) => {
+                setShowSortOptions(false);
+                setSortOption(option);
+                onSelect(sort);
+              }}
+            ></DropdownMenu>
+          )}{" "}
         </div>
         <div className="chooseViewOptions">
           <h3
@@ -67,28 +71,32 @@ function SearchResult({ results,onSelect }) {
           </h3>
         </div>
       </div>
-      <div className={`resultView${view}`}>
-        {results.map((product) => (
-          <div key={results.id} className="resultItem">
-            <Link to={`/product/${product.id}`}>
-              {view === "Grid" ? (
-                <Card
-                  name={product.name}
-                  productId={product.id}
-                  price={product.startingPrice}
-                />
-              ) : (
-                <ListItem
-                  productName={product.name}
-                  productDescription={product.description}
-                  productId={product.id}
-                  productPrice={product.startingPrice}
-                ></ListItem>
-              )}
-            </Link>
-          </div>
-        ))}
-      </div>
+      {resultLoading ? (
+        <Loader></Loader>
+      ) : (
+        <div className={`resultView${view}`}>
+          {results.map((product) => (
+            <div key={results.id} className="resultItem">
+              <Link to={`/product/${product.id}`}>
+                {view === "Grid" ? (
+                  <Card
+                    name={product.name}
+                    productId={product.id}
+                    price={product.startingPrice}
+                  />
+                ) : (
+                  <ListItem
+                    productName={product.name}
+                    productDescription={product.description}
+                    productId={product.id}
+                    productPrice={product.startingPrice}
+                  ></ListItem>
+                )}
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
