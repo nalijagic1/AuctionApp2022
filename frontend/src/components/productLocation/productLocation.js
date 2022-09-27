@@ -34,6 +34,7 @@ function ProductLocation(props) {
     });
     addressService.getAddressFromUser(seller.id).then((response) => {
       if (response.status === 200 && response.data) {
+        console.log("hello")
         setAddress(response.data.street);
         setCity(response.data.city);
         setZipCode(response.data.zipCode);

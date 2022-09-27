@@ -3,16 +3,22 @@ import "./auctionItem.css";
 import { useState, useEffect } from "react";
 import pictureService from "../../services/picture.service";
 import productService from "../../services/product.service";
+var firstRender = false;
 
-function AuctionItem({ productId, amount }) {
+function AuctionItem({ productId, amount, loadingState }) {
   const [product, setProduct] = useState();
   const [coverPicture, setCoverPicture] = useState();
   useEffect(() => {
+    if (!firstRender) loadingState(true);
     pictureService.getProductCoverPicture(productId).then((response) => {
       setCoverPicture(response.data);
     });
     productService.getSelectedProduct(productId).then((response) => {
       setProduct(response.data);
+      if (!firstRender) {
+        loadingState(false);
+        firstRender = true;
+      }
     });
   }, [productId]);
   return (
