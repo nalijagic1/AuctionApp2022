@@ -25,10 +25,11 @@ import {
 } from "../../utils/notificationConstants";
 import PathBar from "../../components/pathBar/pathBar";
 import { useNavigate, useLocation } from "react-router-dom";
+import Loader from "../../components/loader/loader";
 
 function UserManagement() {
   const query = new URLSearchParams(useLocation().search);
-  const locations = useLocation()
+  const [loading, setLoading] = useState(false);
   const userFilter = query.get("user");
   const navigate = useNavigate();
   var viewedUsers;
@@ -58,7 +59,7 @@ function UserManagement() {
     restricted: false,
     archived: false,
   });
-  
+
   const [columns, setColumns] = useState({
     Name: true,
     "Date of creation": true,
@@ -94,14 +95,17 @@ function UserManagement() {
         setChecked(false);
         setStatusChange(statusChange + 1);
         setOpenConfirm(false);
+        
       });
   }
   useEffect(() => {
+    setLoading(true)
     personService
       .getAllUsers(page - 1, count, filterCodes, sort, searchUser, viewedUsers)
       .then((response) => {
         setUsers(response.data.listOfUsers);
         setNumberOfPages(response.data.numberOfPages);
+        setLoading(false);
       });
   }, [page, count, filterCodes, sort, searchUser, statusChange]);
 
@@ -234,47 +238,58 @@ function UserManagement() {
             }}
             setSort={(sortType) => setSort(sortType)}
           />
-          {users && users.length !== 0 ? (
-            users.map((user) => {
-              return (
-                <UserTableRow
-                  columns={columns}
-                  user={user}
-                  rowId={users.indexOf(user)}
-                  checked={checked}
-                  updateSelection={(select) => {
-                    setSelectedUsers(
-                      select
-                        ? selectedUsers.concat(user.id)
-                        : selectedUsers.filter(function (value, index, arr) {
-                            return value !== user.id;
-                          })
-                    );
-                  }}
-                  changeStatusInTable={() => {
-                    setStatusChange(statusChange + 1);
-                  }}
-                ></UserTableRow>
-              );
-            })
+          {loading ? (
+            <Loader></Loader>
           ) : (
-            <NoUsersFound
-              filter={filterCodes}
-              onClick={() => {
-                if (userFilter) {
-                  markAsViewed();
-                } else {
-                  setSelectedFilter({
-                    golden: false,
-                    user: false,
-                    black: false,
-                    restricted: false,
-                    archived: false,
-                  });
-                  setFilterCodes([]);
-                }
-              }}
-            />
+            <div>
+              {" "}
+              {users && users.length !== 0 ? (
+                users.map((user) => {
+                  return (
+                    <UserTableRow
+                      columns={columns}
+                      user={user}
+                      rowId={users.indexOf(user)}
+                      checked={checked}
+                      updateSelection={(select) => {
+                        setSelectedUsers(
+                          select
+                            ? selectedUsers.concat(user.id)
+                            : selectedUsers.filter(function (
+                                value,
+                                index,
+                                arr
+                              ) {
+                                return value !== user.id;
+                              })
+                        );
+                      }}
+                      changeStatusInTable={() => {
+                        setStatusChange(statusChange + 1);
+                      }}
+                    ></UserTableRow>
+                  );
+                })
+              ) : (
+                <NoUsersFound
+                  filter={filterCodes}
+                  onClick={() => {
+                    if (userFilter) {
+                      markAsViewed();
+                    } else {
+                      setSelectedFilter({
+                        golden: false,
+                        user: false,
+                        black: false,
+                        restricted: false,
+                        archived: false,
+                      });
+                      setFilterCodes([]);
+                    }
+                  }}
+                />
+              )}
+            </div>
           )}
         </div>
         {users.length !== 0 && (

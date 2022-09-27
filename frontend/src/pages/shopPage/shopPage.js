@@ -23,6 +23,7 @@ function ShopPage() {
   const filter = word ? word : param.category;
   const [loading, setLoading] = useState(false);
   const [sort, setSort] = useState({ field: "name", direction: "ASC" });
+
   function showMore() {
     start.current += 1;
     setCount(INITIAL_COUNT * start.current);

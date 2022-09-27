@@ -339,7 +339,6 @@ class MenuItems {
       </div>
     );
   }
-
   getProductSortMenu(onSortSelect) {
     return (
       <div>
