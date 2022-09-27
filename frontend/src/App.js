@@ -22,6 +22,10 @@ import SideBar from "./components/sideBar/sideBar";
 import { useState } from "react";
 import UserManagement from "./pages/userManagement/userManagement";
 import AuthVerify from "./utils/auth-verify";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword";
+import ResetEmailSent from "./pages/resetEmailSent/resetEmailSent";
+import ResetPassword from "./pages/resetPassword/resetPassword";
+import SuccesfulPasswordChange from "./pages/succesfulResetPassword/succesfulResetPassword";
 
 function App() {
   const user = personService.getCurrentUser();
@@ -56,6 +60,10 @@ function App() {
             <Route path="/paymentComplete" element={<SuccesfulPayment />} />
             <Route path="/addItem" element={<AddNewItem />} />
             <Route path="/userManagement" element={<UserManagement />} />
+            <Route path="/forgotPassword" element={<ForgotPassword/>}></Route>
+            <Route path="/emailSent" element={<ResetEmailSent/>}></Route>
+            <Route path="/resetPassword" element={<ResetPassword/>}></Route>
+            <Route path="/succesfulChange" element={<SuccesfulPasswordChange/>}></Route>
           </Routes>
         </div>
         <AuthVerify />

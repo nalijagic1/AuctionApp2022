@@ -13,7 +13,9 @@ function NavigationWhite({ expanded }) {
   const [searchField, setSearchField] = useState("");
   const showSearchAndMenu = useRef(
     !location.pathname.includes("/login") &&
-      !location.pathname.includes("/register")
+      !location.pathname.includes("/register") &&
+      !location.pathname.includes("Password") &&
+      !location.pathname.includes("/email")
   );
   const [displayAccountMenu, setDisplayAccountMenu] = useState();
   const MIN_WORD_LENGTH = 3;

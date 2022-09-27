@@ -27,8 +27,8 @@ function Field({
 
   return (
     <div className="field">
-      {label && <label>{label}</label>}
       {iconShow && <i className="showPassword">{iconShow}</i>}
+      {label && <label>{label}</label>}
       <input
         type={type}
         className={`${fieldClass} ${messageClass}`}

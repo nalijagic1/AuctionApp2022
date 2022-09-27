@@ -41,7 +41,7 @@ function ProductLocation(props) {
         setCountry(response.data.country.id);
       }
     });
-  }, []);
+  }, [seller]);
 
   return (
     <div className="newProductAddress">

@@ -25,7 +25,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -43,6 +45,13 @@ public class PersonService {
     PasswordEncoder encoder;
     @Value("${stripeSecretKey}")
     private String apiKey;
+    @Value("${mailPassword}")
+    private String mailPassword;
+    @Value("${applicationLink}")
+    private String appLink;
+    @Value("${mailAddress}")
+    private String mailAddress;
+
 
     @Autowired
     public PersonService(PersonRepository personRepository) {
@@ -140,10 +149,9 @@ public class PersonService {
     }
 
 
-    public void updateUserStatus(int status, List<Long> personId, String statusMessage,boolean viewedStatus) {
-        personRepository.updateStatus(status, personId, statusMessage,viewedStatus);
+    public void updateUserStatus(int status, List<Long> personId, String statusMessage, boolean viewedStatus) {
+        personRepository.updateStatus(status, personId, statusMessage, viewedStatus);
     }
-
     public Integer getNewStatusCount(int status) {
         return personRepository.countUpdatedUsersByStatus(status);
     }
@@ -154,5 +162,40 @@ public class PersonService {
 
     public void updateViewedStatus(Integer status, Boolean viewedStatus) {
         personRepository.updateViewedStatus(status, viewedStatus);
+    }
+
+    public String sendResetEmail(String email) throws MessagingException {
+        if (!personRepository.existsByEmail(email)) {
+            throw new UsernameNotFoundException("Email address not found");
+        }
+        Properties properties = System.getProperties();
+        properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", 587);
+        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(mailAddress, mailPassword);
+            }
+        });
+        try {
+            MimeMessage message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress(mailAddress));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+            message.setSubject("Reset password");
+            String token = jwtUtils.genenareResetPaswoordToken(email);
+            message.setText("A unique link to reset your password has been generated for you. To reset your password, click the following link and follow the instructions: "+appLink+"/resetPassword?token="+token);
+            Transport.send(message);
+            return "";
+        } catch (MessagingException mex) {
+            throw mex;
+        }
+    }
+
+    public void changePassword(LogInDto accountInfo) {
+        personRepository.changePassword(accountInfo.getEmail(),encoder.encode(accountInfo.getPassword()));
     }
 }

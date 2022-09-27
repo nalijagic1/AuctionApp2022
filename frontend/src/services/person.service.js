@@ -53,15 +53,21 @@ class PersonDataService {
   }
 
   getUpdatedStatusCount(status) {
-    return httpCommon.get(
-      "/people/updatedStatusCount/" +
-        status
+    return httpCommon.get("/people/updatedStatusCount/" + status);
+  }
+
+  updateViewedStatus(viewed, status) {
+    httpCommon.put(
+      "/people/updateViewedStatus?viewedStatus=" + viewed + "&status=" + status
     );
   }
 
-  updateViewedStatus(viewed,status){
-    httpCommon.put("/people/updateViewedStatus?viewedStatus="+viewed+"&status="+status)
+  sendResetEmail(email) {
+    return httpCommon.post("/people/sendResetEmail?email=" + email);
+  }
 
+  changePassword(email, password) {
+    return httpCommon.put("/people/changePassword", { email, password });
   }
 }
 
