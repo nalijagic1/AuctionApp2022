@@ -11,16 +11,16 @@
 }
 
 .mainPicture {
-  width: 453px;
-  height: 622px;
+  width: 500px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .mainPicture img {
   object-fit: contain;
-  max-width: 453px;
-  max-height: 622px;
+  max-width: 500px;
+  max-height: 500px;
   height: auto;
   width: auto;
 }

@@ -16,10 +16,10 @@ class ProductDataService {
     );
   }
 
-  getProductsFromCategory(category, count) {
+  getProductsFromCategory(category, count,sort) {
     if (category === "all")
-      return httpCommon.get("/products/all?count=" + count);
-    return httpCommon.get("/products?category=" + category + "&count=" + count);
+      return httpCommon.get("/products/all?count=" + count+"&sortField="+sort.field+"&sortDirection="+sort.direction);
+    return httpCommon.get("/products?category=" + category + "&count=" + count+"&sortField="+sort.field+"&sortDirection="+sort.direction);
   }
 
   getSearchResult(search, count) {

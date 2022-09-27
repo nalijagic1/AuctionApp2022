@@ -27,11 +27,44 @@
   text-decoration: none;
 }
 
-.chooseOptions{
+.chooseViewOptions {
   display: flex;
   justify-content: flex-end;
+  width: 650px;
+}
+
+.viewOption {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #9b9b9b;
+  margin-left: 27px;
+}
+
+.sortingProducts {
+  border: 2px solid #d8d8d8;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #252525;
+  padding: 12px 20px 12px 24px;
+}
+
+.chooseViewOptions .selected {
+  color: #8367d8;
+}
+
+.viewOptionIcon {
+  margin-right: 12px;
+}
+
+.shopViewOptions {
+  display: flex;
   margin-bottom: 50px;
-  width: 900px;
+}
+
+.sortIcon{
+  margin-left: 98px;
 }
 
 .viewOption{
@@ -48,4 +81,8 @@
 
 .viewOptionIcon{
   margin-right: 12px;
+}
+
+.sortingDropdown .sortMenuOption{
+  width: 270px;
 }
