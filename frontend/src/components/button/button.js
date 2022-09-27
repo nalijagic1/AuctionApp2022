@@ -5,7 +5,7 @@ function Button({ label, icon, onClick, buttonClass }) {
   return (
     <div className="button">
       <button type="button" className={buttonClass} onClick={onClick}>
-        {label.toUpperCase()}
+        {label}
         <i>{icon}</i>
       </button>
     </div>

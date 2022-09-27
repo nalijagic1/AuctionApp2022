@@ -184,7 +184,7 @@ function NewProductDetails(props) {
       <div className="stepsButtons">
         <Button
           label="CANCEL"
-          buttonClass="cancel"
+          buttonClass="grayBorder"
           onClick={() => navigate("/")}
         />
         <Button

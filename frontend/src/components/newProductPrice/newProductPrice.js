@@ -80,7 +80,7 @@ function NewProductPrice(props) {
       <div className="buttonLayout">
         <Button
           label="CANCEL"
-          buttonClass="cancel"
+          buttonClass="grayBorder"
           onClick={() => navigate("/")}
         ></Button>
         <div className="movementButtons">

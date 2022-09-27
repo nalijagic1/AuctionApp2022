@@ -123,7 +123,7 @@ function CardInfo({ props, location, setError }) {
       <div className="navigationButtons">
         <Button
           label="CANCEL"
-          buttonClass="cancel"
+          buttonClass="grayBorder"
           onClick={() => navigate(-1)}
         ></Button>
         <div className="optionButtons">

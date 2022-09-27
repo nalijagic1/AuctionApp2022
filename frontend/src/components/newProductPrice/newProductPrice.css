@@ -98,9 +98,10 @@
   width: 547px;
 }
 
-.buttonLayout .cancel {
+.buttonLayout .grayBorder {
   margin-right: 50px;
 }
+
 .buttonLayout button {
   padding: 12px 32px 12px 32px;
 }

@@ -1,12 +1,20 @@
 .result {
+  margin-left: 24px;
+}
+.resultViewGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 24px;
   row-gap: 40px;
-  margin-left: 24px;
 }
 
-.resultItem img {
+.resultViewList {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 24px;
+}
+
+.resultViewGrid img {
   width: 262px;
   height: 350px;
 }
@@ -17,4 +25,27 @@
 
 .resultItem a {
   text-decoration: none;
+}
+
+.chooseOptions{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 50px;
+  width: 900px;
+}
+
+.viewOption{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #9B9B9B;
+  margin-left: 27px;
+}
+
+.chooseOptions .selected{
+  color:  #8367d8;
+}
+
+.viewOptionIcon{
+  margin-right: 12px;
 }

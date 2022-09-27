@@ -117,7 +117,7 @@ function ShippingAddress(props) {
       <div className="menuButtons">
         <Button
           label="CANCEL"
-          buttonClass="cancel"
+          buttonClass="grayBorder"
           onClick={() => navigate(-1)}
         ></Button>
         <div className="nextButton">
