@@ -49,6 +49,8 @@ public class PersonService {
     private String mailPassword;
     @Value("${applicationLink}")
     private String appLink;
+    @Value("${mailAddress}")
+    private String mailAddress;
 
 
     @Autowired
@@ -175,17 +177,17 @@ public class PersonService {
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
 
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("nadjaalijagic@gmail.com", mailPassword);
+                return new PasswordAuthentication(mailAddress, mailPassword);
             }
         });
         try {
             MimeMessage message = new MimeMessage(session);
 
-            message.setFrom(new InternetAddress("auction.app@gmail.com"));
+            message.setFrom(new InternetAddress(mailAddress));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
             message.setSubject("Reset password");
             String token = jwtUtils.genenareResetPaswoordToken(email);
-            message.setText("Reset password using the following link: "+appLink+"/resetPassword?token="+token);
+            message.setText("A unique link to reset your password has been generated for you. To reset your password, click the following link and follow the instructions: "+appLink+"/resetPassword?token="+token);
             Transport.send(message);
             return "";
         } catch (MessagingException mex) {
