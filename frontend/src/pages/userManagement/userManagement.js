@@ -25,10 +25,18 @@ import {
 } from "../../utils/notificationConstants";
 import PathBar from "../../components/pathBar/pathBar";
 import { useNavigate, useLocation } from "react-router-dom";
+<<<<<<< HEAD
 
 function UserManagement() {
   const query = new URLSearchParams(useLocation().search);
   const locations = useLocation()
+=======
+import Loader from "../../components/loader/loader";
+
+function UserManagement() {
+  const query = new URLSearchParams(useLocation().search);
+  const [loading, setLoading] = useState(false);
+>>>>>>> main
   const userFilter = query.get("user");
   const navigate = useNavigate();
   var viewedUsers;
@@ -58,7 +66,11 @@ function UserManagement() {
     restricted: false,
     archived: false,
   });
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> main
   const [columns, setColumns] = useState({
     Name: true,
     "Date of creation": true,
@@ -94,14 +106,26 @@ function UserManagement() {
         setChecked(false);
         setStatusChange(statusChange + 1);
         setOpenConfirm(false);
+<<<<<<< HEAD
       });
   }
   useEffect(() => {
+=======
+        
+      });
+  }
+  useEffect(() => {
+    setLoading(true)
+>>>>>>> main
     personService
       .getAllUsers(page - 1, count, filterCodes, sort, searchUser, viewedUsers)
       .then((response) => {
         setUsers(response.data.listOfUsers);
         setNumberOfPages(response.data.numberOfPages);
+<<<<<<< HEAD
+=======
+        setLoading(false);
+>>>>>>> main
       });
   }, [page, count, filterCodes, sort, searchUser, statusChange]);
 
@@ -234,6 +258,7 @@ function UserManagement() {
             }}
             setSort={(sortType) => setSort(sortType)}
           />
+<<<<<<< HEAD
           {users && users.length !== 0 ? (
             users.map((user) => {
               return (
@@ -275,6 +300,60 @@ function UserManagement() {
                 }
               }}
             />
+=======
+          {loading ? (
+            <Loader></Loader>
+          ) : (
+            <div>
+              {" "}
+              {users && users.length !== 0 ? (
+                users.map((user) => {
+                  return (
+                    <UserTableRow
+                      columns={columns}
+                      user={user}
+                      rowId={users.indexOf(user)}
+                      checked={checked}
+                      updateSelection={(select) => {
+                        setSelectedUsers(
+                          select
+                            ? selectedUsers.concat(user.id)
+                            : selectedUsers.filter(function (
+                                value,
+                                index,
+                                arr
+                              ) {
+                                return value !== user.id;
+                              })
+                        );
+                      }}
+                      changeStatusInTable={() => {
+                        setStatusChange(statusChange + 1);
+                      }}
+                    ></UserTableRow>
+                  );
+                })
+              ) : (
+                <NoUsersFound
+                  filter={filterCodes}
+                  onClick={() => {
+                    if (userFilter) {
+                      markAsViewed();
+                    } else {
+                      setSelectedFilter({
+                        golden: false,
+                        user: false,
+                        black: false,
+                        restricted: false,
+                        archived: false,
+                      });
+                      setFilterCodes([]);
+                    }
+                  }}
+                />
+              )}
+            </div>
+>>>>>>> main
           )}
         </div>
         {users.length !== 0 && (
