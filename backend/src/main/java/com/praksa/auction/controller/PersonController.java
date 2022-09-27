@@ -13,10 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.util.Date;
