@@ -30,7 +30,7 @@ function SearchResult({ results,onSelect }) {
   return (
     <div className="result">
       <div className="shopViewOptions">
-        <div>
+        <div className="sortingDropdown">
           <h5
             className="sortingProducts"
             onClick={() => setShowSortOptions(!showSortOptions)}

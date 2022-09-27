@@ -82,3 +82,7 @@
 .viewOptionIcon{
   margin-right: 12px;
 }
+
+.sortingDropdown .sortMenuOption{
+  width: 270px;
+}
