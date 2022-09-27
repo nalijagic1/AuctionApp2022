@@ -3,9 +3,9 @@
   font-size: 16px;
   line-height: 24px;
   color: #252525;
-  padding-left: 38.5px;
   display: block;
   position: relative;
+  padding-left: 38.5px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -20,6 +20,7 @@
   cursor: pointer;
   height: 0;
   width: 0;
+  z-index: 0;
 }
 
 .checkmark {
@@ -29,7 +30,7 @@
   height: 15px;
   width: 15px;
   background-color: #ffffff;
-  border: 1px solid #8367d8;
+  border: 2px solid #8367d8;
   border-radius: 10%;
 }
 
@@ -41,6 +42,7 @@
   content: "";
   position: absolute;
   display: none;
+  z-index: 0;
 }
 
 .container input:checked ~ .checkmark:after {
@@ -48,7 +50,7 @@
 }
 
 .container .checkmark:after {
-  left: 5px;
+  left: 4px;
   width: 5px;
   height: 10px;
   border: solid white;

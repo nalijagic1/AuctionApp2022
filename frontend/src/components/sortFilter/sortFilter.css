@@ -1,0 +1,40 @@
+.sortFilter {
+  display: flex;
+  color: #ffffff;
+  background-color: #8367d8;
+  padding-right: 15px;
+}
+
+.sortFilter h2 {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+}
+.sort h2 {
+  margin-right: 36px;
+  margin-bottom: 0px;
+}
+
+.rowSelecting {
+  margin-left: 14px;
+  padding-left: 8px;
+  margin-right: 52px;
+}
+.rowSelecting h2 {
+  margin-top: 4px;
+  margin-bottom: 0px;
+  margin-right: 12px;
+  font-weight: 400;
+}
+
+.sortIcon {
+  margin-top: 3px;
+}
+
+.rowSelecting .sortIcon {
+  margin-top: 8px;
+}
+
+#statusUpdate {
+  margin-left: 20px;
+}

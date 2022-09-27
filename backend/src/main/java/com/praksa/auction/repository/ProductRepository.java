@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
@@ -26,10 +27,20 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM Product p WHERE p.ending_date > CURRENT_DATE", nativeQuery = true)
     List<Product> findProductsByEndingDateAfter(Pageable pageable);
 
+    Integer countProductByPersonId(long personId);
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "UPDATE Product SET payed=:payed WHERE id=:id", nativeQuery = true)
     void updatePayedStatus(boolean payed, long id);
 
     boolean existsProductByPersonId(long sellerId);
+
+    @Transactional
+    @Modifying(clearAutomatically = true)
+    @Query(value = "UPDATE Product SET ending_date=:date WHERE id=:productId", nativeQuery = true)
+    void updateEndDate(Date date, long productId);
+
+    @Query(value = "SELECT COUNT(p.id) FROM product p WHERE p.person_id = :userId AND p.payed",nativeQuery = true)
+    Integer countSuccesfullySold(long userId);
 }

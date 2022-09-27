@@ -1,14 +1,13 @@
 .newProductAddress {
+  width: 738px;
   margin-left: 351px;
-  margin-right: 351px;
+  margin-right: 370px;
   margin-bottom: 80px;
   padding-bottom: 64px;
   border: 1px solid #e6e6e6;
 }
 
 .newProductAddress h5 {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
@@ -25,8 +24,6 @@
 }
 
 .productLocationInfo label {
-  font-family: "Lato";
-  font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
@@ -36,7 +33,6 @@
 .sectorCountry {
   width: 547px;
   height: 64px;
-  background: #fcfcfc;
   border: 1px solid #d8d8d8;
   padding: 18px 0px 18px 24px;
   font-family: "Lato";
@@ -44,11 +40,11 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: #9b9b9b;
+  color: #000000;
   margin-top: 16px;
   margin-bottom: 32px;
 }
 
-.sellerCardInfo{
+.sellerCardInfo {
   width: 750px;
 }

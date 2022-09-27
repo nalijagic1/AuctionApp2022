@@ -22,7 +22,7 @@ public class AddressService {
     }
 
     public Address addAddressIfNotExist(AddressInfoDto address, long personId) {
-        Address location = new Address(address,countryService);
+        Address location = new Address(address, countryService);
         Address userAddress;
         if (!addressRepository.existsByStreetAndCityAndCountryAndZipCode(location.getStreet(), location.getCity(), location.getCountry(), location.getZipCode())) {
             userAddress = addressRepository.save(location);

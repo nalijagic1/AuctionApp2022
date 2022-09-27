@@ -67,3 +67,10 @@
   color: #9b9b9b;
   text-decoration: none;
 }
+
+.adminPath  li a, .adminPath  li{
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 19px;
+}
+

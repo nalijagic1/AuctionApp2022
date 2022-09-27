@@ -1,0 +1,56 @@
+.sideBarView {
+  position: absolute;
+  padding-top: 30px;
+  padding-left: 30.5px;
+  padding-right: 30px;
+  border: 1px solid #d8d8d8;
+  height: 94.8%;
+  background-color: #fcfcfc;
+}
+.sideBar {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  row-gap: 27px;
+}
+
+.sideBar .icons {
+  width: 20px;
+  height: 20px;
+  margin-right: 19px;
+}
+
+.sideBar .icons path {
+  fill: #252525;
+}
+
+.sideBar .expandArrow path {
+  fill: #8367d8;
+}
+
+.sideBarOption {
+  display: flex;
+  text-decoration: none;
+}
+
+.sideBarOption h2 {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 27px;
+  margin-bottom: 0px;
+  color: #252525;
+  margin-top: -3px;
+}
+
+.expandArrow {
+  margin-left: auto;
+  margin-right: 0px;
+  margin-bottom: 54.1px;
+}
+
+.sideBarOption:visited h2 {
+  color: #8367d8;
+}
+
+.sideBarOption:visited path {
+  fill: #8367d8;
+}

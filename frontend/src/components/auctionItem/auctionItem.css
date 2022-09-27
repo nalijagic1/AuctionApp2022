@@ -10,7 +10,7 @@
   color: #252525;
 }
 
-.auctionItem{
+.auctionItem {
   display: flex;
 }
 
@@ -19,8 +19,8 @@
   height: 80px;
 }
 
-.auctionPrice{
-  float:right;
+.auctionPrice {
+  float: right;
 }
 
 .auctionItemInfo {
@@ -57,5 +57,3 @@
   opacity: 1;
   padding-top: 27px;
 }
-
-

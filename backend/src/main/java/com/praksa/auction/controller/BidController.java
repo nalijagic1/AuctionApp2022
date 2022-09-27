@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.time.DateTimeException;
 
@@ -37,5 +38,11 @@ public class BidController {
         } catch (IllegalArgumentException | DateTimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @DeleteMapping("/removeHighestBid/{productId}")
+    public ResponseEntity<String> removeHighestBid(@PathVariable long productId) {
+        bidService.removeHighestBid(productId);
+        return ResponseEntity.ok("Succesfully deleated highest bid");
     }
 }

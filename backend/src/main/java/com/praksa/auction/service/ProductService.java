@@ -84,13 +84,17 @@ public class ProductService {
         return productRepository.existsProductByPersonId(sellerId);
     }
 
-    public Product addNewProduct(NewProductDto productDto){
-        Product newProduct = productRepository.save(new Product(productDto,subcategoryService.getSubcategoryById(productDto.getSubcategoryId()),personService.getPersonById(productDto.getPersonId())));
+    public Product addNewProduct(NewProductDto productDto) {
+        Product newProduct = productRepository.save(new Product(productDto, subcategoryService.getSubcategoryById(productDto.getSubcategoryId()), personService.getPersonById(productDto.getPersonId())));
         List<Picture> pictures = new ArrayList<>();
-        for(String picture : productDto.getPictures()){
-            pictures.add(new Picture(picture,newProduct));
+        for (String picture : productDto.getPictures()) {
+            pictures.add(new Picture(picture, newProduct));
         }
         pictureService.addNewPictures(pictures);
         return newProduct;
+    }
+
+    public void updateEndDate(Date date, long productId) {
+        productRepository.updateEndDate(date, productId);
     }
 }

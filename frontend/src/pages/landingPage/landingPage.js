@@ -1,17 +1,25 @@
-import React from "react";
-import CategoryList from "../../components/categoryList/categoryList";
+import React, { useState } from "react";
 import "./landingPage.css";
-import ProductHighlight from "../../components/productHighlight/productHightlight";
+import CategoryList from "../../components/categoryList/categoryList";
 import Offers from "../../components/offers/offers";
+import ProductHighlight from "../../components/productHighlight/productHightlight";
+import Loader from "../../components/loader/loader";
 
 function LandingPage() {
+  const [loading, isLoading] = useState(false);
   return (
     <div>
-      <div className="home">
-        <CategoryList />
-        <ProductHighlight />
-      </div>
-      <Offers />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div>
+          <div className="home">
+            <CategoryList isLoading={(loading) => isLoading(loading)} />
+            <ProductHighlight />
+          </div>
+          <Offers />
+        </div>
+      )}
     </div>
   );
 }

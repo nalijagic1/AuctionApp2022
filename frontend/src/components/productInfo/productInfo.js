@@ -24,9 +24,7 @@ function ProductInfo({ product, showNotification }) {
   const [warningText, setWarningText] = useState("");
   const [bid, setBid] = useState("");
   const [notSeller, setNotSeller] = useState(true);
-  const [ended, setEnded] = useState(
-    moment(product.endingDate) <= moment.now()
-  );
+  const ended = moment(product.endingDate) <= moment.now();
   const [winner, setWinner] = useState(false);
   let countdown = moment(product.endingDate).fromNow(true);
   const user = personService.getCurrentUser();
@@ -57,7 +55,6 @@ function ProductInfo({ product, showNotification }) {
       if (user.id === product.person.id) {
         setNotSeller(false);
       }
-      setBiddingEnabled(true);
     } else {
       setBiddingEnabled(false);
       setWarningText(NOTIFICATION_MESSAGES.LOGIN_TO_BID);
@@ -127,7 +124,7 @@ function ProductInfo({ product, showNotification }) {
       </div>
       {notSeller && !ended && (
         <TooltipMessage
-          className=""
+          className="primaryTooltip"
           title={warningText}
           placement="top-end"
           arrow

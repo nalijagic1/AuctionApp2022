@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./navigationWhite.css";
 import logo from "../../images/auction-app-logo 1.png";
 import { useNavigate, useLocation } from "react-router-dom";
+import { ROLES } from "../../utils/roles";
+import personService from "../../services/person.service";
 
-function NavigationWhite() {
-  const user = JSON.parse(localStorage.getItem("user"));
+function NavigationWhite({ expanded }) {
+  const user = personService.getCurrentUser();
   let navigate = useNavigate();
   const location = useLocation();
   const showExitButton = useRef(false);
@@ -33,7 +35,7 @@ function NavigationWhite() {
   }
 
   return (
-    <div className="whitenav">
+    <div className={`whitenav ${expanded ? `compress` : ``}`}>
       <div
         id="logo"
         className={showSearchAndMenu.current ? "navHome" : "navLogIn"}
@@ -60,24 +62,25 @@ function NavigationWhite() {
             <input id="searchButton" type="submit" value="" onClick={search} />
           </div>
           <div className="menu" align="right">
-            {user && (
-              <div
-                className="myAccountMenu"
-                onMouseOver={() => setDisplayAccountMenu(true)}
-                onMouseOut={() => setDisplayAccountMenu(false)}
-              >
-                <a href="/">MY ACCOUNT</a>
-                {displayAccountMenu && (
-                  <div className="accountSubmenu">
-                    <a href="/addItem">
-                      {user.user.seller
-                        ? "Add additional item"
-                        : "Become seller"}
-                    </a>
-                  </div>
-                )}
-              </div>
-            )}
+            {user &&
+              (user.role !== ROLES.ADMIN ? (
+                <div
+                  className="myAccountMenu"
+                  onMouseOver={() => setDisplayAccountMenu(true)}
+                  onMouseOut={() => setDisplayAccountMenu(false)}
+                >
+                  <a href="/">MY ACCOUNT</a>
+                  {displayAccountMenu && (
+                    <div className="accountSubmenu">
+                      <a href="/addItem">
+                        {user.seller ? "Add additional item" : "Become seller"}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a href="/">ADMIN</a>
+              ))}
             <a href="/shop/all">SHOP</a>
             <a href="/">HOME</a>
           </div>

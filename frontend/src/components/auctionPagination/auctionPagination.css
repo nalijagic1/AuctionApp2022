@@ -1,0 +1,28 @@
+.paging .MuiPaginationItem-page:hover {
+  background-color: transparent;
+}
+
+.paging .Mui-selected {
+  background: #8367d8;
+  color: #ffffff;
+  border-radius: 0;
+}
+
+.paging .Mui-selected:hover {
+  background: #8367d8;
+  color: #ffffff;
+  border-radius: 0;
+}
+
+.paging .Mui-disabled,
+.paging .MuiPaginationItem-firstLast,
+.paging .MuiPaginationItem-previousNext {
+  color: #8367d8;
+}
+
+.pagePicker {
+  width: 550px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

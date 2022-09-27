@@ -34,6 +34,7 @@ function ProductLocation(props) {
     });
     addressService.getAddressFromUser(seller.id).then((response) => {
       if (response.status === 200 && response.data) {
+        console.log("hello")
         setAddress(response.data.street);
         setCity(response.data.city);
         setZipCode(response.data.zipCode);
@@ -53,7 +54,7 @@ function ProductLocation(props) {
           type="text"
           id="address"
           onChange={(e) => {
-            setError(updateErrorMessage(error,"address"));
+            setError(updateErrorMessage(error, "address"));
             setAddress(e.target.value);
           }}
           value={address}
@@ -67,7 +68,7 @@ function ProductLocation(props) {
           type="text"
           id="email"
           onChange={(e) => {
-            setError(updateErrorMessage(error,"email"));
+            setError(updateErrorMessage(error, "email"));
             setEmail(e.target.value);
           }}
           value={email}
@@ -83,7 +84,7 @@ function ProductLocation(props) {
             id="city"
             error={error.city}
             onChange={(e) => {
-              setError(updateErrorMessage(error,"city"));
+              setError(updateErrorMessage(error, "city"));
               setCity(e.target.value);
             }}
             value={city}
@@ -96,7 +97,7 @@ function ProductLocation(props) {
             id="zipCode"
             error={error.zipCode}
             onChange={(e) => {
-              setError(updateErrorMessage(error,"zipCode"));
+              setError(updateErrorMessage(error, "zipCode"));
               setZipCode(e.target.value);
             }}
             value={zipCode}
@@ -107,7 +108,7 @@ function ProductLocation(props) {
         <select
           className={`sectorCountry ${error.country ? "selectError" : ""}`}
           onChange={(e) => {
-            setError(updateErrorMessage(error,"country"));
+            setError(updateErrorMessage(error, "country"));
             setCountry(e.target.value);
           }}
           value={`${countryId}`}
@@ -133,7 +134,7 @@ function ProductLocation(props) {
           id="phoneNumber"
           error={error.phoneNumber}
           onChange={(e) => {
-            setError(updateErrorMessage(error,"phoneNumber"));
+            setError(updateErrorMessage(error, "phoneNumber"));
             setPhoneNumber(e.target.value);
           }}
           value={phoneNumber}

@@ -8,17 +8,21 @@ import Button from "../button/button";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { STATUS_CODES } from "../../utils/httpStatusCode";
 
-function ProductHighlight() {
+function ProductHighlight({ isLoading }) {
   const [product, setProduct] = useState([]);
   const [image, setImage] = useState();
   useEffect(() => {
+    //isLoading(true)
     productService.getHighlighted().then((response) => {
       if (response.status === STATUS_CODES.OK) {
         setProduct(response.data);
         pictureService
           .getProductCoverPicture(response.data.id)
           .then((response) => {
-            if (response.status === STATUS_CODES.OK) setImage(response.data);
+            if (response.status === STATUS_CODES.OK) {
+              setImage(response.data);
+              //isLoading(false)
+            }
           });
       }
     });

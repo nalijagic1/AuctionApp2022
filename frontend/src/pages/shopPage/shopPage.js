@@ -8,6 +8,7 @@ import Button from "../../components/button/button";
 import PathBar from "../../components/pathBar/pathBar";
 import DidYouMean from "../../components/didYouMean/didYouMean";
 import { STATUS_CODES } from "../../utils/httpStatusCode";
+import Loader from "../../components/loader/loader";
 
 function ShopPage() {
   const param = useParams();
@@ -20,6 +21,7 @@ function ShopPage() {
   let start = useRef(1);
   let previous = useRef("");
   const filter = word ? word : param.category;
+  const [loading, setLoading] = useState(false);
 
   function showMore() {
     start.current += 1;
@@ -54,30 +56,39 @@ function ShopPage() {
   }, [param, word, count]);
   return (
     <div className="shopPage">
-      {word && (
+      {loading ? (
+        <Loader></Loader>
+      ) : (
         <div>
-          {products.length === 0 && <DidYouMean search={word} />}
-          <PathBar
-            prop={{
-              name: "",
-              startPoint: "Home",
-              endPoint: `Search results for ${word}`,
-            }}
-          ></PathBar>
-        </div>
-      )}
-      <div className="shop">
-        <CategoryList filter={filter} />
-        <SearchResult results={products} />
-      </div>
-      {hasMore.current && (
-        <div className="explore">
-          <Button
-            className="exploreButton"
-            label="Explore More"
-            buttonClass="purpleButton"
-            onClick={showMore}
-          />
+          {word && (
+            <div>
+              {products.length === 0 && <DidYouMean search={word} />}
+              <PathBar
+                prop={{
+                  name: "",
+                  startPoint: "Home",
+                  endPoint: `Search results for ${word}`,
+                }}
+              ></PathBar>
+            </div>
+          )}
+          <div className="shop">
+            <CategoryList
+              filter={filter}
+              isLoading={(load) => setLoading(load)}
+            />
+            <SearchResult results={products}/>
+          </div>
+          {hasMore.current && (
+            <div className="explore">
+              <Button
+                className="exploreButton"
+                label="Explore More"
+                buttonClass="purpleButton"
+                onClick={showMore}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

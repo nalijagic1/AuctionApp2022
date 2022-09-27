@@ -1,11 +1,14 @@
 package com.praksa.auction.model;
 
+import com.praksa.auction.enums.GenderEnum;
+import com.praksa.auction.enums.UserStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -21,7 +24,7 @@ public class Person {
     private long id;
     private String firstName;
     private String lastName;
-    private Gender gender;
+    private GenderEnum genderEnum;
     private Date dateOfBirth;
     private String phoneNumber;
     private String email;
@@ -31,4 +34,11 @@ public class Person {
     @JoinColumn(name = "addressId")
     private Address address;
     private String customerId;
+    private UserStatusEnum status;
+    private LocalDate statusUpdate;
+    private LocalDate lastLogIn;
+    private Date firstLogIn;
+    private String statusReason;
+    private Boolean viewedStatus;
+
 }

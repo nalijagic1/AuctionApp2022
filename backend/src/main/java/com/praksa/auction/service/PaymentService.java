@@ -51,7 +51,7 @@ public class PaymentService {
                         .addPaymentMethodType("card")
                         .setCustomer(customerId)
                         .build();
-        SetupIntent setupIntent= SetupIntent.create(params);
+        SetupIntent setupIntent = SetupIntent.create(params);
         return new PaymentResponseDto(setupIntent.getClientSecret());
     }
 }
