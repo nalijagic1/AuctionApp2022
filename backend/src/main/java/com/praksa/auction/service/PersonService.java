@@ -149,7 +149,7 @@ public class PersonService {
 
     public void updateUserStatus(int status, List<Long> personId, String statusMessage, boolean viewedStatus) {
         personRepository.updateStatus(status, personId, statusMessage, viewedStatus);
-
+    }
     public Integer getNewStatusCount(int status) {
         return personRepository.countUpdatedUsersByStatus(status);
     }
