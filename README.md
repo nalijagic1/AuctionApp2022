@@ -7,6 +7,9 @@ AuctionApp is an e-commerce web application that provides consumer-to-consumer s
 * **JWT_EXPIRATION** - duration of JWT token
 * **STRIPE_PUBLIC** - public key from your Stripe account
 * **STRIPE_SECRET** - secret key from your Stripe account
+* **MAIL_PASSWORD** - password for mail which sends emails for AuctionApp
+* **MAIL_ADDRESS** - email  from which AuctionApp sends emails
+* **APP_LINK** - link on which frontend is based, for example https://auctionapp2022.herokuapp.com
 <!-- -->
 User has to have npm and maven installed on his desktop.  
 To run the backend part of the application, user needs to go to backend directory and do following commands in his terminal:  
